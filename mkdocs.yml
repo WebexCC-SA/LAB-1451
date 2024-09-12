@@ -85,5 +85,5 @@ nav:
       - Part 4&colon; - Deploying your Customization: wx1_1451_part_4.md
       - Conclusion: conclusion.md
   - Resources: 
-    Communities: communities.md
-    Developer Sites: devSites.md
+      - Communities: communities.md
+      - Developer Sites: devSites.md
