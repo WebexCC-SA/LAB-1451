@@ -79,6 +79,9 @@ nav:
   - Home: index.md
   - Lab:
       - Overview: overview.md
-      - Lab 1 - Getting Started: lab1_getting_started.md
+      - Part One - Lab Setup: wx1_1451_part_1.md
+      - Part Two - Accessing Device xAPI : wx1_1451_part_2.md
+      - Part Three - Building a Customization using Macros: wx1_1451_part_3.md
+      - Part Four - Deploying your Customization: wx1_1451_part_4.md
       - Conclusion: conclusion.md
   - Topologies: topologies.md
