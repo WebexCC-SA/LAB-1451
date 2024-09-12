@@ -78,10 +78,10 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Lab:
-      - Overview: overview.md
-      - Part One - Lab Setup: wx1_1451_part_1.md
-      - Part Two - Accessing Device xAPI : wx1_1451_part_2.md
-      - Part Three - Building a Customization using Macros: wx1_1451_part_3.md
-      - Part Four - Deploying your Customization: wx1_1451_part_4.md
+      - Lab Overview: overview.md
+      - Part 1&colon; Lab Setup: wx1_1451_part_1.md
+      - Part 2&colon; - Accessing Device xAPI : wx1_1451_part_2.md
+      - Part 3&colon; - Building a Customization using Macros: wx1_1451_part_3.md
+      - Part 4&colon; - Deploying your Customization: wx1_1451_part_4.md
       - Conclusion: conclusion.md
-  - Topologies: topologies.md
+  - Topologies: resources.md
