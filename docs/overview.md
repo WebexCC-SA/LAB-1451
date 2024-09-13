@@ -9,11 +9,11 @@ We'll take this a step further and show you how to deploy this new solution usin
 ## Learning Objectives
 
 Upon successful completion of this lab, you will be able to:
-	1.	Use Cisco Video Device xAPI via Serial, SSH, HTTP, WebSockets and using Cloud xAPI
-  2.  Design a custom User Interface using the UI extensions Editor 
-  3.  Build a custom solution leveraging device xAPIs, 3rd party APIs and the Macro Editor
-  4.  Deploy Macro based solution via the Cloud and Locally
-  5.  Deploy Macro based solutions in bulk using Cisco Video Device xAPIs
+1.	Use Cisco Video Device xAPI via Serial, SSH, HTTP, WebSockets and using Cloud xAPI
+2.  Design a custom User Interface using the UI extensions Editor 
+3.  Build a custom solution leveraging device xAPIs, 3rd party APIs and the Macro Editor
+4.  Deploy Macro based solution via the Cloud and Locally
+5.  Deploy Macro based solutions in bulk using Cisco Video Device xAPIs
 
 
 ## Lab Requirements
