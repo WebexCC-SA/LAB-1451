@@ -39,10 +39,10 @@ extra_css:
   - stylesheets/extra.css
 plugins:
   - search
-  - with-pdf:
-      cover_title: LAB-1451
-      cover_subtitle: Device xAPI, Room Customization and Deployment
-      cover_logo: template_assets/wx1Splash_new.gif
+  # - with-pdf:
+  #     cover_title: LAB-1451
+  #     cover_subtitle: Device xAPI, Room Customization and Deployment
+  #     cover_logo: template_assets/wx1Splash_new.gif
   - glightbox:
       touchNavigation: true
       loop: false
