@@ -26,20 +26,58 @@
 }
 
 :root {
-  --md-admonition-icon--vidcast: url('data:image/svg+xml;charset=utf-8,<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.8646 13.9022C25.8646 12.4539 25.1157 11.1806 23.9841 10.4481L23.9842 10.4479L23.9779 10.4439C23.9448 10.4226 23.9113 10.4016 23.8775 10.3812L8.03093 0.480048C7.17747 -0.0208221 6.11028 0.000124794 6.11028 0.000124794V0.000330829C6.10293 0.000330829 6.09565 5.61161e-05 6.0883 5.61161e-05C4.01223 -1.2562e-05 2.32316 1.65699 2.27138 3.72063L2.27014 3.72028L2.27 13.5777H2.27097C2.30675 15.4391 3.82673 16.937 5.6967 16.937C7.56667 16.937 9.12086 15.4053 9.12319 13.5148V9.38479L16.5507 14.1065L4.97414 21.7197V21.7199C4.05241 22.334 3.44495 23.3827 3.44495 24.5734C3.44495 26.4659 4.97908 28 6.87151 28C7.47031 28 8.03306 27.8462 8.52287 27.5763V27.5765L8.52315 27.5761C8.59924 27.5342 8.67355 27.4894 8.74594 27.442H8.74635L24.0441 17.3168H24.0439C25.142 16.5785 25.8644 15.3247 25.8644 13.902L25.8646 13.9022Z" fill="black" fill-opacity="0.95"/></svg>')
+  --md-admonition-icon--vidcast: url('data:image/svg+xml;charset=utf-8,<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.8646 13.9022C25.8646 12.4539 25.1157 11.1806 23.9841 10.4481L23.9842 10.4479L23.9779 10.4439C23.9448 10.4226 23.9113 10.4016 23.8775 10.3812L8.03093 0.480048C7.17747 -0.0208221 6.11028 0.000124794 6.11028 0.000124794V0.000330829C6.10293 0.000330829 6.09565 5.61161e-05 6.0883 5.61161e-05C4.01223 -1.2562e-05 2.32316 1.65699 2.27138 3.72063L2.27014 3.72028L2.27 13.5777H2.27097C2.30675 15.4391 3.82673 16.937 5.6967 16.937C7.56667 16.937 9.12086 15.4053 9.12319 13.5148V9.38479L16.5507 14.1065L4.97414 21.7197V21.7199C4.05241 22.334 3.44495 23.3827 3.44495 24.5734C3.44495 26.4659 4.97908 28 6.87151 28C7.47031 28 8.03306 27.8462 8.52287 27.5763V27.5765L8.52315 27.5761C8.59924 27.5342 8.67355 27.4894 8.74594 27.442H8.74635L24.0441 17.3168H24.0439C25.142 16.5785 25.8644 15.3247 25.8644 13.902L25.8646 13.9022Z" fill="black" fill-opacity="0.95"/></svg>');
+  --md-admonition-icon--download: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 242.7-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7 288 32zM64 352c-35.3 0-64 28.7-64 64l0 32c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-32c0-35.3-28.7-64-64-64l-101.5 0-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352 64 352zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>');
+  --md-admonition-icon--blank: url('');
 }
+/*  */
 .md-typeset .admonition.vidcast,
 .md-typeset details.vidcast {
   border-color: rgb(215, 65, 135);
 }
+.md-typeset .admonition.download,
+.md-typeset details.download {
+  border-color: rgb(203, 203, 202);
+}
+
+.md-typeset .admonition.blank,
+.md-typeset details.blank {
+  border-color: rgb(112, 112, 112);
+}
+
+/* */
 .md-typeset .vidcast > .admonition-title,
 .md-typeset .vidcast > summary {
   background-color: rgba(215, 65, 135, 0.1);
 }
+.md-typeset .download > .admonition-title,
+.md-typeset .download > summary {
+  background-color: rgba(108, 108, 108, 0.1);
+}
+.md-typeset .blank > .admonition-title,
+.md-typeset .blank > summary {
+  background-color: rgba(108, 108, 108, 0.1);
+}
+
+/*  */
 .md-typeset .vidcast > .admonition-title::before,
 .md-typeset .vidcast > summary::before {
   background-color: rgb(215, 65, 135);
   background: linear-gradient(45deg, #4f62ff 25%, #f15a6f 60%);
   -webkit-mask-image: var(--md-admonition-icon--vidcast);
           mask-image: var(--md-admonition-icon--vidcast);
+}
+
+.md-typeset .download > .admonition-title::before,
+.md-typeset .download > summary::before {
+  background-color: rgb(203, 203, 202);
+  -webkit-mask-image: var(--md-admonition-icon--download);
+          mask-image: var(--md-admonition-icon--download);
+}
+
+.md-typeset .blank > .admonition-title::before,
+.md-typeset .blank > summary::before {
+  background-color: rgb(112, 112, 112);
+  -webkit-mask-image: var(--md-admonition-icon--blank);
+          mask-image: var(--md-admonition-icon--blank);
 }
