@@ -75,15 +75,20 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.keys
 nav:
-  - Home: index.md
-  - Lab:
+  - Home&nbsp<i class="fa-solid fa-house" style="color:#B197FC;"></i>: index.md
+  - Lab&nbsp<i class="fa-solid fa-flask" style="color:#fdd649;"></i>:
       - Lab Overview: overview.md
       - Part 1&colon; Lab Setup: wx1_1451_part_1.md
       - Part 2&colon; - Accessing Device xAPI : wx1_1451_part_2.md
       - Part 3&colon; - Building a Customization using Macros: wx1_1451_part_3.md
       - Part 4&colon; - Deploying your Customization: wx1_1451_part_4.md
       - Conclusion: conclusion.md
-  - Resources: 
+  - Ask a Question&nbsp<i class="fa-solid fa-hand" style="color:#63E6BE;"></i>: slido-QA-iFrame.md
+  - Cheat Sheet&nbsp<i class="fa-solid fa-screwdriver-wrench" style="color:#1eeb40;"></i>: cheatsheet.md
+  - Resources&nbsp<i class="fa-solid fa-globe" style="color:#04C0FC;"></i>: 
       - Communities: communities.md
       - Developer Sites: devSites.md
