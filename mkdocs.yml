@@ -43,9 +43,6 @@ plugins:
   #     cover_title: LAB-1451
   #     cover_subtitle: Device xAPI, Room Customization and Deployment
   #     cover_logo: template_assets/wx1Splash_new.gif
-  - privacy:
-      links_attr_map:
-        target: _blank
   - glightbox:
       touchNavigation: true
       loop: false
@@ -80,8 +77,9 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
-  - pymdownx.keys
+  - pymdownx.critic
   - pymdownx.caret
+  - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
 nav:
