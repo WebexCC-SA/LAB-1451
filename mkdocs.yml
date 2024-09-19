@@ -43,6 +43,9 @@ plugins:
   #     cover_title: LAB-1451
   #     cover_subtitle: Device xAPI, Room Customization and Deployment
   #     cover_logo: template_assets/wx1Splash_new.gif
+  - privacy:
+      links_attr_map:
+        target: _blank
   - glightbox:
       touchNavigation: true
       loop: false
