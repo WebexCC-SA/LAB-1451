@@ -57,4 +57,4 @@ PDF guide link: https://webexcc-sa.github.io/LAB-1451/pdf/document.pdf
     console.log('Hello Important!')
     ```
 ```
-<img src="/docs/assets/custom_admo.png" alt="custom_admo" width="500" height="300">
+<img src="/docs/assets/custom_admo.png" alt="custom_admo" height="500">
