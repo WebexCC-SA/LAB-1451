@@ -1,0 +1,1 @@
+<iframe src="https://app.sli.do/event/b1BMFsd1DtgpkSKi2Sfguh" display="inline-block" height="700px" width="100%" frameBorder="0" style="min-height: 560px;" allow="clipboard-write" title="Slido"></iframe>
