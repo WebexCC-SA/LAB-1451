@@ -1,3 +1,14 @@
+<div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const footerNav = document.querySelector('.md-footer__inner');
+      if (footerNav) {
+        footerNav.style.display = 'none';
+      }
+    });
+  </script>
+</div>
+
 ???+ blank "Part 2: Accessing the Video Device xAPI"
 
     ??? info "Terminal Shortcut References"
