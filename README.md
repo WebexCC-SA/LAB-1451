@@ -56,5 +56,12 @@ PDF guide link: https://webexcc-sa.github.io/LAB-1451/pdf/document.pdf
     ```javascript
     console.log('Hello Important!')
     ```
+
+!!! important
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor massa, nec semper lorem quam in massa.
+
+    ```javascript
+    console.log('Hello Challenge!')
+    ```
 ```
-<img src="/docs/assets/custom_admo.png" alt="custom_admo" height="500">
+<img src="/docs/assets/custom_admo2.png" alt="custom_admo" height="500">
