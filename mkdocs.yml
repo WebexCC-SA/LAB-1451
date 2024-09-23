@@ -95,7 +95,10 @@ nav:
       - Conclusion: conclusion.md
   - Tools&nbsp<i class="fa-solid fa-gear"></i>: tools.md
   - Ask a Question&nbsp<i class="fa-solid fa-hand" style="color:#63E6BE;"></i>: slido-QA-iFrame.md
-  - Cheat Sheet&nbsp<i class="fa-solid fa-screwdriver-wrench" style="color:#1eeb40;"></i>: cheatsheet.md
+  - Cheat Sheet&nbsp<i class="fa-solid fa-screwdriver-wrench" style="color:#1eeb40;"></i>:
+      - CheatSheet: cheatsheet.md
+      - Challenge Answers: challengeAnswers.md
   - Resources&nbsp<i class="fa-solid fa-globe" style="color:#04C0FC;"></i>: 
       - Communities: communities.md
       - Developer Sites: devSites.md
+  
