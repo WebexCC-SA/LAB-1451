@@ -43,3 +43,24 @@
 
     showAndComposeCamera();
     ```
+
+??? challenge "Challenge: Can you spot the Error? [Section 2.6.4]"
+
+    - The {++setInterval()++} functions that wrap around ==setRandomDefaultVolume()== in `xConfigs_Lesson-4_MacroPak_2-6-4` and ==setRandomAirplayConfigs()== in `xConfigs_Lesson-5_MacroPak_2-6-4` will continue to run after the subscription has stopped
+
+    - This will continuously change those configs, causing for a poor solution if left on
+
+    - To resolve this, it's best to assign your SetInterval to a object, just as we had done for our subscription and run ClearInterval at the same time we unsubscribed from those configs
+
+    !!! note
+
+        Practically speaking, randomly assigning configs in an automation has little value, this was only done to save you a bit of time so you can see your subscriptions fire
+
+    <div style="display: flex; gap: 10px;">
+        <a class="md-button md-button--primary" href="https://developer.mozilla.org/en-US/docs/Web/API/setInterval" target="_blank">
+            Learn more about <strong>Intervals</strong> <i class="fa-solid fa-square-up-right"></i>
+        </a>
+        <a class="md-button md-button--primary" href="https://developer.mozilla.org/en-US/docs/Web/API/setTimeout" target="_blank">
+            Learn more about <strong>Timeouts</strong> <i class="fa-solid fa-square-up-right"></i>
+        </a>
+    </div>
