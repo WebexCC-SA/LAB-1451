@@ -64,3 +64,16 @@
             Learn more about <strong>Timeouts</strong> <i class="fa-solid fa-square-up-right"></i>
         </a>
     </div>
+
+??? challenge "Challenge: Alter `Execute an xCommand` in your Postman Collection"
+
+      ``` { .json , .no=copy , title="Message Body" }
+      {
+        "jsonrpc": "2.0",
+        "id": "Execute an xCommand",
+        "method": "xCommand/Video/Selfview/Set",
+        "params": {
+          "Mode": "Off"
+        }
+      }
+      ```

@@ -28,105 +28,240 @@
         | **xConfiguration** |       ✅       |       ✅       |        ❌       |            ✅           |
         | **xStatus**        |       ✅       |       ✅       |        ❌       |            ✅           |
         | **xEvent**         |       ❌       |       ❌       |        ❌       |            ✅           |
-    
-    ??? info "Syntax Relationships Accross Access Methods Types"
 
-        !!! example "xConfiguration Syntaxes"
 
-            === "Command Line"
+    ??? info "Websocket Message Structure Examples and Responses"
 
-                ``` shell title="Get Value"
-                xConfiguration Audio DefaultVolume
-                ``` 
+        === "xCommand/[Path]"
 
-                ``` shell title="Set Value"
-                xConfiguration Audio DefaultVolume: 50
-                ``` 
+            xCommand Paths follow the ==xCommand== method in the `method` object, separated by forward slash ( ==/== )
 
-                ``` shell title="Subscribe to Value Changes"
-                xFeedback Register Configuration/Audio/DefaultVolume
-                ``` 
+            Parameters for the xCommand are defined as individual objects under the `params` object written in JSON format
 
-                ``` shell title="UnSubscribe to Value Changes"
-                xFeedback Deregister Configuration/Audio/DefaultVolume
-                ``` 
+            === "Request <i class="fa-solid fa-share"></i>"
 
-            === "Macro Editor [Javascript]"
+                ```JSON
+                {
+                  "jsonrpc": "2.0",
+                  "id": 111,
+                  "method": "xCommand/Dial",
+                  "params": {
+                    "Number": "bobby@example.com",
+                    "Protocol": "Spark"
+                  }
+                }
+                ```
+            
+            === "Response <i class="fa-solid fa-reply"></i>"
 
-                ``` javascript title="Set Value"
-                import xapi from 'xapi';
+                ```JSON
+                {
+                  "jsonrpc": "2.0",
+                  "id": 111,
+                  "result": {
+                  "CallId": 2,
+                  "ConferenceId": 1
+                  }
+                }
+                ```
 
-                ``` 
+            === "Error Response <i class="fa-solid fa-triangle-exclamation"></i>"
 
-                ``` javascript title="Get Value"
-                import xapi from 'xapi';
-                    
-                ``` 
+                ```JSON
+                {
+                  "jsonrpc": "2.0",
+                  "id": 111,
+                  "error": {
+                    "code": 1,
+                      "data": {
+                      "Cause": 21
+                    },
+                    "message": "Not paired with isdn link"
+                  }
+                }
+                ```
 
-                ``` javascript title="Subscribe to Value"
-                import xapi from 'xapi';
-                    
-                ``` 
+        === "xGet [xStatus/xConfiguration]"
 
-                ``` javascript title="Unsubscribe to Value Value"
-                import xapi from 'xapi';
-                    
-                ``` 
+            `xStatus` and `xConfiguration` branches can make use of the ==xGet== method. Unlike Commands, the xAPI path is provided in the params object under a Path object and is structured as an Array
 
-            === "XML API"
+            === "Request <i class="fa-solid fa-share"></i>"
 
-                ???+ blank "Javascript > Fetch Example"
+                ```JSON
+                {
+                  "jsonrpc": "2.0",
+                  "id": 102,
+                  "method": "xGet",
+                  "params": {
+                    "Path": ["Configuration", "SystemUnit", "Name"]
+                  }
+                }   
+                ```
+            
+            === "Response <i class="fa-solid fa-reply"></i>"
 
-                    Fetch is a tool found in front end JS environments.
+                ```JSON
+                {
+                  "jsonrpc": "2.0",
+                  "id": 102,
+                  "result": "my-device"
+                }
+                ```
 
-                    ``` javascript title="Set Value"
-                
+        === "xQuery [xStatus/xConfiguration]"
 
-                    ``` 
+            `xStatus` and `xConfiguration` branches can make use of the ==xQuery== method. xQuery is formatted and functions largely like the xGet method
 
-                    ``` javascript title="Get Value"
-                    
-                    ``` 
+            !!! note "Note the difference between `xQuery` and `xGet`"
 
-                ??? blank "Javascript > xCommand HTTPClient API Example"
+                - The response to xQuery always starts from the top node, i.e. "Status" or "Configuration".
+                - The response to xGet starts relative to the path given in the "Query".
+                - xQuery can also implement Wildcards (`**`) in it's path, which matches zero or more levels in the path.
 
-                    xCommand HTTPClient APIs are accessible on Cisco Codec's allowing them to Post, Patch, Put, Pull Get and Delete using HTTP communication
+            === "Request <i class="fa-solid fa-share"></i>"
 
-                    ``` javascript title="Set Value"
-                
+                ```JSON
+                {
+                  "jsonrpc": "2.0",
+                  "id": 105,
+                  "method": "xQuery",
+                  "params": {
+                    "Query": ["Status", "**", "DisplayName"] 
+                  }
+                }
+                ```
+            
+            === "Response <i class="fa-solid fa-reply"></i>"
 
-                    ``` 
+                ```JSON
+                {
+                  "jsonrpc": "2.0",
+                  "id": 105,
+                  "result": {
+                    "Status": {
+                      "SIP": {
+                        "CallForward": {
+                          "DisplayName": "Room Bar Pro"
+                        }
+                      },
+                      "SystemUnit": {
+                        "Software": {
+                          "DisplayName": "RoomOS 11.20..."
+                        }
+                      }
+                    }
+                  }
+                }
+                ```
 
-                    ``` javascript title="Get Value"
-                    
-                    ``` 
+        === "xSet [xConfiguration]"
 
-            === "jsxapi [NodeJs]"
+            === "Request <i class="fa-solid fa-share"></i>"
 
-                ``` javascript title="Set Value"
-                import xapi from 'xapi';
+                ```JSON
+                {
+                  "jsonrpc": "2.0",
+                  "id": 110,
+                  "method": "xSet",
+                  "params": {
+                    "Path": ["Configuration","SystemUnit","Name"],
+                    "Value": "My New System Name"
+                  }
+                }
+                ```
+            
+            === "Response <i class="fa-solid fa-reply"></i>"
 
-                ``` 
+                ```JSON
+                {
+                  "jsonrpc": "2.0",
+                  "id": 110,
+                  "result": true
+                }
+                ```
 
-                ``` javascript title="Get Value"
-                    
-                ``` 
+        === "xFeedback [xStatus/xConfiguration/xEvent]"
 
-                ``` javascript title="Subscribe to Value"
-                    
-                ``` 
+            xFeedback, or Subscriptions, have 2 Id objects within the life of it's process. When sending any message, you will assign an `id` and get an initial response containing that same `id`. But when you subscribe, it will contain an additional ==Id== in it's results object which corresponds to this specific subscription. All notifications after the initial response from this subscription will contain the Subscription ==Id== not the initial message `id`. This is important, as you may have multiple or similar subscriptions you may want to instantiate and handle separately as you develop your solution.
 
-                ``` javascript title="Unsubscribe to Value Value"
-                    
-                ``` 
+            === "Subscribe Request <i class="fa-solid fa-share"></i>"
 
-            === "Cloud xAPI"
+                ```JSON
+                {
+                  "jsonrpc": "2.0",
+                  "id": 113, // <-- This is the Message id
+                  "method": "xFeedback/Subscribe",
+                  "params": {
+                    "Query": ["Status", "Video", "Selfview"],
+                    "NotifyCurrentValue": true // <-- When true, will respond with additional notifications
+                  }
+                }
+                ```
+            
+            === "Initial Response <i class="fa-solid fa-reply"></i>"
 
-                ``` markdown
-                1. Sed sagittis eleifend rutrum
-                2. Donec vitae suscipit est
-                3. Nulla tempor lobortis orci
-                ``` 
+                ```JSON
+                {
+                  "jsonrpc": "2.0",
+                  "id": 113,
+                  "result": {
+                    "Id": 1 // <-- This is the Subscription Id of the new feedback registration. Use this Subscription Id to map incoming notifications to the initial subscription request, or to unsubscribe from this data
+                  }
+                }
+                ```
+
+            === "Notification Response <i class="fa-solid fa-reply"></i>"
+
+                ```JSON
+                {
+                  "jsonrpc": "2.0",
+                  "method": "xFeedback/Event",
+                  "params": {
+                    "Id": 1, // <-- This is the Subscription Id of the feedback registration.
+                    "Status": {
+                      "Video": {
+                        "Selfview": {
+                          "FullscreenMode": "Off",
+                          "Mode": "Off",
+                          "OnMonitorRole": "First",
+                          "PIPPosition": "CenterRight"
+                        }
+                      }
+                    }
+                  }
+                }
+                ```
+
+            === "Unsubscribe Request <i class="fa-solid fa-share"></i>"
+
+                ```JSON
+                {
+                  "jsonrpc": "2.0",
+                  "id": 113, // <-- This is the Message id
+                  "method": "xFeedback/Subscribe",
+                  "params": {
+                    "Id": 1, // <-- This is the Subscription Id of the initial feedback registration.
+                  }
+                }
+                ```
+            
+            ??? curious "Subscription Visual Flow"
+
+                ``` mermaid
+                sequenceDiagram
+                    participant My Customization
+                    participant Target Codec
+                    My Customization<<-->>Target Codec: Websocket Connection
+                    Note over My Customization,Target Codec: Register Subscription
+                    My Customization->>+Target Codec: xFeedback/Subscribe [Message `id`#58; 101]
+                    Target Codec ->> My Customization: Acknowledges Message `id`#58; 101<br>[Provides Subscription `Id`#58; 1]
+                    Note over My Customization,Target Codec: Incoming Events
+                    Target Codec -->>+ My Customization: <br> Event Payload. Contains [Subscription `Id`#58; 1]
+                    Target Codec -->> My Customization: <br> Event Payload. [Subscription `Id`#58; 1]
+                    Target Codec -->>- My Customization: <br> ........... [Subscription `Id`#58; 1]
+                    Note over My Customization,Target Codec: Deregister Subscription
+                    My Customization->>-Target Codec: xFeedback/Unsubscribe <br>Provide Subscription [`Id`#58; 1] NOT Message [`id`#58; 101] as param<br>[Subscription `Id`#58; 1]
+                ```
 
 ??? blank "Part 3:  Building a Device Customization using Macros"
 
