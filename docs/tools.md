@@ -1,3 +1,72 @@
+??? tool "Code Difference Checker"
+    <div>
+        <div style="display: flex; justify-content: space-between;">
+            <textarea id="codeDif-text1" placeholder="Enter first code snippet here..." style="width: 45%; height: 300px; margin: 0 2%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace;"></textarea>
+            <textarea id="codeDif-text2" placeholder="Enter second code snippet here..." style="width: 45%; height: 300px; margin: 0 2%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace;"></textarea>
+        </div>
+        <label style="font-family: Arial, sans-serif;">
+            <input type="checkbox" id="codeDif-ignoreWhitespace" checked>
+            Ignore Whitespace
+        </label>
+        <button id="codeDif-checkButton" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; background-color: rgba(192, 192, 192, 0.1); cursor: pointer; margin: 20px 0; font-size: 16px;">Check Differences</button>
+        <h2 style="font-family: Arial, sans-serif;">Differences:</h2>
+        <div style="display: flex; justify-content: space-between;">
+            <div id="codeDif-result1" style="width: 45%; color: #000000; background: #f9f9f9; border: 1px solid #ccc; padding: 10px; font-family: monospace; border-radius: 4px; white-space: pre-wrap;"></div>
+            <div id="codeDif-result2" style="width: 45%; color: #000000; background: #f9f9f9; border: 1px solid #ccc; padding: 10px; font-family: monospace; border-radius: 4px; white-space: pre-wrap;"></div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                function escapeHTML(html) {
+                    var text = document.createTextNode(html);
+                    var div = document.createElement('div');
+                    div.appendChild(text);
+                    return div.innerHTML;
+                }
+                function checkDifferences() {
+                    var ignoreWhitespace = document.getElementById('codeDif-ignoreWhitespace').checked;
+                    var code1 = document.getElementById('codeDif-text1').value.split('\n').map(function(line) {
+                        return ignoreWhitespace ? line.trim() : line;
+                    });
+                    var code2 = document.getElementById('codeDif-text2').value.split('\n').map(function(line) {
+                        return ignoreWhitespace ? line.trim() : line;
+                    });
+                    var output1 = '';
+                    var output2 = '';
+                    // Use forEach to iterate over lines
+                    code1.forEach(function(line1, index) {
+                        var line2 = code2[index] || '';
+                        var maxLength = Math.max(line1.length, line2.length);
+                        // Create an array of characters for each line
+                        var chars1 = line1.split('');
+                        var chars2 = line2.split('');
+                        // Use forEach to compare characters
+                        chars1.forEach(function(char1, i) {
+                            var char2 = chars2[i] || '';
+                            if (char1 === char2) {
+                                output1 += escapeHTML(char1);
+                                output2 += escapeHTML(char2);
+                            } else {
+                                if (char1) output1 += '<span style="background-color: #ffcdd2;">' + escapeHTML(char1) + '</span>';
+                                if (char2) output2 += '<span style="background-color: #c8e6c9;">' + escapeHTML(char2) + '</span>';
+                            }
+                        });
+                        output1 += '\n'; // Add a newline after each line
+                        output2 += '\n';
+                    });
+                    document.getElementById('codeDif-result1').innerHTML = output1;
+                    document.getElementById('codeDif-result2').innerHTML = output2;
+                }
+                document.getElementById('codeDif-checkButton').addEventListener('click', checkDifferences);
+            });
+        </script>
+    </div>
+
+
+
+
+
+
+
 ??? tool "Base64 Conversion Tool"
     <div>
         <input type="text" id="base64TextInput" placeholder="Convert to Base64" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; box-sizing: border-box; width: 200px; margin-right: 5px;">
