@@ -15,7 +15,7 @@
 
         === "How to Use"
 
-            This macro was built to assist you for lessons where you'll Subscribe/Register Feedback. Do not modify this macro, but feel free to learn from this macro and how it operates. 
+            This macro was built to assist you for lessons where you'll Subscribe/Register Feedback to various xAPI Paths. Do not modify this macro, but feel free to learn from this macro and how it operates. 
 
             We won't be reviewing this macro in this lab, so if we'd encourage you take a copy home with you, and review outside this course
 
@@ -70,17 +70,17 @@
             === "Download"
 
                 <figure markdown="span">
-                    [![SubAssist Macro](./assets/general/cisco-logo-transparent.png){ width="300" }](https://raw.githubusercontent.com/WebexCC-SA/LAB-1451/main/docs/assets/downloadable_resources/Lab-1451_Subscription-Assistant_Part-2.zip)
+                    [![SubAssist Macro](./assets/general/cisco-logo-transparent.png){ width="300" }](https://github.com/WebexCC-SA/LAB-1451/raw/refs/heads/main/docs/assets/downloadable_resources/Lab-1451_Subscription-Assistant_Part-2.zip)
                     <figcaption>Lab-1451_Subscription-Assistant_Part-2 Macro</figcaption>
                 </figure>
-
-
+                
             === "Install"
 
                 !!! gif
 
-                    - Locate the `Lab-1451_Subscription-Assistant_Part-2.js` file you downloaded
-                    - Drag it into the WebUI of your Device
+                    - Locate the `Lab-1451_Subscription-Assistant_Part-2.zip` file you downloaded
+                    - Unzip it's Contents
+                    - Drag the `Lab-1451_Subscription-Assistant_Part-2.js` file into the WebUI of your Device
                     - Save the Macro
                     - Activate the Macro
 
