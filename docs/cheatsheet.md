@@ -29,6 +29,8 @@
         | **xStatus**        |       ✅       |       ✅       |        ❌       |            ✅           |
         | **xEvent**         |       ❌       |       ❌       |        ❌       |            ✅           |
 
+    ??? info ""
+
 
     ??? info "Websocket Message Structure Examples and Responses"
 
