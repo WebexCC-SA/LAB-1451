@@ -69,13 +69,12 @@
 
             === "Download"
 
-                <a href="#" target="_blank">
-                  <figure markdown="span">
-                    ![Webhook.site](./assets/general/cisco-logo-transparent.png){ width="300" }
-                    <figcaption>Lab-1451_Subscription-Assistant_Part-2.js [Macro]</figcaption>
-                  </figure>
-                </a>
-            
+                <figure markdown="span">
+                    [![SubAssist Macro](./assets/general/cisco-logo-transparent.png){ width="300" }](https://raw.githubusercontent.com/WebexCC-SA/LAB-1451/main/docs/assets/downloadable_resources/Lab-1451_Subscription-Assistant_Part-2.zip)
+                    <figcaption>Lab-1451_Subscription-Assistant_Part-2 Macro</figcaption>
+                </figure>
+
+
             === "Install"
 
                 !!! gif
