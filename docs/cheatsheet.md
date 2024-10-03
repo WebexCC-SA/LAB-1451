@@ -11,6 +11,83 @@
 
 ???+ blank "Part 2: Accessing the Video Device xAPI"
 
+    ??? info "Subscription Assistant Macro"
+
+        === "How to Use"
+
+            This macro was built to assist you for lessons where you'll Subscribe/Register Feedback to various xAPI Paths. Do not modify this macro, but feel free to learn from this macro and how it operates. 
+
+            We won't be reviewing this macro in this lab, so if we'd encourage you take a copy home with you, and review outside this course
+
+            === "Home Screen"
+
+                ![SubAssist Home](./assets/general/SubscriptionAssitantMacro-Home.png){ width="600" , align=right }
+
+                After installing and enabling the Subscription Assistant Macro, the macro will generate a UI extension on your Codec's Touch Control Surface
+
+                Clicking on this button, will open various tools for you to use when running through Part 2
+
+                ??? gif "View UI Operation"
+
+                    <figure markdown>
+                      ![SubAssist Operation](./assets/general/SubscriptionAssitantMacro-Operation.gif){ width="600" }
+                    </figure>
+
+            === "xConfigurations"
+
+                ![SubAssist xConfig](./assets/general/SubscriptionAssitantMacro-xConfig.png){ width="600" , align=right }
+
+                In the xConfigurations Page, you'll have tools for modifying xConfigurations on your device. 
+                
+                Use these tools when Subscribing/Registering feedback to xConfigurations throughout the various lessons in Part 2
+
+            === "xStatuses"
+
+                ![SubAssist xStatus](./assets/general/SubscriptionAssitantMacro-xStatus.png){ width="600" , align=right }
+
+                In the xStatuses Page, you'll have tools that will issue certain xCommands that will cause certain xStatus events to fire on your device. 
+                
+                Use these tools when Subscribing/Registering feedback to xStatus throughout the various lessons in Part 2
+
+            === "xEvents"
+
+                ![SubAssist xEvent](./assets/general/SubscriptionAssitantMacro-xEvent.png){ width="600" , align=right }
+
+                In the xEvents Page, you'll have tools that will cause certain xEvent events to fire on your device. 
+                
+                Use these tools when Subscribing/Registering feedback to xEvents throughout the various lessons in Part 2
+
+            === "Section Cleanup"
+
+                ![SubAssist Home](./assets/general/SubscriptionAssitantMacro-Cleanup.png){ width="600" , align=right }
+
+                Throughout Part 2, we will Subscribe to the same xAPI paths from each Integration Method. This is to familiarize you more with the Syntax of each integration method and how to structure that xApi Path.
+
+                That Said, we need to clean up the Codec at the end of each Section. When prompted to by the Lab Guide, run the Section Cleanup button. This will prepare the device for the next set of lessons in Part 2
+
+        === "Download and Install"
+
+            === "Download"
+
+                <figure markdown="span">
+                    [![SubAssist Macro](./assets/general/cisco-logo-transparent.png){ width="300" }](https://github.com/WebexCC-SA/LAB-1451/raw/refs/heads/main/docs/assets/downloadable_resources/Lab-1451_Subscription-Assistant_Part-2.zip)
+                    <figcaption>Lab-1451_Subscription-Assistant_Part-2 Macro</figcaption>
+                </figure>
+                
+            === "Install"
+
+                !!! gif
+
+                    - Locate the `Lab-1451_Subscription-Assistant_Part-2.zip` file you downloaded
+                    - Unzip it's Contents
+                    - Drag the `Lab-1451_Subscription-Assistant_Part-2.js` file into the WebUI of your Device
+                    - Save the Macro
+                    - Activate the Macro
+
+                    <figure markdown>
+                      ![SubAssist Operation](./assets/general/SubscriptionAssitantMacro-Install.gif){ width="600" }
+                    </figure>
+
     ??? info "Terminal Shortcut References"
 
         | Key              | Description      |
@@ -28,7 +105,6 @@
         | **xConfiguration** |       ✅       |       ✅       |        ❌       |            ✅           |
         | **xStatus**        |       ✅       |       ✅       |        ❌       |            ✅           |
         | **xEvent**         |       ❌       |       ❌       |        ❌       |            ✅           |
-
 
     ??? info "Websocket Message Structure Examples and Responses"
 
