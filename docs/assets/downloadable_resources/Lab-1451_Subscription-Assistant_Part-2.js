@@ -29,7 +29,7 @@ or implied.
  * 
  * ---------------------------------------------------------------------
  * 
- * Last Revised September 2024
+ * Last Revised October 2024
  */
 
 /** Abstract!!!
@@ -302,8 +302,76 @@ const Subscribe = {
         runCleanup();
       };
     });
-  }
+  },
+  xConfig_Audio_DefaultVolume: async function () {
+    const currentValue = await xapi.Config.Audio.DefaultVolume.get();
+
+    async function setWidget(val) {
+      let [app, page, widgetType, action] = ['wx1_1451_lB', 'xConfigurations', 'TextBox', 'DefaultVolume'];
+      await updateWidget(`LVL: ${val}`, app, page, widgetType, action);
+      widgetType = 'Slider';
+      await updateWidget(scale100to255(val), app, page, widgetType, action);
+    }
+
+    setWidget(currentValue);
+
+    xapi.Config.Audio.DefaultVolume.on(event => {
+      setWidget(event);
+    });
+  },
+  xConfig_Video_Input_AirPlay: async function () {
+    const currentValue = await xapi.Config.Video.Input.AirPlay.get();
+
+    async function setWidget(val) {
+      let [app, page, widgetType, action] = ['wx1_1451_lB', 'xConfigurations', 'Toggle', 'AirplayMode'];
+      if (val?.Mode) {
+        await updateWidget(val.Mode, app, page, widgetType, action);
+      }
+      action = 'AirplayBeacon';
+      if (val?.Beacon) {
+        await updateWidget(val.Beacon == 'Auto' ? 'on' : 'off', app, page, widgetType, action);
+      }
+      action = 'AirplayPassword'; widgetType = 'GroupButton';
+      if (val?.Password) {
+        await updateWidget('unset', app, page, widgetType, action);
+      }
+    }
+
+    setWidget(currentValue);
+
+    xapi.Config.Video.Input.AirPlay.on(event => {
+      setWidget(event);
+    });
+  },
+  xStatus_Audio_Volume: async function () {
+    const currentValue = await xapi.Status.Audio.Volume.get();
+
+    async function setWidget(val) {
+      let [app, page, widgetType, action] = ['wx1_1451_lB', 'xStatuses', 'TextBox', 'SetVolume'];
+      await updateWidget(`LVL: ${val}`, app, page, widgetType, action);
+      widgetType = 'Slider';
+      await updateWidget(scale100to255(val), app, page, widgetType, action);
+    }
+
+    setWidget(currentValue);
+
+    xapi.Status.Audio.Volume.on(event => {
+      setWidget(event);
+    });
+  },
 };
+
+async function updateWidget(value, ...args) {
+  const widgetId = args.slice(0, 4).join('~');
+
+  if (value.toString().toLowerCase() == 'unset' || (value == '' || value == undefined)) {
+    await xapi.Command.UserInterface.Extensions.Widget.UnsetValue({ WidgetId: widgetId });
+    return;
+  }
+
+  await xapi.Command.UserInterface.Extensions.Widget.SetValue({ WidgetId: widgetId, Value: value });
+  return;
+}
 
 const debounce = {
   PageOpened: {
@@ -359,7 +427,7 @@ async function runCleanup() {
       Duration: 5
     });
 
-    await unsetWidgetValues();
+    //await unsetWidgetValues();
 
     if (areMacrosReady) {
       resolve();
@@ -426,7 +494,7 @@ const init = async () => {
 
   await buildUserInterface();
 
-  await unsetWidgetValues();
+  //await unsetWidgetValues();
 
   console.log(`[${_main_macro_name()}] Initialized!`);
 };
