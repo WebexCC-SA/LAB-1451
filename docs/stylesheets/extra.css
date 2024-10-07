@@ -191,7 +191,8 @@
 
 .md-typeset .gif > .admonition-title::before,
 .md-typeset .gif > summary::before {
-  background-color: rgb(215, 65, 135);
+  background-color: #d74187;
+  background: linear-gradient(45deg, #d74187 25%, #ed75ad 50%, #d74187 75% );
   -webkit-mask-image: var(--md-admonition-icon--gif);
           mask-image: var(--md-admonition-icon--gif);
 }
@@ -223,7 +224,7 @@
 .md-typeset .curious > .admonition-title::before,
 .md-typeset .curious > summary::before {
   background-color: rgb(255, 159, 249);
-  background: linear-gradient(90deg, #ff9ff9 25%, #fc2def 50%, #ff9ff9 75% );
+  background: linear-gradient(90deg, #fc2def 25%, #fc2def 50%, #fc2def 75% );
   -webkit-mask-image: var(--md-admonition-icon--curious);
           mask-image: var(--md-admonition-icon--curious);
 }
