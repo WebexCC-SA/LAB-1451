@@ -29,7 +29,7 @@ or implied.
  * 
  * ---------------------------------------------------------------------
  * 
- * Last Revised September 2024
+ * Last Revised October 2024
  */
 
 /** Abstract!!!
@@ -77,7 +77,7 @@ function scale100to255(value) {
 };
 
 async function StartSubscriptions() {
-  console.log('Starting Subcriptions...');
+  console.debug('Starting Subcriptions...');
   function formRoomOSHyperlink(input) {
     const modified = input.replace(/^x/, '');
     const finalString = modified.replace(/_/g, '.');
@@ -92,18 +92,18 @@ async function StartSubscriptions() {
     Subscribe[element]();
     mySubscriptions.push(formRoomOSHyperlink(element));
     Subscribe[element] = function () {
-      console.warn({ Warn: `The [${element.replaceAll('_', ' ')}] subscription is already active, unable to fire it again` });
+      console.debug({ Warn: `The [${element.replaceAll('_', ' ')}] subscription is already active, unable to fire it again` });
     };
   });
-  console.warn(`[${mySubscriptions.length}] Subscriptions Set ||`, 'Subscriptions List:');
+  console.debug(`[${mySubscriptions.length}] Subscriptions Set ||`, 'Subscriptions List:');
   mySubscriptions.forEach(element => {
     const formattedLines = JSON.stringify(element, null, 2).split('\n');
     formattedLines.forEach(line => {
       if (line != '}' && line != '{') {
         if (line.includes('http')) {
-          console.info(` ↳ ${line.replace(/^\s*/, '')}`);
+          console.debug(` ↳ ${line.replace(/^\s*/, '')}`);
         } else {
-          console.info(line.replace(/^\s*/, ''));
+          console.debug(line.replace(/^\s*/, ''));
         };
       };
     });
@@ -115,7 +115,7 @@ const Subscribe = {
     xapi.Event.UserInterface.Extensions.Widget.Action.on(({ WidgetId, Type, Value }) => {
       if (WidgetId.includes(`wx1_1451_lB~`)) {
         let [app, page, widgetType, action] = WidgetId.split(`~`);
-        // console.warn(app, page, widgetType, action)
+        // console.debug(app, page, widgetType, action)
         switch (page) {
           case 'xConfigurations':
             if (Type == 'released') {
@@ -209,7 +209,7 @@ const Subscribe = {
             };
             break;
           case 'xEvents':
-            console.log(`xEvents =>`, { WidgetId, Type, Value });
+            console.debug(`xEvents =>`, { WidgetId, Type, Value });
             if (Type == 'released') {
               switch (action) {
                 case 'UIMessages':
@@ -302,8 +302,76 @@ const Subscribe = {
         runCleanup();
       };
     });
-  }
+  },
+  xConfig_Audio_DefaultVolume: async function () {
+    const currentValue = await xapi.Config.Audio.DefaultVolume.get();
+
+    async function setWidget(val) {
+      let [app, page, widgetType, action] = ['wx1_1451_lB', 'xConfigurations', 'TextBox', 'DefaultVolume'];
+      await updateWidget(`LVL: ${val}`, app, page, widgetType, action);
+      widgetType = 'Slider';
+      await updateWidget(scale100to255(val), app, page, widgetType, action);
+    }
+
+    setWidget(currentValue);
+
+    xapi.Config.Audio.DefaultVolume.on(event => {
+      setWidget(event);
+    });
+  },
+  xConfig_Video_Input_AirPlay: async function () {
+    const currentValue = await xapi.Config.Video.Input.AirPlay.get();
+
+    async function setWidget(val) {
+      let [app, page, widgetType, action] = ['wx1_1451_lB', 'xConfigurations', 'Toggle', 'AirplayMode'];
+      if (val?.Mode) {
+        await updateWidget(val.Mode, app, page, widgetType, action);
+      }
+      action = 'AirplayBeacon';
+      if (val?.Beacon) {
+        await updateWidget(val.Beacon == 'Auto' ? 'on' : 'off', app, page, widgetType, action);
+      }
+      action = 'AirplayPassword'; widgetType = 'GroupButton';
+      if (val?.Password) {
+        await updateWidget('unset', app, page, widgetType, action);
+      }
+    }
+
+    setWidget(currentValue);
+
+    xapi.Config.Video.Input.AirPlay.on(event => {
+      setWidget(event);
+    });
+  },
+  xStatus_Audio_Volume: async function () {
+    const currentValue = await xapi.Status.Audio.Volume.get();
+
+    async function setWidget(val) {
+      let [app, page, widgetType, action] = ['wx1_1451_lB', 'xStatuses', 'TextBox', 'SetVolume'];
+      await updateWidget(`LVL: ${val}`, app, page, widgetType, action);
+      widgetType = 'Slider';
+      await updateWidget(scale100to255(val), app, page, widgetType, action);
+    }
+
+    setWidget(currentValue);
+
+    xapi.Status.Audio.Volume.on(event => {
+      setWidget(event);
+    });
+  },
 };
+
+async function updateWidget(value, ...args) {
+  const widgetId = args.slice(0, 4).join('~');
+
+  if (value.toString().toLowerCase() == 'unset' || (value == '' || value == undefined)) {
+    await xapi.Command.UserInterface.Extensions.Widget.UnsetValue({ WidgetId: widgetId });
+    return;
+  }
+
+  await xapi.Command.UserInterface.Extensions.Widget.SetValue({ WidgetId: widgetId, Value: value });
+  return;
+}
 
 const debounce = {
   PageOpened: {
@@ -313,16 +381,16 @@ const debounce = {
 };
 
 async function runCleanup() {
-  await xapi.Config.Audio.DefaultVolume.set(50).catch(e => console.error('Failed to Set DefaultVolume [Cleanup]', e));
-  await xapi.Command.UserInterface.Extensions.Panel.Remove({ PanelId: 'wx1_lab_multilineCommand' }).catch(e => console.error('Failed to Remove Panel [Cleanup]', e));
-  await xapi.Command.Video.Selfview.Set({ Mode: 'Off', FullscreenMode: 'Off', OnMonitorRole: 'First', PIPPosition: 'LowerRight' }).catch(e => console.error('Failed to Set Selfview Mode [Cleanup]', e));
-  await xapi.Command.Video.Input.SetMainVideoSource({ ConnectorId: config.CameraId }).catch(e => console.error('Failed to Set MainSource [Cleanup]', e));
-  await xapi.Command.Audio.Volume.SetToDefault({ Device: 'Internal' }).catch(e => console.error('Failed to Audio Volume to Default [Cleanup]', e));
+  await xapi.Config.Audio.DefaultVolume.set(50).catch(e => console.debug('Failed to Set DefaultVolume [Cleanup]', e));
+  await xapi.Command.UserInterface.Extensions.Panel.Remove({ PanelId: 'wx1_lab_multilineCommand' }).catch(e => console.debug('Failed to Remove Panel [Cleanup]', e));
+  await xapi.Command.Video.Selfview.Set({ Mode: 'Off', FullscreenMode: 'Off', OnMonitorRole: 'First', PIPPosition: 'LowerRight' }).catch(e => console.debug('Failed to Set Selfview Mode [Cleanup]', e));
+  await xapi.Command.Video.Input.SetMainVideoSource({ ConnectorId: config.CameraId }).catch(e => console.debug('Failed to Set MainSource [Cleanup]', e));
+  await xapi.Command.Audio.Volume.SetToDefault({ Device: 'Internal' }).catch(e => console.debug('Failed to Audio Volume to Default [Cleanup]', e));
 
   const feedbackSlots = [1, 2, 3, 4];
 
   for (const targetSlot of feedbackSlots) {
-    await xapi.Command.HttpFeedback.Deregister({ FeedbackSlot: targetSlot }).catch(e => console.error(`Failed to Deregister Feedback Slot [${targetSlot}] [Cleanup]`, e));
+    await xapi.Command.HttpFeedback.Deregister({ FeedbackSlot: targetSlot }).catch(e => console.debug(`Failed to Deregister Feedback Slot [${targetSlot}] [Cleanup]`, e));
   };
 
   return new Promise(async resolve => {
@@ -359,7 +427,7 @@ async function runCleanup() {
       Duration: 5
     });
 
-    await unsetWidgetValues();
+    //await unsetWidgetValues();
 
     if (areMacrosReady) {
       resolve();
@@ -372,7 +440,7 @@ async function runCleanup() {
 
 async function buildUserInterface() {
 
-  console.log('Building UserInterface....');
+  console.debug('Building UserInterface....');
 
   const xml = `<Extensions><Panel><Order>99</Order><Origin>local</Origin><Location>HomeScreenAndCallControls</Location><Icon>Lightbulb</Icon><Name>${config.UserInterface.Name}</Name><ActivityType>Custom</ActivityType><Page><Name>⚙️ xConfigurations</Name><Row><Name>Audio DefaultVolume</Name><Widget><WidgetId>wx1_1451_lB~xConfigurations~Slider~DefaultVolume</WidgetId><Type>Slider</Type><Options>size=3</Options></Widget><Widget><WidgetId>wx1_1451_lB~xConfigurations~TextBox~DefaultVolume</WidgetId><Name>LVL: ??</Name><Type>Text</Type><Options>size=1;fontSize=normal;align=center</Options></Widget></Row><Row><Name>Airplay</Name><Widget><WidgetId>wx1_1451_lB~xConfigurations~TextBox~AirplayMode</WidgetId><Name>Mode</Name><Type>Text</Type><Options>size=1;fontSize=normal;align=center</Options></Widget><Widget><WidgetId>wx1_1451_lB~xConfigurations~Toggle~AirplayMode</WidgetId><Type>ToggleButton</Type><Options>size=1</Options></Widget><Widget><WidgetId>wx1_1451_lB~xConfigurations~TextBox~AirplayBeacon</WidgetId><Name>Beacon</Name><Type>Text</Type><Options>size=1;fontSize=normal;align=center</Options></Widget><Widget><WidgetId>wx1_1451_lB~xConfigurations~Toggle~AirplayBeacon</WidgetId><Type>ToggleButton</Type><Options>size=1</Options></Widget><Widget><WidgetId>wx1_1451_lB~xConfigurations~TextBox~AirplayPassword</WidgetId><Name>Choose Mock Password Below</Name><Type>Text</Type><Options>size=4;fontSize=normal;align=center</Options></Widget><Widget><WidgetId>wx1_1451_lB~xConfigurations~GroupButton~AirplayPassword</WidgetId><Type>GroupButton</Type><Options>size=4</Options><ValueSpace><Value><Key>password</Key><Name>password</Name></Value><Value><Key>admin1234</Key><Name>admin1234</Name></Value></ValueSpace></Widget></Row><PageId>wx1_1451_lB~xConfigurations</PageId><Options/></Page><Page><Name>🩺 xStatuses</Name><Row><Name>Adjust Volume</Name><Widget><WidgetId>wx1_1451_lB~xStatuses~Slider~SetVolume</WidgetId><Type>Slider</Type><Options>size=3</Options></Widget><Widget><WidgetId>wx1_1451_lB~xStatuses~TextBox~SetVolume</WidgetId><Name>Vol: ??</Name><Type>Text</Type><Options>size=1;fontSize=normal;align=center</Options></Widget></Row><Row><Name>Camera Control Wheel</Name><Widget><WidgetId>wx1_1451_lB~xStatuses~Button~Camera:ZoomOut</WidgetId><Name>Zoom Out (➖)</Name><Type>Button</Type><Options>size=2</Options></Widget><Widget><WidgetId>wx1_1451_lB~xStatuses~Button~Camera:ZoomIn</WidgetId><Name>Zoom In (➕)</Name><Type>Button</Type><Options>size=2</Options></Widget><Widget><WidgetId>wx1_1451_lB~xStatuses~ControlWheel~Camera:PanTilt</WidgetId><Type>DirectionalPad</Type><Options>size=4</Options></Widget></Row><PageId>wx1_1451_lB~xStatuses</PageId><Options/></Page><Page><Name>📅 xEvents</Name><Row><Name>UserInterface Messages...</Name><Widget><WidgetId>wx1_1451_lB~xEvents~GroupButton~UIMessages</WidgetId><Type>GroupButton</Type><Options>size=4</Options><ValueSpace><Value><Key>Prompt</Key><Name>Prompt</Name></Value><Value><Key>TextInput</Key><Name>TextInput</Name></Value><Value><Key>Rating</Key><Name>Rating</Name></Value><Value><Key>Alert</Key><Name>Alert</Name></Value></ValueSpace></Widget></Row><Row><Name>UserInterface Extensions...</Name><Widget><WidgetId>wx1_1451_lB~xEvents~IconButton~IconButton</WidgetId><Type>Button</Type><Options>size=1;icon=red</Options></Widget><Widget><WidgetId>wx1_1451_lB~xEvents~Button~TextButton</WidgetId><Name>Text</Name><Type>Button</Type><Options>size=1</Options></Widget><Widget><WidgetId>wx1_1451_lB~xEvents~Spinner~Spinner</WidgetId><Type>Spinner</Type><Options>size=2;style=vertical</Options></Widget><Widget><WidgetId>wx1_1451_lB~xEvents~GroupButton~GroupButton</WidgetId><Type>GroupButton</Type><Options>size=4</Options><ValueSpace><Value><Key>Group A</Key><Name>Group A</Name></Value><Value><Key>Group B</Key><Name>Group B</Name></Value><Value><Key>Group C</Key><Name>Group C</Name></Value></ValueSpace></Widget><Widget><WidgetId>wx1_1451_lB~xEvents~Toggle~Toggle</WidgetId><Type>ToggleButton</Type><Options>size=1</Options></Widget><Widget><WidgetId>wx1_1451_lB~xEvents~Slider~Slider</WidgetId><Type>Slider</Type><Options>size=2</Options></Widget><Widget><WidgetId>wx1_1451_lB~xEvents~TextBox~Slider</WidgetId><Name>--</Name><Type>Text</Type><Options>size=1;fontSize=normal;align=center</Options></Widget><Widget><WidgetId>wx1_1451_lB~xEvents~ControlWheel~ControlWheel</WidgetId><Type>DirectionalPad</Type><Options>size=4</Options></Widget></Row><PageId>wx1_1451_lB~xEvents</PageId><Options/></Page><Page><Name>⚠️ Section Cleanup</Name><Row><Name/><Widget><WidgetId>wx1_1451_lB~SectionCleanup~Button~RunCleanup</WidgetId><Name>⚠️ Run Section Cleanup? ⚠️</Name><Type>Button</Type><Options>size=4</Options></Widget></Row><PageId>wx1_1451_lB~SectionCleanup</PageId><Options/></Page></Panel></Extensions>`;
 
@@ -383,10 +451,10 @@ async function buildUserInterface() {
       let getIconAndId = (await xapi.Command.UserInterface.Extensions.Icon.Download({ Url: config.UserInterface.IconUrl })).IconId;
       let uploadIcon = await xapi.Command.UserInterface.Extensions.Panel.Update({ IconId: getIconAndId, Icon: 'Custom', PanelId: config.UserInterface.PanelId });
     } catch (e) {
-      console.error(e);
+      console.debug(e);
     };
   };
-  console.log('Building UserInterface built!');
+  console.debug('Building UserInterface built!');
 };
 
 async function unsetWidgetValues() {
@@ -407,18 +475,20 @@ async function unsetWidgetValues() {
   const widgetIds = parseWidgetIds(panel.Data);
 
   for (const widget of widgetIds) {
-    await xapi.Command.UserInterface.Extensions.Widget.UnsetValue({ WidgetId: widget }).catch(e => console.error(`Failed to unset WidgetId: ${widget}`, e));
+    await xapi.Command.UserInterface.Extensions.Widget.UnsetValue({ WidgetId: widget }).catch(e => console.debug(`Failed to unset WidgetId: ${widget}`, e));
   };
 };
 
 async function setupLab1451Config() {
   await xapi.Config.Standby.Control.set('Off');
   await xapi.Config.Standby.Halfwake.Mode.set('Manual');
+  await xapi.Config.HttpClient.Mode.set('On');
+  await xapi.Config.HttpClient.AllowInsecureHTTPS.set('True');
 };
 
 const init = async () => {
 
-  console.log(`[${_main_macro_name()}] Initializing...`);
+  console.debug(`[${_main_macro_name()}] Initializing...`);
 
   await setupLab1451Config();
 
@@ -426,9 +496,9 @@ const init = async () => {
 
   await buildUserInterface();
 
-  await unsetWidgetValues();
+  //await unsetWidgetValues();
 
-  console.log(`[${_main_macro_name()}] Initialized!`);
+  console.debug(`[${_main_macro_name()}] Initialized!`);
 };
 
 init();

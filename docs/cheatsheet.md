@@ -344,15 +344,3 @@
     ??? info "..."
 
         ...
-
-??? blank "Part 4: Deployment via Control Hub"
-
-    ??? info "..."
-
-        ...
-
-??? blank "Part 4: Deployment via CE-Deploy"
-
-    ??? info "..."
-
-        ...
