@@ -22,8 +22,9 @@ Upon successful completion of this lab, you will be able to:
 ## Lab Requirements
 
 Hardware:
+
 - Cisco Video Conferencing Endpoint running RoomOS 11.X or higher
-    - Desk, Desk Pro, Board or Room Series Preferred
+  - Desk, Desk Pro, Board or Room Series Preferred
 - Computer with the following applications
     - SSH Client
     - Postman
