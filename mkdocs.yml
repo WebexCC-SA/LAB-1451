@@ -1,7 +1,7 @@
 ---
 site_name: LAB-1451 Device xAPI, Room Customization and Deployment # This must begin with the session ID, e.g. LABXXX-1234 This is my Cisco Live Lab
 site_description: LAB-1451 Device xAPI, Room Customization and Deployment # must be same as "site_name"
-site_author: John Doe
+site_author: Robert(Bobby) McGonigle Jr, Christopher Norman
 copyright: Copyright &copy; 2024 Cisco
 theme:
   name: material
