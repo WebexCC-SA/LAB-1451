@@ -28,6 +28,7 @@ Hardware:
 - Computer with the following software applications
 >>>>>>> Stashed changes
     - SSH Client
+    - SSH Client 
     - Postman
     - Ce-Deploy
 
