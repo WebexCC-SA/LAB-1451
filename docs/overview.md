@@ -24,8 +24,14 @@ Upon successful completion of this lab, you will be able to:
 Hardware:
 
 - Cisco Video Conferencing Endpoint running RoomOS 11.X or higher
+<<<<<<< Updated upstream
   - Desk, Desk Pro, Board or Room Series Preferred
 - Computer with the following applications
+=======
+    - Desk, Desk Pro, Board or Room Series Preferred
+
+- Computer with the following software applications
+>>>>>>> Stashed changes
     - SSH Client
     - Postman
     - Ce-Deploy
