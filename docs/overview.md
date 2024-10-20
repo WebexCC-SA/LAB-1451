@@ -1,6 +1,6 @@
 # Lab Overview
 
-!!! Webwx "Welcome"
+!!! Webex "Welcome"
 
     Welcome to Labe 1451: Device xAPI, Room Customization and Deployment
 
@@ -24,8 +24,9 @@ Upon successful completion of this lab, you will be able to:
 Hardware:
 
 - Cisco Video Conferencing Endpoint running RoomOS 11.X or higher
-  - Desk, Desk Pro, Board or Room Series Preferred
-- Computer with the following applications
+    - Desk, Desk Pro, Board or Room Series Preferred
+
+- Computer with the following software applications
     - SSH Client
     - Postman
     - Ce-Deploy
