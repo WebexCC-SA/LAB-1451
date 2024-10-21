@@ -1,0 +1,2715 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LAB-1451 Device xAPI, Room Customization and Deployment">
+      
+      
+        <meta name="author" content="Robert(Bobby) McGonigle Jr, Christopher Norman">
+      
+      
+      
+        <link rel="prev" href="../wx1_1451_part_3/">
+      
+      
+        <link rel="next" href="../conclusion/">
+      
+      
+      <link rel="icon" href="../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Part 4: - Deploying your Customization - LAB-1451 Device xAPI, Room Customization and Deployment</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deploying-your-customization" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="LAB-1451 Device xAPI, Room Customization and Deployment" class="md-header__button md-logo" aria-label="LAB-1451 Device xAPI, Room Customization and Deployment" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LAB-1451 Device xAPI, Room Customization and Deployment
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Part 4&colon; - Deploying your Customization
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home&nbsp<i class="fa-solid fa-house" style="color:#B197FC;"></i>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+    
+  
+  Lab&nbsp<i class="fa-solid fa-flask" style="color:#fdd649;"></i>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tools/" class="md-tabs__link">
+        
+  
+    
+  
+  Tools&nbsp<i class="fa-solid fa-gear"></i>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../slido-QA-iFrame/" class="md-tabs__link">
+        
+  
+    
+  
+  Ask a Question&nbsp<i class="fa-solid fa-hand" style="color:#63E6BE;"></i>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../cheatsheet/" class="md-tabs__link">
+          
+  
+    
+  
+  Cheat Sheet&nbsp<i class="fa-solid fa-screwdriver-wrench" style="color:#1eeb40;"></i>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../communities/" class="md-tabs__link">
+          
+  
+    
+  
+  Resources&nbsp<i class="fa-solid fa-globe" style="color:#04C0FC;"></i>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LAB-1451 Device xAPI, Room Customization and Deployment" class="md-nav__button md-logo" aria-label="LAB-1451 Device xAPI, Room Customization and Deployment" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    LAB-1451 Device xAPI, Room Customization and Deployment
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home&nbsp<i class="fa-solid fa-house" style="color:#B197FC;"></i>
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Lab&nbsp<i class="fa-solid fa-flask" style="color:#fdd649;"></i>
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Lab&nbsp<i class="fa-solid fa-flask" style="color:#fdd649;"></i>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wx1_1451_part_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part 1&colon; Lab Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wx1_1451_part_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part 2&colon; - Accessing Device xAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wx1_1451_part_3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part 3&colon; - Building a Customization using Macros
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Part 4&colon; - Deploying your Customization
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Part 4&colon; - Deploying your Customization
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-46-deployment-via-control-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 - 4.6 Deployment via Control Hub
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 - 4.6 Deployment via Control Hub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-setting-and-using-tags-to-filter-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Setting and using tags to filter devices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-building-and-deploying-configuration-templates-via-control-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Building and deploying configuration templates via Control Hub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-building-and-deploying-org-wide-configuration-templates-via-control-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Building and deploying Org-Wide configuration templates via Control Hub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-running-xapi-commands-via-control-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Running xAPI commands via Control Hub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-deploy-extensions-via-control-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 Deploy Extensions via Control Hub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-deploy-macros-via-control-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.6 Deploy Macro's via Control Hub
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#47-414-deployment-via-ce-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.7 - 4.14 Deployment via CE-Deploy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.7 - 4.14 Deployment via CE-Deploy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#47-download-a-webex-token-and-create-an-environment-in-ce-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.7 Download a Webex token and create an Environment in CE-Deploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-deploy-xapi-commands-via-ce-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.8 Deploy xAPI commands via CE-Deploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#49-deploy-branding-via-ce-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.9 Deploy Branding via CE-Deploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#410-deploy-macros-via-ce-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.10 Deploy Macros via CE-Deploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#411-deploy-extensions-via-ce-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.11 Deploy Extensions via CE-Deploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-deploy-a-local-user-admin-using-ce-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.12 Deploy a local user admin using CE-Deploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#413-deploy-xapi-command-via-the-shell-using-ce-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.13 Deploy xAPI command via the shell using CE-Deploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#414-perform-a-device-backup-and-download-logs-using-ce-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.14 Perform a device backup and download logs using CE-Deploy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conclusion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tools&nbsp<i class="fa-solid fa-gear"></i>
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../slido-QA-iFrame/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ask a Question&nbsp<i class="fa-solid fa-hand" style="color:#63E6BE;"></i>
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cheat Sheet&nbsp<i class="fa-solid fa-screwdriver-wrench" style="color:#1eeb40;"></i>
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Cheat Sheet&nbsp<i class="fa-solid fa-screwdriver-wrench" style="color:#1eeb40;"></i>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheatsheet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CheatSheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../challengeAnswers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Challenge Answers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Resources&nbsp<i class="fa-solid fa-globe" style="color:#04C0FC;"></i>
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Resources&nbsp<i class="fa-solid fa-globe" style="color:#04C0FC;"></i>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../communities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Communities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devSites/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developer Sites
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="deploying-your-customization">Deploying your Customization</h1>
+<h2 id="41-46-deployment-via-control-hub">4.1 - 4.6 Deployment via Control Hub</h2>
+<h3 id="41-setting-and-using-tags-to-filter-devices">4.1 Setting and using tags to filter devices</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>Device Tags are one of the most underutilized features for sorting and filtering devices. 
+Not only are tags useful in Control Hub, but they are also extremely beneficial when working 
+with the Webex RESTful APIs, providing one of the most effective ways to filter devices.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Add as many tags in this exercise as you please. They will help you identify your pod's device
+in later labs. Hint, a pod"yourPodNumber" tag may be handy. In the real world you could add a tag for 
+each of the following:</p>
+<div class="highlight"><pre><span></span><code>- Country
+- State 
+- City
+- Building
+- Room
+- Product
+</code></pre></div>
+<p>Using tags in the manner gives you better control over deployments. Imagine an issue is occuring but only on Room Bars. Now
+you have a tag to run a command using CE-Deploy(which you will see in a later lab) that will 
+only affect those devices.</p>
+</div>
+<details class="lesson">
+<summary>4.1 Lessons</summary>
+<p>4.1.1 Login to the lab's Control Hub with your admin credentials</p>
+<p>4.1.2 Select Management&gt;Devices</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-1-2.png" data-type="image" data-width="100%" data-height="auto" data-title="Device Management" data-desc-position="top"><img alt="Device Management" src="../assets/wx1_1451_part_4/4-1-2.png" width="150" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.1.3 Select your lab device(Room Bar or Desk Pro)</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-1-3.png" data-type="image" data-width="100%" data-height="auto" data-title="Device Selection" data-desc-position="top"><img alt="Device Selection" src="../assets/wx1_1451_part_4/4-1-3.png" width="400" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.1.4 Select <mark>Edit</mark></p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-1-4.png" data-type="image" data-width="100%" data-height="auto" data-title="Edit" data-desc-position="top"><img alt="Edit" src="../assets/wx1_1451_part_4/4-1-4.png" width="100" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.1.5 The Edit tag page will now allow you to set as many tags as you need. 
+For this lab we will be using the tag <mark>wbx<yourPodNumber></mark>. As an example wbx101.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4.1.5.png" data-type="image" data-width="100%" data-height="auto" data-title="Add Tag" data-desc-position="top"><img alt="Add Tag" src="../assets/wx1_1451_part_4/4.1.5.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.1.6 Select Add tag</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-1-6.png" data-type="image" data-width="100%" data-height="auto" data-title="Edit tag" data-desc-position="top"><img alt="Edit tag" src="../assets/wx1_1451_part_4/4-1-6.png" width="300" /></a>
+  <figcaption>Edit tag</figcaption>
+</figure></p>
+<p>4.1.7 Add wbx<YourPodNumber> and press enter</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-1-7.png" data-type="image" data-width="100%" data-height="auto" data-title="wbxXXX" data-desc-position="top"><img alt="wbxXXX" src="../assets/wx1_1451_part_4/4-1-7.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.1.8 Select <mark>Close</mark> to close the Edit tags page.</p>
+<p>4.1.9 Close the edit configurations popout and return to the main devices page.</p>
+<p>4.1.10 In the Find by devices dialog box type Tags: then enter the device tag previously set.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-1-10a.png" data-type="image" data-width="100%" data-height="auto" data-title="Search" data-desc-position="top"><img alt="Search" src="../assets/wx1_1451_part_4/4-1-10a.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-1-10b.png" data-type="image" data-width="100%" data-height="auto" data-title="wbx Tag search" data-desc-position="top"><img alt="wbx Tag search" src="../assets/wx1_1451_part_4/4-1-10b.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>While this may seem rather insignificant with just one or two devices, if you where deploying 
+100's or 1000's of endpoints this just makes finding your group of endpoints a whole lot easier. 
+In a later lab we will use the wbx1 and your pod tag to do a deployment via the Rest API. This concludes 
+deployment lab one. Now on to using templates.</p>
+</div>
+</details>
+<h3 id="42-building-and-deploying-configuration-templates-via-control-hub">4.2 Building and deploying configuration templates via Control Hub</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>One of the easiest and most effective ways to deploy a series of configuration changes to 
+RoomOS devices is through Control Hub default configuration templates. In this lab, we will explore deploying 
+configurations using both device-based and default organization-based templates. In this lab we are 
+going to create a template to set the volume of you device and enable macros for the Macro 
+deployment lab. </p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Default Configuration Templates are hierarchical. Configurations set on location and device levels override 
+organization level device configurations.</p>
+<p>If one of your devices doesn't support a specific value, you can't select that value on the organization or location
+level, even if all other devices support that value. This limitation also applies if one of the devices is running 
+a software version that doesn't support a selected value. This doesn't impact configuring individual or multiple device, or configuration templates.</p>
+</div>
+<details class="lesson">
+<summary>4.2 Lessons</summary>
+<p>4.2.1 Login to control hub with your lab admin credentials</p>
+<p>4.2.2 Select Management&gt;Devices</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-1-2.png" data-type="image" data-width="100%" data-height="auto" data-title="Devices" data-desc-position="top"><img alt="Devices" src="../assets/wx1_1451_part_4/4-1-2.png" width="150" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.2.3 Select Templates</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-2-3.png" data-type="image" data-width="100%" data-height="auto" data-title="Templates" data-desc-position="top"><img alt="Templates" src="../assets/wx1_1451_part_4/4-2-3.png" width="100" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.2.4 Select Create template</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-2-4.png" data-type="image" data-width="100%" data-height="auto" data-title="Create Templates" data-desc-position="top"><img alt="Create Templates" src="../assets/wx1_1451_part_4/4-2-4.png" width="100" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.2.5 Name your template Wbx1LabTemplate<yourPodNumber> and select Next. 
+For example Wbx1LabTemplate101.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-2-5.png" data-type="image" data-width="100%" data-height="auto" data-title="Name Template" data-desc-position="top"><img alt="Name Template" src="../assets/wx1_1451_part_4/4-2-5.png" width="300" /></a>
+</figure></p>
+<p>4.2.6 In the Search by configuration name type volume</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-2-6.png" data-type="image" data-width="100%" data-height="auto" data-title="Search Volume" data-desc-position="top"><img alt="Search Volume" src="../assets/wx1_1451_part_4/4-2-6.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.2.7 Select Audio&gt;Default Volume</p>
+<p>4.2.8 Change the Default Volume to 60</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-2-8.png" data-type="image" data-width="100%" data-height="auto" data-title="Default Volume" data-desc-position="top"><img alt="Default Volume" src="../assets/wx1_1451_part_4/4-2-8.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.2.9 Once you have set Audio to 60 select "All" to go back to the configuration search</p>
+<p>4.2.10 In the Search by configuration name type Macro</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-2-10.png" data-type="image" data-width="100%" data-height="auto" data-title="Type Macro" data-desc-position="top"><img alt="Type Macro" src="../assets/wx1_1451_part_4/4-2-10.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.2.11 Change the Mode from Off to On and then select Next</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-2-11.png" data-type="image" data-width="100%" data-height="auto" data-title="4-2-11.png" data-desc-position="top"><img alt="4-2-11.png" src="../assets/wx1_1451_part_4/4-2-11.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.2.12 Review your new template and select Create</p>
+<p>4.2.13 Now that we have created a new template lets apply it to our device. Select Go to Devices</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-2-13.png" data-type="image" data-width="100%" data-height="auto" data-title="Go To Devices" data-desc-position="top"><img alt="Go To Devices" src="../assets/wx1_1451_part_4/4-2-13.png" width="100" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.2.14 Select your lab device(Room Bar or Desk Pro)</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-2-14.png" data-type="image" data-width="100%" data-height="auto" data-title="Select Lab Device" data-desc-position="top"><img alt="Select Lab Device" src="../assets/wx1_1451_part_4/4-2-14.png" width="400" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.2.15 Select Edit</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-2-15.png" data-type="image" data-width="100%" data-height="auto" data-title="Edit" data-desc-position="top"><img alt="Edit" src="../assets/wx1_1451_part_4/4-2-15.png" width="100" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.2.16 Select Configuration templates</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-2-16.png" data-type="image" data-width="100%" data-height="auto" data-title="Configuration Templates" data-desc-position="top"><img alt="Configuration Templates" src="../assets/wx1_1451_part_4/4-2-16.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.2.17 From the template dropdown select the Wbx1LabTemplateXXX and review your settings</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-2-17.png" data-type="image" data-width="100%" data-height="auto" data-title="Template Selection" data-desc-position="top"><img alt="Template Selection" src="../assets/wx1_1451_part_4/4-2-17.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.2.18 Select Next and then Apply</p>
+<p>4.2.19 Review the successful deployment of your configurations and select close</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-2-19.png" data-type="image" data-width="100%" data-height="auto" data-title="Success" data-desc-position="top"><img alt="Success" src="../assets/wx1_1451_part_4/4-2-19.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Well done. This lab section is now complete.</p>
+</div>
+</details>
+<h3 id="43-building-and-deploying-org-wide-configuration-templates-via-control-hub">4.3 Building and deploying Org-Wide configuration templates via Control Hub</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>In the last lab, we built device-specific configuration templates that can be deployed to 
+specific endpoints or groups of selected endpoints. We can make this easier by building a 
+hierarchy of settings that allows us to control these settings at an organization or 
+location level.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can set configuration defaults for the whole organization, 
+or for an individual location. These configurations are applied automatically to all devices 
+that are enrolled in an organization, or set to a specific location. This helps you to manage 
+configuration consistency across devices. When default configurations are applied, you can still
+configure an individual device or a set of devices if needed.</p>
+</div>
+<details class="lesson">
+<summary>4.3 Lessons</summary>
+<p>4.3.1 Login to control hub with your lab admin credentials</p>
+<p>4.3.2 Select Management&gt;Devices&gt;Settings&gt;Configuration Defaults</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-1-2.png" data-type="image" data-width="100%" data-height="auto" data-title="Select Devices" data-desc-position="top"><img alt="Select Devices" src="../assets/wx1_1451_part_4/4-1-2.png" width="150" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-3-2b.png" data-type="image" data-width="100%" data-height="auto" data-title="Configuration Details" data-desc-position="top"><img alt="Configuration Details" src="../assets/wx1_1451_part_4/4-3-2b.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.3.3 Select Open org-wide defaults</p>
+<p>4.3.4 You may notice there are already some defaults provisioned, 
+we are going to select Add configurations</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-3-4.png" data-type="image" data-width="100%" data-height="auto" data-title="Add" data-desc-position="top"><img alt="Add" src="../assets/wx1_1451_part_4/4-3-4.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.3.5 This presents a similar configuration selection as device templates. 
+For our org-wide template we are just going 
+to set the Macro mode. In the Search by configuration name type Macro</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-3-5.png" data-type="image" data-width="100%" data-height="auto" data-title="Find Macro" data-desc-position="top"><img alt="Find Macro" src="../assets/wx1_1451_part_4/4-3-5.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.3.6 Change the Mode from Off to On and select Next</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-3-6.png" data-type="image" data-width="100%" data-height="auto" data-title="Change Macro Setting" data-desc-position="top"><img alt="Change Macro Setting" src="../assets/wx1_1451_part_4/4-3-6.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.3.7 Review the changes and select <strong>Cancel</strong> changes. Our lab environment contains multiple pods
+so applying the change is not possible for this configuration.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-3-7.png" data-type="image" data-width="100%" data-height="auto" data-title="Cancel Changes" data-desc-position="top"><img alt="Cancel Changes" src="../assets/wx1_1451_part_4/4-3-7.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Congrats you have now viewed an org-wide configuration template. Now every time a new 
+device is added to this organization by default the settings from org-wide defaults will be applied.
+be set to on unless a more specific location or device configuration supersedes it.</p>
+<p><figure markdown="span">
+    <a class="glightbox" href="../assets/wx1_1451_part_4/4-3-8.png" data-type="image" data-width="100%" data-height="auto" data-title="Congrats" data-desc-position="top"><img alt="Congrats" src="../assets/wx1_1451_part_4/4-3-8.png" width="300" /></a>
+    <figcaption></figcaption>
+</figure></p>
+</div>
+</details>
+<h3 id="44-running-xapi-commands-via-control-hub">4.4 Running xAPI commands via Control Hub</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>Running xAPI commands in Control Hub can be done on an endpoint by endpoint basis. In this lab 
+you will execute a simple xAPI command to get the system time to understand how to 
+execute and find a command. In the next lab we will follow that up with deploying extensions 
+in a similar fashion.</p>
+</div>
+<details class="lesson">
+<summary>4.4 Lessons</summary>
+<p>4.4.1 Login to control hub with your lab admin credentials</p>
+<p>4.4.2 Select Management&gt;Devices</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-1-2.png" data-type="image" data-width="100%" data-height="auto" data-title="Select Devices" data-desc-position="top"><img alt="Select Devices" src="../assets/wx1_1451_part_4/4-1-2.png" width="150" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.4.3 Right-click on your lab device, no need to highlight the checkbox 
+this time(Room Bar or Desk Pro)</p>
+<p>4.4.4 Select Actions and Run xCommand</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-4-4.png" data-type="image" data-width="100%" data-height="auto" data-title="Run xCommand" data-desc-position="top"><img alt="Run xCommand" src="../assets/wx1_1451_part_4/4-4-4.png" width="200" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.4.5 Type time into the search for a command name text box. Select Time&gt;DateTime</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-4-5.png" data-type="image" data-width="100%" data-height="auto" data-title="Select Time" data-desc-position="top"><img alt="Select Time" src="../assets/wx1_1451_part_4/4-4-5.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.4.6 Select Get from the two options for DateTime</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-4-6.png" data-type="image" data-width="100%" data-height="auto" data-title="Select Get" data-desc-position="top"><img alt="Select Get" src="../assets/wx1_1451_part_4/4-4-6.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.4.7 Select Execute</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-4-7.png" data-type="image" data-width="100%" data-height="auto" data-title="Execute" data-desc-position="top"><img alt="Execute" src="../assets/wx1_1451_part_4/4-4-7.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Well done. While this is a simple example we will dive a little deeper next with using 
+the same method to deploy extensions so don’t stray to far. Cancel out the Time &gt; DateTime &gt; Get 
+text in the search bar by using the x button on the left hand side of the text box.</p>
+</div>
+</details>
+<h3 id="45-deploy-extensions-via-control-hub">4.5 Deploy Extensions via Control Hub</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>Adding custom buttons can be achieved in several ways, including via the API, embedded in a macro
+, the web admin portal on the device, Control Hub, or CE-Deploy. Regardless of the method you 
+choose, all approaches yield the same outcome. In our labs, we will try using Control Hub and 
+then CE-Deploy.</p>
+</div>
+<details class="lesson">
+<summary>4.5 Lessons</summary>
+<p>4.5.1 In the clear search box for Run xCommands type UserInterface &gt; Extensions &gt;Panel and select 
+the Save option</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-5-1.png" data-type="image" data-width="100%" data-height="auto" data-title="Extensions" data-desc-position="top"><img alt="Extensions" src="../assets/wx1_1451_part_4/4-5-1.png" width="325" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.5.2 This will open the Save Arguments dialog</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-5-2.png" data-type="image" data-width="100%" data-height="auto" data-title="Save" data-desc-position="top"><img alt="Save" src="../assets/wx1_1451_part_4/4-5-2.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.5.3 Use Post_Meeting_Survey as the PanelId. Open Post_Meeting_Survey.xml or copy the xml below in a 
+text editor then copy and paste the Post_Meeting_Survey.xml text into the Body section.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Post_Meeting_Survey_Macro.xml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
+<span class="normal">  2</span>
+<span class="normal">  3</span>
+<span class="normal">  4</span>
+<span class="normal">  5</span>
+<span class="normal">  6</span>
+<span class="normal">  7</span>
+<span class="normal">  8</span>
+<span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">&lt;Extensions&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Version&gt;</span>1.11<span class="nt">&lt;/Version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Panel&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Order&gt;</span>14<span class="nt">&lt;/Order&gt;</span>
+<span class="w">        </span><span class="nt">&lt;PanelId&gt;</span>Post_Meeting_Survey<span class="nt">&lt;/PanelId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Location&gt;</span>Hidden<span class="nt">&lt;/Location&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Icon&gt;</span>Lightbulb<span class="nt">&lt;/Icon&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Name&gt;</span>Post<span class="w"> </span>Meeting<span class="w"> </span>Survey<span class="nt">&lt;/Name&gt;</span>
+<span class="w">        </span><span class="nt">&lt;ActivityType&gt;</span>Custom<span class="nt">&lt;/ActivityType&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Page&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Name&gt;</span>Post<span class="w"> </span>Meeting<span class="w"> </span>Survey<span class="nt">&lt;/Name&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Row&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Name&gt;</span>Overall<span class="w"> </span>Rating<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Widget&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;WidgetId&gt;</span>post_overall_text<span class="nt">&lt;/WidgetId&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Name&gt;</span>-<span class="w"> </span>-<span class="w"> </span>-<span class="w"> </span>-<span class="w"> </span>-<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Type&gt;</span>Text<span class="nt">&lt;/Type&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Options&gt;</span>size=2;fontSize=normal;align=center<span class="nt">&lt;/Options&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/Widget&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Widget&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;WidgetId&gt;</span>post_overall_change<span class="nt">&lt;/WidgetId&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Name&gt;</span>Change<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Type&gt;</span>Button<span class="nt">&lt;/Type&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Options&gt;</span>size=2<span class="nt">&lt;/Options&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/Widget&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/Row&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Row&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Name&gt;</span>Audio<span class="w"> </span>Quality<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Widget&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;WidgetId&gt;</span>post_Audio<span class="nt">&lt;/WidgetId&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Type&gt;</span>GroupButton<span class="nt">&lt;/Type&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Options&gt;</span>size=4<span class="nt">&lt;/Options&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;ValueSpace&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;Value&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Key&gt;</span>4<span class="nt">&lt;/Key&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Name&gt;</span>Superb<span class="w"> </span>🎉<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/Value&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;Value&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Key&gt;</span>3<span class="nt">&lt;/Key&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Name&gt;</span>Good<span class="w"> </span>😊<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/Value&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;Value&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Key&gt;</span>2<span class="nt">&lt;/Key&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Name&gt;</span>Ok<span class="w"> </span>👍<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/Value&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;Value&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Key&gt;</span>1<span class="nt">&lt;/Key&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Name&gt;</span>Poor<span class="w"> </span>🫤<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/Value&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/ValueSpace&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/Widget&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/Row&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Row&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Name&gt;</span>Video<span class="w"> </span>Quality<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Widget&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;WidgetId&gt;</span>post_Video<span class="nt">&lt;/WidgetId&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Type&gt;</span>GroupButton<span class="nt">&lt;/Type&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Options&gt;</span>size=4<span class="nt">&lt;/Options&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;ValueSpace&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;Value&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Key&gt;</span>4<span class="nt">&lt;/Key&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Name&gt;</span>Superb<span class="w"> </span>🎉<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/Value&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;Value&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Key&gt;</span>3<span class="nt">&lt;/Key&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Name&gt;</span>Good<span class="w"> </span>😊<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/Value&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;Value&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Key&gt;</span>2<span class="nt">&lt;/Key&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Name&gt;</span>Ok<span class="w"> </span>👍<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/Value&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;Value&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Key&gt;</span>1<span class="nt">&lt;/Key&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Name&gt;</span>Poor<span class="w"> </span>🫤<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/Value&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/ValueSpace&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/Widget&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/Row&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Row&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Name&gt;</span>Room<span class="w"> </span>Cleanliness<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Widget&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;WidgetId&gt;</span>post_Room<span class="nt">&lt;/WidgetId&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Type&gt;</span>GroupButton<span class="nt">&lt;/Type&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Options&gt;</span>size=4<span class="nt">&lt;/Options&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;ValueSpace&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;Value&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Key&gt;</span>4<span class="nt">&lt;/Key&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Name&gt;</span>Superb<span class="w"> </span>🎉<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/Value&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;Value&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Key&gt;</span>3<span class="nt">&lt;/Key&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Name&gt;</span>Good<span class="w"> </span>😊<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/Value&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;Value&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Key&gt;</span>2<span class="nt">&lt;/Key&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Name&gt;</span>Ok<span class="w"> </span>👍<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/Value&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;Value&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Key&gt;</span>1<span class="nt">&lt;/Key&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;Name&gt;</span>Poor<span class="w"> </span>🫤<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/Value&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/ValueSpace&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/Widget&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/Row&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Row&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Name/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Widget&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;WidgetId&gt;</span>post_Email_text<span class="nt">&lt;/WidgetId&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Name&gt;</span>[Enter<span class="w"> </span>Email]<span class="w"> </span>--<span class="w"> </span><span class="ni">&amp;gt;</span><span class="nt">&lt;/Name&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Type&gt;</span>Text<span class="nt">&lt;/Type&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Options&gt;</span>size=3;fontSize=normal;align=center<span class="nt">&lt;/Options&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/Widget&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Widget&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;WidgetId&gt;</span>post_Email_enter<span class="nt">&lt;/WidgetId&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Name&gt;</span>Enter<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Type&gt;</span>Button<span class="nt">&lt;/Type&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Options&gt;</span>size=1<span class="nt">&lt;/Options&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/Widget&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/Row&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Row&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Name/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;Widget&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;WidgetId&gt;</span>post_Submit<span class="nt">&lt;/WidgetId&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Name&gt;</span>Submit<span class="nt">&lt;/Name&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Type&gt;</span>Button<span class="nt">&lt;/Type&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;Options&gt;</span>size=4<span class="nt">&lt;/Options&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/Widget&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/Row&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Options/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/Page&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Panel&gt;</span>
+<span class="nt">&lt;/Extensions&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-5-3.png" data-type="image" data-width="100%" data-height="auto" data-title="Saving the Panel extension" data-desc-position="top"><img alt="Saving the Panel extension" src="../assets/wx1_1451_part_4/4-5-3.png" width="300" /></a>
+  <figcaption>Saving the Panel extension</figcaption>
+</figure></p>
+<p>4.5.4 Scroll done to the bottom of the Arguments section and Select Execute</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-5-4.png" data-type="image" data-width="100%" data-height="auto" data-title="Execute" data-desc-position="top"><img alt="Execute" src="../assets/wx1_1451_part_4/4-5-4.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>You should see a response after execution to show it has been successful</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-5-4b.png" data-type="image" data-width="100%" data-height="auto" data-title="Success" data-desc-position="top"><img alt="Success" src="../assets/wx1_1451_part_4/4-5-4b.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>You should now see the Post_Meeting_Survey button on your device panel/display. 
+Next step is making our new custom button function.</p>
+</div>
+</details>
+<h3 id="46-deploy-macros-via-control-hub">4.6 Deploy Macro's via Control Hub</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>As it stand right now our new custom button does nothing. We are about to change that by adding 
+a macro that will act on the button being touched.</p>
+<p>An increasing number of customers are implementing macros and customizations. Without an 
+efficient deployment solution, it is improbable that customers will extend their custom 
+solutions beyond a handful of endpoints. Fortunately, Control Hub and CE-Deploy offer tools 
+that facilitate this process. Control Hub now has the capability to manage both UI and Macro 
+customizations on individual endpoints, while CE-Deploy can assist with bulk deployment.</p>
+</div>
+<details class="lesson">
+<summary>4.6 Lessons</summary>
+<p>4.6.1 Login to control hub with your lab admin credentials</p>
+<p>4.6.2 First step is to enable Control Hub to manage the devices macros. Select Devices-&gt;Settings</p>
+<p>4.6.3 Scroll down to the Macros section and toggle on -&gt; Allow Control Hub to manage macros</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-6-3.png" data-type="image" data-width="100%" data-height="auto" data-title="Manage Macros" data-desc-position="top"><img alt="Manage Macros" src="../assets/wx1_1451_part_4/4-6-3.png" width="350" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.6.4 Next is to deploy our first macro to the Lab device</p>
+<p>4.6.5 Choose the lab device. Devices -&gt; LabRoomBar/DeskPro(choose your lab device)</p>
+<p>4.6.6 You can now see that there are no macros deployed to this device 
+under Configuration -&gt; Macros</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-6-6.png" data-type="image" data-width="100%" data-height="auto" data-title="Configuration-&gt;Macros" data-desc-position="top"><img alt="Configuration-&gt;Macros" src="../assets/wx1_1451_part_4/4-6-6.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.6.7 Click on Macros</p>
+<p>4.6.8 Select Add Macro</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-6-8.png" data-type="image" data-width="100%" data-height="auto" data-title="Add Macro" data-desc-position="top"><img alt="Add Macro" src="../assets/wx1_1451_part_4/4-6-8.png" width="350" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.6.9 Select -&gt; Choose a File and navigate to Post_Meeting_Survey_Macro.js. If the file is not available 
+copy the javascript below, paste into a text editor of your choice and save it as a .js file named Post_Meeting_Survey_Macro.js.</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Post_Meeting_Survey_Macro.js</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span>
+<span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">xapi</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;xapi&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">star_rating_icon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;✪ &#39;</span><span class="p">;</span>
+
+<span class="nx">xapi</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">CallDisconnect</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">event</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">Start_Survey</span><span class="p">,</span><span class="w"> </span><span class="mf">1000</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">meetingScores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">Audio</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">Video</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">Room</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">Start_Survey</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//Reset widget values</span>
+<span class="w">    </span><span class="nx">meetingScores</span><span class="p">.</span><span class="nx">Audio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span>
+<span class="w">    </span><span class="nx">meetingScores</span><span class="p">.</span><span class="nx">Video</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span>
+<span class="w">    </span><span class="nx">meetingScores</span><span class="p">.</span><span class="nx">Room</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Extensions</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">SetValue</span><span class="p">({</span><span class="w"> </span><span class="nx">WidgetId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;post_overall_text&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">Value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;- - - - -&#39;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Extensions</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">SetValue</span><span class="p">({</span><span class="w"> </span><span class="nx">WidgetId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;post_Email_text&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">Value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;[Enter Email] -- &gt;&#39;</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">buttons</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;post_Audio&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;post_Video&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;post_Room&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">buttons</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Extensions</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">SetValue</span><span class="p">({</span><span class="w"> </span><span class="nx">WidgetId</span><span class="o">:</span><span class="w"> </span><span class="nx">buttons</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span><span class="w"> </span><span class="nx">Value</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Message</span><span class="p">.</span><span class="nx">Rating</span><span class="p">.</span><span class="nx">Display</span><span class="p">({</span><span class="w"> </span><span class="nx">Title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Rate your call?&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">Text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;How would you rate your overall call experience?&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">FeedbackId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;star_rating&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">Duration</span><span class="o">:</span><span class="w"> </span><span class="mf">120</span><span class="w"> </span><span class="p">})</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">Followup_Survey</span><span class="p">(</span><span class="nx">rating</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Message</span><span class="p">.</span><span class="nx">Prompt</span><span class="p">.</span><span class="nx">Display</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">Title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Tell us more of your Experience?&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">Text</span><span class="o">:</span><span class="w"> </span><span class="sb">`Would you like to take our extended survey so we can learn more about your </span><span class="si">${</span><span class="nx">star_rating_icon</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="nx">rating</span><span class="p">)</span><span class="si">}</span><span class="sb">experience?`</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">FeedbackId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;extended_survey&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Option.1&quot;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Nah, I\&#39;m Good&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Option.2&quot;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Sure, Happy to Help!&#39;</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="p">}</span>
+
+<span class="nx">xapi</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Message</span><span class="p">.</span><span class="nx">Rating</span><span class="p">.</span><span class="nx">Response</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">event</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">FeedbackId</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;star_rating&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Extensions</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">SetValue</span><span class="p">({</span><span class="w"> </span><span class="nx">WidgetId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;post_overall_text&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">Value</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">star_rating_icon</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">Rating</span><span class="p">))</span><span class="si">}</span><span class="sb">`</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">Rating</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">Followup_Survey</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">Rating</span><span class="p">))</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Message</span><span class="p">.</span><span class="nx">Prompt</span><span class="p">.</span><span class="nx">Display</span><span class="p">({</span><span class="w"> </span><span class="nx">Title</span><span class="o">:</span><span class="w"> </span><span class="sb">`Awesome 🥳`</span><span class="p">,</span><span class="w"> </span><span class="nx">Text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Thanks for 5 Star Rating!&lt;p&gt;Have a Great Day!&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">Duration</span><span class="o">:</span><span class="w"> </span><span class="mf">15</span><span class="w"> </span><span class="p">})</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">FeedbackId</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;star_rating_change&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Extensions</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">SetValue</span><span class="p">({</span><span class="w"> </span><span class="nx">WidgetId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;post_overall_text&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">Value</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">star_rating_icon</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">Rating</span><span class="p">))</span><span class="si">}</span><span class="sb">`</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})</span>
+
+<span class="nx">xapi</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Message</span><span class="p">.</span><span class="nx">Prompt</span><span class="p">.</span><span class="nx">Response</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">event</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">FeedbackId</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;extended_survey&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">OptionId</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Extensions</span><span class="p">.</span><span class="nx">Panel</span><span class="p">.</span><span class="nx">Open</span><span class="p">({</span><span class="w"> </span><span class="nx">PanelId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Post_Meeting_Survey&#39;</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})</span>
+
+
+<span class="nx">xapi</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Message</span><span class="p">.</span><span class="nx">TextInput</span><span class="p">.</span><span class="nx">Response</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">event</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">FeedbackId</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;email&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Extensions</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">SetValue</span><span class="p">({</span><span class="w"> </span><span class="nx">WidgetId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;post_Email_text&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">Value</span><span class="o">:</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">Text</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})</span>
+
+<span class="nx">xapi</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Extensions</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Action</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">event</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">Type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;released&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">WidgetId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;post_overall_change&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Message</span><span class="p">.</span><span class="nx">Rating</span><span class="p">.</span><span class="nx">Display</span><span class="p">({</span><span class="w"> </span><span class="nx">Title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Rate your call?&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">Text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;How would you rate your overall call experience?&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">FeedbackId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;star_rating_change&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">Duration</span><span class="o">:</span><span class="w"> </span><span class="mf">120</span><span class="w"> </span><span class="p">})</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;post_Audio&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">meetingScores</span><span class="p">.</span><span class="nx">Audio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;post_Video&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">meetingScores</span><span class="p">.</span><span class="nx">Video</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;post_Room&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">meetingScores</span><span class="p">.</span><span class="nx">Room</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;post_Email_enter&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Message</span><span class="p">.</span><span class="nx">TextInput</span><span class="p">.</span><span class="nx">Display</span><span class="p">({</span><span class="w"> </span><span class="nx">Title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Add your Email&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">Text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;(Optional) By providing your Email, we may follow up with you about your Meeting Room Experience&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">FeedbackId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;email&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">Duration</span><span class="o">:</span><span class="w"> </span><span class="mf">120</span><span class="w"> </span><span class="p">})</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;post_Submit&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Extensions</span><span class="p">.</span><span class="nx">Panel</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+<span class="w">                </span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Message</span><span class="p">.</span><span class="nx">Prompt</span><span class="p">.</span><span class="nx">Display</span><span class="p">({</span>
+<span class="w">                        </span><span class="nx">Title</span><span class="o">:</span><span class="w"> </span><span class="sb">`Thanks for letting us know!`</span><span class="p">,</span>
+<span class="w">                        </span><span class="nx">Text</span><span class="o">:</span><span class="w"> </span><span class="sb">`We appreciate your feedback and aim to do better next time&lt;p&gt;Room Score: </span><span class="si">${</span><span class="nx">meetingScores</span><span class="p">.</span><span class="nx">Audio</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">meetingScores</span><span class="p">.</span><span class="nx">Video</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">meetingScores</span><span class="p">.</span><span class="nx">Room</span><span class="si">}</span><span class="sb"> out of 12`</span><span class="p">,</span>
+<span class="w">                        </span><span class="nx">Duration</span><span class="o">:</span><span class="w"> </span><span class="mf">15</span>
+<span class="w">                    </span><span class="p">})</span>
+<span class="w">                </span><span class="p">},</span><span class="w"> </span><span class="mf">125</span><span class="p">)</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></td></tr></table></div>
+<figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-6-9.png" data-type="image" data-width="100%" data-height="auto" data-title="Save Macro" data-desc-position="top"><img alt="Save Macro" src="../assets/wx1_1451_part_4/4-6-9.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.6.10 Click Next</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-6-10.png" data-type="image" data-width="100%" data-height="auto" data-title="Next" data-desc-position="top"><img alt="Next" src="../assets/wx1_1451_part_4/4-6-10.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.6.11 Ensure that your Macro is enabled</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-6-11.png" data-type="image" data-width="100%" data-height="auto" data-title="Enable Macro" data-desc-position="top"><img alt="Enable Macro" src="../assets/wx1_1451_part_4/4-6-11.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.6.12 Click Save. Then click Save again</p>
+<p>4.6.13 You should now see in the macro engine logs your macro is loaded without error.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-6-13.png" data-type="image" data-width="100%" data-height="auto" data-title="Macro saved" data-desc-position="top"><img alt="Macro saved" src="../assets/wx1_1451_part_4/4-6-13.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.6.14 While still in the Macros lets make a change to our uploaded macro. 
+Click on the edit button.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-6-14.png" data-type="image" data-width="100%" data-height="auto" data-title="Edit Macro" data-desc-position="top"><img alt="Edit Macro" src="../assets/wx1_1451_part_4/4-6-14.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.6.15 Type the following line to the Macro on line 2.</p>
+<p><div class="highlight"><pre><span></span><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Post Survey Macro Loading…..&quot;</span><span class="p">);</span>
+</code></pre></div>
+Click save</p>
+<p>4.6.16 You should now notice in your logs that the console message now appears 
+as the macro is loaded.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-6-16.png" data-type="image" data-width="100%" data-height="auto" data-title="Macro Log" data-desc-position="top"><img alt="Macro Log" src="../assets/wx1_1451_part_4/4-6-16.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Console logging is a great way to debug your macro’s in combination with the 
+macro engine log. To see your new Macro and Extension run try calling another pod and hang up.
+The Survey will appear after you hang up the call.</p>
+</div>
+</details>
+<h2 id="47-414-deployment-via-ce-deploy">4.7 - 4.14 Deployment via CE-Deploy</h2>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>Now that you have completed the Control Hub labs, it's time to explore another bulk configuration
+option with CE-Deploy. CE-Deploy is a free, third-party application designed to address gaps in 
+Control Hub's bulk configuration capabilities. As Control Hub has evolved, it has incorporated 
+new bulk options and features that were initially available only in CE-Deploy, such as branding. 
+However, some features, like bulk macro management, are still unique to CE-Deploy. In 
+this series of labs, we will review some of the features that make CE-Deploy an excellent choice 
+for bulk management.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">CE-Deploy Install</p>
+<p>Before we begin our next lab if you have not already you will need to download and install CE-Deploy using one of the links below:</p>
+<p>Windows -&gt; <a target="blank" href="https://github.com/voipnorm/CE-Deploy/releases/download/v12.4.1/CE-Deploy-Installer.12.4.1.exe">Windows Installer</a></p>
+<p>Mac -&gt; <a target="blank" href="https://github.com/voipnorm/CE-Deploy/releases/download/v12.4.1/CE-Deploy-12.4.1.dmg"> Mac Installer</a></p>
+</div>
+<details class="gif">
+<summary>Explore CE-Deploy</summary>
+<p><figure markdown>
+    <a class="glightbox" href="../assets/wx1_1451_part_4/CE-Deploy.gif" data-type="image" data-width="100%" data-height="auto" data-title="Explore CE-Deploy" data-desc-position="top"><img alt="Explore CE-Deploy" src="../assets/wx1_1451_part_4/CE-Deploy.gif" /></a>
+</figure></p>
+</details>
+<details class="vidcast">
+<summary>Intro to CE-Deploy</summary>
+<p><div style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+<iframe src="https://app.vidcast.io/share/embed/17ab7118-5415-4557-886b-1b7b280dfcf3" width="100%" height="100%" title="CE-Deploy Welcome" frameborder="0" loading="lazy" allowfullscreen style="position:absolute; top:0; left: 0;border: solid; border-radius:12px;"></iframe>
+</div></p>
+</details>
+<h3 id="47-download-a-webex-token-and-create-an-environment-in-ce-deploy">4.7 Download a Webex token and create an Environment in CE-Deploy</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>Environments enable an admin to download access and refresh tokens into CE-Deploys OS secure store, 
+which are refreshed daily. This feature is particularly useful for admins who need to access 
+multiple Control Hub instances. By utilizing environments, admins can streamline the deployment 
+process. Instead of logging into Webex everytime you need to perform a deployment you can simply select the appropriate 
+environment, load the token from the secure store, and perform the required deployment.</p>
+</div>
+<details class="vidcast">
+<summary>Creating CE-Deploy Environments</summary>
+<p><div style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+    <iframe src="https://app.vidcast.io/share/embed/8e846983-6528-46e9-9b95-7d1a3ae2f5b3" width="100%" height="100%" title="CE-Deploy Environments Training" frameborder="0" loading="lazy" allowfullscreen style="position:absolute; top:0; left: 0;border: solid; border-radius:12px;"></iframe>
+</div></p>
+</details>
+<details class="lesson">
+<summary>4.7 Lessons</summary>
+<p>4.7.1 Open CE-deploy and select the Download Webex Token button in the manage token section</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/5-1-1.png" data-type="image" data-width="100%" data-height="auto" data-title="Download Token" data-desc-position="top"><img alt="Download Token" src="../assets/wx1_1451_part_4/5-1-1.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.7.2 Sign in to Webex and accept the integration permissions when prompted. This will load 
+your token and refresh token into the default environment. This is not a persistent environment 
+so will want to save our tokens into the secure store for repeated use.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="assets%2Fwx1_1451_part_4%2F5-1-2.png" data-type="image" data-width="100%" data-height="auto" data-title="Webex Signin" data-desc-position="top"><img alt="Webex Signin" src="assets%2Fwx1_1451_part_4%2F5-1-2.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.7.3 In the deployment features panel select <mark>"Environment"</mark>.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="assets%2Fwx1_1451_part_4%2F4-7-3.png" data-type="image" data-width="100%" data-height="auto" data-title="Environments" data-desc-position="top"><img alt="Environments" src="assets%2Fwx1_1451_part_4%2F4-7-3.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.7.4 In the environment name section, name your environment <mark>"EnvLab"</mark> and click <mark>"save Environment"</mark>.</p>
+<p>4.7.5 To load our new environment, use the dropdown in the Environment loading section and select your 
+new Environment  and select <mark>"Load Environment"</mark>.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-7-5b.png" data-type="image" data-width="100%" data-height="auto" data-title="Load Environment" data-desc-position="top"><img alt="Load Environment" src="../assets/wx1_1451_part_4/4-7-5b.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.7.6 You should now see your environment name populate the Environment Loaded text under manage Token.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/5-1-6.png" data-type="image" data-width="100%" data-height="auto" data-title="Loaded Environment" data-desc-position="top"><img alt="Loaded Environment" src="../assets/wx1_1451_part_4/5-1-6.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.7.7 To test your token click the <mark>"Test Token"</mark> button. You should see the response below:</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/5-1-7.png" data-type="image" data-width="100%" data-height="auto" data-title="Test Token" data-desc-position="top"><img alt="Test Token" src="../assets/wx1_1451_part_4/5-1-7.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Congrats, your token is now downloaded, you are ready to roll. You can build as many 
+Environments as you require. Whether you have a test and production Orgs or you are a 
+partner managing multiple customer Orgs this removes the need to always be logging in
+everytime you need to complete a deployment. The refresh token expires after 90 days so by
+keeping the app open you wont need to log in everytime you need to do a deployment.</p>
+</div>
+</details>
+<h3 id="48-deploy-xapi-commands-via-ce-deploy">4.8 Deploy xAPI commands via CE-Deploy</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>Deploying xAPI commands is a fundamental aspect of administering a Cisco collaboration endpoint 
+deployment. While Control Hub allows us to deploy commands to a single endpoint, scaling this 
+process to a larger deployment through Control Hub or a terminal command prompt can be 
+time-consuming and inefficient. By utilizing CE-Deploy, we can efficiently deploy xAPI commands 
+to multiple endpoints using various criteria such as IP Address, Control Hub Org ID, Control Hub 
+Tags, and more. This lab will demonstrate how to deploy a system time check across multiple devices. 
+Although this is not a configuration change, it will showcase how the CE-Deploy message console 
+provides real-time feedback as the deployment progresses.</p>
+</div>
+<details class="vidcast">
+<summary>CE-Deploy Running xAPI Commands</summary>
+<p><div style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+<iframe src="https://app.vidcast.io/share/embed/e0469f2c-5631-4a7a-a8aa-b15ecd84b4d3" width="100%" height="100%" title="CE-Deploy Running xAPI Commands" frameborder="0" loading="lazy" allowfullscreen style="position:absolute; top:0; left: 0;border: solid; border-radius:12px;"></iframe>
+</div></p>
+</details>
+<details class="lesson">
+<summary>4.8 Lessons</summary>
+<p>4.8.1 Open Ce-deploy and load the environment your created in the last lab.</p>
+<details class="cedeploy">
+<summary>Loading Environments</summary>
+<p>To load an environment, use the dropdown in the Environment loading section and select your
+new Environment and select <mark>Load Environment</mark>.</p>
+</details>
+<p>4.8.2 Select xAPI from the deployment section. In the command text box enter:</p>
+<p><div class="highlight"><pre><span></span><code>xCommand Time DateTime Get
+</code></pre></div>
+<figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/5-2-2.png" data-type="image" data-width="100%" data-height="auto" data-title="Command" data-desc-position="top"><img alt="Command" src="../assets/wx1_1451_part_4/5-2-2.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.8.3 Under the deployment options drop down select <mark>Org Id</mark>, this will populate the lab org ID. 
+As this command does not make any system changes it can be safely run against all the devices
+in the lab Control Hub Organization. By doing this we can see how CE-Deploy queues and completes 
+xAPI commands in bulk.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/5-2-3.png" data-type="image" data-width="100%" data-height="auto" data-title="Org ID Option" data-desc-position="top"><img alt="Org ID Option" src="../assets/wx1_1451_part_4/5-2-3.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.8.4 Select the <mark>video devices only</mark> filter checkbox. This will limit running the command to only 
+the xAPI capable device in the organization and no other devices in the lab, an example being a phone.</p>
+<p>4.8.5 Select <mark>"Start Deployment"</mark></p>
+<p>4.8.6 Ensure <mark>Run Deployment Now</mark> is selected and select <mark>Next</mark>.</p>
+<p>4.8.7 If any devices are offline you may receive a prompt letting your know that some of the devices are offline. 
+If this is case just select <mark>"Yes"</mark>.</p>
+<p>4.8.8 The message console will now let you see the deployment in progress and all output from the devices. 
+In this case what is returned is the system time running on the endpoints.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/5-2-8.png" data-type="image" data-width="100%" data-height="auto" data-title="Message Console" data-desc-position="top"><img alt="Message Console" src="../assets/wx1_1451_part_4/5-2-8.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>This concludes this section. While this is a simple use case, any xAPI command can be run in this fashion 
+including multiline commands that contain a body section.</p>
+</div>
+<details class="challenge">
+<summary>Running a xStatus Command</summary>
+<p>Now that you know how to run a xCommand, can you work out how to run a xStatus command?</p>
+<p>Find a command at <a href="roomos.cisco.com">RoomOS</a></p>
+</details>
+</details>
+<h3 id="49-deploy-branding-via-ce-deploy">4.9 Deploy Branding via CE-Deploy</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>Similar to deploying xAPI commands, using CE-Deploy for branding offers unique advantages over 
+using Control Hub. While Control Hub allows for organization-wide branding, CE-Deploy provides 
+greater granularity, enabling deployment down to a single endpoint via a CSV file. This is 
+particularly useful if you have unique QR codes for each endpoint, as you can deliver the images 
+through CE-Deploy using a CSV file, rather than manually deploying them to each endpoint. In 
+this lab, we will deploy a branding image along with a QR code as a logo, helping your users 
+easily access a website of your choosing.</p>
+<p>The widespread adoption of QR codes has introduced unique advantages to branding. While
+it's commonly perceived that branding primarily involves displaying a company's logo on various
+devices, the integration of QR codes can significantly enhance this strategy. By combining branding
+with QR codes, companies can establish a dynamic communication channel with users directly through
+the devices they hold. In this exercise, we will create a QR code that will serve as a branding logo.
+This QR code will provide users with access to information they can conveniently take with them when
+they leave the room.</p>
+</div>
+<details class="lesson">
+<summary>4.9 Lessons</summary>
+<p>4.9.1 Open CE-Deploy and load the environment your created in a previous lab.</p>
+<details class="cedeploy">
+<summary>Loading Environments</summary>
+<p>To load an environment, use the dropdown in the Environment loading section and select your
+new Environment and select <mark>Load Environment</mark>.</p>
+</details>
+<p>4.9.2 In this lab we will be load a background and logo on to our lab device but to help us do that first 
+we must create a tag for your pod's device in Control Hub. Log into the lab control hub instance and find your device. 
+Remember this Control Hub instance is for the entire lab so choosing your pod's device is important as we only want 
+to make changes to just your device.</p>
+<p><a href="https://admin.webex.com/">Control Hub admin login</a></p>
+<p>4.9.3 Add a tag using your pod ID similar to <mark>podXXX</mark> format.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/5-3-3.png" data-type="image" data-width="100%" data-height="auto" data-title="Add Tag" data-desc-position="top"><img alt="Add Tag" src="../assets/wx1_1451_part_4/5-3-3.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>After typing in the tag press enter. The tag will be saved once you press enter.</p>
+<p>Now we have a tag added in Control Hub it will be easier to filter to just your device in CE-Deploy as we explore more options.</p>
+<p>4.9.4 It is now time to create a unique QR code using CE-Deploy. Open CE-Deploy from the deployment options select 
+<mark>Tools-&gt;QRCode</mark>.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-9-4.png" data-type="image" data-width="100%" data-height="auto" data-title="QRCode Panel" data-desc-position="top"><img alt="QRCode Panel" src="../assets/wx1_1451_part_4/4-9-4.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.9.5 In the QR URL text box enter</p>
+<p><div class="highlight"><pre><span></span><code>https://www.webexone.com/
+</code></pre></div>
+Feel free to adjust the QR Code color palette to your liking or add a center image.</p>
+<p>Other options that are available include adding Banner Text or using the QR Code on a background image but 
+today we are using the QR code as a logo.</p>
+<details class="vidcast">
+<summary>CE-Deploy QR Code</summary>
+<p><div style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+<iframe src="https://app.vidcast.io/share/embed/02286d09-5585-4a24-9f93-dadd3d0e3e13" width="100%" height="100%" title="CE-Deploy QR Code Feature" frameborder="0" loading="lazy" allowfullscreen style="position:absolute; top:0; left: 0;border: solid; border-radius:12px;"></iframe>
+</div></p>
+</details>
+<p>4.9.6 Once you have picked your options select <mark>Process QRCode</mark>.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-9-6.png" data-type="image" data-width="100%" data-height="auto" data-title="QRCode" data-desc-position="top"><img alt="QRCode" src="../assets/wx1_1451_part_4/4-9-6.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>Everytime you select <mark>Process QRCode</mark> a new QR Code file is generated with a timestamp embedded in the name.
+For example code-09_47_51_582.jpeg. Feel free to generate as many codes as you like, you will need to pick one for the next step.</p>
+<p>4.9.7 Once you see the preview of your QR Code select the <mark>Open QR File</mark> button. 
+Take note of the location of the QR Code or copy and paste the QR code file 
+somewhere you can easily find for the next step.</p>
+<p>4.9.8 Next we are going to use the <mark>Personalization-&gt;Branding</mark> deployment option.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-9-8.png" data-type="image" data-width="100%" data-height="auto" data-title="Branding panel" data-desc-position="top"><img alt="Branding panel" src="../assets/wx1_1451_part_4/4-9-8.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>Click Browse on the <mark>Logo Awake State File</mark>. Find your QR Logo and select it using the file picker.
+Next click Browse on the <mark>Logo HalfWake State File</mark>. Find your QR logo and select it using the file picker.
+Once both file are selected it should look like the screenshot below.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-9-8b.png" data-type="image" data-width="100%" data-height="auto" data-title="Loading files" data-desc-position="top"><img alt="Loading files" src="../assets/wx1_1451_part_4/4-9-8b.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.9.9 In the <mark>Deployment Options</mark> section dropdown select <mark>Tags</mark> and enter your pod tag in the text box</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-9-9a.png" data-type="image" data-width="100%" data-height="auto" data-title="Deployment Options" data-desc-position="top"><img alt="Deployment Options" src="../assets/wx1_1451_part_4/4-9-9a.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.9.10 Ensure the <mark>Video Devices Only</mark> checkbox is checked.</p>
+<p>4.9.11 Press button Start Deployment.</p>
+<p>4.9.12 Ensure the <mark>Scheduler</mark> has the <mark>Run Deployment Now</mark> check box selected and click <mark>Next</mark>.</p>
+<p>4.9.13 The Message Console will now appear, you can follow along the deployment process.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-9-13.png" data-type="image" data-width="100%" data-height="auto" data-title="Message Console" data-desc-position="top"><img alt="Message Console" src="../assets/wx1_1451_part_4/4-9-13.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Congrats you just deployed your QR file as a logo using branding to your endpoint. You should now see
+the QR on the screen of your endpoint home screen. This was a pretty simple example, but as you can imagine 
+if you have 100's or 1000's of endpoints to deploy new branding assets to this could save 
+hours of work. By using tags to deploy your branding you can now see how effect filtering is. 
+You could deploy unique branding assets to different devices based on the tags you create.</p>
+</div>
+</details>
+<h3 id="410-deploy-macros-via-ce-deploy">4.10 Deploy Macros via CE-Deploy</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>Macros enhance your customization capabilities, allowing you to tailor your experience exactly 
+as you want it. However, deploying these macros can be challenging, especially when dealing 
+with multiple endpoints. While Control Hub supports single-endpoint deployment, this approach 
+becomes cumbersome and time-consuming for larger deployments. With CE-Deploy, you can roll out 
+a macro in minutes to hundreds or even thousands of endpoints. The CE-Deploy Macro Factory also 
+enables you to monitor your deployment for consistency and performance without needing to log 
+into the endpoint admin portal or control hub. Additionally, you can write your macro code 
+directly in CE-Deploy and deploy it in just a few easy steps. In this lab, we will write a new 
+macro, save it, and deploy it to your endpoints. We will then use the Macro Factory  to monitor 
+the rollout of everyone's macros.</p>
+</div>
+<details class="vidcast">
+<summary>CE-Deploy Macro deployment and the Macro Factory</summary>
+<p><div style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+    <iframe src="https://app.vidcast.io/share/embed/5a2a7a03-441a-48d4-afa9-4dccc47c48c3" width="100%" height="100%" title="CE-Deploy Macro Deployment and the Macro Factory" frameborder="0" loading="lazy" allowfullscreen style="position:absolute; top:0; left: 0;border: solid; border-radius:12px;"></iframe>
+</div></p>
+</details>
+<details class="lesson">
+<summary>4.10 Lessons</summary>
+<p>4.10.1 Open CE-Deploy and load your environment you created in the previous lab</p>
+<details class="cedeploy">
+<summary>Loading Environments</summary>
+<p>To load an environment, use the dropdown in the Environment loading section and select your
+new Environment and select <mark>Load Environment</mark>.</p>
+</details>
+<p>Then select <mark>Design-&gt;Macro Editor</mark> from the main menu</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/5-4-1.png" data-type="image" data-width="100%" data-height="auto" data-title="Macro Editor" data-desc-position="top"><img alt="Macro Editor" src="../assets/wx1_1451_part_4/5-4-1.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.10.2 Copy the following code and paste it into the editor page and save the file as <mark>LaunchHalfwake.js</mark></p>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">LaunchHalfwake.js</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">xapi</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;xapi&#39;</span><span class="p">;</span>
+
+<span class="nx">xapi</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Extensions</span><span class="p">.</span><span class="nx">Panel</span><span class="p">.</span><span class="nx">Clicked</span><span class="p">.</span><span class="nx">on</span><span class="p">((</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">PanelId</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;halfwake&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">Standby</span><span class="p">.</span><span class="nx">Halfwake</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></td></tr></table></div>
+Once completed it should look like the screenshot below.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-10-2.png" data-type="image" data-width="100%" data-height="auto" data-title="Macro Editor with Macro" data-desc-position="top"><img alt="Macro Editor with Macro" src="../assets/wx1_1451_part_4/4-10-2.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.10.3 Click <mark>Save File</mark>.</p>
+<p>4.10.4 Name your file <mark>LaunchHalfwake.js</mark> and click <mark>Save</mark></p>
+<p>4.10.5 Exit the Macro Editor.</p>
+<p>4.10.6 Select <mark>Customizations-&gt;Macros</mark> from the deployment features panel.</p>
+<p>4.10.7 Using the Macros deployment feature we can easily deploy a macro to hundreds of endpoints in minutes.
+Name your macro LaunchHalfwake and use the Macro Javascript File Browse button to select 
+the js file you create just moments ago.</p>
+<p>Ensure the <mark>Activate on deployment</mark> checkbox is selected.</p>
+<p>4.10.8 Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-9-9a.png" data-type="image" data-width="100%" data-height="auto" data-title="Deployment Options" data-desc-position="top"><img alt="Deployment Options" src="../assets/wx1_1451_part_4/4-9-9a.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.10.9 Again ensure the <mark>Video Devices Only</mark> checkbox is selected.</p>
+<p>4.10.10 Press button Start Deployment.</p>
+<p>4.10.11 Ensure the <mark>Scheduler</mark> has the <mark>Run Deployment Now</mark> check box selected and click <mark>Next</mark>.</p>
+<p>4.10.12 The Message Console will now appear, you can follow along the deployment process.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-10-12.png" data-type="image" data-width="100%" data-height="auto" data-title="Message Console" data-desc-position="top"><img alt="Message Console" src="../assets/wx1_1451_part_4/4-10-12.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.10.13 You just deployed a macro to your device and activated it, we still need one more step 
+to ensure that it is in fact running. Unlike the device web admin portal which will restart the macro engine
+automatically everytime a change is made to a macro the APIs are not as polite. So in the next step
+we will use CE-Deploy xCommand to restart the endpoint macro engine.</p>
+<p>4.10.14 Open the deployment panel xAPI-&gt;Command feature and enter the restart command:</p>
+<p><div class="highlight"><pre><span></span><code>xCommand Macros Runtime Restart
+</code></pre></div>
+<figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-10-15.png" data-type="image" data-width="100%" data-height="auto" data-title="xCommand" data-desc-position="top"><img alt="xCommand" src="../assets/wx1_1451_part_4/4-10-15.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.10.15 Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-9-9a.png" data-type="image" data-width="100%" data-height="auto" data-title="Deployment Options" data-desc-position="top"><img alt="Deployment Options" src="../assets/wx1_1451_part_4/4-9-9a.png" /></a> { width="300" }
+  <figcaption></figcaption>
+</figure></p>
+<p>4.10.16 Ensure the <mark>Video Devices Only</mark> checkbox is checked.</p>
+<p>4.10.17 Press button Start Deployment.</p>
+<p>4.10.18 Ensure the <mark>Scheduler</mark> has the <mark>Run Deployment Now</mark> check box selected and click <mark>Next</mark>.</p>
+<p>4.10.19 The Message Console will now appear, you can follow along the deployment process.</p>
+<p>4.10.20 We have our macro rolled out across all our endpoints but lets checkin on the other pods and see how they 
+doing. We are going to use the Macro Factory to monitor how the other pods are doing. In the deployment panel
+select the Dashboards. Do not select the Macro Factory just yet. First we need to select our deployment option.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-10-21.png" data-type="image" data-width="100%" data-height="auto" data-title="Dashboards" data-desc-position="top"><img alt="Dashboards" src="../assets/wx1_1451_part_4/4-10-21.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.10.21 This time around we are going to select the <mark>Org Id</mark></p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-10-22.png" data-type="image" data-width="100%" data-height="auto" data-title="Org ID" data-desc-position="top"><img alt="Org ID" src="../assets/wx1_1451_part_4/4-10-22.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>When you select Org Id, the id automatically populates for our lab Control Hub org.</p>
+<p>4.10.22 Select the Macro Factory from the Dashboards</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-10-24.png" data-type="image" data-width="100%" data-height="auto" data-title="MacroFactory" data-desc-position="top"><img alt="MacroFactory" src="../assets/wx1_1451_part_4/4-10-24.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>You should now see the Macro Factory appear with all the pod endpoints that have added their macros.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-10-24b.png" data-type="image" data-width="100%" data-height="auto" data-title="MF Window" data-desc-position="top"><img alt="MF Window" src="../assets/wx1_1451_part_4/4-10-24b.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>Take a look around. Keep it open and move the window to the side when done. We are going to 
+use the Macro Factory to clean up later.</p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Now that we have our macro deployed we will turn our attention to deploying the accompanying
+extension to make it work.</p>
+</div>
+<details class="challenge">
+<summary>Macro Factory Add a Macro</summary>
+<p>Can you load or remove a different Macro from an earlier lab? Have a go, its easy.</p>
+</details>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Things to note for the Macro Factory.</p>
+<ol>
+<li>Visual way to monitor macros</li>
+<li>Easy to use buttons, no need to remember commands</li>
+<li>Great for managment of a few endpoints adding, removing and activating macros</li>
+<li>For large bulk rollouts of Macros using the Deployment panel Customizations-&gt;Macros is a better option</li>
+</ol>
+</div>
+<h3 id="411-deploy-extensions-via-ce-deploy">4.11 Deploy Extensions via CE-Deploy</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>Extensions enable companies to enhance and personalize the user experience. These extensions 
+can be deployed through Control Hub or CE-deploy. In this lab, we will deploy an extension to 
+accompany our macro from the last lab.</p>
+</div>
+<details class="lesson">
+<summary>4.11 Lessons</summary>
+<p>4.11.1 Open CE-Deploy and load your environment you created in the previous lab if it's not already loaded</p>
+<details class="tip">
+<summary>Loading Environments</summary>
+<p>To load an environment, use the dropdown in the Environment loading section and select your
+new Environment and select <mark>Load Environment</mark>.</p>
+</details>
+<p>Then select <mark>Design-&gt;Macro Editor</mark> from the main menu</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/5-4-1.png" data-type="image" data-width="100%" data-height="auto" data-title="Macro Editor" data-desc-position="top"><img alt="Macro Editor" src="../assets/wx1_1451_part_4/5-4-1.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.11.2 The Macro Editor can also be used to create our XML file. Copy the text below and paste it into 
+the Macro Editor and save the file as <mark>LaunchHalfwake.xml</mark>. Be sure to change the default extension from 
+.js to .xml</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">LaunchHalfwake.xml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">&lt;Extensions&gt;</span>
+<span class="w">  </span><span class="nt">&lt;Version&gt;</span>1.8<span class="nt">&lt;/Version&gt;</span>
+<span class="w">  </span><span class="nt">&lt;Panel&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Order&gt;</span>1<span class="nt">&lt;/Order&gt;</span>
+<span class="w">    </span><span class="nt">&lt;PanelId&gt;</span>halfwake<span class="nt">&lt;/PanelId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Origin&gt;</span>local<span class="nt">&lt;/Origin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Type&gt;</span>Home<span class="nt">&lt;/Type&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Icon&gt;</span>Power<span class="nt">&lt;/Icon&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Color&gt;</span>#07C1E4<span class="nt">&lt;/Color&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Name&gt;</span>HalfWake<span class="nt">&lt;/Name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;ActivityType&gt;</span>Custom<span class="nt">&lt;/ActivityType&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/Panel&gt;</span>
+<span class="nt">&lt;/Extensions&gt;</span>
+</code></pre></div></td></tr></table></div>
+It should look something like this:</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-11-2.png" data-type="image" data-width="100%" data-height="auto" data-title="XML File" data-desc-position="top"><img alt="XML File" src="../assets/wx1_1451_part_4/4-11-2.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.11.3 Now we have our xml file lets role it out to our endpoint. For a single panel in the deployment panel select 
+<mark>Customizations-&gt;UIExtensions-&gt;Panel</mark>. This allows ot deploy or update a single panel.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-11-3.png" data-type="image" data-width="100%" data-height="auto" data-title="Add a Panel" data-desc-position="top"><img alt="Add a Panel" src="../assets/wx1_1451_part_4/4-11-3.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When deploying a single panel using the same panel ID will create a new panel the first time, but subsequent 
+uses of the same ID will overwrite existing panels. </p>
+<p>To update more than 1 panel use the Customizations-&gt;UIExtensions-&gt;Config deployment panel feature.
+This allows the upload of xml files that contain multiple panels.</p>
+</div>
+<p>4.11.4 In the panel ID text box enter <mark>halfwake</mark> as the panel ID. Using the Browse file picker select your 
+xml file you created in the last step.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-11-4.png" data-type="image" data-width="100%" data-height="auto" data-title="Panel Details" data-desc-position="top"><img alt="Panel Details" src="../assets/wx1_1451_part_4/4-11-4.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.11.5 Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-9-9a.png" data-type="image" data-width="100%" data-height="auto" data-title="Tag Options" data-desc-position="top"><img alt="Tag Options" src="../assets/wx1_1451_part_4/4-9-9a.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.11.6 Ensure the <mark>Video Devices Only</mark> checkbox is checked.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>An error may occur if this check box is not selected. Just make sure that it is checked
+if you receive an error while deploying.</p>
+</div>
+<p>4.11.7 Press button Start Deployment.</p>
+<p>4.11.8 Ensure the <mark>Scheduler</mark> has the <mark>Run Deployment Now</mark> check box selected and click <mark>Next</mark>.</p>
+<p>4.11.9 The Message Console will now appear, you can follow along the deployment process.</p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Its test time. The halfwake button should now appear on your home screen of your device. 
+Pressing the button should place your endpoint into the halfwake state.</p>
+</div>
+</details>
+<h3 id="412-deploy-a-local-user-admin-using-ce-deploy">4.12 Deploy a local user admin using CE-Deploy</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>A local user admin account allows direct access to the device without needing to go through 
+its web portal via Control Hub or the cloud xAPI. Some tasks and configuration options are not available 
+via the cloud, so having a local admin account provides a way to set configurations 
+and manage personal mode devices. Typically, setting up a new cloud device removes local 
+admin accounts, making the device's web portal accessible only through Control Hub. In this lab,
+you will add a new local admin account to the device via the cloud xAPI using CE-Deploy. </p>
+</div>
+<details class="lesson">
+<summary>4.12 Lessons</summary>
+<p>4.12.1 Open CE-Deploy and load your environment you created in the previous lab</p>
+<details class="tip">
+<summary>Loading Environments</summary>
+<p>To load an environment, use the dropdown in the Environment loading section and select your
+new Environment and select <mark>Load Environment</mark>.</p>
+</details>
+<p>Then select <mark>Users</mark> from the deployment panel</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-12-1.png" data-type="image" data-width="100%" data-height="auto" data-title="Users" data-desc-position="top"><img alt="Users" src="../assets/wx1_1451_part_4/4-12-1.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition tip">
+<p class="admonition-title">Device Users</p>
+<p>Device users allows us to add, delete and modify device users via the cloud xAPI in CE-Deploy. If you doing
+integrations with 3rd party's, setting configurations or doing device backups having a local admin 
+account on the device may be critical for day to day operations. CE-Deploy can access a device by the
+IP address to take advantage of the local admin account. </p>
+</div>
+<p>4.12.2 Set the following setting.</p>
+<table>
+<thead>
+<tr>
+<th><code>Setting</code></th>
+<th><!-- --></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Device User Action</code></td>
+<td>Add</td>
+</tr>
+<tr>
+<td><code>Username</code></td>
+<td>userxxx(yourPodNumber)</td>
+</tr>
+<tr>
+<td><code>Passphrase</code></td>
+<td>Cisco12345</td>
+</tr>
+<tr>
+<td><code>User Role</code></td>
+<td>Admin, User, Integrator</td>
+</tr>
+<tr>
+<td><code>PassPhase Change</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>Shell Login</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>Activate Account</code></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-12-2.png" data-type="image" data-width="100%" data-height="auto" data-title="User Options" data-desc-position="top"><img alt="User Options" src="../assets/wx1_1451_part_4/4-12-2.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.12.3 Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-9-9a.png" data-type="image" data-width="100%" data-height="auto" data-title="Tag Options" data-desc-position="top"><img alt="Tag Options" src="../assets/wx1_1451_part_4/4-9-9a.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.12.4 Ensure the <mark>Video Devices Only</mark> checkbox is checked.</p>
+<p>4.12.5 Press button <mark>Start Deployment</mark>.</p>
+<p>4.12.6 Ensure the <mark>Scheduler</mark> has the <mark>Run Deployment Now</mark> check box selected and click <mark>Next</mark>.</p>
+<p>4.12.7 The Message Console will now appear, you can follow along the deployment process.</p>
+<div class="admonition challenge">
+<p class="admonition-title">Network IP Address Challenge</p>
+<p>In the next portion of the lab you will need the IP address of your pods endpoint. Using the 
+command below in CE-Deploy can you retrieve your IP?</p>
+<div class="highlight"><pre><span></span><code>    xStatus Network[1] IPv4 Address
+</code></pre></div>
+</div>
+<p>4.12.8 To test the local admin account we are going to switch CE-Deploy into local mode from cloud
+and run an xAPI command directly to the device.</p>
+<p>Select the cloud/local toggle in the main navigation bar.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-12-8a.png" data-type="image" data-width="100%" data-height="auto" data-title="Toggle" data-desc-position="top"><img alt="Toggle" src="../assets/wx1_1451_part_4/4-12-8a.png" width="150" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>Ensure that it is set to local and the interface updates:</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-12-8b.png" data-type="image" data-width="100%" data-height="auto" data-title="Local Interface" data-desc-position="top"><img alt="Local Interface" src="../assets/wx1_1451_part_4/4-12-8b.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>Now we can use the IP address of the device to send commands.</p>
+<p>4.12.9 Using the IP address from the IP challenge  and your new local admin username and password
+enter the details as shown along with the command:</p>
+<div class="highlight"><pre><span></span><code>xCommand time datetime get
+</code></pre></div>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-12-9.png" data-type="image" data-width="100%" data-height="auto" data-title="xCOmmand" data-desc-position="top"><img alt="xCOmmand" src="../assets/wx1_1451_part_4/4-12-9.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.12.10 Click on <mark>Start Deployment</mark></p>
+<p>4.12.11 Ensure the <mark>Scheduler</mark> has the <mark>Run Deployment Now</mark> check box selected and click <mark>Next</mark>.</p>
+<p>4.12.13 The Message Console will now appear, you can follow along the deployment process.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-12-12.png" data-type="image" data-width="100%" data-height="auto" data-title="Message Console" data-desc-position="top"><img alt="Message Console" src="../assets/wx1_1451_part_4/4-12-12.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>All done. Congrats, you have now seen the most commonly used functions in CE-Deploy, but there 
+is still plenty to explore. Stay on the local tab as we dive in deep to some lesser known features.</p>
+</div>
+</details>
+<h3 id="413-deploy-xapi-command-via-the-shell-using-ce-deploy">4.13 Deploy xAPI command via the shell using CE-Deploy</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>The terminal is not only a crucial tool for administering Cisco collaboration endpoints 
+but also an important resource for exploring xAPIs. In this lab, we will use CE-Deploy's 
+terminal emulation feature to run a command. CE-Deploy is the swiss army knife of video endpoint
+deployments so lets keep exploring.</p>
+</div>
+<details class="lesson">
+<summary>4.13 Lessons</summary>
+<p>4.13.1 From the <mark>local interface</mark> in the deployment panel select <mark>Tools-&gt;SSH-TTY</mark>.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-13-1.png" data-type="image" data-width="100%" data-height="auto" data-title="SSH Options" data-desc-position="top"><img alt="SSH Options" src="../assets/wx1_1451_part_4/4-13-1.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This lab will only work if the endpoint and your PC/MAC running CE-Deploy are on the same 
+network.</p>
+</div>
+<p>4.13.2  Add your endpoint local admin details, choose a theme and add the IP address 
+from the IP address challenge. </p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-13-2.png" data-type="image" data-width="100%" data-height="auto" data-title="SSH Window Options" data-desc-position="top"><img alt="SSH Window Options" src="../assets/wx1_1451_part_4/4-13-2.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.13.3 Select <mark>Connect</mark>. The terminal will appear in a new Window and you can start 
+interacting with it.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-13-3.png" data-type="image" data-width="100%" data-height="auto" data-title="Window" data-desc-position="top"><img alt="Window" src="../assets/wx1_1451_part_4/4-13-3.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Once you have tried a few commands type in <mark>Bye</mark> command and the window 
+will automatically close.</p>
+</div>
+</details>
+<h3 id="414-perform-a-device-backup-and-download-logs-using-ce-deploy">4.14 Perform a device backup and download logs using CE-Deploy</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>In our final deployment lab, we will perform a backup of your endpoint using CE-Deploy and download the logs. 
+This backup will include all settings, macros, backgrounds, and extensions. 
+Having a backup of all your endpoints can be invaluable when you need to replace or restore a device.</p>
+</div>
+<details class="lesson">
+<summary>4.14 Lessons Part 1</summary>
+<p>4.14.1 Open CE-Deploy and ensure you are in local mode and then select <mark>Backups</mark> from the deployment panel</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This lab will only work if the endpoint and your PC/MAC running CE-Deploy are on the same 
+network.</p>
+</div>
+<p>4.14.2 Enter your local admin user credentials and select single device and enter the IP address
+of your endpoint.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-14-2.png" data-type="image" data-width="100%" data-height="auto" data-title="Backup Panel" data-desc-position="top"><img alt="Backup Panel" src="../assets/wx1_1451_part_4/4-14-2.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<p>4.14.3 Ensure the <mark>Download endpoint backups</mark> checkbox is selected in Backups panel.</p>
+<p>4.14.4 Select <mark>Start Deployment</mark>. The message console will now show the file location of the downloaded
+backup from the endpoint.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-14-4.png" data-type="image" data-width="100%" data-height="auto" data-title="Message Console" data-desc-position="top"><img alt="Message Console" src="../assets/wx1_1451_part_4/4-14-4.png" width="300" /></a>
+  <figcaption>Message Console</figcaption>
+</figure></p>
+<p>4.14.5 To open the file location go to the application Tools-&gt;Backup Files. This wiill open the directory
+where all the backup files are stored.</p>
+<p><figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-14-5.png" data-type="image" data-width="100%" data-height="auto" data-title="App menu" data-desc-position="top"><img alt="App menu" src="../assets/wx1_1451_part_4/4-14-5.png" width="300" /></a>
+  <figcaption></figcaption>
+</figure></p>
+<details class="tip">
+<summary>Tip</summary>
+<p>If you want a more configurable option the web admin portal of the device will allow customization
+of the device backup you can download from the device. CE-Deploy will only download an entire backup ignoring any options from the 
+web admin portal.</p>
+</details>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>What you will find is a full back up of the device in a zip file. Feel free to unzip
+the file and explore what was backed up on your endpoint.
+<figure markdown="span">
+  <a class="glightbox" href="../assets/wx1_1451_part_4/4-14-6.png" data-type="image" data-width="100%" data-height="auto" data-title="Backup File Unzipped" data-desc-position="top"><img alt="Backup File Unzipped" src="../assets/wx1_1451_part_4/4-14-6.png" width="300" /></a>
+  <figcaption>Backup File Unzipped</figcaption>
+</figure></p>
+</div>
+<div class="admonition challenge">
+<p class="admonition-title">Restore(optional) from Backup</p>
+<p>You have a backup but now what! Can you workout how to restore your endpoint using CE-Deploy?
+Hints: Deployment feature "EndpointRestore" may help. Ensure CE-Deploy is allowed inbound 
+connections on ports 9001(http) or 8000(https) on your MAC or PC firewall.</p>
+</div>
+</details>
+<details class="lesson">
+<summary>4.14 Lessons Part 2</summary>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Ever been asked to download the logs from a endpoint for TAC. Well now you can download all the logs
+in one simple step. If you are required to download logs from more than one endpoint try the CSV option 
+where you can enter a list of IP addresses to download logs from multiple endpoints.</p>
+</div>
+<p>4.14.7 Open CE-Deploy and ensure you are in local mode and then select <mark>Logs</mark> from the deployment panel</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This lab will only work if the endpoint and your PC/MAC running CE-Deploy are on the same 
+network.</p>
+</div>
+<p>4.14.8 Select <mark>Download endpoint logs</mark></p>
+<p><figure markdown="span">
+    <a class="glightbox" href="../assets/wx1_1451_part_4/4-14-8.png" data-type="image" data-width="100%" data-height="auto" data-title="Logs Panel" data-desc-position="top"><img alt="Logs Panel" src="../assets/wx1_1451_part_4/4-14-8.png" width="300" /></a>
+</figure></p>
+<p>4.14.9 Select <mark>Start Deployment</mark>. The message console will now show the file location of the downloaded
+logs from the endpoint.</p>
+<p>4.14.10 To open the file location go to the application Tools-&gt;Downloaded and CSV Files Files. This wiill open the directory
+where all the log files are stored. Log file naming convention will follow log_bundle-SEP<mac>-<timestamp>.tar.gz.</p>
+<p><figure markdown="span">
+    <a class="glightbox" href="../assets/wx1_1451_part_4/4-14-10.png" data-type="image" data-width="100%" data-height="auto" data-title="Message Console" data-desc-position="top"><img alt="Message Console" src="../assets/wx1_1451_part_4/4-14-10.png" width="300" /></a>
+</figure></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Well done. You have explored the main features of CE-Deploy and a few lesser known ones. Feel free
+to explore and see what else it can do. CE-Deploy is built on public API's freely available to everyone
+to develop your own solutions and scripts.</p>
+</div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../wx1_1451_part_3/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Part 3&amp;colon; - Building a Customization using Macros">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Part 3&colon; - Building a Customization using Macros
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../conclusion/" class="md-footer__link md-footer__link--next" aria-label="Next: Conclusion">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Conclusion
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.integrate", "content.tooltips", "content.footnote.tooltips"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
