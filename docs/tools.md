@@ -5,6 +5,7 @@
             <textarea id="codeDif-text1" placeholder="Enter first code snippet here..." style="width: 45%; height: 300px; margin: 0 2%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace;"></textarea>
             <textarea id="codeDif-text2" placeholder="Enter second code snippet here..." style="width: 45%; height: 300px; margin: 0 2%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace;"></textarea>
         </div>
+        <br><br>
         <label style="font-family: Arial, sans-serif;">
             <input type="checkbox" id="codeDif-ignoreWhitespace" checked>
             Ignore Whitespace
@@ -67,7 +68,7 @@
     <p>If setting up Basic Auth for an endpoint, be sure to use a colon <strong>:</strong> to separate the Username and Password</p>
     <p>Example: username:password <p>
     <div>
-        <input type="text" id="base64TextInput" placeholder="Convert to Base64" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; box-sizing: border-box; width: 200px; margin-right: 5px;">
+        <input type="text" id="base64TextInput" placeholder="Convert to Base64" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; box-sizing: border-box; width: 100%; margin-right: 5px;">
         <button id="base64ConvertButton" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; background-color: rgba(192, 192, 192, 0.1); cursor: pointer;">Click to Convert</button>
         <br><br>
         Copy your converted Base64 String
@@ -87,7 +88,8 @@
 ??? tool "Flatten Multiline String Tool"
     <p>Some command fields can't accept a multi-line string. Use this tool to remove line breaks in your string.</p>
     <div>
-        <textarea id="textInput" placeholder="Enter your text here" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; box-sizing: border-box; width: 200px; height: 100px; margin-right: 5px;"></textarea>
+        <textarea id="textInput" placeholder="Enter your text here" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; box-sizing: border-box; width: 100%; height: 100px; margin-right: 5px;"></textarea>
+        <br><br>
         <button id="flattenButton" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; background-color: rgba(192, 192, 192, 0.1); cursor: pointer;">Flatten Text</button>
         <br><br>
         Copy your flattened text
@@ -106,7 +108,8 @@
 ??? tool "Stringify XML Body"
     <p>Use this tool to "Stringify" your XML string. Some data fields may be formatted in XML itself, so if your string is written in XML, then you may confuse that xAPI call if you don't handle the syntax appropriately.</p>
     <div>
-        <textarea id="xmlInput" placeholder="Enter your XML here" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; box-sizing: border-box; width: 200px; height: 100px; margin-right: 5px;"></textarea>
+        <textarea id="xmlInput" placeholder="Enter your XML here" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; box-sizing: border-box; width: 100%; height: 100px; margin-right: 5px;"></textarea>
+        <br><br>
         <button id="stringifyXmlButton" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; background-color: rgba(192, 192, 192, 0.1); cursor: pointer;">Stringify XML</button>
         <br><br>
         Copy your stringified XML
@@ -116,13 +119,7 @@
         <script>
             document.getElementById('stringifyXmlButton').onclick = function() {
                 const inputText = document.getElementById('xmlInput').value;
-                const stringifiedXml = inputText
-                    .replace(/&/g, '&amp;') // Replace & with &amp;
-                    .replace(/</g, '&lt;')  // Replace < with &lt;
-                    .replace(/>/g, '&gt;')  // Replace > with &gt;
-                    .replace(/'/g, '&apos;') // Replace ' with &apos;
-                    .replace(/"/g, '&quot;') // Replace " with &quot;
-                    .trim(); // Replace < and > with their HTML entities
+                const stringifiedXml = inputText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, '&apos;').replace(/"/g, '&quot;').trim();
                 document.getElementById('xmlOutputText').textContent = stringifiedXml; // Update only the text span
             };
         </script>
