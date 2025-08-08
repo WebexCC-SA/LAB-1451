@@ -1,5 +1,6 @@
 ---
 site_name: "LAB-1451: Deep-dive into Cisco devices xAPIs" # This must begin with the session ID, e.g. LABXXX-1234 This is my Cisco Live Lab
+dev_addr: 127.0.0.1:8001
 site_description: "Deep-dive into Cisco devices xAPIs" # must be same as "site_name"
 site_author: Bobby McGonigle
 copyright: Copyright &copy; 2025 Cisco
@@ -86,18 +87,50 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
 nav:
   - Home: index.md
-  - Lab:
-      - Overview: overview.md
-      - Lab 1 - Getting Started: lab1_getting_started.md
-      - Conclusion: conclusion.md
-  - Topologies: topologies.md
-  - How to use this guide:
-      - Setting up and using the tool:
-        - Initial Setup: howToUse/initialSetup.md
-        - Using the tool after the initial setup: howToUse/postInitial.md
-        - Publishing your changes: howToUse/syncChanges.md
-      - Styling and Advanced Features:
-        - Markdown and Other References: howToUse/references.md
-        - Custom Features: howToUse/customFeatures.md
-        - Custom Admonitions: howToUse/admonition.md
+  - Lab Prerequisites:
+    - Introduction: Main-Lab/Prerequisites/preReq_intro.md
+    - RoomOS: Main-Lab/Prerequisites/preReq_roomOs.md
+    - PhoneOS: Main-Lab/Prerequisites/preReq_phoneOs.md
+    - Deployment: Main-Lab/Prerequisites/preReq_deployment.md
+  - RoomOS xAPI & Extensions: 
+    - RoomOS xAPI & Extensions: Main-Lab/RoomOS/ros_intro.md
+    - RoomOS xAPI:
+      - Intro to RoomOS xAPI: Main-Lab/RoomOS/ros_xapi/ros_xapi_intro.md
+      - Terminal: Main-Lab/RoomOS/ros_xapi/ros_xapi_terminal.md
+      - HTTP: Main-Lab/RoomOS/ros_xapi/ros_xapi_http.md
+      - WebSockets: Main-Lab/RoomOS/ros_xapi/ros_xapi_websockets.md
+      - Cloud: Main-Lab/RoomOS/ros_xapi/ros_xapi_cloud.md
+      - Macros: Main-Lab/RoomOS/ros_xapi/ros_xapi_macros.md
+    - RoomOS Extensions: 
+      - Introduction: Main-Lab/RoomOS/ros_userInterface/ros_ui_intro.md
+    - Solution Exercises:
+      - Introduction: Main-Lab/RoomOS/ros_exercises/ros_exe_intro.md
+  - PhoneOS xAPI: 
+    - Introduction: Main-Lab/PhoneOS/pos_intro.md
+    - Conclusion: Main-Lab/Deployment/dep_conclusion.md
+  - Deployment: 
+    - Introduction: Main-Lab/Deployment/dep_intro.md
+    - Control Hub:
+      - Preparing Your Devices: Main-Lab/Deployment/dep_controlHub/dep_controlHub_prepDevices.md
+      - Utilizing Configuration Templates: Main-Lab/Deployment/dep_controlHub/dep_controlHub_configTemplates.md
+      - Org-Wide Templates: Main-Lab/Deployment/dep_controlHub/dep_controlHub_orgTemplates.md
+      - Run Commands:  Main-Lab/Deployment/dep_controlHub/dep_controlHub_runCommands.md
+      - Deploy UI Extensions:  Main-Lab/Deployment/dep_controlHub/dep_controlHub_deployExtensions.md
+      - Deploy Macros:  Main-Lab/Deployment/dep_controlHub/dep_controlHub_deployMacros.md
+    - CE-Deploy:
+      - Local vs Cloud Authentication: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_localVsCloud.md
+      - Download Webex Token: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_downloadToken.md
+      - Run Commands: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_runCommands.md
+      - Deploy Branding: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployBranding.md
+      - Deploy Macros: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployMacros.md
+      - Deploy UI Extensions: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployExtensions.md
+      - Deploy Local User Accounts: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployLocalUsers.md
+      - Device Backups and Logs: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_backupsAndLogs.md
+      - Tools: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_tools.md
+      - Dashboards: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_dashboards.md
+    - Conclusion: Main-Lab/Deployment/dep_conclusion.md
+  - Resources: 
+    - Lab Tools: Main-Lab/Resources/res_tools.md
+    - Guides: Main-Lab/Resources/res_guides.md
+    - Communities: Main-Lab/Resources/res_communities.md
  
