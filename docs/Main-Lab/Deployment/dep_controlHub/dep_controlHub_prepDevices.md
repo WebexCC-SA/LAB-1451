@@ -1,3 +1,4 @@
+{{ config.labVariables.devNotice }}
 # Preparing Your Devices
 
 !!! abstract

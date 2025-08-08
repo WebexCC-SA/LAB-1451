@@ -1,3 +1,4 @@
+{{ config.labVariables.devNotice }}
 # 4.10 Deploy Macros via CE-Deploy
 
 !!! abstract

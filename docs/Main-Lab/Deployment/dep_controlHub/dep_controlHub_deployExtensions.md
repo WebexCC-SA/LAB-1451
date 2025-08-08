@@ -1,3 +1,4 @@
+{{ config.labVariables.devNotice }}
 # Deploy Extensions via Control Hub
 
 !!! abstract

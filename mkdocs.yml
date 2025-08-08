@@ -133,4 +133,14 @@ nav:
     - Lab Tools: Main-Lab/Resources/res_tools.md
     - Guides: Main-Lab/Resources/res_guides.md
     - Communities: Main-Lab/Resources/res_communities.md
- 
+labVariables: 
+  devNotice: | 
+    #
+
+    !!! important "Under Construction"
+
+        This Lab is under development for Webex One 2025
+
+        If you're looking to use the collateral made for WebexOne 2024, please use the link below
+
+        [https://webexcc-sa.github.io/LAB-1451-24/](https://webexcc-sa.github.io/LAB-1451-24/){:target="_blank"}

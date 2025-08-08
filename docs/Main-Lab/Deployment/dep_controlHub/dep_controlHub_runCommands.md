@@ -1,3 +1,4 @@
+{{ config.labVariables.devNotice }}
 # Running xAPI commands via Control Hub
 
 !!! abstract

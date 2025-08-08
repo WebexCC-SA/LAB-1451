@@ -1,3 +1,4 @@
+{{ config.labVariables.devNotice }}
 # 4.12 Deploy a local user admin using CE-Deploy
 
 !!! abstract

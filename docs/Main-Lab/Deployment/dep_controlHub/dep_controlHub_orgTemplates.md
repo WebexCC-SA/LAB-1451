@@ -1,3 +1,4 @@
+{{ config.labVariables.devNotice }}
 # Building and deploying Org-Wide configuration templates via Control Hub
 
 !!! abstract

@@ -1,3 +1,4 @@
+{{ config.labVariables.devNotice }}
 # Deploy xAPI commands via CE-Deploy
 
 !!! abstract

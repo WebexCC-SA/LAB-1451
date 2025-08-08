@@ -1,3 +1,4 @@
+{{ config.labVariables.devNotice }}
 # Building and deploying configuration templates via Control Hub
 
 !!! abstract

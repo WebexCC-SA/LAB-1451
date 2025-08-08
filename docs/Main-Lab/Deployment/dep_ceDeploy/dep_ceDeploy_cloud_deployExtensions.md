@@ -1,3 +1,4 @@
+{{ config.labVariables.devNotice }}
 # 4.11 Deploy Extensions via CE-Deploy
 
 !!! abstract
