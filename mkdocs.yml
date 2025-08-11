@@ -88,25 +88,25 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Lab Prerequisites:
-    - Introduction: Main-Lab/Prerequisites/preReq_intro.md
-    - RoomOS: Main-Lab/Prerequisites/preReq_roomOs.md
-    - PhoneOS: Main-Lab/Prerequisites/preReq_phoneOs.md
-    - Deployment: Main-Lab/Prerequisites/preReq_deployment.md
+    - Introduction: Main-Lab/Prerequisites/prq_intro.md
+    - RoomOS: Main-Lab/Prerequisites/prq_roomOs.md
+    - PhoneOS: Main-Lab/Prerequisites/prq_phoneOs.md
+    - Deployment: Main-Lab/Prerequisites/prq_deployment.md
   - RoomOS xAPI & Extensions: 
-    - RoomOS xAPI & Extensions: Main-Lab/RoomOS/ros_intro.md
+    - RoomOS xAPI & Extensions: Main-Lab/RoomOS/rxp_intro.md
     - RoomOS xAPI:
-      - Intro to RoomOS xAPI: Main-Lab/RoomOS/ros_xapi/ros_xapi_intro.md
-      - Terminal: Main-Lab/RoomOS/ros_xapi/ros_xapi_terminal.md
-      - HTTP: Main-Lab/RoomOS/ros_xapi/ros_xapi_http.md
-      - WebSockets: Main-Lab/RoomOS/ros_xapi/ros_xapi_websockets.md
-      - Cloud: Main-Lab/RoomOS/ros_xapi/ros_xapi_cloud.md
-      - Macros: Main-Lab/RoomOS/ros_xapi/ros_xapi_macros.md
+      - Intro to RoomOS xAPI: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_intro.md
+      - Terminal: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_terminal.md
+      - HTTP: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_http.md
+      - WebSockets: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_websockets.md
+      - Cloud: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_cloud.md
+      - Macros: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_macros.md
     - RoomOS Extensions: 
-      - Introduction: Main-Lab/RoomOS/ros_userInterface/ros_ui_intro.md
+      - Introduction: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_intro.md
     - Solution Exercises:
-      - Introduction: Main-Lab/RoomOS/ros_exercises/ros_exe_intro.md
+      - Introduction: Main-Lab/RoomOS/rxp_exercises/rxp_exe_intro.md
   - PhoneOS xAPI: 
-    - Introduction: Main-Lab/PhoneOS/pos_intro.md
+    - Introduction: Main-Lab/PhoneOS/pxp_intro.md
     - Conclusion: Main-Lab/Deployment/dep_conclusion.md
   - Deployment: 
     - Introduction: Main-Lab/Deployment/dep_intro.md
@@ -144,3 +144,13 @@ labVariables:
         If you're looking to use the collateral made for WebexOne 2024, please use the link below
 
         [https://webexcc-sa.github.io/LAB-1451-24/](https://webexcc-sa.github.io/LAB-1451-24/){:target="_blank"}
+  rxp:
+    x: placeholder
+  pxp:
+    x: placeholder
+  prq:
+    x: placeholder
+  dep:
+    x: placeholder
+  res: 
+    x: placeholder
