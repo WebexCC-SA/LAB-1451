@@ -1,4 +1,4 @@
-{{ config.labVariables.devNotice }}
+{{ config.cProps.devNotice }}
 # Building and deploying Org-Wide configuration templates via Control Hub
 
 !!! abstract

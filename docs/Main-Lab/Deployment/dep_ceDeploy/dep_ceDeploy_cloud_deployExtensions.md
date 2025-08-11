@@ -1,4 +1,4 @@
-{{ config.labVariables.devNotice }}
+{{ config.cProps.devNotice }}
 # 4.11 Deploy Extensions via CE-Deploy
 
 !!! abstract

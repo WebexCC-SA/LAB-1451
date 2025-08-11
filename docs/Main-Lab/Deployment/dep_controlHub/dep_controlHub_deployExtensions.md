@@ -1,4 +1,4 @@
-{{ config.labVariables.devNotice }}
+{{ config.cProps.devNotice }}
 # Deploy Extensions via Control Hub
 
 !!! abstract

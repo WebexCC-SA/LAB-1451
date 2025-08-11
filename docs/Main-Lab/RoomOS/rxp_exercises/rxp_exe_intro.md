@@ -1,1 +1,1 @@
-{{ config.labVariables.devNotice }}
+{{ config.cProps.devNotice }}

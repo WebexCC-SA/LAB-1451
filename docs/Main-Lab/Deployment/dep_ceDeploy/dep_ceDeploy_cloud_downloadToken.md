@@ -1,4 +1,4 @@
-{{ config.labVariables.devNotice }}
+{{ config.cProps.devNotice }}
 # Download a Webex token and create an Environment in CE-Deploy
 
 !!! abstract

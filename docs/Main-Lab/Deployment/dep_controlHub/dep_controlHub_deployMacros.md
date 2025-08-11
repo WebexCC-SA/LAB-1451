@@ -1,4 +1,4 @@
-{{ config.labVariables.devNotice }}
+{{ config.cProps.devNotice }}
 # Deploy Macro's via Control Hub
 
 !!! abstract

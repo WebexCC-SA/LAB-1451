@@ -40,6 +40,7 @@ extra:
   site_event: test
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/customTextHighlight.css
 extra_javascript:
   - template_assets/js/newLoad.js
   - template_assets/js/setInfo.js
@@ -64,15 +65,14 @@ plugins:
       auto_caption: true
       caption_position: top
 markdown_extensions:
+  - attr_list
   - md_in_html
   - abbr
   - admonition
-  - attr_list
   - def_list
   - footnotes
   - meta
   - tables
-  - pymdownx.details
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
@@ -85,6 +85,13 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  # Extensions below enabled by Bobby
+  - pymdownx.details
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
 nav:
   - Home: index.md
   - Lab Prerequisites:
@@ -93,14 +100,14 @@ nav:
     - PhoneOS: Main-Lab/Prerequisites/prq_phoneOs.md
     - Deployment: Main-Lab/Prerequisites/prq_deployment.md
   - RoomOS xAPI & Extensions: 
-    - RoomOS xAPI & Extensions: Main-Lab/RoomOS/rxp_intro.md
+    - Introduction: Main-Lab/RoomOS/rxp_intro.md
     - RoomOS xAPI:
-      - Intro to RoomOS xAPI: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_intro.md
-      - Terminal: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_terminal.md
-      - HTTP: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_http.md
-      - WebSockets: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_websockets.md
-      - Cloud: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_cloud.md
-      - Macros: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_macros.md
+      - What is RoomOS: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_intro.md
+      - SSH/Serial<sup>{{ config.cProps.rxp.sectionIds.ssh }}</sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_sshSerial.md
+      - HTTP<sup>{{ config.cProps.rxp.sectionIds.http }}</sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_http.md
+      - WebSockets<sup>{{ config.cProps.rxp.sectionIds.websocket }}</sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_websockets.md
+      - Webex Cloud<sup>{{ config.cProps.rxp.sectionIds.cloud }}</sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_cloud.md
+      - Macros<sup>{{ config.cProps.rxp.sectionIds.macro }}</sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_macros.md
     - RoomOS Extensions: 
       - Introduction: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_intro.md
     - Solution Exercises:
@@ -133,7 +140,7 @@ nav:
     - Lab Tools: Main-Lab/Resources/res_tools.md
     - Guides: Main-Lab/Resources/res_guides.md
     - Communities: Main-Lab/Resources/res_communities.md
-labVariables: 
+cProps: 
   devNotice: | 
     #
 
@@ -146,6 +153,14 @@ labVariables:
         [https://webexcc-sa.github.io/LAB-1451-24/](https://webexcc-sa.github.io/LAB-1451-24/){:target="_blank"}
   rxp:
     x: placeholder
+    name: RoomOS xAPI & Extensions
+    sectionIds:
+      ssh: 1
+      http: 2
+      websocket: 3
+      cloud: 4
+      macro: 5
+      sdk: 6
   pxp:
     x: placeholder
   prq:

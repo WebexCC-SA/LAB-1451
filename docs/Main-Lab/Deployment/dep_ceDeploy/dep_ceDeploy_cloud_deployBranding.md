@@ -1,4 +1,4 @@
-{{ config.labVariables.devNotice }}
+{{ config.cProps.devNotice }}
 # Deploy Branding via CE-Deploy
 
 !!! abstract
