@@ -28,9 +28,9 @@
 
     At a minimum, if you could review sections before the 90 minutes concludes
 
-    - SSH^{{config.cProps.rxp.sectionIds.ssh}}^
-    - HTTP^{{config.cProps.rxp.sectionIds.http}}^
-    - Macros^{{config.cProps.rxp.sectionIds.macro}}^
+    - SSH ^{{config.cProps.rxp.sectionIds.ssh}}^
+    - HTTP ^{{config.cProps.rxp.sectionIds.http}}^
+    - Macros ^{{config.cProps.rxp.sectionIds.macro}}^
 
     These will lay the base ground work when it comes to building your First Automation and Deployment, which will be covered in the remainder of the lab
 
@@ -40,6 +40,6 @@
 
         It requires you to have an active SSH session against the endpoint, so once you're done with section within {{ config.cProps.rxp.name }}, keep that terminal session alive
 
-    Time Permitting, certainly check out the sections on WebSockets^{{config.cProps.rxp.sectionIds.websocket}}^ and Webex Cloud^{{config.cProps.rxp.sectionIds.cloud}}^
+    Time Permitting, certainly check out the sections on WebSockets ^{{config.cProps.rxp.sectionIds.websocket}}^ and Webex Cloud ^{{config.cProps.rxp.sectionIds.cloud}}^
 
     Every integration method serves a purpose, whether your a customer optimizing your workflow, an integrator wanting a deeper understanding on how all these pieces connect or a partner wanting to building new opportunities for your business with Cisco RoomOS Devices

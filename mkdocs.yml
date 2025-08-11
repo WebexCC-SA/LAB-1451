@@ -16,6 +16,8 @@ theme:
     - search.suggest
     - content.code.copy
     - toc.integrate
+    - content.tooltips
+    - content.footnote.tooltips
   custom_dir: docs/overrides
   palette:
     # Palette toggle for light mode
@@ -51,6 +53,7 @@ plugins:
   #     cover_title: LABXXX-1234
   #     cover_subtitle: My famous WebexOne Lab
   #     cover_logo: template_assets/Wx1_25_PDF_image.jpg
+
   - glightbox:
       touchNavigation: true
       loop: false
@@ -100,23 +103,23 @@ nav:
     - PhoneOS: Main-Lab/Prerequisites/prq_phoneOs.md
     - Deployment: Main-Lab/Prerequisites/prq_deployment.md
   - RoomOS xAPI & Extensions: 
-    - Introduction: Main-Lab/RoomOS/rxp_intro.md
+    - RoomOS Introduction: Main-Lab/RoomOS/rxp_intro.md
     - RoomOS xAPI:
-      - What is RoomOS: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_intro.md
-      - SSH/Serial<sup>{{ config.cProps.rxp.sectionIds.ssh }}</sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_sshSerial.md
-      - HTTP<sup>{{ config.cProps.rxp.sectionIds.http }}</sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_http.md
-      - WebSockets<sup>{{ config.cProps.rxp.sectionIds.websocket }}</sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_websockets.md
-      - Webex Cloud<sup>{{ config.cProps.rxp.sectionIds.cloud }}</sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_cloud.md
-      - Macros<sup>{{ config.cProps.rxp.sectionIds.macro }}</sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_macros.md
+      - What are RoomOS xAPI: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_intro.md
+      - SSH/Serial <sup><sup>{{ config.cProps.rxp.sectionIds.ssh }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_sshSerial.md
+      - HTTP <sup><sup>{{ config.cProps.rxp.sectionIds.http }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_http.md
+      - WebSockets <sup><sup>{{ config.cProps.rxp.sectionIds.websocket }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_websockets.md
+      - Webex Cloud <sup><sup>{{ config.cProps.rxp.sectionIds.cloud }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_cloud.md
+      - Macros <sup><sup>{{ config.cProps.rxp.sectionIds.macro }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_macros.md
     - RoomOS Extensions: 
-      - Introduction: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_intro.md
+      - What are RoomOS Extensions: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_intro.md
     - Solution Exercises:
-      - Introduction: Main-Lab/RoomOS/rxp_exercises/rxp_exe_intro.md
+      - RoomOS Exercises Introduction: Main-Lab/RoomOS/rxp_exercises/rxp_exe_intro.md
   - PhoneOS xAPI: 
-    - Introduction: Main-Lab/PhoneOS/pxp_intro.md
-    - Conclusion: Main-Lab/Deployment/dep_conclusion.md
+    - PhoneOS Introduction: Main-Lab/PhoneOS/pxp_intro.md
+    # - PhoneOS Conclusion: Main-Lab/Deployment/dep_conclusion.md
   - Deployment: 
-    - Introduction: Main-Lab/Deployment/dep_intro.md
+    - Deployment Introduction: Main-Lab/Deployment/dep_intro.md
     - Control Hub:
       - Preparing Your Devices: Main-Lab/Deployment/dep_controlHub/dep_controlHub_prepDevices.md
       - Utilizing Configuration Templates: Main-Lab/Deployment/dep_controlHub/dep_controlHub_configTemplates.md
@@ -142,8 +145,6 @@ nav:
     - Communities: Main-Lab/Resources/res_communities.md
 cProps: 
   devNotice: | 
-    #
-
     !!! important "Under Construction"
 
         This Lab is under development for Webex One 2025
@@ -155,11 +156,11 @@ cProps:
     x: placeholder
     name: RoomOS xAPI & Extensions
     sectionIds:
-      ssh: 1
-      http: 2
-      websocket: 3
-      cloud: 4
-      macro: 5
+      ssh: rxp-1
+      http: rxp-2
+      websocket: rxp-3
+      cloud: rxp-4
+      macro: rxp-5
       sdk: 6
   pxp:
     x: placeholder
