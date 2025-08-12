@@ -1,4 +1,14 @@
-// docs/js/custom_highlights.js
+String.prototype.capitalizeFirstLetter = function () {
+    if (this.length === 0) {
+        return ""; // Return an empty string if the original string is empty
+    }
+    // Capitalize the first character
+    const firstChar = this.charAt(0).toUpperCase();
+    // Lowercase the rest of the string
+    const restOfString = this.slice(1).toLowerCase();
+
+    return firstChar + restOfString;
+};
 
 // This function will handle the dynamic highlighting
 function applyCustomHighlights() {
@@ -19,7 +29,7 @@ function applyCustomHighlights() {
         'highlight_4': 'custom-highlight-4',
         'highlight_5': 'custom-highlight-5',
         'highlight_6': 'custom-highlight-6',
-        'highlight_7': 'custom-highlight-7' 
+        'highlight_7': 'custom-highlight-7'
     };
 
     // Iterate over each custom tag type
@@ -56,6 +66,37 @@ function applyCustomHighlights() {
             if (event.target.tagName === "W") { // Assuming 'W' is a nested tag within 'copy'
                 navigator.clipboard.writeText(event.target.parentNode.innerText);
             }
+        });
+    });
+
+    Array.from(document.getElementsByTagName("roomosdoc")).forEach(el => {
+        el.addEventListener("click", function (event) {
+            let rawPath;
+            let path;
+            if (event.target.tagName === "ROOMOSDOC") {
+                console.log(event.target.innerText)
+                if (!event.target.innerText.includes(':')) {
+                    rawPath = event.target.innerText.trim().replace(/\"/gm, '');
+                } else {
+                    alert('Malformed Object')
+                    return;
+                }
+            }
+            if (event.target.tagName === "W") { // Assuming 'W' is a nested tag within 'copy'
+                if (!event.target.parentNode.innerText.includes(':')) {
+                    rawPath = event.target.parentNode.innerText.trim().replace(/\"/gm, '');
+                } else {
+                    alert('Malformed Object')
+                    return;
+                }
+            }
+            path = rawPath.replace(/\s+/gm, ' ').split(' ');
+            path = path.map(item => item.trim());
+            if (path[0][0].toLowerCase() == 'x') {
+                path[0] = path[0].slice(1)
+                path = path.map(item => item.capitalizeFirstLetter());
+            }
+            window.open(`https://roomos.cisco.com/xapi/${path.join('.')}/`, '_blank');
         });
     });
 }

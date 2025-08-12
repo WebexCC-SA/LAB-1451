@@ -27,20 +27,60 @@
     --md-typeset-a-color: #3a7fff;
     --md-accent-fg-color: #00bdeb;
 }
-copy::after, .copy::after {
-  content: "\f0c5"; /* Font Awesome code for the copy icon */
+
+copy:hover::after, .copy:hover::after {
+  color: #00bdeb;
+}
+
+roomosdoc::after, .roomosdoc::after {
+  content: "\f14c"; /* Font Awesome code for the roomosdoc icon */
   font-family: "Font Awesome 5 Free"; /* The font-family may vary, ensure it matches the imported version */
   font-weight: 900; /* Ensure the weight matches the icon style */
   font-style: normal;
   text-decoration: inherit;
   display: inline-block; /* Ensure the icon is visible */
   margin-left: 5px; /* Optional: Add space between text and icon */
-
 }
 
-copy:hover::after, .copy:hover::after {
-  color: #00bdeb;
+
+/* Base styles for roomosdoc to make it look like a button */
+roomosdoc {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  margin: 0.5em 0;
+  border-radius: 0.3em;
+  text-align: center;
+  cursor: pointer;
+  font-family: var(--md-text-font);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s, box-shadow 0.25s;
+  box-sizing: border-box;
 }
+
+/* Light Mode & Dark Mode Default State (since your primary/accent are consistent across schemes) */
+/* This will be the darker color */
+[data-md-color-scheme="default"] roomosdoc,
+[data-md-color-scheme="slate"] roomosdoc {
+  background-color: var(--md-primary-fg-color); /* This is #051C2C (darker color) */
+  color: white; /* Text color for the darker background */
+  border: 1px solid var(--md-primary-fg-color); /* Border matches background */
+  box-shadow: var(--md-shadow-z1);
+}
+
+/* Light Mode & Dark Mode Hover/Active State */
+/* This will be the baby blue color */
+[data-md-color-scheme="default"] roomosdoc:hover,
+[data-md-color-scheme="default"] roomosdoc:focus,
+[data-md-color-scheme="slate"] roomosdoc:hover,
+[data-md-color-scheme="slate"] roomosdoc:focus {
+  background-color: var(--md-accent-fg-color); /* This is #00bdeb (baby blue) */
+  color: black; /* Text color for the baby blue background */
+  border-color: var(--md-accent-fg-color); /* Border matches hover background */
+  box-shadow: var(--md-shadow-z2);
+}
+
 form#info input{
   border: solid 1px;
 }

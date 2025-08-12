@@ -1,6 +1,6 @@
 {{ config.cProps.devNotice }}
 # Access RoomOS xAPI via SSH/Serial ~(section\ {{config.cProps.rxp.sectionIds.ssh}})~
-!!! abstract "Section 2.2 Abstract"
+!!! abstract
 
     In this section, we'll dive into the various pieces of the xAPI stack and how to make use of them in various ways over an SSH Session to the codec.
 
@@ -448,11 +448,11 @@ ssh [USERNAME]@[IP_ADDRESS]
 
         ```shell title="Type into terminal and press Enter"
         xCommand UserInterface Extensions Panel Save PanelId: wx1_lab_multilineCommand
-        <Extensions><Panel><Order>1</Order><PanelId>wx1_lab_multilineCommand</PanelId><Location>HomeScreen</Location><Icon>Info</Icon><Color>#1170CF</Color><Name>MultiLine Command [Section 2.2.3]</Name><ActivityType>Custom</ActivityType></Panel></Extensions>
+        <Extensions><Panel><Order>1</Order><PanelId>wx1_lab_multilineCommand</PanelId><Location>HomeScreen</Location><Icon>Info</Icon><Color>#1170CF</Color><Name>MultiLine Command [Section ({{config.cProps.rxp.sectionIds.ssh}}.3)]</Name><ActivityType>Custom</ActivityType></Panel></Extensions>
         .
         ```
     
-    - Observe the change to your Codec's Display, you should see a new Panel Button labeled `MultiLine Command [Section 2.2.3]` on your Touch Control interface
+    - Observe the change to your Codec's Display, you should see a new Panel Button labeled `MultiLine Command [Section ({{config.cProps.rxp.sectionIds.ssh}}.3)]` on your Touch Control interface
 
     ??? success "View Successful OSD output"
         <figure markdown>
@@ -472,7 +472,7 @@ ssh [USERNAME]@[IP_ADDRESS]
         xCommand UserInterface Extensions List ActivityType: Custom
         ```
       
-      - Observe your Terminal Window's output, you should see details of both the `MultiLine Command [Section 2.2.3]` panel you loaded in previously as well as the `Subscription Assistant` panel details
+      - Observe your Terminal Window's output, you should see details of both the `MultiLine Command [Section ({{config.cProps.rxp.sectionIds.ssh}}.3)]` panel you loaded in previously as well as the `Subscription Assistant` panel details
 
     ??? success "Click to Compare your Terminal Output"
         ``` {.shell, .no-copy}
@@ -490,7 +490,7 @@ ssh [USERNAME]@[IP_ADDRESS]
         *r ExtensionsListResult Extensions Panel 2 Icon: Info
         *r ExtensionsListResult Extensions Panel 2 Location: HomeScreen
         *r ExtensionsListResult Extensions Panel 2 ActivityType: Custom
-        *r ExtensionsListResult Extensions Panel 2 Name: "MultiLine Command [Section 2.2.3]"
+        *r ExtensionsListResult Extensions Panel 2 Name: "MultiLine Command [Section ({{config.cProps.rxp.sectionIds.ssh}}.3)]"
         *r ExtensionsListResult Extensions Panel 2 PanelId: "wx1_lab_multilineCommand"
         *r ExtensionsListResult Extensions Panel 2 Origin: local
         *r ExtensionsListResult Extensions Panel 2 Order: 1
@@ -818,9 +818,9 @@ ssh [USERNAME]@[IP_ADDRESS]
 !!! abstract "xStatuses"
     Statuses contain information about the current state of the device, such as connected calls, the status of the gatekeeper registration, connected inputs and output sources.
 
-    Many of the same techniques we reviewed under section 2.2.4 will apply to section 2.2.5
+    Many of the same techniques we reviewed under section ({{config.cProps.rxp.sectionIds.ssh}}.4) will apply to section ({{config.cProps.rxp.sectionIds.ssh}}.4)
 
-    Be sure to complete section 2.2.4, as many pieces of additional context were covered there, and won't be repeated moving forward
+    Be sure to complete section ({{config.cProps.rxp.sectionIds.ssh}}.4), as many pieces of additional context were covered there, and won't be repeated moving forward
 
     Click to expand each xStatus example below, execute them in your terminal session and observe the responses in the terminal window
 
