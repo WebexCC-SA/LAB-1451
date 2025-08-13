@@ -18,13 +18,13 @@
 
     -   <i class="fa-solid fa-download"></i> __Click the icon below for the Postman Download Page__
 
-        ---
+          ---
 
-        <a href="https://www.Postman.com/downloads/" target="_blank">
-          <figure markdown="span">
-              ![Postman Download](https://voyager.postman.com/logo/postman-logo-icon-orange.svg){ width="75" }
-          </figure>
-        </a>
+          <a href="https://www.Postman.com/downloads/" target="_blank">
+            <figure markdown="span">
+                ![Postman Download](https://voyager.postman.com/logo/postman-logo-icon-orange.svg){ width="75" }
+            </figure>
+          </a>
     
     -   <i class="fa-solid fa-download"></i> __Click the icon below for the Section {{config.cProps.rxp.sectionIds.http}} Postman Collection__
 
@@ -51,7 +51,7 @@
 
 !!! blank ""
 
-    <h4>URL Structure</h4>
+    <h4>URL Structure ~({{config.cProps.rxp.sectionIds.http}}.1.1)~</h4>
 
     The request URL for your Codec will change depending on whether you're making a Get or Post Call
 
@@ -68,7 +68,7 @@
 
     - - -
 
-    <h4>Authentication Format</h4>
+    <h4>Authentication Format ~({{config.cProps.rxp.sectionIds.http}}.1.2)~</h4>
 
     The Codec uses basic authentication to accept incoming HTTP requests. This authentication is formatted in base64 with it's username and password concatenated as a single string separated by a colon ==:==
 
@@ -100,7 +100,7 @@
 
     - - -
 
-    <h4>Request Headers</h4>
+    <h4>Request Headers ~({{config.cProps.rxp.sectionIds.http}}.1.3)~</h4>
 
     Your Get and Post requests will use this Authorization in one of its 2 headers
 
@@ -111,7 +111,7 @@
 
     - - -
 
-    <h4>Body Format</h4>
+    <h4>Body Format ~({{config.cProps.rxp.sectionIds.http}}.1.4)~</h4>
 
     To target a specific path, you need to provide a body to either your Get or Post request
 
@@ -125,17 +125,17 @@
 
         === "Get"
 
-            Url: https://[YOUR_DEVICE_IP]/getxml?location\===Configuration/SystemUnit/Name==
+            Url: https://<highlight_0>[YOUR_DEVICE_IP]</highlight_0>/getxml?location\=<highlight_1>Configuration<highlight_3>/</highlight_3>SystemUnit<highlight_3>/</highlight_3>Name</highlight_1>
 
             Body: N/A
 
             !!! important ""
 
-                Notice how **`xConfiguration SystemUnit Name`** is structured in the ==?location== Url Parameter using `/` as a separator. When formatting a Get Request, the full xAPI path will go here, but be sure to remove the `x` in the Parent xAPI Path
+                Notice how <highlight_1>xConfiguration SystemUnit Name</highlight_1> is structured in the <highlight_5>?location</highlight_5> Url Parameter using <highlight_3>/</highlight_3> as a separator. When formatting a Get Request, the full xAPI path will go here, but be sure to remove the <highlight_7>x</highlight_7> in the Parent xAPI Path
 
-                - {--x--}{++Configuration++}/Child/Child/...
-                - {--x--}{++Command++}/Child/Child/...
-                - {--x--}{++Status++}/Child/Child/...
+                - <highlight_7>x</highlight_7><highlight_1>Configuration</highlight_1><highlight_3>/</highlight_3>Child<highlight_3>/</highlight_3>Child<highlight_3>/</highlight_3>...
+                - <highlight_1>Configuration</highlight_1><highlight_3>/</highlight_3>Child<highlight_3>/</highlight_3>Child<highlight_3>/</highlight_3>...
+                - <highlight_1>Configuration<highlight_3>/</highlight_3>SystemUnit<highlight_3>/</highlight_3>Name</highlight_1>
 
         === "Post"
 
@@ -175,9 +175,9 @@
 
         For instance, when working in ES6 or newer Javascript Environments, you can leverage the `btoa()` and `atob()` functions that are built into that language to quickly encode and decode strings to/from base64. Ex: `btoa('admin:admin1234')` = ==YWRtaW46YWRtaW4xMjM0\====
 
-    <h4>Full HTTP Get and Post examples</h4>
+    <h4>Full HTTP Get and Post examples ~({{config.cProps.rxp.sectionIds.http}}.1.5)~</h4>
 
-    ??? success "Click to view a Full Example of each written using the JavaScript Fetch API"
+    ??? success "Click to view a Full Example of each written using the JavaScript Fetch API ~({{config.cProps.rxp.sectionIds.http}}.1.5.a)~"
 
         === "Get"
 
@@ -237,7 +237,7 @@
             </Configuration>
             */
             ```
-    ??? success "Click to view a Full Example of each written using the Macro Editor [ES6 JS] and your codec's HTTPClient xAPIs"
+    ??? success "Click to view a Full Example of each written using the Macro Editor [ES6 JS] and your codec's HTTPClient xAPIs ~({{config.cProps.rxp.sectionIds.http}}.1.5.b)~"
 
         === "Get"
 
@@ -320,7 +320,7 @@
             </a>
 
 
-    ??? success "Click to view a Full Example of each written using the Python Requests API"
+    ??? success "Click to view a Full Example of each written using the Python Requests API ~({{config.cProps.rxp.sectionIds.http}}.1.5.c)~"
 
         === "Get"
 

@@ -17,9 +17,9 @@
 
     Replace ``` [USERNAME]``` with your Codec's Username and ``` [IP_ADDRESS]``` with your Codec's IPv4 address that you set in section[X.X.X]
 
-``` shell title="Type into terminal and press Enter"
-ssh [USERNAME]@[IP_ADDRESS]
-``` 
+!!! blank "Type into terminal and press Enter"
+    <pre><code>ssh {{config.cProps.auth.roomosUser}}@{{config.cProps.auth.roomosIp}}</code></pre> 
+    
 
 ??? warning "If you encountered an warning running the command above, click here"
     

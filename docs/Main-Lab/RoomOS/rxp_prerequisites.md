@@ -1,3 +1,1 @@
 {{ config.cProps.devNotice }}
-
-{{ config.cProps }}

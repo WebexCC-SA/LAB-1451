@@ -12,7 +12,7 @@
 
 |Name|Location (Path)|Description|
 |:--|:--|:--|
-|Prerequisites| `docs > Main-Lab > Prerequisites` | Covers any Hardware/Software Prerequisites needed for each major part of the Lab |
+|Setup| `docs > Main-Lab > Setup` | Covers any Hardware/Software Setup needed for each major part of the Lab |
 |RoomOS xAPI and Extensions| `docs > Main-Lab > RoomOS` | Lab Content demonstrating use of RoomOS device xAPI and UI Extensions |
 |PhoneOS xAPI| `docs > Main-Lab > PhoneOS` | Lab Content demonstrating use of RoomOS device xAPI |
 |Deployment| `docs > Main-Lab > Deployment` | Lab Content demonstrating customization deployment via Control Hub and CE-Deploy |
@@ -24,8 +24,8 @@
 
 | Formal Content Name | File Prefix                  | File Content descriptor                                | Example(s)                                                                           |
 |:-------------------|:----------------------------|--------------------------------------------------------|--------------------------------------------------------------------------------------|
-| Prerequisites      | <highlight_0>prq</highlight_0> | <highlight_2>Custom Field - Defined by Lab Content Developer</highlight_2> | <highlight_0>prq</highlight_0>\_<highlight_2>intro</highlight_2>.md                                       |
-| RoomOS             | <highlight_0>rxp</highlight_0> | <highlight_2>Custom Field - Defined by Lab Content Developer</highlight_2> | <highlight_0>rxp</highlight_0>\_<highlight_2>xapi_intro</highlight_2>.md<br><highlight_0>rxp</highlight_0>\_<highlight_2>ui_conlusion</highlight_2>.md |
+| Setup      | <highlight_0>stp</highlight_0> | <highlight_2>Custom Field - Defined by Lab Content Developer</highlight_2> | <highlight_0>stp</highlight_0>\_<highlight_2>intro</highlight_2>.md                                       |
+| RoomOS             | <highlight_0>rxp</highlight_0> | <highlight_2>Custom Field - Defined by Lab Content Developer</highlight_2> | <highlight_0>rxp</highlight_0>\_<highlight_2>xapi_intro</highlight_2>.md<br><highlight_0>rxp</highlight_0>\_<highlight_2>ui_conclusion</highlight_2>.md |
 | PhoneOS            | <highlight_0>pxp</highlight_0> | <highlight_2>Custom Field - Defined by Lab Content Developer</highlight_2> | <highlight_0>pxp</highlight_0>\_<highlight_2>intro</highlight_2>.md                                       |
 | Deployment         | <highlight_0>dep</highlight_0> | <highlight_2>Custom Field - Defined by Lab Content Developer</highlight_2> | <highlight_0>dep</highlight_0>\_<highlight_2>intro</highlight_2>.md                                       |
 | Resources          | <highlight_0>res</highlight_0> | <highlight_2>Custom Field - Defined by Lab Content Developer</highlight_2> | <highlight_0>res</highlight_0>\_<highlight_2>guide</highlight_2>.md                                       |
@@ -34,7 +34,7 @@
 
 | Formal Content Name           | Prefix               | Major Number             | Minor Number(s)                                   | Example                                                                     | How to Read                                                                                             |
 |:-----------------------------|:---------------------|:------------------------:|---------------------------------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| Prerequisites                | <highlight_0>prq</highlight_0> | N/A                      | <highlight_2>Custom Field - Defined by Lab Content Developer</highlight_2> | <highlight_0>prq</highlight_0>-<highlight_1>1</highlight_1><highlight_2>.0.X</highlight_2> | <highlight_0>Prerequisites</highlight_0>, <highlight_1>Section 1</highlight_1>, <highlight_2>SubSection 0, ...</highlight_2>              |
+| Setup                | <highlight_0>stp</highlight_0> | N/A                      | <highlight_2>Custom Field - Defined by Lab Content Developer</highlight_2> | <highlight_0>stp</highlight_0>-<highlight_1>1</highlight_1><highlight_2>.0.X</highlight_2> | <highlight_0>Setup</highlight_0>, <highlight_1>Section 1</highlight_1>, <highlight_2>SubSection 0, ...</highlight_2>              |
 | RoomOS                       | <highlight_0>rxp</highlight_0> | <highlight_1>Any #</highlight_1> | <highlight_2>Custom Field - Defined by Lab Content Developer</highlight_2> | <highlight_0>rxp</highlight_0>-<highlight_1>1</highlight_1><highlight_2>.0.X</highlight_2> | <highlight_0>RoomOS xAPI and Extensions</highlight_0>, <highlight_1>Section 1</highlight_1>, <highlight_2>SubSection 0, ...</highlight_2> |
 | PhoneOS                      | <highlight_0>pxp</highlight_0> | <highlight_1>Any #</highlight_1> | <highlight_2>Custom Field - Defined by Lab Content Developer</highlight_2> | <highlight_0>pxp</highlight_0>-<highlight_1>1</highlight_1><highlight_2>.0.X</highlight_2> | <highlight_0>PhoneOS xAPI</highlight_0>, <highlight_1>Section 1</highlight_1>, <highlight_2>SubSection 0, ...</highlight_2>               |
 | Deployment                   | <highlight_0>dep</highlight_0> | <highlight_1>Any #</highlight_1> | <highlight_2>Custom Field - Defined by Lab Content Developer</highlight_2> | <highlight_0>dep</highlight_0>-<highlight_1>1</highlight_1><highlight_2>.0.X</highlight_2> | <highlight_0>Deployment</highlight_0>, <highlight_1>Section 1</highlight_1>, <highlight_2>SubSection 0, ...</highlight_2>                 |
@@ -45,22 +45,22 @@
 !!! blank "Major Section Heading 1"
 
     ```
-    # Prerequisites ~(prq-1)~
+    # Setup ~(stp-1)~
     ```
 
     !!! success "Rendered Result"
 
-        # Prerequisites ~(prq-1)~
+        # Setup ~(stp-1)~
 
 !!! blank "Sub Section Headings 2"
 
     ```
-    ## **RoomOS xAPI and Extensions Hardware Requirements** ~(prq-1)~
+    ## **RoomOS xAPI and Extensions Hardware Requirements** ~(stp-1)~
     ```
 
     !!! success "Rendered Result"
 
-        ## **RoomOS xAPI and Extensions Hardware Requirements** ~(prq-1.1)~
+        ## **RoomOS xAPI and Extensions Hardware Requirements** ~(stp-1.1)~
 
 
 !!! blank "Sub Section Lessons"

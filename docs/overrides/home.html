@@ -256,8 +256,8 @@
         /* bottom: 25em; */
         display: flex;
         justify-content: center;
-        bottom:50%;
-        position:relative;
+        bottom: 50%;
+        position: relative;
 
     }
 
@@ -375,6 +375,13 @@
                         document.write(lab)
                     </script>
                 </h1>
+                <div class="hold"><a href="{{ page.next_page.url | striptags }}" title="{{ page.next_page.title | striptags }}"
+                        class="md-button md-button--primary">
+                        Get started > {{ page.next_page.title | striptags }}
+                    </a></div>
+                <script>
+                    console.log({{ page}})
+                </script>
                 <div class="tx-hero__image">
 
                     <div id="one" class="neat"><svg width="600" height="600" viewBox="0 0 128 128"
@@ -456,10 +463,6 @@
                         document.write(descr)
                     </script>
                 </p> -->
-                <div id="six" class="hold"><a href="overview/" title="{{ page.next_page.title | striptags }}"
-                        class="md-button md-button--primary">
-                        Get started
-                    </a></div>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
 site_name: "LAB-1451: Deep-dive into Cisco devices xAPIs" # This must begin with the session ID, e.g. LABXXX-1234 This is my Cisco Live Lab
 dev_addr: 127.0.0.1:8001
 site_description: "Deep-dive into Cisco devices xAPIs" # must be same as "site_name"
-site_author: Bobby McGonigle
+site_author: Bobby McGonigle, Christopher Norman
 copyright: Copyright &copy; 2025 Cisco
 theme:
   name: material
@@ -96,14 +96,11 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.tilde
 nav:
-  - Home: index.md
-  - Lab Prerequisites:
-    - Introduction: Main-Lab/Prerequisites/prq_intro.md
-    - RoomOS: Main-Lab/Prerequisites/prq_roomOs.md
-    - PhoneOS: Main-Lab/Prerequisites/prq_phoneOs.md
-    - Deployment: Main-Lab/Prerequisites/prq_deployment.md
-  - RoomOS xAPI & Extensions: 
+  - Home&nbsp<i class="fa-solid fa-house" style="color:#B197FC;"></i>: index.md
+  - Lab Setup&nbsp<i class="fa-solid fa-gear"></i>: Main-Lab/Setup/stp_intro.md # Changed from Lab Prerequisites. Moved Prerequisites to each major lab folder
+  - "RoomOS xAPI & Extensions&nbsp<i class=\"fa-solid fa-video\" style=\"color: #428bff;\"></i>": 
     - RoomOS Introduction: Main-Lab/RoomOS/rxp_intro.md
+    - RoomOS Lab Prerequisites: Main-Lab/RoomOS/rxp_prerequisites.md
     - RoomOS xAPI:
       - What are RoomOS xAPI: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_intro.md
       - SSH/Serial <sup><sup>{{ config.cProps.rxp.sectionIds.ssh }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_sshSerial.md
@@ -115,11 +112,13 @@ nav:
       - What are RoomOS Extensions: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_intro.md
     - Solution Exercises:
       - RoomOS Exercises Introduction: Main-Lab/RoomOS/rxp_exercises/rxp_exe_intro.md
-  - PhoneOS xAPI: 
+  - "PhoneOS xAPI&nbsp<i class=\"fa-solid fa-phone\" style=\"color: #00c753;\"></i>": 
     - PhoneOS Introduction: Main-Lab/PhoneOS/pxp_intro.md
+    - PhoneOS Lab Prerequisites: Main-Lab/PhoneOS/pxp_prerequisites.md
     # - PhoneOS Conclusion: Main-Lab/Deployment/dep_conclusion.md
-  - Deployment: 
+  - "Deployment&nbsp<i class=\"fa-solid fa-cloud-arrow-up\" style=\"color: #ff0000;\"></i>": 
     - Deployment Introduction: Main-Lab/Deployment/dep_intro.md
+    - Deployment Lab Prerequisites: Main-Lab/Deployment/dep_prerequisites.md
     - Control Hub:
       - Preparing Your Devices: Main-Lab/Deployment/dep_controlHub/dep_controlHub_prepDevices.md
       - Utilizing Configuration Templates: Main-Lab/Deployment/dep_controlHub/dep_controlHub_configTemplates.md
@@ -139,11 +138,16 @@ nav:
       - Tools: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_tools.md
       - Dashboards: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_dashboards.md
     - Conclusion: Main-Lab/Deployment/dep_conclusion.md
-  - Resources: 
+  - Resources&nbsp<i class="fa-solid fa-globe" style="color:#ffd903;"></i>: 
     - Lab Tools: Main-Lab/Resources/res_tools.md
     - Guides: Main-Lab/Resources/res_guides.md
     - Communities: Main-Lab/Resources/res_communities.md
-cProps: 
+cProps:
+  auth: 
+    roomosIp: <copy><w class="ipAddress">[ROOMOS_IP_ADDRESS]</w></copy>
+    roomosUser: <copy><w class="username">[ROOMOS_USERNAME]</w></copy>
+    roomosPass: <copy><w class="password">[ROOMOS_PASSWORD]</w></copy>
+    devToken: <copy><w class="webexToken">[WEBEX_TOKEN]</w></copy>
   devNotice: | 
     !!! important "Under Construction"
 
@@ -155,16 +159,19 @@ cProps:
   rxp:
     x: placeholder
     name: RoomOS xAPI & Extensions
+    secNotice: |
+  
     sectionIds:
       ssh: rxp-1
       http: rxp-2
       websocket: rxp-3
       cloud: rxp-4
       macro: rxp-5
-      sdk: 6
+      sdk: rxp-6
+      exercises: rxp-7
   pxp:
     x: placeholder
-  prq:
+  stp:
     x: placeholder
   dep:
     x: placeholder
