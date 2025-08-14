@@ -8,42 +8,42 @@
     execute and find a command. In the next lab we will follow that up with deploying extensions 
     in a similar fashion.
 
-??? lesson "4.4 Lessons"
+??? lesson "{{config.cProps.dep.sectionIds.cH}}.4 Lab"
     
-    4.4.1 Login to control hub with your lab admin credentials
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.1</highlight_1> Login to control hub with your lab admin credentials
     
-    4.4.2 Select Management>Devices
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.2</highlight_1> Select Management>Devices
     
     <figure markdown="span">
       ![Select Devices](images/4-1-2.png){ width="150" }
       <figcaption></figcaption>
     </figure>
     
-    4.4.3 Right-click on your lab device, no need to highlight the checkbox 
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.3</highlight_1> Right-click on your lab device, no need to highlight the checkbox 
     this time(Room Bar or Desk Pro)
     
-    4.4.4 Select Actions and Run xCommand
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.4</highlight_1> Select Actions and Run xCommand
     
     <figure markdown="span">
       ![Run xCommand](images/4-4-4.png){ width="200" }
       <figcaption></figcaption>
     </figure>
     
-    4.4.5 Type time into the search for a command name text box. Select Time>DateTime
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.5</highlight_1> Type time into the search for a command name text box. Select Time>DateTime
     
     <figure markdown="span">
       ![Select Time](images/4-4-5.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    4.4.6 Select Get from the two options for DateTime
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.6</highlight_1> Select Get from the two options for DateTime
     
     <figure markdown="span">
       ![Select Get](images/4-4-6.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    4.4.7 Select Execute
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.7</highlight_1> Select Execute
     
     <figure markdown="span">
       ![Execute](images/4-4-7.png){ width="300" }

@@ -16,7 +16,7 @@
     configuration consistency across devices. When default configurations are applied, you can still
     configure an individual device or a set of devices if needed.
 
-??? lesson "{{config.cProps.dep.sectionIds.cH}}.3 Lessons"
+??? lesson "{{config.cProps.dep.sectionIds.cH}}.3 Lab"
 
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.1</highlight_1> Login to control hub with your lab admin credentials
     
