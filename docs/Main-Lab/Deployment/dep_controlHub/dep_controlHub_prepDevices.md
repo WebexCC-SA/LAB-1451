@@ -26,7 +26,7 @@
 
 ??? lesson "{{config.cProps.dep.sectionIds.cH}}.1 Lab"
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.1<\highlight_1> Login to the lab's Control Hub with your admin credentials
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.1</highlight_1> Login to the lab's Control Hub with your admin credentials
     
     {{config.cProps.dep.sectionIds.cH}}.1.2 Select Management>Devices
     
