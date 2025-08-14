@@ -92,3 +92,35 @@ form#info button{
 form#info button:hover{
     background-color:rgb(195, 193, 201);
 }
+
+#setValue-notification-container {
+    position: fixed; /* Stays in the same place even if the user scrolls */
+    top: 20px; /* Distance from the top of the viewport */
+    right: 20px; /* Distance from the right of the viewport */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between multiple notifications */
+    z-index: 1000; /* Ensures it appears above other content */
+}
+
+.setValue-notification {
+    position: fixed; /* Stays relative to the viewport */
+    background-color: #4CAF50; /* Green background for success */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    /* Initial transform: starts slightly below and smaller, centered horizontally */
+    transform: translateX(-50%) translateY(-90%) scale(0.8);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    z-index: 1000; /* Ensures it appears above other content */
+    white-space: nowrap; /* Prevents text from wrapping, keeping it on one line */
+    pointer-events: none; /* Allows clicks to pass through the notification to elements behind it */
+}
+
+.setValue-notification.show {
+    opacity: 1;
+    /* Final transform: moves up and scales to full size, bottom-center aligned with click */
+    transform: translateX(-50%) translateY(-100%) scale(1);
+}

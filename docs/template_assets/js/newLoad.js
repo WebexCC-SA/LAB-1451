@@ -118,3 +118,38 @@ function setValues() {
     // Re-run the highlight logic in case new content is added/modified
     applyCustomHighlights();
 }
+
+function setValuesPopUp(message, clientX, clientY, duration = 1800) {
+    // Create the notification element
+    const notification = document.createElement('div');
+    notification.classList.add('setValue-notification');
+    notification.textContent = message;
+
+    // Set the initial position based on mouse click coordinates
+    // The CSS transform will then adjust it to appear "above" the click point
+    notification.style.left = clientX + 'px';
+    notification.style.top = clientY + 'px';
+
+    // Append the notification directly to the body
+    document.body.appendChild(notification);
+
+    // Trigger the show animation after a small delay to allow CSS transition
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+
+    // Automatically remove the notification after 'duration' milliseconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        // Remove the element from the DOM after the fade-out transition completes
+        notification.addEventListener('transitionend', () => {
+            notification.remove();
+        }, { once: true }); // The { once: true } option ensures the listener is removed after it fires
+    }, duration);
+}
+
+document.getElementById('setLabValues').addEventListener('click', (event) => {
+    console.log('HEY')
+    // Pass the mouse coordinates (event.clientX, event.clientY) to the function
+    setValuesPopUp('Lab References Updated!', event.clientX + 20, event.clientY - 20);
+});

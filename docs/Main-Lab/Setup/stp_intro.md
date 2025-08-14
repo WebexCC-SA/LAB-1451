@@ -26,5 +26,7 @@
           <label for="webexToken">Token:</label>
           <input type="text" id="webexToken" name="webexToken"><br>
 
-          <button onclick="setValues()">Update Lab Guide</button>
+          <button id="setLabValues" onclick="setValues()">Update Lab Guide</button>
+
+          <!-- <div id="setValue-notification-container"></div> -->
         </form>
