@@ -20,25 +20,25 @@
                 === "2.1"
                 
                     <figure markdown>
-                        ![Defaults](assets%2Fwx1_1451_part_1%2F4-1-2a.png){ width="600" }
+                        ![Defaults](images%2F4-1-2a.png){ width="600" }
                     </figure>
 
                 === "2.2"
 
                     <figure markdown>
-                        ![Network](assets%2Fwx1_1451_part_1%2F4-1-2b.png){ width="600" }
+                        ![Network](images%2F4-1-2b.png){ width="600" }
                     </figure>
 
                 === "2.3"
 
                     <figure markdown>
-                        ![Registration](assets%2Fwx1_1451_part_1%2F4-1-2e.png){ width="600" }
+                        ![Registration](images%2F4-1-2e.png){ width="600" }
                     </figure>
                 
                 === "2.4"
 
                     <figure markdown>
-                        ![Complete](assets%2Fwx1_1451_part_1%2F4-1-2d.png){ width="600" }
+                        ![Complete](images%2F4-1-2d.png){ width="600" }
                     </figure>
 
 
@@ -47,13 +47,13 @@
                 === "3.1"
                 
                     <figure markdown>
-                        ![Enter Device Home Page](assets%2Fwx1_1451_part_1%2F4-1-3a.png){ width="600" }
+                        ![Enter Device Home Page](images%2F4-1-3a.png){ width="600" }
                     </figure>
 
                 === "3.2"
 
                     <figure markdown>
-                        ![Register To Webex](assets%2Fwx1_1451_part_1%2F4-1-3b.png){ width="600" }
+                        ![Register To Webex](images%2F4-1-3b.png){ width="600" }
                     </figure>
 
 ??? tool "Download Device Pod Assignment Sheet"
@@ -77,5 +77,5 @@
     ???+ gif "Explore CE-Deploy"
 
         <figure markdown>
-            ![Explore CE-Deploy](assets%2Fwx1_1451_part_4%2FCE-Deploy.gif){ width="700" }
+            ![Explore CE-Deploy](images%2FCE-Deploy.gif){ width="700" }
         </figure>
