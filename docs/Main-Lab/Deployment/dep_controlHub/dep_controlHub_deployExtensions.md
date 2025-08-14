@@ -8,7 +8,7 @@
     choose, all approaches yield the same outcome. In our labs, we will try using Control Hub and 
     then CE-Deploy.
 
-??? lesson "4.5 Lessons"
+??? lesson "{{config.cProps.dep.sectionIds.cH}}.5 Lab"
 
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.5.1</highlight_1> In the clear search box for Run xCommands type UserInterface > Extensions >Panel and select 
     the Save option

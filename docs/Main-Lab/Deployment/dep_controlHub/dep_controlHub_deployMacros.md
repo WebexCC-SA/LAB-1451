@@ -12,24 +12,24 @@
     that facilitate this process. Control Hub now has the capability to manage both UI and Macro 
     customizations on individual endpoints, while CE-Deploy can assist with bulk deployment.
 
-??? lesson "4.6 Lessons"
+??? lesson "{{config.cProps.dep.sectionIds.cH}}.6 Lab"
     
-    4.6.1 Login to control hub with your lab admin credentials
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.1</highlight_1> Login to control hub with your lab admin credentials
     
-    4.6.2 First step is to enable Control Hub to manage the devices macros. Select Devices->Settings
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.2</highlight_1> First step is to enable Control Hub to manage the devices macros. Select Devices->Settings
     
-    4.6.3 Scroll down to the Macros section and toggle on -> Allow Control Hub to manage macros
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.3</highlight_1> Scroll down to the Macros section and toggle on -> Allow Control Hub to manage macros
     
     <figure markdown="span">
       ![Manage Macros](images/4-6-3.png){ width="350" }
       <figcaption></figcaption>
     </figure>
     
-    4.6.4 Next is to deploy our first macro to the Lab device
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.4</highlight_1> Next is to deploy our first macro to the Lab device
     
-    4.6.5 Choose the lab device. Devices -> LabRoomBar/DeskPro(choose your lab device)
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.5</highlight_1> Choose the lab device. Devices -> LabRoomBar/DeskPro(choose your lab device)
     
-    4.6.6 You can now see that there are no macros deployed to this device 
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.6</highlight_1> You can now see that there are no macros deployed to this device 
     under Configuration -> Macros
     
     <figure markdown="span">
@@ -37,16 +37,16 @@
       <figcaption></figcaption>
     </figure>
     
-    4.6.7 Click on Macros
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.7</highlight_1> Click on Macros
     
-    4.6.8 Select Add Macro
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.8</highlight_1> Select Add Macro
     
     <figure markdown="span">
       ![Add Macro](images/4-6-8.png){ width="350" }
       <figcaption></figcaption>
     </figure>
     
-    4.6.9 Select -> Choose a File and navigate to Post_Meeting_Survey_Macro.js. If the file is not available 
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.9</highlight_1> Select -> Choose a File and navigate to Post_Meeting_Survey_Macro.js. If the file is not available 
     copy the javascript below, paste into a text editor of your choice and save it as a .js file named Post_Meeting_Survey_Macro.js.
     
     ```javascript title="Post_Meeting_Survey_Macro.js" linenums="1"
@@ -155,30 +155,30 @@
       <figcaption></figcaption>
     </figure>
     
-    4.6.10 Click Next
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.10</highlight_1>4.6.10 Click Next
     
     <figure markdown="span">
       ![Next](images/4-6-10.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    4.6.11 Ensure that your Macro is enabled
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.11</highlight_1>4.6.11 Ensure that your Macro is enabled
     
     <figure markdown="span">
       ![Enable Macro](images/4-6-11.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    4.6.12 Click Save. Then click Save again
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.12</highlight_1>4.6.12 Click Save. Then click Save again
     
-    4.6.13 You should now see in the macro engine logs your macro is loaded without error.
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.13</highlight_1>4.6.13 You should now see in the macro engine logs your macro is loaded without error.
     
     <figure markdown="span">
       ![Macro saved](images/4-6-13.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    4.6.14 While still in the Macros lets make a change to our uploaded macro. 
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.14</highlight_1>4.6.14 While still in the Macros lets make a change to our uploaded macro. 
     Click on the edit button.
     
     <figure markdown="span">
@@ -186,14 +186,14 @@
       <figcaption></figcaption>
     </figure>
     
-    4.6.15 Type the following line to the Macro on line 2.
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.15</highlight_1>4.6.15 Type the following line to the Macro on line 2.
     
     ```javascript
     console.log("Post Survey Macro Loading…..");
     ```
     Click save
     
-    4.6.16 You should now notice in your logs that the console message now appears 
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.16</highlight_1> You should now notice in your logs that the console message now appears 
     as the macro is loaded.
     
     <figure markdown="span">
