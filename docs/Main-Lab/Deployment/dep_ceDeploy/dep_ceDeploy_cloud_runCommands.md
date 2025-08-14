@@ -18,16 +18,16 @@
     <iframe src="https://app.vidcast.io/share/embed/e0469f2c-5631-4a7a-a8aa-b15ecd84b4d3" width="100%" height="100%" title="CE-Deploy Running xAPI Commands" frameborder="0" loading="lazy" allowfullscreen style="position:absolute; top:0; left: 0;border: solid; border-radius:12px;"></iframe>
     </div>
 
-??? lesson "4.8 Lessons"
+??? lesson "{{config.cProps.dep.sectionIds.cD}}.3 Lab"
 
-    4.8.1 Open Ce-deploy and load the environment your created in the last lab.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.3.1</highlight_1> Open Ce-deploy and load the environment your created in the last lab.
     
     ??? cedeploy "Loading Environments"
     
         To load an environment, use the dropdown in the Environment loading section and select your
         new Environment and select ==Load Environment==.
     
-    4.8.2 Select xAPI from the deployment section. In the command text box enter:
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.3.2</highlight_1> Select xAPI from the deployment section. In the command text box enter:
     
     ```text
     xCommand Time DateTime Get
@@ -37,7 +37,7 @@
       <figcaption></figcaption>
     </figure>
     
-    4.8.3 Under the deployment options drop down select ==Org Id==, this will populate the lab org ID. 
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.3.3</highlight_1> Under the deployment options drop down select ==Org Id==, this will populate the lab org ID. 
     As this command does not make any system changes it can be safely run against all the devices
     in the lab Control Hub Organization. By doing this we can see how CE-Deploy queues and completes 
     xAPI commands in bulk.
@@ -47,17 +47,17 @@
       <figcaption></figcaption>
     </figure>
     
-    4.8.4 Select the ==video devices only== filter checkbox. This will limit running the command to only 
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.3.4</highlight_1> Select the ==video devices only== filter checkbox. This will limit running the command to only 
     the xAPI capable device in the organization and no other devices in the lab, an example being a phone.
     
-    4.8.5 Select =="Start Deployment"==
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.3.5</highlight_1> Select =="Start Deployment"==
     
-    4.8.6 Ensure ==Run Deployment Now== is selected and select ==Next==.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.3.6</highlight_1> Ensure ==Run Deployment Now== is selected and select ==Next==.
     
-    4.8.7 If any devices are offline you may receive a prompt letting your know that some of the devices are offline. 
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.3.7</highlight_1> If any devices are offline you may receive a prompt letting your know that some of the devices are offline. 
     If this is case just select =="Yes"==.
     
-    4.8.8 The message console will now let you see the deployment in progress and all output from the devices. 
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.3.8</highlight_1> The message console will now let you see the deployment in progress and all output from the devices. 
     In this case what is returned is the system time running on the endpoints.
     
     <figure markdown="span">
