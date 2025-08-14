@@ -10,7 +10,7 @@
 
 ??? lesson "4.5 Lessons"
 
-    4.5.1 In the clear search box for Run xCommands type UserInterface > Extensions >Panel and select 
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.5.1</highlight_1> In the clear search box for Run xCommands type UserInterface > Extensions >Panel and select 
     the Save option
     
     <figure markdown="span">
@@ -18,14 +18,14 @@
       <figcaption></figcaption>
     </figure>
     
-    4.5.2 This will open the Save Arguments dialog
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.5.2</highlight_1> This will open the Save Arguments dialog
     
     <figure markdown="span">
       ![Save](images/4-5-2.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    4.5.3 Use Post_Meeting_Survey as the PanelId. Open Post_Meeting_Survey.xml or copy the xml below in a 
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.5.3</highlight_1> Use Post_Meeting_Survey as the PanelId. Open Post_Meeting_Survey.xml or copy the xml below in a 
     text editor then copy and paste the Post_Meeting_Survey.xml text into the Body section.
     
     ```xml title="Post_Meeting_Survey_Macro.xml" linenums="1"
@@ -168,7 +168,7 @@
       <figcaption>Saving the Panel extension</figcaption>
     </figure>
     
-    4.5.4 Scroll done to the bottom of the Arguments section and Select Execute
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.5.4</highlight_1> Scroll done to the bottom of the Arguments section and Select Execute
     
     <figure markdown="span">
       ![Execute](images/4-5-4.png){ width="300" }
