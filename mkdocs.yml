@@ -128,15 +128,15 @@ nav:
       - Deploy Macros <sup><sup>{{config.cProps.dep.sectionIds.cH}}.6</sup></sup>:  Main-Lab/Deployment/dep_controlHub/dep_controlHub_deployMacros.md
     - CE-Deploy:
       - Local vs Cloud Auth <sup><sup>{{config.cProps.dep.sectionIds.cD}}.1</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_localVsCloud.md
-      - Download Webex Token <sup><sup>{{config.cProps.dep.sectionIds.cH}}.2</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_downloadToken.md
-      - Run Commands <sup><sup>{{config.cProps.dep.sectionIds.cH}}.3</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_runCommands.md
-      - Branding <sup><sup>{{config.cProps.dep.sectionIds.cH}}.4</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployBranding.md
-      - Macros <sup><sup>{{config.cProps.dep.sectionIds.cH}}.5</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployMacros.md
-      - UI Extensions <sup><sup>{{config.cProps.dep.sectionIds.cH}}.6</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployExtensions.md
-      - Local User Accounts <sup><sup>{{config.cProps.dep.sectionIds.cH}}.7</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployLocalUsers.md
-      - Device Backups and Logs <sup><sup>{{config.cProps.dep.sectionIds.cH}}.8</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_backupsAndLogs.md
-      - Tools <sup><sup>{{config.cProps.dep.sectionIds.cH}}.9</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_tools.md
-      - Dashboards <sup><sup>{{config.cProps.dep.sectionIds.cH}}.10</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_dashboards.md
+      - Download Webex Token <sup><sup>{{config.cProps.dep.sectionIds.cD}}.2</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_downloadToken.md
+      - Run Commands <sup><sup>{{config.cProps.dep.sectionIds.cD}}.3</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_runCommands.md
+      - Branding <sup><sup>{{config.cProps.dep.sectionIds.cD}}.4</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployBranding.md
+      - Macros <sup><sup>{{config.cProps.dep.sectionIds.cD}}.5</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployMacros.md
+      - UI Extensions <sup><sup>{{config.cProps.dep.sectionIds.cD}}.6</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployExtensions.md
+      - Local User Accounts <sup><sup>{{config.cProps.dep.sectionIds.cD}}.7</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployLocalUsers.md
+      - Device Backups and Logs <sup><sup>{{config.cProps.dep.sectionIds.cD}}.8</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_backupsAndLogs.md
+      - Tools <sup><sup>{{config.cProps.dep.sectionIds.cD}}.9</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_tools.md
+      - Dashboards <sup><sup>{{config.cProps.dep.sectionIds.cD}}.10</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_dashboards.md
     - Deployment Conclusion: Main-Lab/Deployment/dep_conclusion.md
   - Resources&nbsp<i class="fa-solid fa-globe" style="color:#ffd903;"></i>: 
     - Lab Tools: Main-Lab/Resources/res_tools.md
