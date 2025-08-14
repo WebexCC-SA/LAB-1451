@@ -1,5 +1,5 @@
 {{ config.cProps.devNotice }}
-# Part 1: Lab Setup
+# Lab Setup
 
 
 
