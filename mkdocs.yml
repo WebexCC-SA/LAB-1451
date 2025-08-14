@@ -121,7 +121,7 @@ nav:
     - Deployment Lab Prerequisites: Main-Lab/Deployment/dep_prerequisites.md
     - Control Hub:
       - Preparing Your Devices <sup><sup>{{config.cProps.dep.sectionIds.cH}}.1</sup></sup>: Main-Lab/Deployment/dep_controlHub/dep_controlHub_prepDevices.md
-      - Utilizing Configuration Templates <sup><sup>{{config.cProps.dep.sectionIds.cH}}.2</sup></sup>: Main-Lab/Deployment/dep_controlHub/dep_controlHub_configTemplates.md
+      - Configuration Templates <sup><sup>{{config.cProps.dep.sectionIds.cH}}.2</sup></sup>: Main-Lab/Deployment/dep_controlHub/dep_controlHub_configTemplates.md
       - Org-Wide Templates <sup><sup>{{config.cProps.dep.sectionIds.cH}}.3</sup></sup>: Main-Lab/Deployment/dep_controlHub/dep_controlHub_orgTemplates.md
       - Run Commands <sup><sup>{{config.cProps.dep.sectionIds.cH}}.4</sup></sup>:  Main-Lab/Deployment/dep_controlHub/dep_controlHub_runCommands.md
       - Deploy UI Extensions <sup><sup>{{config.cProps.dep.sectionIds.cH}}.5</sup></sup>:  Main-Lab/Deployment/dep_controlHub/dep_controlHub_deployExtensions.md
