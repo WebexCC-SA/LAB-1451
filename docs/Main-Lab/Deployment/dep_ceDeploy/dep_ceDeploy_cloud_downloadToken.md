@@ -15,16 +15,16 @@
 	    <iframe src="https://app.vidcast.io/share/embed/8e846983-6528-46e9-9b95-7d1a3ae2f5b3" width="100%" height="100%" title="CE-Deploy Environments Training" frameborder="0" loading="lazy" allowfullscreen style="position:absolute; top:0; left: 0;border: solid; border-radius:12px;"></iframe>
     </div>
 
-??? lesson "4.7 Lessons"
+??? lesson "{{config.cProps.dep.sectionIds.cD}}.7 Lab"
 
-    4.7.1 Open CE-deploy and select the Download Webex Token button in the manage token section
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.1</highlight_1> Open CE-deploy and select the Download Webex Token button in the manage token section
     
     <figure markdown="span">
       ![Download Token](images/5-1-1.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    4.7.2 Sign in to Webex and accept the integration permissions when prompted. This will load 
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.2</highlight_1> Sign in to Webex and accept the integration permissions when prompted. This will load 
     your token and refresh token into the default environment. This is not a persistent environment 
     so will want to save our tokens into the secure store for repeated use.
 
@@ -33,16 +33,16 @@
       <figcaption></figcaption>
     </figure>
     
-    4.7.3 In the deployment features panel select =="Environment"==.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.3</highlight_1> In the deployment features panel select =="Environment"==.
     
     <figure markdown="span">
       ![Environments](images/4-7-3.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    4.7.4 In the environment name section, name your environment =="EnvLab"== and click =="save Environment"==.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.4</highlight_1> In the environment name section, name your environment =="EnvLab"== and click =="save Environment"==.
     
-    4.7.5 To load our new environment, use the dropdown in the Environment loading section and select your 
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.5</highlight_1> To load our new environment, use the dropdown in the Environment loading section and select your 
     new Environment  and select =="Load Environment"==.
 
     <figure markdown="span">
@@ -50,14 +50,14 @@
       <figcaption></figcaption>
     </figure>
     
-    4.7.6 You should now see your environment name populate the Environment Loaded text under manage Token.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.6</highlight_1> You should now see your environment name populate the Environment Loaded text under manage Token.
     
     <figure markdown="span">
       ![Loaded Environment](images/5-1-6.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    4.7.7 To test your token click the =="Test Token"== button. You should see the response below:
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.7</highlight_1> To test your token click the =="Test Token"== button. You should see the response below:
     
     <figure markdown="span">
       ![Test Token](images/5-1-7.png){ width="300" }
