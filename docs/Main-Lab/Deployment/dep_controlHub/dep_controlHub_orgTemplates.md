@@ -16,11 +16,11 @@
     configuration consistency across devices. When default configurations are applied, you can still
     configure an individual device or a set of devices if needed.
 
-??? lesson "4.3 Lessons"
+??? lesson "{{config.cProps.dep.sectionIds.cH}}.3 Lessons"
 
-    4.3.1 Login to control hub with your lab admin credentials
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.1</highlight_1> Login to control hub with your lab admin credentials
     
-    4.3.2 Select Management>Devices>Settings>Configuration Defaults
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.2</highlight_1> Select Management>Devices>Settings>Configuration Defaults
     
     <figure markdown="span">
       ![Select Devices](images/4-1-2.png){ width="150" }
@@ -32,9 +32,9 @@
       <figcaption></figcaption>
     </figure>
     
-    4.3.3 Select Open org-wide defaults
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.3</highlight_1> Select Open org-wide defaults
     
-    4.3.4 You may notice there are already some defaults provisioned, 
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.4</highlight_1> You may notice there are already some defaults provisioned, 
     we are going to select Add configurations
     
     <figure markdown="span">
@@ -44,7 +44,7 @@
     
     
     
-    4.3.5 This presents a similar configuration selection as device templates. 
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.5</highlight_1> This presents a similar configuration selection as device templates. 
     For our org-wide template we are just going 
     to set the Macro mode. In the Search by configuration name type Macro
     
@@ -53,14 +53,14 @@
       <figcaption></figcaption>
     </figure>
     
-    4.3.6 Change the Mode from Off to On and select Next
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.6</highlight_1> Change the Mode from Off to On and select Next
     
     <figure markdown="span">
       ![Change Macro Setting](images/4-3-6.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    4.3.7 Review the changes and select **Cancel** changes. Our lab environment contains multiple pods
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.7</highlight_1> Review the changes and select **Cancel** changes. Our lab environment contains multiple pods
     so applying the change is not possible for this configuration.
     
     <figure markdown="span">
