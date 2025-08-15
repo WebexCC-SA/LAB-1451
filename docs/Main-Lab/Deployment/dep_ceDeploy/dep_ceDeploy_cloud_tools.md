@@ -1,5 +1,5 @@
 {{ config.cProps.devNotice }}
-## 4.13 Deploy xAPI command via the shell using CE-Deploy
+## Deploy xAPI command via the shell using CE-Deploy
 
 !!! abstract
 

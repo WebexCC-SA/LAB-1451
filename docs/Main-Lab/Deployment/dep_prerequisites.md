@@ -1,8 +1,6 @@
 {{ config.cProps.devNotice }}
 # Lab Setup
 
-
-
 ???+ tool "Setup: Prepare the Device"
 
     ??? important "Skip this step unless otherwise directed by the lab proctor"

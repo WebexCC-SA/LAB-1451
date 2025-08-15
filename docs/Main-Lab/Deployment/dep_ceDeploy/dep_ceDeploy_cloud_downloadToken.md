@@ -29,7 +29,7 @@
     so will want to save our tokens into the secure store for repeated use.
 
     <figure markdown="span">
-      ![Webex Signin](images/5-1-2.png){ width="300" }
+      ![Webex Signin](images/4-7-2.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     

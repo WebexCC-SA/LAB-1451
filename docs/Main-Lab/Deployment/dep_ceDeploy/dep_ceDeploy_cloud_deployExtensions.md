@@ -1,5 +1,5 @@
 {{ config.cProps.devNotice }}
-# 4.11 Deploy Extensions via CE-Deploy
+# Deploy Extensions via CE-Deploy
 
 !!! abstract
 
@@ -7,9 +7,9 @@
     can be deployed through Control Hub or CE-deploy. In this lab, we will deploy an extension to 
     accompany our macro from the last lab.
 
-??? lesson "4.11 Lessons"
+??? lesson "{{config.cProps.dep.sectionIds.cD}}.6 Lab"
 
-    4.11.1 Open CE-Deploy and load your environment you created in the previous lab if it's not already loaded
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.1</highlight_1> Open CE-Deploy and load your environment you created in the previous lab if it's not already loaded
     
     ??? Tip "Loading Environments"
     
@@ -23,7 +23,7 @@
       <figcaption></figcaption>
     </figure>
     
-    4.11.2 The Macro Editor can also be used to create our XML file. Copy the text below and paste it into 
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.2</highlight_1> The Macro Editor can also be used to create our XML file. Copy the text below and paste it into 
     the Macro Editor and save the file as ==LaunchHalfwake.xml==. Be sure to change the default extension from 
     .js to .xml
     
@@ -49,7 +49,7 @@
       <figcaption></figcaption>
     </figure>
     
-    4.11.3 Now we have our xml file lets role it out to our endpoint. For a single panel in the deployment panel select 
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.3</highlight_1> Now we have our xml file lets role it out to our endpoint. For a single panel in the deployment panel select 
     ==Customizations->UIExtensions->Panel==. This allows ot deploy or update a single panel.
     
     <figure markdown="span">
@@ -65,7 +65,7 @@
         To update more than 1 panel use the Customizations->UIExtensions->Config deployment panel feature.
         This allows the upload of xml files that contain multiple panels.
     
-    4.11.4 In the panel ID text box enter ==halfwake== as the panel ID. Using the Browse file picker select your 
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.4</highlight_1> In the panel ID text box enter ==halfwake== as the panel ID. Using the Browse file picker select your 
     xml file you created in the last step.
     
     <figure markdown="span">
@@ -73,25 +73,25 @@
       <figcaption></figcaption>
     </figure>
     
-    4.11.5 Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.5</highlight_1> Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.
     
     <figure markdown="span">
       ![Tag Options](images/4-9-9a.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    4.11.6 Ensure the ==Video Devices Only== checkbox is checked.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.6</highlight_1> Ensure the ==Video Devices Only== checkbox is checked.
     
     !!! warning
     
         An error may occur if this check box is not selected. Just make sure that it is checked
         if you receive an error while deploying.
     
-    4.11.7 Press button Start Deployment.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.7</highlight_1> Press button Start Deployment.
     
-    4.11.8 Ensure the ==Scheduler== has the ==Run Deployment Now== check box selected and click ==Next==.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.8</highlight_1> Ensure the ==Scheduler== has the ==Run Deployment Now== check box selected and click ==Next==.
     
-    4.11.9 The Message Console will now appear, you can follow along the deployment process.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.9</highlight_1> The Message Console will now appear, you can follow along the deployment process.
 
     !!! Success
     

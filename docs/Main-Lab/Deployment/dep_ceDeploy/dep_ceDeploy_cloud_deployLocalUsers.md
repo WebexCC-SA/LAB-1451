@@ -1,5 +1,5 @@
 {{ config.cProps.devNotice }}
-# 4.12 Deploy a local user admin using CE-Deploy
+# Deploy a local user admin using CE-Deploy
 
 !!! abstract
 

@@ -1,5 +1,5 @@
 {{ config.cProps.devNotice }}
-# 4.10 Deploy Macros via CE-Deploy
+# Deploy Macros via CE-Deploy
 
 !!! abstract
 
@@ -29,10 +29,10 @@
         To load an environment, use the dropdown in the Environment loading section and select your
         new Environment and select ==Load Environment==.
     
-    Then select ==Design->Macro Editor== from the main menu
+    Then select ==Design->CE Macro Editor Pro== from the main menu
     
     <figure markdown="span">
-      ![Macro Editor](images/5-4-1.png){ width="300" }
+      ![Macro Editor Pro](images/5-4-1.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
@@ -50,13 +50,13 @@
     Once completed it should look like the screenshot below.
     
     <figure markdown="span">
-      ![Macro Editor with Macro](images/4-10-2.png){ width="300" }
+      ![Macro Editor Pro with Macro](images/4-10-2.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.3</highlight_1> Click ==Save File==.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.3</highlight_1> Click ==Save As==.
     
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.4</highlight_1> Name your file ==LaunchHalfwake.js== and click ==Save==
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.4</highlight_1> Name your file and select a directory ==LaunchHalfwake.js== and click ==Save==
     
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.5</highlight_1> Exit the Macro Editor.
     
