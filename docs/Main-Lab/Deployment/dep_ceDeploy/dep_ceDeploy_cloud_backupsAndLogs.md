@@ -7,16 +7,16 @@
     This backup will include all settings, macros, backgrounds, and extensions. 
     Having a backup of all your endpoints can be invaluable when you need to replace or restore a device.
 
-??? lesson "4.14 Lessons Part 1"
+??? lesson "{{config.cProps.dep.sectionIds.cD}}.7 Lab Part 1"
     
-    4.14.1 Open CE-Deploy and ensure you are in local mode and then select ==Backups== from the deployment panel
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.1</highlight_1>4.14.1 Open CE-Deploy and ensure you are in local mode and then select ==Backups== from the deployment panel
     
     !!! warning
     
         This lab will only work if the endpoint and your PC/MAC running CE-Deploy are on the same 
         network.
     
-    4.14.2 Enter your local admin user credentials and select single device and enter the IP address
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.1</highlight_1>4.14.2 Enter your local admin user credentials and select single device and enter the IP address
     of your endpoint.
     
     <figure markdown="span">
@@ -24,9 +24,9 @@
       <figcaption></figcaption>
     </figure>
     
-    4.14.3 Ensure the ==Download endpoint backups== checkbox is selected in Backups panel.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.1</highlight_1>4.14.3 Ensure the ==Download endpoint backups== checkbox is selected in Backups panel.
     
-    4.14.4 Select ==Start Deployment==. The message console will now show the file location of the downloaded
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.1</highlight_1>4.14.4 Select ==Start Deployment==. The message console will now show the file location of the downloaded
     backup from the endpoint.
     
     <figure markdown="span">
@@ -34,7 +34,7 @@
       <figcaption>Message Console</figcaption>
     </figure>
     
-    4.14.5 To open the file location go to the application Tools->Backup Files. This wiill open the directory
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.1</highlight_1>4.14.5 To open the file location go to the application Tools->Backup Files. This wiill open the directory
     where all the backup files are stored.
     
     <figure markdown="span">
@@ -63,7 +63,7 @@
         Hints: Deployment feature "EndpointRestore" may help. Ensure CE-Deploy is allowed inbound 
         connections on ports 9001(http) or 8000(https) on your MAC or PC firewall.
 
-??? lesson "4.14 Lessons Part 2"
+??? lesson "{{config.cProps.dep.sectionIds.cD}}.7 Lab Part 2"
 
     !!! Tip
 
@@ -71,23 +71,23 @@
         in one simple step. If you are required to download logs from more than one endpoint try the CSV option 
         where you can enter a list of IP addresses to download logs from multiple endpoints.
     
-    4.14.7 Open CE-Deploy and ensure you are in local mode and then select ==Logs== from the deployment panel
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.7</highlight_1> Open CE-Deploy and ensure you are in local mode and then select ==Logs== from the deployment panel
     
     !!! warning
     
         This lab will only work if the endpoint and your PC/MAC running CE-Deploy are on the same 
         network.
     
-    4.14.8 Select ==Download endpoint logs==
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.8</highlight_1> Select ==Download endpoint logs==
 
     <figure markdown="span">
         ![Logs Panel](images/4-14-8.png){ width="300" }
     </figure>
 
-    4.14.9 Select ==Start Deployment==. The message console will now show the file location of the downloaded
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.9</highlight_1> Select ==Start Deployment==. The message console will now show the file location of the downloaded
     logs from the endpoint.
     
-    4.14.10 To open the file location go to the application Tools->Downloaded and CSV Files Files. This wiill open the directory
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.10</highlight_1> To open the file location go to the application Tools->Downloaded and CSV Files Files. This wiill open the directory
     where all the log files are stored. Log file naming convention will follow log_bundle-SEP<mac>-<timestamp>.tar.gz.
 
     <figure markdown="span">

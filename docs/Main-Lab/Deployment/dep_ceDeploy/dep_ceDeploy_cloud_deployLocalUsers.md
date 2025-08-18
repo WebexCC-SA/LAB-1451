@@ -10,9 +10,9 @@
     admin accounts, making the device's web portal accessible only through Control Hub. In this lab,
     you will add a new local admin account to the device via the cloud xAPI using CE-Deploy. 
 
-??? lesson "4.12 Lessons"
+??? lesson "{{config.cProps.dep.sectionIds.cD}}.7 Labs"
     
-    4.12.1 Open CE-Deploy and load your environment you created in the previous lab
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.1</highlight_1> Open CE-Deploy and load your environment you created in the previous lab
     
     ??? Tip "Loading Environments"
     
@@ -33,7 +33,7 @@
         account on the device may be critical for day to day operations. CE-Deploy can access a device by the
         IP address to take advantage of the local admin account. 
     
-    4.12.2 Set the following setting.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.2</highlight_1> Set the following setting.
     
     
     | `Setting`            | <!-- -->                |
@@ -52,20 +52,20 @@
       <figcaption></figcaption>
     </figure>
     
-    4.12.3 Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.3</highlight_1> Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.
     
     <figure markdown="span">
       ![Tag Options](images/4-9-9a.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    4.12.4 Ensure the ==Video Devices Only== checkbox is checked.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.4</highlight_1> Ensure the ==Video Devices Only== checkbox is checked.
     
-    4.12.5 Press button ==Start Deployment==.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.5</highlight_1> Press button ==Start Deployment==.
     
-    4.12.6 Ensure the ==Scheduler== has the ==Run Deployment Now== check box selected and click ==Next==.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.6</highlight_1> Ensure the ==Scheduler== has the ==Run Deployment Now== check box selected and click ==Next==.
     
-    4.12.7 The Message Console will now appear, you can follow along the deployment process.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.7</highlight_1> The Message Console will now appear, you can follow along the deployment process.
     
     !!! challenge "Network IP Address Challenge"
         
@@ -76,7 +76,7 @@
             xStatus Network[1] IPv4 Address
         ```
     
-    4.12.8 To test the local admin account we are going to switch CE-Deploy into local mode from cloud
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.8</highlight_1> To test the local admin account we are going to switch CE-Deploy into local mode from cloud
     and run an xAPI command directly to the device.
     
     Select the cloud/local toggle in the main navigation bar.
@@ -95,7 +95,7 @@
     
     Now we can use the IP address of the device to send commands.
     
-    4.12.9 Using the IP address from the IP challenge  and your new local admin username and password
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.9</highlight_1> Using the IP address from the IP challenge  and your new local admin username and password
     enter the details as shown along with the command:
     
     ```text
@@ -107,11 +107,11 @@
       <figcaption></figcaption>
     </figure>
     
-    4.12.10 Click on ==Start Deployment==
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.10</highlight_1> Click on ==Start Deployment==
     
-    4.12.11 Ensure the ==Scheduler== has the ==Run Deployment Now== check box selected and click ==Next==.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.11</highlight_1> Ensure the ==Scheduler== has the ==Run Deployment Now== check box selected and click ==Next==.
     
-    4.12.13 The Message Console will now appear, you can follow along the deployment process.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.12</highlight_1> The Message Console will now appear, you can follow along the deployment process.
     
     <figure markdown="span">
       ![Message Console](images/4-12-12.png){ width="300" }
