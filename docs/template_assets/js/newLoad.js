@@ -149,7 +149,6 @@ function setValuesPopUp(message, clientX, clientY, duration = 1800) {
 }
 
 document.getElementById('setLabValues').addEventListener('click', (event) => {
-    console.log('HEY')
     // Pass the mouse coordinates (event.clientX, event.clientY) to the function
     setValuesPopUp('Lab References Updated!', event.clientX + 20, event.clientY - 20);
 });

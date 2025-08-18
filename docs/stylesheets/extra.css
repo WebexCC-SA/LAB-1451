@@ -103,6 +103,16 @@ form#info button:hover{
     z-index: 1000; /* Ensures it appears above other content */
 }
 
+#setValue-notification-container {
+    position: fixed; /* Stays in the same place even if the user scrolls */
+    top: 20px; /* Distance from the top of the viewport */
+    right: 20px; /* Distance from the right of the viewport */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between multiple notifications */
+    z-index: 1000; /* Ensures it appears above other content */
+}
+
 .setValue-notification {
     position: fixed; /* Stays relative to the viewport */
     background-color: #4CAF50; /* Green background for success */
