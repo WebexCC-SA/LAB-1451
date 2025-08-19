@@ -3,7 +3,7 @@
 
 !!! abstract
 
-    In our final deployment lab, we will perform a backup of your endpoint using CE-Deploy and download the logs. 
+    In this lab we will perform a backup of your endpoint using CE-Deploy and download the logs. 
     This backup will include all settings, macros, backgrounds, and extensions. 
     Having a backup of all your endpoints can be invaluable when you need to replace or restore a device.
 
@@ -96,6 +96,5 @@
 
     !!! Success
 
-        Well done. You have explored the main features of CE-Deploy and a few lesser known ones. Feel free
-        to explore and see what else it can do. CE-Deploy is built on public API's freely available to everyone
-        to develop your own solutions and scripts.
+        Well done. While not the most frequently used features of CE-Deploy they are still handy to know when you want 
+        to perform these functions. Next up is dashboards.

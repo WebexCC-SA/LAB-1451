@@ -1,5 +1,5 @@
 {{ config.cProps.devNotice }}
-## Deploy xAPI command via the shell using CE-Deploy
+# Deploy xAPI command via the shell using CE-Deploy
 
 !!! abstract
 
@@ -8,9 +8,9 @@
     terminal emulation feature to run a command. CE-Deploy is the swiss army knife of video endpoint
     deployments so lets keep exploring.
 
-??? lesson "4.13 Lessons"
+??? lesson "{{config.cProps.dep.sectionIds.cD}}.9 Lab"
 
-    4.13.1 From the ==local interface== in the deployment panel select ==Tools->SSH-TTY==.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.9.1</highlight_1> From the ==local interface== in the deployment panel select ==Tools->SSH-TTY==.
     
     <figure markdown="span">
       ![SSH Options](images/4-13-1.png){ width="300" }
@@ -22,7 +22,7 @@
         This lab will only work if the endpoint and your PC/MAC running CE-Deploy are on the same 
         network.
     
-    4.13.2  Add your endpoint local admin details, choose a theme and add the IP address 
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.9.2</highlight_1> Add your endpoint local admin details, choose a theme and add the IP address 
     from the IP address challenge. 
     
     <figure markdown="span">
@@ -30,7 +30,7 @@
       <figcaption></figcaption>
     </figure>
     
-    4.13.3 Select ==Connect==. The terminal will appear in a new Window and you can start 
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.9.3</highlight_1> Select ==Connect==. The terminal will appear in a new Window and you can start 
     interacting with it.
     
     <figure markdown="span">
