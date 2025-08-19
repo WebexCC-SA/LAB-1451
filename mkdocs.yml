@@ -111,7 +111,12 @@ nav:
     - RoomOS Extensions: 
       - What are RoomOS Extensions: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_intro.md
     - Solution Exercises:
-      - RoomOS Exercises Introduction: Main-Lab/RoomOS/rxp_exercises/rxp_exe_intro.md
+      - Abstract & Best Practices: Main-Lab/RoomOS/rxp_exercises/rxp_exe_intro.md
+      - Macro Based Exercises: 
+        - Quick Docs <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.quickDocs }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Quick_Docs.md
+        - Quick Dial Button <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.quickDial }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Quick_Dial_Button.md
+        - Camera Compositions <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.cameraComposition }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Camera_Compositions.md
+        - Codec to Codec Communication <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.codecToCodec }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Codec_To_Codec_Comms.md
   - "PhoneOS xAPI&nbsp<i class=\"fa-solid fa-phone\" style=\"color: #00c753;\"></i>": 
     - PhoneOS Introduction: Main-Lab/PhoneOS/pxp_intro.md
     - PhoneOS Lab Prerequisites: Main-Lab/PhoneOS/pxp_prerequisites.md
@@ -168,7 +173,13 @@ cProps:
       cloud: rxp-4
       macro: rxp-5
       sdk: rxp-6
-      exercises: rxp-7
+      exe:
+        bestPractice: rxe-0
+        macros:
+          quickDocs: rxe-m1
+          quickDial: rxe-m2
+          cameraComposition: rxe-m3
+          codecToCodec: rxe-m4
   pxp:
     x: placeholder
   stp:
