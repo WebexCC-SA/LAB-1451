@@ -100,10 +100,11 @@ nav:
   - Lab Setup&nbsp<i class="fa-solid fa-gear"></i>: Main-Lab/Setup/stp_intro.md # Changed from Lab Prerequisites. Moved Prerequisites to each major lab folder
   - "RoomOS xAPI & Extensions&nbsp<i class=\"fa-solid fa-video\" style=\"color: #428bff;\"></i>": 
     - RoomOS Introduction: Main-Lab/RoomOS/rxp_intro.md
-    - RoomOS Lab Prerequisites: Main-Lab/RoomOS/rxp_prerequisites.md
+    # - RoomOS Lab Prerequisites: Main-Lab/RoomOS/rxp_prerequisites.md
     - RoomOS xAPI:
       - What are RoomOS xAPI: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_intro.md
-      - SSH/Serial <sup><sup>{{ config.cProps.rxp.sectionIds.ssh }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_sshSerial.md
+      - SSH <sup><sup>{{ config.cProps.rxp.sectionIds.ssh }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_ssh.md
+      - Serial <sup><sup>{{ config.cProps.rxp.sectionIds.serial }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_serial.md
       - HTTP <sup><sup>{{ config.cProps.rxp.sectionIds.http }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_http.md
       - WebSockets <sup><sup>{{ config.cProps.rxp.sectionIds.websocket }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_websockets.md
       - Webex Cloud <sup><sup>{{ config.cProps.rxp.sectionIds.cloud }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_cloud.md
@@ -168,11 +169,12 @@ cProps:
   
     sectionIds:
       ssh: rxp-1
-      http: rxp-2
-      websocket: rxp-3
-      cloud: rxp-4
-      macro: rxp-5
-      sdk: rxp-6
+      serial: rxp-2
+      http: rxp-3
+      websocket: rxp-4
+      cloud: rxp-5
+      macro: rxp-6
+      sdk: rxp-7
       exe:
         bestPractice: rxe-0
         macros:

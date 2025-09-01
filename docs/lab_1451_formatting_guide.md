@@ -75,6 +75,19 @@
         ???+ lesson "Lesson: My RoomOS Lesson! ~(rxp-1.1.1)~"
             // Lesson Content...
 
+# RoomOS Doc Tags
+
+-  A Custom tag has been implemented to handle placing a button for RoomOS xAPI Document References
+
+- Provide the full Shell Path for an API wrapped the custom `<roomosdoc>` html tag
+
+``` 
+<roomosdoc>xCommand Audio Volume Set</roomosdoc> 
+```
+
+Output
+
+<roomosdoc>xCommand Audio Volume Set</roomosdoc> 
 
 # Custom Text highlighting Tags
 
