@@ -5,7 +5,8 @@
 
     Device Tags are one of the most underutilized features for sorting and filtering devices. 
     Not only are tags useful in Control Hub, but they are also extremely beneficial when working 
-    with the Webex RESTful APIs, providing one of the most effective ways to filter devices.
+    with the Webex RESTful APIs, providing one of the most effective ways to filter devices. In 
+    this lab you are only adding tags to one device but the method is the same for multiple devices.
 
 !!! Tip
     
@@ -27,6 +28,8 @@
 ??? lesson "{{config.cProps.dep.sectionIds.cH}}.1 Lab"
 
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.1</highlight_1> Login to the lab's Control Hub with your admin credentials
+
+    [Login to Control Hub.](https://admin.webex.com)
     
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.2</highlight_1> Select Management>Devices
     
@@ -42,6 +45,10 @@
       <figcaption></figcaption>
     </figure>
     
+    !!! Tip
+        In this lab we are only configuring the one device but if you needed to supply the same tag to multiple devices
+        it would be at this stage you would just continue selecting more devices before selecting edt.
+
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.4</highlight_1> Select ==Edit==
     
     <figure markdown="span">
@@ -50,7 +57,7 @@
     </figure>
     
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.5</highlight_1> The Edit tag page will now allow you to set as many tags as you need. 
-    For this lab we will be using the tag ==wbx<yourPodNumber>==. As an example wbx101.
+    For this lab we will be using the tag ==wbx"yourPodNumber"==. As an example wbx01. Also add the tag -> webexRocks.
     
     <figure markdown="span">
       ![Add Tag](images/4-1-5.png){ width="300" }
@@ -64,7 +71,8 @@
       <figcaption>Edit tag</figcaption>
     </figure>
     
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.7</highlight_1> Add wbx<YourPodNumber> and press enter
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.7</highlight_1> Add wbx"YourPodNumber" and press enter. Repeat for the tag 
+    webexRocks and press enter.
     
     <figure markdown="span">
       ![wbxXXX](images/4-1-7.png){ width="300" }
