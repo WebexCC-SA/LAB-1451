@@ -1,4 +1,5 @@
 {{ config.cProps.devNotice }}
+{{ config.cProps.acronyms }}
 # Access RoomOS xAPI via HTTP ~(section\ {{config.cProps.rxp.sectionIds.http}})~
 
 !!! abstract

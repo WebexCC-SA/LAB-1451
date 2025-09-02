@@ -95,6 +95,7 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
+  - pymdownx.snippets
 nav:
   - Home&nbsp<i class="fa-solid fa-house" style="color:#B197FC;"></i>: index.md
   - Lab Setup&nbsp<i class="fa-solid fa-gear"></i>: Main-Lab/Setup/stp_intro.md # Changed from Lab Prerequisites. Moved Prerequisites to each major lab folder
@@ -162,6 +163,15 @@ cProps:
         If you're looking to use the collateral made for WebexOne 2024, please use the link below
 
         [https://webexcc-sa.github.io/LAB-1451-24/](https://webexcc-sa.github.io/LAB-1451-24/){:target="_blank"}
+  acronyms: | 
+    *[OSD]: On Screen Display
+    *[SSH]: Secure Shell
+    *[HTTP]: Hypertext Transfer Protocol
+    *[HTTPS]: Hypertext Transfer Protocol Secure
+    *[WS]: WebSocket
+    *[WSS]: WebSocket Secure
+    *[UI]: User Interface
+    *[PiP]: Picture in Picture
   rxp:
     x: placeholder
     name: RoomOS xAPI & Extensions

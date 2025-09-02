@@ -1,4 +1,5 @@
 {{ config.cProps.devNotice }}
+{{ config.cProps.acronyms }}
 # Deploy Extensions via CE-Deploy
 
 !!! abstract

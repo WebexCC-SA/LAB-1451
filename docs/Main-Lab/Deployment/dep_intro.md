@@ -1,4 +1,5 @@
 {{ config.cProps.devNotice }}
+{{ config.cProps.acronyms }}
 !!! important "Welcome"
     
     This lab consists of two main sections. The first provides a brief introduction to deploying customizations in 

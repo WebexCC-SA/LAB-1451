@@ -1,4 +1,5 @@
 {{ config.cProps.devNotice }}
+{{ config.cProps.acronyms }}
 
 # **Accessing the xAPI via WebSockets ~(section\ {{config.cProps.rxp.sectionIds.websocket}})~**
 

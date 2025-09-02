@@ -1,4 +1,5 @@
 {{ config.cProps.devNotice }}
+{{ config.cProps.acronyms }}
 
 !!! important "Before you start!"
 

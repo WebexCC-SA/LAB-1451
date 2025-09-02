@@ -1,4 +1,5 @@
 {{ config.cProps.devNotice }}
+{{ config.cProps.acronyms }}
 
 # **Accessing xAPI via Cloud xAPI** ~(section\ {{config.cProps.rxp.sectionIds.cloud}})~
 

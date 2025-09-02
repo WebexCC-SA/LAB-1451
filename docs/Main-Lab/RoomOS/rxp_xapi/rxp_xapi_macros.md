@@ -1,4 +1,5 @@
 {{ config.cProps.devNotice }}
+{{ config.cProps.acronyms }}
 
 # **Section 2.6: Accessing the xAPI via the Macro Editor** ~(section\ {{config.cProps.rxp.sectionIds.cloud}})~
 

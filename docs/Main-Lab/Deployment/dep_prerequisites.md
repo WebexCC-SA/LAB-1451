@@ -1,4 +1,5 @@
 {{ config.cProps.devNotice }}
+{{ config.cProps.acronyms }}
 # Lab Setup
 
 ???+ tool "Setup: Prepare the Device"
