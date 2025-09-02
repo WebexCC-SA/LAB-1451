@@ -1,6 +1,6 @@
 {{ config.cProps.devNotice }}
 
-# <u>**Section 2.4: Accessing the xAPI via WebSockets**</u>
+# **Accessing the xAPI via WebSockets ~(section\ {{config.cProps.rxp.sectionIds.websocket}})~**
 
 !!! Abstract
 
@@ -13,11 +13,11 @@
     </a>
 
 
-### **2.4.1 - WebSocket Authentication and Format**
+## **WebSocket Authentication and Format** ~({{config.cProps.rxp.sectionIds.websocket}}.1)~
 
 !!! blank ""
 
-    <h4>URL Structure</h4>
+    ### URL Structure ~({{config.cProps.rxp.sectionIds.websocket}}.1.1)~
 
     The request URL for your Codec will change depending on whether you're making a WebSocket or Secure WebSocket Connection
 
@@ -34,7 +34,7 @@
 
     - - -
 
-    <h4>Authentication Format</h4>
+    ### Authentication Format ~({{config.cProps.rxp.sectionIds.websocket}}.1.2)~
 
     The Codec uses basic authentication to accept incoming requests. This authentication is formatted in base64 with it's username and password concatenated as a single string separated by a colon ==:==
 
@@ -72,7 +72,7 @@
 
     - - -
 
-    <h4>Request Headers</h4>
+    ### Request Headers ~({{config.cProps.rxp.sectionIds.websocket}}.1.3)~
 
     Your WebSockets will use either the `Authorization` or `Sec-WebSocket-Protocol` as it's sole header
 
@@ -101,7 +101,7 @@
 
     - - -
 
-    <h4>Body Format</h4>
+    ### Body Format ~({{config.cProps.rxp.sectionIds.websocket}}.1.4)~
 
     All WebSocket messages are formatted in JSON. They require the following Objects to be successful
 
@@ -347,7 +347,7 @@
 
     - - -
 
-    <h4>Full WebSocket examples</h4>
+    ### Full WebSocket examples ~({{config.cProps.rxp.sectionIds.websocket}}.1.5)~
 
     ??? success "Click to view a Full Example of each written using NodeJs [Javascript Backend]"
 
@@ -478,7 +478,7 @@
         ws.run_forever(sslopt={"cert_reqs": 0})
         ```
 
-### **2.4.2 - Create and Configure Postman Collection**
+## **Create and Configure Postman Collection**  ~({{config.cProps.rxp.sectionIds.websocket}}.2)~
 
 !!! success ""
 
@@ -575,9 +575,9 @@
     - Assign the Id value in the Message Body to the lesson name
     - Follow the lesson tasks
 
-### **2.4.3 - Executing xCommands**
+## **Executing xCommands**  ~({{config.cProps.rxp.sectionIds.websocket}}.3)~
 
-???+ lesson "Lesson: Execute an xCommand"
+???+ lesson "Lesson: Execute an xCommand" ~({{config.cProps.rxp.sectionIds.websocket}}.3.1)~
 
     !!! info inline end "Message Body Location"
 
@@ -891,7 +891,7 @@
             }
             ```
 
-### **2.4.4 - Getting, Setting and Subscribing to xConfigurations**
+## **Getting, Setting and Subscribing to xConfigurations**  ~({{config.cProps.rxp.sectionIds.websocket}}.4)~
 
 ???+ lesson "Lesson: Set a new xConfiguration Value"
 
@@ -1406,7 +1406,7 @@
             }
             ```
 
-### **2.4.5 - Getting and Subscribing to xStatuses**
+## **Getting and Subscribing to xStatuses** ~({{config.cProps.rxp.sectionIds.websocket}}.5)~
 
 ???+ lesson "Lesson: Getting an xStatus Value"
 
@@ -1850,7 +1850,7 @@
           ![SubAssist Operation](./assets/general/SubscriptionAssitantMacro-Operation.gif){ width="600" }
         </figure>
 
-### **2.4.6 - Subscribing to xEvents**
+## **Subscribing to xEvents** ~({{config.cProps.rxp.sectionIds.websocket}}.6)~
 
 ???+ blank "Subscribe and Unsubscribe to an xEvent"
 
@@ -2011,7 +2011,7 @@
           ![SubAssist Operation](./assets/general/SubscriptionAssitantMacro-Operation.gif){ width="600" }
         </figure>
 
-### **2.4.8 - Section 2.4 Cleanup**
+## **Section {{config.cProps.rxp.sectionIds.websocket}} Cleanup** ~({{config.cProps.rxp.sectionIds.websocket}}.8)~
 
 !!! important
 

@@ -1,6 +1,6 @@
 {{ config.cProps.devNotice }}
 
-# <u>**Section 2.6: Accessing the xAPI via the Macro Editor**</u>
+# **Section 2.6: Accessing the xAPI via the Macro Editor** ~(section\ {{config.cProps.rxp.sectionIds.cloud}})~
 
 !!! abstract
 
@@ -43,7 +43,7 @@
     </div>
 
 
-### **2.6.1 - Enabling Macros**
+## **Enabling Macros** ~({{config.cProps.rxp.sectionIds.cloud}}.1)~
 
 !!! blank ""
 
@@ -58,7 +58,7 @@
 
         You can even run xConfigurations in bulk across your portfolio using Webex Control Hub or Ce-Deploy, both are covered in, regards to Macro Customization, part 4 of this lab.
 
-### **2.6.2 - Navigating the Macro Editor and installing the MacroPak**
+## **Navigating the Macro Editor and installing the MacroPak** ~({{config.cProps.rxp.sectionIds.cloud}}.2)~
 
 ??? vidcast "Vidcast: Macro Editor IDE Review"
 
@@ -72,7 +72,7 @@
       <iframe src="https://app.vidcast.io/share/embed/f31a92e0-609d-430c-bb45-d834c52cb1d3" width="100%" height="100%" title="Installing MacroPak Files - WX1 2024 Lab 1451" frameborder="0" loading="lazy" allowfullscreen style="position:absolute; top:0; left: 0;border: solid; border-radius:12px;"></iframe>
     </div>
 
-### **2.6.3 - Executing xCommands**
+## **Executing xCommands** ~({{config.cProps.rxp.sectionIds.cloud}}.3)~
 
 ???+ lesson "Lesson: Execute an xCommand"
 
@@ -569,7 +569,7 @@
 
     
 
-### **2.6.4 Setting, Getting and Subscribing to xConfigurations**
+## **Setting, Getting and Subscribing to xConfigurations** ~({{config.cProps.rxp.sectionIds.cloud}}.4)~
 
 !!! Abstract
 
@@ -1072,7 +1072,7 @@
           Giving Up? Check out the Challenge Answers Page <i class="fa-solid fa-square-up-right"></i>
     </a>
 
-### **2.6.5 Getting and Subscribing to xStatuses**
+## **Getting and Subscribing to xStatuses** ~({{config.cProps.rxp.sectionIds.cloud}}.5)~
 
 ???+ lesson "Lesson: Get an xStatus Value"
 
@@ -1396,7 +1396,7 @@
             | HH:MM:SS  | xStatuses_Lesson-4_MacroPak_2-6-5      | CameraPositions Subscription stopped!        |
 
 
-### **2.6.6 Subscribing to xEvents**
+## **Subscribing to xEvents** ~({{config.cProps.rxp.sectionIds.cloud}}.6)~
 
 ???+ lesson "Lesson: Subscribe and Unsubscribe to an xEvent"
 

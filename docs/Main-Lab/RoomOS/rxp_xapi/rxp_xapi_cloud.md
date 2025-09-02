@@ -1,6 +1,6 @@
 {{ config.cProps.devNotice }}
 
-# <u>**Section 2.5: Accessing xAPI via Cloud xAPI**</u>
+# **Accessing xAPI via Cloud xAPI** ~(section\ {{config.cProps.rxp.sectionIds.cloud}})~
 
 !!! Abstract
 
@@ -181,7 +181,7 @@
     </div>
 
 
-### **2.5.1  - Cloud xAPI Authentication and Format**
+## **Cloud xAPI Authentication and Format** ~({{config.cProps.rxp.sectionIds.cloud}}.1)~
 
 !!! blank ""
 
@@ -290,7 +290,7 @@
     | `Authorization`             | `Bearer [YOUR_TOKEN]`             |
 
 
-### **2.5.2  - Get your Personal Access Token, Import and Configure Postman Collection**
+## **Get your Personal Access Token, Import and Configure Postman Collection** ~({{config.cProps.rxp.sectionIds.cloud}}.2)~
 
 !!! info "Get your Personal Access Token"
 
@@ -406,7 +406,7 @@
 
 - - -
 
-### **2.5.3 - Webex Devices and Workspace APIs**
+## **Webex Devices and Workspace APIs** ~({{config.cProps.rxp.sectionIds.cloud}}.3)~
 
 !!! Note
 
@@ -535,7 +535,7 @@
             }
             ```
 
-### **2.5.4 - Executing xCommands**
+## **Executing xCommands** ~({{config.cProps.rxp.sectionIds.cloud}}.4)~
 
 ???+ lesson "Lesson: Execute an xCommand"
 
@@ -840,7 +840,7 @@
             }
             ```
 
-### **2.5.5 - Getting and Setting to xConfigurations**
+## **Getting and Setting to xConfigurations** ~({{config.cProps.rxp.sectionIds.cloud}}.5)~
 
 ???+ lesson "Lesson: Getting an xConfiguration Value"
 
@@ -1334,7 +1334,7 @@
             }
             ```
 
-### **2.5.6 - Getting xStatuses**
+## **Getting xStatuses** ~({{config.cProps.rxp.sectionIds.cloud}}.6)~
 
 ??? lesson "Lesson: Getting an xStatus Value"
 
@@ -1425,7 +1425,7 @@
             }
             ```
 
-### **2.5.7 - Subscribing to xConfigurations, xStatuses and xEvents**
+## **Subscribing to xConfigurations, xStatuses and xEvents** ~({{config.cProps.rxp.sectionIds.cloud}}.7)~
 
 Subscribing to Cloud xAPI requires us to setup a Workspace Integration
 
@@ -1437,7 +1437,7 @@ This is not covered by this lab
   Learn More about Workspace Integrations <i class="fa-solid fa-square-up-right"></i>
 </a>
 
-### **2.5.8 - Section 2.5 Cleanup**
+## **Section {{config.cProps.rxp.sectionIds.cloud}} Cleanup** ~({{config.cProps.rxp.sectionIds.cloud}}.8)~
 
 !!! important
 
