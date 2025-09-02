@@ -172,6 +172,8 @@ cProps:
     *[WSS]: WebSocket Secure
     *[UI]: User Interface
     *[PiP]: Picture in Picture
+    *[PIP]: Picture in Picture
+    *[MainSource]: Your camera feed rendered in SelfView or sent to the Far End of a Video Call
   rxp:
     x: placeholder
     name: RoomOS xAPI & Extensions

@@ -120,13 +120,13 @@
 
     ???+ info "Compare your Terminal Output"
         <pre><code>- User Commands -
-        help            <highlight_1>xcommand</highlight_1>        <highlight_2>xconfiguration</highlight_2>  xdocument       <highlight_3>xevent</highlight_3>
-        <highlight_4>xfeedback</highlight_4>       xgetxml         <highlight_7>xpreferences</highlight_7>    <highlight_5>xstatus</highlight_5>         xtransaction
+        help            <hl_1>xcommand</hl_1>        <hl_2>xconfiguration</hl_2>  xdocument       <hl_3>xevent</hl_3>
+        <hl_4>xfeedback</hl_4>       xgetxml         <hl_7>xpreferences</hl_7>    <hl_5>xstatus</hl_5>         xtransaction
         bye             echo            log             systemtools
         OK
         </code></pre>
 
-        We won't cover every shell command above, we'll only focus on <highlight_2>xConfigurations</highlight_2>, <highlight_1>xCommands</highlight_1>, <highlight_5>xStatuses</highlight_5>, <highlight_3>xEvents</highlight_3> and <highlight_4>xFeedback</highlight_4> as those contain all the Device xAPI references we need to develop a custom solution. But we'll also take a brief stop at <highlight_7>xPreferences</highlight_7> as it's important for SSH and Serial based integrations.
+        We won't cover every shell command above, we'll only focus on <hl_2>xConfigurations</hl_2>, <hl_1>xCommands</hl_1>, <hl_5>xStatuses</hl_5>, <hl_3>xEvents</hl_3> and <hl_4>xFeedback</hl_4> as those contain all the Device xAPI references we need to develop a custom solution. But we'll also take a brief stop at <hl_7>xPreferences</hl_7> as it's important for SSH and Serial based integrations.
 
         For more information on the rest of those paths, check out the [Offical xAPI Guide](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-1114/api-reference-guide-roomos-1114.pdf).Page 33 defines all nodes
 
@@ -353,12 +353,12 @@
 
 ???+ lesson "Lesson: Execute an xCommand ~({{config.cProps.rxp.sectionIds.ssh}}.3.1)~"
 
-    - **xAPI**: xCommand Video Selfview Set
+    - **xAPI**: xCommand Video SelfView Set
 
     - **Task**:
 
         ``` shell title="Type into terminal and press Enter"
-        xCommand Video Selfview Set Mode: On FullscreenMode: On OnMonitorRole: First
+        xCommand Video SelfView Set Mode: On FullscreenMode: On OnMonitorRole: First
         ```
 
         - Observe the change to your Codec's Display, you should see your camera's SelfView Video in Full Screen on the OSD of your device.
@@ -366,42 +366,43 @@
             - If your video is blank, make sure your device's camera cover(if available) is not closed
 
         ``` shell title="Type into terminal and press Enter"
-        xCommand Video Selfview Set Mode: On FullscreenMode: Off
+        xCommand Video SelfView Set Mode: On FullscreenMode: Off
         ```
 
-        - Observe the change to your Codec's Display, you should see your camera feed in a Picture in Picture(PiP) Window
+        - Observe the change to your Codec's Display, you should see your camera feed in a Picture in Picture(PIP) Window
 
         ``` shell title="Type into terminal and press Enter"
-        xCommand Video Selfview Set Mode: Off
+        xCommand Video SelfView Set Mode: Off
         ```
 
         - Now your camera video should be closed
 
     ??? tip "Additional Info"
 
-        Notice when we set the Mode parameter <highlight_1>On</highlight_1> we included the FullScreenMode and OnMonitorRole parameters, but when we decided to turn <highlight_7>Off</highlight_7> FullScreenMode, we left out those parameters. 
+        Notice when we set the Mode parameter to <hl_1>On</hl_1> we included the FullScreenMode and OnMonitorRole parameters, but when we decided to set FullScreenMode <hl_7>Off</hl_7>, we left out OnMonitorRole.
         
-        These are what's known as <highlight_3>Optional Parameters</highlight_3>. Depending on the xCommand you may also have <highlight_5>Required Parameters</highlight_5>. Required parameters must be run or else the xCommand will error out in the console.
+        These are what's known as <hl_3>Optional Parameters</hl_3>, which are parameter's that are not required to be added in order to execute a command. These optional parameters have a default value that may or may not be applied and this is largely determined by the independent xAPI itself. You may also have <hl_5>Required Parameters</hl_5>. Required parameters must be run or else the xCommand will error out in the console and these required parameters are specifically called out in the documentation for the API.
 
-    As you explore the API, feel free to click on the <highlight_0>RoomOS.Cisco.Com</highlight_0> link in each example to Learn more about the xAPI you're working with.
+    As you explore the API, feel free to click on the <hl_0>xAPI</hl_0> link at the bottom of each lesson to Learn more about the xAPI you're working with.
 
-    <a class="md-button md-button--primary" href="https://roomos.cisco.com/xapi/Command.Video.Selfview.Set/" target="_blank" >
-      Learn more about <strong>xCommand Video Selfview Set</strong> <i class="fa-solid fa-square-up-right"></i>
-    </a>
+    <roomosdoc>xCommand Video SelfView Set</roomosdoc>
+
+    <!-- <a class="md-button md-button--primary" href="https://roomos.cisco.com/xapi/Command.Video.SelfView.Set/" target="_blank" >
+      Learn more about <strong>xCommand Video SelfView Set</strong> <i class="fa-solid fa-square-up-right"></i>
+    </a> -->
 
 
 
 ??? lesson "Lesson: Execute an xCommand with multiple arguments with the same name ~({{config.cProps.rxp.sectionIds.ssh}}.3.2)~"
 
     - **xAPI(s)**:
-
-        - xCommand Video Selfview Set
+        - xCommand Video SelfView Set
         - xCommand Video Input SetMainVideoSource
     
     - **Task**:
 
         ``` shell title="Type into terminal and press Enter"
-        xCommand Video Selfview Set Mode: On FullscreenMode: On
+        xCommand Video SelfView Set Mode: On FullscreenMode: On
         ```
 
         ``` shell title="Type into terminal and press Enter"
@@ -412,9 +413,9 @@
 
         ??? tip "Additional Info"
 
-            - xCommand Video Input SetMainVideoSource, an other xAPIs like it offer some parameters that allow you to enter them in multiple times. Notice how we used <highlight_6>ConnectorId: 1</highlight_6> twice. This will create a 2x1 composition of your first video input connector and set this as your Main Source. This will effect selfview and what you output on the far end of the Video Call.
+            - xCommand Video Input SetMainVideoSource, and other xAPIs like it offer some parameters that allow you to enter them in multiple times. Notice how we used <hl_6>ConnectorId: 1</hl_6> twice. This will create a 2x1 composition of your first video input connector and set this as your MainSource by default. This will effect SelfView and what you output on the far end of the Video Call.
 
-            - Though it's <highlight_7>NOT</highlight_7> practical to send a duplicate camera source into a call as we are now, it allows us a chance to interact with this xAPI and understand how it operates. this xAPI in particular was built to handle multiple video source inputs. For instance, if you had a Room Kit EQ with 4 cameras connected, you can compose all 4 cameras as apart of your MainSource, giving you an opportunity to visually communicate to the Far End in new ways
+            - Even though it's <hl_7>NOT</hl_7> practical to send a duplicate camera source into a call as we are now, it allows us a chance to interact with this xAPI and understand how it operates. This xAPI in particular was built to handle multiple video source inputs. For instance, if you had a Room Kit EQ with 4 cameras connected, you can compose all 4 cameras as apart of your MainSource, giving you an opportunity to visually communicate to the Far End in new ways
 
         ??? success "View Successful OSD Output"
 
@@ -426,68 +427,61 @@
         xCommand Video Input SetMainVideoSource ConnectorId: 1 ConnectorId: 1 Layout: PIP
         ```
 
-        - Observe the change to your Codec's Display, you should see 2 instances of your camera feed, 1 FullScreen and another in a PiP window
+        - Observe the change to your Codec's Display, you should see 2 instances of your camera feed, 1 FullScreen and another in a PIP window
 
         ??? tip "Additional Info"
 
-            xCommand Video Input SetMainVideoSource has more than one parameter we can use to alter the composition in our main source. By default, the <highlight_1>Layout</highlight_1> parameter is set to a value of <highlight_1>Equal</highlight_1>, but we could opt for <highlight_2>PIP</highlight_2> or <highlight_3>Prominent</highlight_3> as <highlight_1>Layout</highlight_1> values as well.
+            xCommand Video Input SetMainVideoSource has more than one parameter we can use to alter the composition in our MainSource. By default, the <hl_1>Layout</hl_1> parameter is set to a value of <hl_1>Equal</hl_1>, but we could opt for <hl_2>PIP</hl_2> or <hl_3>Prominent</hl_3> as <hl_1>Layout</hl_1> values as well.
 
         ??? success "View Successful OSD Output"
 
-            Successful execution of this command, with <highlight_2>PIP</highlight_2> set as the <highlight_1>Layout</highlight_1>, will look similar to image below
+            Successful execution of this command, with <hl_2>PIP</hl_2> set as the <hl_1>Layout</hl_1>, will look similar to image below
 
             <figure markdown>
               ![Official API Doc](./images/2-2-3_SetMain-2xPIP.png){ width="400" }
             </figure>
 
-        - Lets wrap up by setting your MainSource back to a single connector and disable Selfview
+        - Lets wrap this lesson up by setting your MainSource back to a single connector and disabling SelfView
 
         ``` shell title="Type into terminal and press Enter"
         xCommand Video Input SetMainVideoSource ConnectorId: 1
+        xCommand Video SelfView Set Mode: Off
         ```
 
-        ``` shell title="Type into terminal and press Enter"
-        xCommand Video Selfview Set Mode: Off
-        ```
-
-        - Observe the change to your Codec's Display, your selfview should be gone now
+        - Observe the change to your Codec's Display, your SelfView should be gone now
 
     <roomosdoc>xCommand Video Input SetMainVideoSource</roomosdoc> 
-
-    <!-- <a class="md-button md-button--primary" href="https://roomos.cisco.com/xapi/Command.Video.Input.SetMainVideoSource/" target="_blank" >
-          Learn more about <strong>xCommand Video Input SetMainVideoSource</strong> <i class="fa-solid fa-square-up-right"></i>
-    </a> -->
 
 ??? lesson "Lesson: Execute an xCommand with a multiline argument  ~({{config.cProps.rxp.sectionIds.ssh}}.3.3)~"
 
     !!! info
         Some commands require a larger body of data. This data is written as a large string; some written in a variety of formats and this format is outlined by the individual xAPI's documentation
 
-        When working in a terminal window, these multiline commands are structure as such
+        When working in a terminal window, multiline commands are formatted as follows:
 
         !!! example ""
 
             === "Base Structure"
 
                 ``` {.shell, .no-copy}
-                [Command Path]
-                [Multi Line Content]
-                .
+                [Command Path]          # Your xCommand Path to run
+                [Multi Line Content]    # Your Multi Line content (Body)
+                .                       # Terminate your Multi Line content with a dot .
                 ```
             
             === "Full xAPI Example"
 
                 ``` {.shell, .no-copy}
-                xCommand Macros Macro Save Name: Test
-                import xapi from 'xapi';
+                xCommand Macros Macro Save Name: Test   # Your xCommand Path to run
+                import xapi from 'xapi';                # Your Multi Line content (Body)
 
                 console.log('Hello World');
-                .
+                .                                       # Terminate your Multi Line content with a dot .
                 ```
 
             !!! Note
 
-                The command should be terminated with a dot ==.== on the third line to indicate the command is complete
+                The command should be terminated with a dot <hl_0>.</hl_0> on the third line to indicate the command is complete
 
     - **xAPI**: xCommand UserInterface Extensions Panel Save
 
@@ -608,7 +602,7 @@
     
     !!! note
 
-        The <highlight_0>getting</highlight_0> and <highlight_0>setting</highlight_0> of an xConfiguration only differs slightly when accessing via a terminal.
+        The <hl_0>getting</hl_0> and <hl_0>setting</hl_0> of an xConfiguration only differs slightly when accessing via a terminal.
 
         Click on the tabs below to see the differences side by side
 
@@ -620,7 +614,7 @@
 
             === "Set xConfiguration"
 
-                xConfiguration Audio DefaultVolume<highlight_3>: 75</highlight_3>
+                xConfiguration Audio DefaultVolume<hl_3>: 75</hl_3>
         
         ??? curious ":thinking: Do xConfigurations offer Multiple Parameters or have Multiline execution?"
 
@@ -747,10 +741,10 @@
             xFeedback Register Configuration/Audio/DefaultVolume
         ```
 
-        - Press the <highlight_5>Subscription Assistant Button</highlight_5> on your Touch Interface
-            - Under the xConfigurations Page, move the Slider labeled <highlight_0>Audio DefaultVolume</highlight_0> to a new position and release
-            - Observe your <highlight_6>Terminal Window's</highlight_6> output, you should see events for your Subscription fill the <highlight_6>Terminal Window</highlight_6> as that value changes
-                - <highlight_3>Optional</highlight_3>: Move the slider a few more times to see more changes come in
+        - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
+            - Under the xConfigurations Page, move the Slider labeled <hl_0>Audio DefaultVolume</hl_0> to a new position and release
+            - Observe your <hl_6>Terminal Window's</hl_6> output, you should see events for your Subscription fill the <hl_6>Terminal Window</hl_6> as that value changes
+                - <hl_3>Optional</hl_3>: Move the slider a few more times to see more changes come in
 
 
         ??? gif "Click to Compare your Terminal Output"
@@ -785,10 +779,10 @@
         xFeedback Deregister Configuration/Audio/DefaultVolume
         ```
 
-        - Press the <highlight_5>Subscription Assistant Button</highlight_5> on your Touch Interface
+        - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
             - Under the xConfigurations Page, move the Slider labeled ==Audio DefaultVolume== to a new position and release
-            - Observe your <highlight_6>Terminal Window's</highlight_6> output, those responses you saw in the previous lesson should have stopped outputting in your <highlight_6>Terminal Window</highlight_6>
-                - <highlight_3>Optional</highlight_3>: Move the slider a few more times to verify
+            - Observe your <hl_6>Terminal Window's</hl_6> output, those responses you saw in the previous lesson should have stopped outputting in your <hl_6>Terminal Window</hl_6>
+                - <hl_3>Optional</hl_3>: Move the slider a few more times to verify
 
 ??? lesson "Lesson: Subscribe to Multiple xConfigurations under a Common Node  ~({{config.cProps.rxp.sectionIds.ssh}}.4.6)~"
 
@@ -804,15 +798,15 @@
 
             === "Full xAPI Path"
 
-                xFeedback Register <highlight_1>Configuration/Bluetooth/Allowed</highlight_1>
+                xFeedback Register <hl_1>Configuration/Bluetooth/Allowed</hl_1>
 
             === "Next Higher Common Node"
 
-                xFeedback Register <highlight_1>Configuration/Bluetooth</highlight_1>{--/Allowed--}
+                xFeedback Register <hl_1>Configuration/Bluetooth</hl_1>{--/Allowed--}
 
             === "Highest Common Node"
 
-                xFeedback Register <highlight_1>Configuration</highlight_1>{--/Bluetooth/Allowed--}
+                xFeedback Register <hl_1>Configuration</hl_1>{--/Bluetooth/Allowed--}
 
     - **xAPI**: xConfiguration Audio Input Airplay
 
@@ -822,10 +816,10 @@
         xFeedback Register Configuration/Video/Input/AirPlay
         ```
 
-        - Press the <highlight_5>Subscription Assistant Button</highlight_5> on your Touch Interface
-            - Under the xConfigurations Page, press the toggles and buttons in the <highlight_0>Airplay<highlight_0> row
-            - Observe your <highlight_6>Terminal Window's</highlight_6> output, you should see events for your Subscription fill the <highlight_6>Terminal Window</highlight_6>
-                - <highlight_3>Optional</highlight_3>: Press those buttons and switches a few times to see more changes come in
+        - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
+            - Under the xConfigurations Page, press the toggles and buttons in the <hl_0>Airplay<hl_0> row
+            - Observe your <hl_6>Terminal Window's</hl_6> output, you should see events for your Subscription fill the <hl_6>Terminal Window</hl_6>
+                - <hl_3>Optional</hl_3>: Press those buttons and switches a few times to see more changes come in
 
         ??? gif "Click to Compare your Terminal Output"
 
@@ -850,10 +844,10 @@
         xFeedback Deregister Configuration/Video/Input/AirPlay
         ```
 
-        - Press the <highlight_5>Subscription Assistant Button</highlight_5> on your Touch Interface
+        - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
             - Under the xConfigurations Page, press the toggles and buttons in the ==Airplay== row
-            - Observe your <highlight_6>Terminal Window's</highlight_6> output, those responses you saw in the previous lesson should have stopped outputting in your <highlight_6>Terminal Window</highlight_6>
-                - <highlight_3>Optional</highlight_3>: Press those buttons and switches a few times to see more changes come in
+            - Observe your <hl_6>Terminal Window's</hl_6> output, those responses you saw in the previous lesson should have stopped outputting in your <hl_6>Terminal Window</hl_6>
+                - <hl_3>Optional</hl_3>: Press those buttons and switches a few times to see more changes come in
 
     !!! Tip
 
@@ -919,11 +913,11 @@
         xFeedback Register Status/Audio/Volume
         ```
 
-        - Press the <highlight_5>Subscription Assistant Button</highlight_5> on your Touch Interface
+        - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
             - Under the xStatuses Page, move the Slider labeled ==Adjust Volume,== to a new position and release
                 - Alternatively, you can adjust the volume with the Codec's native volume control buttons
-            - Observe your <highlight_6>Terminal Window's</highlight_6> output, you should see events for your Subscription fill the <highlight_6>Terminal Window</highlight_6>
-                - <highlight_3>Optional</highlight_3>: Move the slider a few more times to see more changes come in
+            - Observe your <hl_6>Terminal Window's</hl_6> output, you should see events for your Subscription fill the <hl_6>Terminal Window</hl_6>
+                - <hl_3>Optional</hl_3>: Move the slider a few more times to see more changes come in
 
         ??? gif "Click to Compare your Terminal Output"
 
@@ -947,11 +941,11 @@
         xFeedback Deregister Status/Audio/Volume
         ```
 
-        - Press the <highlight_5>Subscription Assistant Button</highlight_5> on your Touch Interface
+        - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
             - Under the xStatuses Page, move the Slider labeled ==Adjust Volume,== to a new position and release
                 - Alternatively, you can adjust the volume with the Codec's native volume control buttons
-            - Observe your <highlight_6>Terminal Window's</highlight_6> output, those responses you saw in the previous lesson should have stopped outputting in your <highlight_6>Terminal Window</highlight_6>
-                - <highlight_3>Optional</highlight_3>: Move the slider a few more times to see more changes come in
+            - Observe your <hl_6>Terminal Window's</hl_6> output, those responses you saw in the previous lesson should have stopped outputting in your <hl_6>Terminal Window</hl_6>
+                - <hl_3>Optional</hl_3>: Move the slider a few more times to see more changes come in
 
 ??? lesson "Lesson: Subscribe to Multiple xStatuses under a Common Node ~({{config.cProps.rxp.sectionIds.ssh}}.5.5)~"
 
@@ -963,17 +957,17 @@
         xFeedback Register Status/Cameras/Camera/Position
         ```
 
-        ??? curious "What happened to the <highlight_6>[N]</highlight_6> in the xAPI Path?"
+        ??? curious "What happened to the <hl_6>[N]</hl_6> in the xAPI Path?"
 
-            You may have noticed we never declared <highlight_6>[N]</highlight_6> in the xAPI Path for the command we ran. This was left out on purpose. <highlight_6>[N]</highlight_6> corresponds to the <highlight_1>CameraId</highlight_1> you want to target. Some Codecs can control up 7 cameras, so these xAPI paths branch per connected Camera
+            You may have noticed we never declared <hl_6>[N]</hl_6> in the xAPI Path for the command we ran. This was left out on purpose. <hl_6>[N]</hl_6> corresponds to the <hl_1>CameraId</hl_1> you want to target. Some Codecs can control up 7 cameras, so these xAPI paths branch per connected Camera
 
             Whereas you could be running this lab on a variety of RoomOS Devices, it's better to leave this out for Lab Purposes, but also has value in a multi-camera system, allowing us to subscribe to ALL camera's positions as they change :smiley:
 
-        - Press the <highlight_5>Subscription Assistant Button</highlight_5> on your Touch Interface
-            - Under the xStatuses Page, click the button in the <highlight_1>Camera Control Wheel</highlight_1> row
+        - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
+            - Under the xStatuses Page, click the button in the <hl_1>Camera Control Wheel</hl_1> row
                 - Alternatively, you can adjust your cameras position through the native camera control interface
-            - Observe your <highlight_6>Terminal Window's</highlight_6> output, you should see events for your Subscription fill the <highlight_6>Terminal Window</highlight_6>
-                - <highlight_3>Optional</highlight_3>: Continue pressing buttons to see more changes come in
+            - Observe your <hl_6>Terminal Window's</hl_6> output, you should see events for your Subscription fill the <hl_6>Terminal Window</hl_6>
+                - <hl_3>Optional</hl_3>: Continue pressing buttons to see more changes come in
 
         ???+ gif "Click on the tabs below to"
 
@@ -1005,11 +999,11 @@
             xFeedback DeregisterAll
         ```
 
-        - Press the <highlight_5>Subscription Assistant Button</highlight_5> on your Touch Interface
-            - Under the xStatuses Page, click the button in the <highlight_1>Camera Control Wheel</highlight_1> row
+        - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
+            - Under the xStatuses Page, click the button in the <hl_1>Camera Control Wheel</hl_1> row
                 - Alternatively, you can adjust your cameras position through the native camera control interface
-            - Observe your <highlight_6>Terminal Window's</highlight_6> output, those responses you saw in the previous lesson should have stopped outputting in your <highlight_6>Terminal Window</highlight_6>
-                - <highlight_3>Optional</highlight_3>: Continue pressing buttons to see more changes come in
+            - Observe your <hl_6>Terminal Window's</hl_6> output, those responses you saw in the previous lesson should have stopped outputting in your <hl_6>Terminal Window</hl_6>
+                - <hl_3>Optional</hl_3>: Continue pressing buttons to see more changes come in
 
 ## **Subscribing to Events** ~({{config.cProps.rxp.sectionIds.ssh}}.6)~
 
@@ -1021,9 +1015,9 @@
 
         As noted above, xEvents are much simpler callbacks. 
         
-        For example, <highlight_0>xStatus Call</highlight_0> contains information on the call such as the Display Name, CallBack Number, CallId and so on. This information is very useful for building something like a Favorites List or Troubleshooting a call. 
+        For example, <hl_0>xStatus Call</hl_0> contains information on the call such as the Display Name, CallBack Number, CallId and so on. This information is very useful for building something like a Favorites List or Troubleshooting a call. 
         
-        When compared to <highlight_0>xEvent UserInterface Extensions Widget Action</highlight_0>, this even fires whenever a widget is interacted with. We simply want to know when the button is pressed, but storing this event has little to know value outside general log collection on the device.
+        When compared to <hl_0>xEvent UserInterface Extensions Widget Action</hl_0>, this even fires whenever a widget is interacted with. We simply want to know when the button is pressed, but storing this event has little to know value outside general log collection on the device.
 
     Click to expand each xEvent Lesson below, execute them in your terminal session and observe the responses in the terminal window.
 
@@ -1037,14 +1031,14 @@
         xFeedback Register Event/UserInterface/Message/Prompt/Response
         ```
 
-        - Press the <highlight_5>Subscription Assistant Button</highlight_5> on your Touch Interface
-            - Under the xEvents Page, click the <highlight_1>Prompt Button</highlight_1> in the <highlight_0>UserInterface Message</highlight_0> row
+        - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
+            - Under the xEvents Page, click the <hl_1>Prompt Button</hl_1> in the <hl_0>UserInterface Message</hl_0> row
                 - This will create a Pop Up with 5 options
                 - Click on any of these 5 Options
-            - Observe your <highlight_6>Terminal Window's</highlight_6> output, you should see events for your Subscription fill the <highlight_6>Terminal Window</highlight_6>
-                - <highlight_3>Optional</highlight_3>: Try each of the options under `Prompt` and continue to observe your <highlight_6>Terminal Window's</highlight_6>
+            - Observe your <hl_6>Terminal Window's</hl_6> output, you should see events for your Subscription fill the <hl_6>Terminal Window</hl_6>
+                - <hl_3>Optional</hl_3>: Try each of the options under `Prompt` and continue to observe your <hl_6>Terminal Window's</hl_6>
             - Press click either the `TextInput`, the `Rating` or the `Alert` button and submit any accompanying actions in that interface
-            - Observe your <highlight_6>Terminal Window's</highlight_6> output, you should see events for your Subscription fill the <highlight_6>Terminal Window</highlight_6>
+            - Observe your <hl_6>Terminal Window's</hl_6> output, you should see events for your Subscription fill the <hl_6>Terminal Window</hl_6>
                 - Responses for `TextInput`, `Rating` or `Alert` shouldn't show since you're currently only subscribed to `Prompt`
     
         ??? gif "Click to Compare your Terminal Output"
@@ -1070,9 +1064,9 @@
         xFeedback Deregister Event/UserInterface/ScreenShotRequest/RequestId
         ```
 
-        - Press the <highlight_5>Subscription Assistant Button</highlight_5> on your Touch Interface
-            - Under the xEvents Page, click either the `Prompt`, the `TextInput`, the `Rating` or the `Alert` button in the <highlight_0>UserInterface Message</highlight_0> row and submit any accompanying actions in that interface
-            - Observe your <highlight_6>Terminal Window's</highlight_6> output, those responses you saw in the previous lesson should have stopped outputting in your <highlight_6>Terminal Window</highlight_6>
+        - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
+            - Under the xEvents Page, click either the `Prompt`, the `TextInput`, the `Rating` or the `Alert` button in the <hl_0>UserInterface Message</hl_0> row and submit any accompanying actions in that interface
+            - Observe your <hl_6>Terminal Window's</hl_6> output, those responses you saw in the previous lesson should have stopped outputting in your <hl_6>Terminal Window</hl_6>
 
 ??? lesson "Lesson: Subscribe to Multiple xEvents under a Common Node ~({{config.cProps.rxp.sectionIds.ssh}}.6.3)~"
 
@@ -1088,10 +1082,10 @@
         xFeedback Register Event/UserInterface
         ```
 
-        - Press the <highlight_5>Subscription Assistant Button</highlight_5> on your Touch Interface
+        - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
             - Under the xEvents Page, try any of the `Widgets` on this page, and submit any accompanying actions in that interface if any
-            - Observe your <highlight_6>Terminal Window's</highlight_6> output, you should see events for your Subscription fill the <highlight_6>Terminal Window</highlight_6>
-                - <highlight_3>Optional</highlight_3>: Try all of the `Widget` on that page :smiley:
+            - Observe your <hl_6>Terminal Window's</hl_6> output, you should see events for your Subscription fill the <hl_6>Terminal Window</hl_6>
+                - <hl_3>Optional</hl_3>: Try all of the `Widget` on that page :smiley:
     
         ??? gif "Click to Compare your Terminal Output"
 
@@ -1115,10 +1109,10 @@
             xFeedback DeregisterAll
         ```
 
-        - Press the <highlight_5>Subscription Assistant Button</highlight_5> on your Touch Interface
+        - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
             - Under the xEvents Page, try any of the `Widgets` on this page, and submit any accompanying actions in that interface if any
-            - Observe your <highlight_6>Terminal Window's</highlight_6> output, those responses you saw in the previous lesson should have stopped outputting in your <highlight_6>Terminal Window</highlight_6>
-                - <highlight_3>Optional</highlight_3>: Continue pressing buttons to see more changes come in
+            - Observe your <hl_6>Terminal Window's</hl_6> output, those responses you saw in the previous lesson should have stopped outputting in your <hl_6>Terminal Window</hl_6>
+                - <hl_3>Optional</hl_3>: Continue pressing buttons to see more changes come in
 
 ## **Tagging your xAPI Calls** ~({{config.cProps.rxp.sectionIds.ssh}}.7)~
 
@@ -1139,13 +1133,13 @@ By appending `|resultId="myValue"` to the end of any xAPI Call, the response fro
         ** end
         ```
     
-    === "xCommand Video Selfview Set"
+    === "xCommand Video SelfView Set"
 
         ``` shell
-        xCommand Video Selfview Set Mode: On |resultId="Custom Value 2"
+        xCommand Video SelfView Set Mode: On |resultId="Custom Value 2"
 
         OK
-        *r SelfviewSetResult (status=OK): 
+        *r SelfViewSetResult (status=OK): 
         ** resultId: "Custom Value 2"
         ** end
         ```
@@ -1201,7 +1195,7 @@ By appending `|resultId="myValue"` to the end of any xAPI Call, the response fro
 
 !!! important
 
-    - Press the <highlight_5>Subscription Assistant Button</highlight_5> on your Touch Interface
+    - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
     - Under the ==Section Cleanup== Page, select the ==Run Section Cleanup?== button
     - Select ==Yes, Run the Cleanup Script==
 
@@ -1222,7 +1216,7 @@ By appending `|resultId="myValue"` to the end of any xAPI Call, the response fro
         xFeedback DeregisterAll
         xConfig Audio DefaultVolume: 50
         xCommand UserInterface Extensions Panel Remove PanelId: wx1_lab_multilineCommand
-        xCommand Video Selfview Set Mode: Off FullscreenMode: Off
+        xCommand Video SelfView Set Mode: Off FullscreenMode: Off
         xCommand Video Input SetMainVideoSource ConnectorId: 1
         xCommand Audio Volume SetToDefault Device: Internal
         ```
