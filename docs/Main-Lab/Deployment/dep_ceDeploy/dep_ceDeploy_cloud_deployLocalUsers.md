@@ -103,7 +103,7 @@
     ```
     
     <figure markdown="span">
-      ![xCOmmand](images/4-12-9.png){ width="300" }
+      ![xCOmmand](images/dep-2-7-9.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
