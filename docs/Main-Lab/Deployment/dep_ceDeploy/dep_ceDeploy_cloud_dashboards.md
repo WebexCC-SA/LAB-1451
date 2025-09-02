@@ -1,4 +1,5 @@
 {{ config.cProps.devNotice }}
+{{ config.cProps.acronyms }}
 # Perform a device backup and download logs using CE-Deploy
 
 !!! abstract

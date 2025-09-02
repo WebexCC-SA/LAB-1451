@@ -5,7 +5,7 @@ String.prototype.capitalizeFirstLetter = function () {
     // Capitalize the first character
     const firstChar = this.charAt(0).toUpperCase();
     // Lowercase the rest of the string
-    const restOfString = this.slice(1).toLowerCase();
+    const restOfString = this.slice(1)
 
     return firstChar + restOfString;
 };

@@ -1,4 +1,5 @@
 {{ config.cProps.devNotice }}
+{{ config.cProps.acronyms }}
 # Deploy Macros via CE-Deploy
 
 !!! abstract

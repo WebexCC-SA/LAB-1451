@@ -1,4 +1,5 @@
 {{ config.cProps.devNotice }}
+{{ config.cProps.acronyms }}
 # Deploy Macro's via Control Hub
 
 !!! abstract

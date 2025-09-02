@@ -1,4 +1,5 @@
 {{ config.cProps.devNotice }}
+{{ config.cProps.acronyms }}
 # Deploy xAPI commands via CE-Deploy
 
 !!! abstract

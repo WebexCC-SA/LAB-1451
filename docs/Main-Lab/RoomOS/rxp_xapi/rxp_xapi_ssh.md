@@ -1,10 +1,11 @@
 {{ config.cProps.devNotice }}
+{{ config.cProps.acronyms }}
 # Access RoomOS xAPI via SSH ~(section\ {{config.cProps.rxp.sectionIds.ssh}})~
 !!! abstract
 
-    In this section, we'll dive into the various pieces of the RoomOS Device xAPI stack and how to make use of them in various ways over an Secure Shell (SSH) Session a Cisco RoomOS Device.
+    In this section, we'll dive into the various pieces of the RoomOS Device xAPI stack and how to make use of them in various ways over a Secure Shell (SSH) Session to a Cisco RoomOS Device.
 
-    Understanding how to navigate a terminal session with the a Cisco RoomOS Device will be instrumental in your customization journey, but it's also a key integration pillar to many products, such as a room control processors, to interface with a a Cisco RoomOS Device.
+    Understanding how to navigate a terminal session with the a Cisco RoomOS Device will be instrumental in your device management and customization journey, but it's also a key integration pillar for many services on the market, such as a room control processors (Crestron, Extron, Etc) and
 
 ## Section {{config.cProps.rxp.sectionIds.ssh}} Requirements
 
@@ -12,27 +13,32 @@
 
     !!! note inline end
 
-        This lab assumes you have access to a RoomOS Device that already setup and ready for use. If your device is not registered and online, please do so before beginning
+        This lab assumes you have access to a Cisco RoomOS Device that is already setup and ready for use. If your device is not registered and online, please do so before beginning
 
     **Hardware**
 
     - A Laptop
     - A Cisco Desk, Board or Room Series Device running the most recent On Premise or Cloud Stable software
         - A Touch Controller is required when working on a Room Series Device. Either Room navigator or 3rd part touch display
+        - Preferred Device: Cisco Desk Pro
     - A minimum of 1 camera (Either Integrated or External)
 
     **Software**
 
     - Laptop
         - Recommended Browser: Chrome or Firefox
-        - Recommended Terminal Software: Built in OS Terminal or Termius
+        - Recommended Terminal Software:
+            - Command Prompt (Windows)
+            - Terminal (MAC)
+            - [Putty](https://apps.microsoft.com/detail/xpfnzksklbp7rj?hl=en-US&gl=US) (Windows)
+            - [Termius](https://termius.com/) (Windows, MAC, Linux)
     - RoomOS Device
         - Either the current On Premise or Cloud Stable release
 
     **Network**
 
     - Local Access to the RoomOS Device over port 22
-    - Access to the Internet
+    - General access to the Internet
 
 ## **Establish SSH Connection to Device** ~({{config.cProps.rxp.sectionIds.ssh}}.1)~
 
@@ -103,7 +109,7 @@
 
     These are especially useful when developing a customization or troubleshooting a system.
 
-    Click to expand each xCommand each below, execute them in your terminal session and observe the responses in the terminal window.
+    Click to expand each lesson below, execute the contents as directed in your terminal session and observe the responses in the terminal window.
     
 
 ???+ lesson "Lesson: Lists All User Command Nodes ~({{config.cProps.rxp.sectionIds.ssh}}.2.1)~"
@@ -112,17 +118,15 @@
     ?
     ``` 
 
-    ??? info "Click to Compare your Terminal Output"
-        ``` {.shell, .no-copy}
-              - User Commands -
-
-        help            xcommand        xconfiguration  xdocument       xevent          
-        xfeedback       xgetxml         xpreferences    xstatus         xtransaction    
-        bye             echo            log             systemtools     
+    ???+ info "Compare your Terminal Output"
+        <pre><code>- User Commands -
+        help            <highlight_1>xcommand</highlight_1>        <highlight_2>xconfiguration</highlight_2>  xdocument       <highlight_3>xevent</highlight_3>
+        <highlight_4>xfeedback</highlight_4>       xgetxml         <highlight_7>xpreferences</highlight_7>    <highlight_5>xstatus</highlight_5>         xtransaction
+        bye             echo            log             systemtools
         OK
-        ``` 
+        </code></pre>
 
-        We won't cover every command above, we'll only focus on xConfiguration, xCommand, xStatus and xEvent as those contain all the xAPI reference we need to focus on. But we'll also take a brief stop at xPref as it's important for SSH and Serial based integrations.
+        We won't cover every shell command above, we'll only focus on <highlight_2>xConfigurations</highlight_2>, <highlight_1>xCommands</highlight_1>, <highlight_5>xStatuses</highlight_5>, <highlight_3>xEvents</highlight_3> and <highlight_4>xFeedback</highlight_4> as those contain all the Device xAPI references we need to develop a custom solution. But we'll also take a brief stop at <highlight_7>xPreferences</highlight_7> as it's important for SSH and Serial based integrations.
 
         For more information on the rest of those paths, check out the [Offical xAPI Guide](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-1114/api-reference-guide-roomos-1114.pdf).Page 33 defines all nodes
 
@@ -137,7 +141,7 @@
     ``` 
 
     
-    ??? info "Click to Compare your Terminal Output"
+    ???+ info "Compare your Terminal Output"
         ``` {.shell, .no-copy}
         xpreferences usage:
           xpreferences outputmode <terminal/xml/json>
@@ -151,7 +155,7 @@
         - Your customization environment may be able to handle responses from the xAPI more efficiently if it's in an output format that easier for your environment to ingest
         - For testing, we'd recommend the terminal format, but when interfacing via a Room Control Processor or another service, you may have tools available to you to parse either JSON or XML to optimize you solution
 
-        ??? example "Compare Output Mode Responses"
+        ??? example "Click Here to review different Output Mode responses"
 
             === "Terminal"
 
@@ -287,22 +291,24 @@
           xEvent
           ``` 
 
-          ??? info "Click to Compare your Terminal Output"
-              ``` {.shell, .no-copy}
-              xEvent  
-              *es Event Audio Input Connectors Ethernet SubId LoudspeakerActivity
-              *es Event Audio Input Connectors Ethernet SubId NoiseLevel
-              *es Event Audio Input Connectors Ethernet SubId PPMeter
-              *es Event Audio Input Connectors Ethernet SubId VuMeter
-              *es Event Audio Input Connectors HDMI Left PPMeter
-              *es Event Audio Input Connectors HDMI Left VuMeter
-              *es Event Audio Input Connectors HDMI Right PPMeter
-              *es Event Audio Input Connectors HDMI Right VuMeter
-              *es Event Audio Input Connectors Line PPMeter
-              *es Event Audio Input Connectors Line VuMeter
-              [... And the list goes on]
-              OK
-              ``` 
+        ???+ info "Compare your Terminal Output"
+            ``` {.shell, .no-copy}
+            xEvent  
+            *es Event Audio Input Connectors Ethernet SubId LoudspeakerActivity
+            *es Event Audio Input Connectors Ethernet SubId NoiseLevel
+            *es Event Audio Input Connectors Ethernet SubId PPMeter
+            *es Event Audio Input Connectors Ethernet SubId VuMeter
+            *es Event Audio Input Connectors HDMI Left PPMeter
+            *es Event Audio Input Connectors HDMI Left VuMeter
+            *es Event Audio Input Connectors HDMI Right PPMeter
+            *es Event Audio Input Connectors HDMI Right VuMeter
+            *es Event Audio Input Connectors Line PPMeter
+            *es Event Audio Input Connectors Line VuMeter
+            [... And the list goes on]
+            OK
+            ```
+        
+        All parent branches of the xAPI (TC, CE, and now RoomOS) have been in production for many years. The xEvent branch serves as a reminder that, as developers, we sometimes make decisions early on that have lasting effects. While there are differences in this branch that were introduced during earlier development, we have chosen to preserve them to ensure backwards compatibility with existing integrations. This approach helps avoid major disruptive changes for our community and supports solutions that are still in use today :smiley:
 
 ??? lesson "Lesson: Search for an xAPI using a Wildcard `//` ~({{config.cProps.rxp.sectionIds.ssh}}.2.7)~"
     ``` shell title="Type into terminal and press Enter"
@@ -310,6 +316,13 @@
     ``` 
 
     ??? info "Click to Compare your Terminal Output"
+        !!! note inline end
+            You can also place a wildcard in multiple places within a path
+
+            ``` {.shell, .no-copy}
+            xConfig // Video // Name ?
+            ``` 
+
         ``` {.shell, .no-copy}
         xConfig // Name ?
         *? xConfiguration FacilityService Service[1] Name: <S: 0, 1024>
@@ -335,7 +348,7 @@
 
     Commands instruct the device to execute actions, such as to dial a number or to search the phone book. All commands start with the prefix xCommand followed by a command path
 
-    Click to expand each xCommand Lesson below, execute them in your terminal session and observe the responses in the terminal window as well as observe what happens to your Codec after each execution
+    Click to expand each xCommand Lesson below, execute each Task in your terminal session as instructed and observe the responses in your terminal window as well as observe what happens to your Cisco RoomOS Device after each command is run
 
 
 ???+ lesson "Lesson: Execute an xCommand ~({{config.cProps.rxp.sectionIds.ssh}}.3.1)~"
@@ -348,7 +361,7 @@
         xCommand Video Selfview Set Mode: On FullscreenMode: On OnMonitorRole: First
         ```
 
-        - Observe the change to your Codec's Display, you should see your camera feed in Full Screen.
+        - Observe the change to your Codec's Display, you should see your camera's SelfView Video in Full Screen on the OSD of your device.
             
             - If your video is blank, make sure your device's camera cover(if available) is not closed
 
