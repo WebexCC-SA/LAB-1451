@@ -53,7 +53,7 @@
     For this lab we will be using the tag ==wbx<yourPodNumber>==. As an example wbx101.
     
     <figure markdown="span">
-      ![Add Tag](images/4.1.5.png){ width="300" }
+      ![Add Tag](images/4-1-5.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     

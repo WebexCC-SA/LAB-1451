@@ -89,7 +89,7 @@
     Ensure that it is set to local and the interface updates:
     
     <figure markdown="span">
-      ![Local Interface](images/4-12-8b.png){ width="300" }
+      ![Local Interface](images/dep-2-7-8.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
@@ -114,7 +114,7 @@
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.12</highlight_1> The Message Console will now appear, you can follow along the deployment process.
     
     <figure markdown="span">
-      ![Message Console](images/4-12-12.png){ width="300" }
+      ![Message Console](images/dep-2-7-12.png){ width="300" }
       <figcaption></figcaption>
     </figure>
 

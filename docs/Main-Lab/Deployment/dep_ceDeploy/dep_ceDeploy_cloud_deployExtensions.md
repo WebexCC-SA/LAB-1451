@@ -16,7 +16,7 @@
         To load an environment, use the dropdown in the Environment loading section and select your
         new Environment and select ==Load Environment==.
     
-    Then select ==Design->Macro Editor== from the main menu
+    Then select ==Design->CE Macro Editor Pro== from the main menu
     
     <figure markdown="span">
       ![Macro Editor](images/5-4-1.png){ width="300" }
@@ -42,10 +42,27 @@
       </Panel>
     </Extensions>
     ```
-    It should look something like this:
+    It should look something like this, ignore that the current file is called "New Macro.js". When we save it further on 
+    the file name will be updated:
     
     <figure markdown="span">
-      ![XML File](images/4-11-2.png){ width="300" }
+      ![XML File Creation](images/dep-2-6-2.png){ width="300" }
+      <figcaption></figcaption>
+    </figure>
+    
+    Save the xml file by clicking the "Save As" button and name your file "LaunchHalfWake.xml". Don't forget to change 
+    file extension:
+
+    <figure markdown="span">
+      ![Save XML File](images/dep-2-6-2b.png){ width="300" }
+      <figcaption></figcaption>
+    </figure>
+
+    You should now see the file under the file manager in the left hand pane. Use the "Select" button to navigate to your
+    desired folder.
+
+    <figure markdown="span">
+      ![Saved XML File](images/dep-2-6-2c.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     

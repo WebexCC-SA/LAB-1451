@@ -123,14 +123,14 @@
     select the Dashboards. Do not select the Macro Factory just yet. First we need to select our deployment option.
     
     <figure markdown="span">
-      ![Dashboards](images/4-10-21.png){ width="300" }
+      ![Dashboards](images/dep-2-5-20.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.21</highlight_1> This time around we are going to select the ==Org Id==
     
     <figure markdown="span">
-      ![Org ID](images/4-10-22.png){ width="300" }
+      ![Org ID](images/dep-2-5-21.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
@@ -139,14 +139,14 @@
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.22</highlight_1> Select the Macro Factory from the Dashboards
     
     <figure markdown="span">
-      ![MacroFactory](images/4-10-24.png){ width="300" }
+      ![MacroFactory](images/dep-2-5-22.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
     You should now see the Macro Factory appear with all the pod endpoints that have added their macros.
     
     <figure markdown="span">
-      ![MF Window](images/4-10-24b.png){ width="300" }
+      ![MF Window](images/dep-2-5-22b.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
