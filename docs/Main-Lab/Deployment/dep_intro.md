@@ -1,5 +1,5 @@
 {{ config.cProps.devNotice }}
-!!! important "Abstract"
+!!! important "Welcome"
     
     This lab consists of two main sections. The first provides a brief introduction to deploying customizations in 
     Control Hub. The second section focuses on using CE-Deploy. As Control Hub continues to expand its deployment options, 
