@@ -1277,29 +1277,4 @@ This collection has most pieces structured as we'd need it to and will be used t
 
 ## **Section {{config.cProps.rxp.sectionIds.http}} Cleanup** ~({{config.cProps.rxp.sectionIds.http}}).7~
 
-!!! important
-
-    - Press the `Subscription Assistant Button` on your Touch Interface
-    - Under the ==Section Cleanup== Page, select the ==Run Section Cleanup?== button
-    - Select ==Yes, Run the Cleanup Script==
-
-    <figure markdown="span">
-      ![Section cleanup](./assets/general/SubscriptionAssitantMacro-ConfirmCleanup.png){ width="400" }
-      <figcaption>Section Cleanup Confirmation</figcaption>
-    </figure>
-
-    This will reverse the changes we've made to the endpoint, and leave us ready for the next section
-
-
-    ??? question "You can run the cleanup via the terminal as well"
-
-        Copy the contents below into your terminal window and run them all at once
-
-        ```shell title="Type into terminal and press Enter"
-        xConfig Audio DefaultVolume: 50
-        xCommand UserInterface Extensions Panel Remove PanelId: wx1_lab_multilineCommand
-        xCommand Video Selfview Set Mode: Off FullscreenMode: Off
-        xCommand Video Input SetMainVideoSource ConnectorId: 1
-        xCommand Audio Volume SetToDefault Device: Internal
-        xCommand HTTPFeedBack Deregister FeedbackSlot: 1 FeedbackSlot: 2 FeedbackSlot: 3 FeedbackSlot: 4
-        ```
+{{config.cProps.rxp.sectionCleanup}}

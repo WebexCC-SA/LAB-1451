@@ -312,7 +312,7 @@
 
 ??? lesson "Lesson: Search for an xAPI using a Wildcard `//` ~({{config.cProps.rxp.sectionIds.ssh}}.2.7)~"
     ``` shell title="Type into terminal and press Enter"
-    xConfig // Name ?
+    xConfiguration // Name ?
     ``` 
 
     ??? info "Click to Compare your Terminal Output"
@@ -320,11 +320,11 @@
             You can also place a wildcard in multiple places within a path
 
             ``` {.shell, .no-copy}
-            xConfig // Video // Name ?
+            xConfiguration // Video // Name ?
             ``` 
 
         ``` {.shell, .no-copy}
-        xConfig // Name ?
+        xConfiguration // Name ?
         *? xConfiguration FacilityService Service[1] Name: <S: 0, 1024>
         *? xConfiguration FacilityService Service[2] Name: <S: 0, 1024>
         *? xConfiguration FacilityService Service[3] Name: <S: 0, 1024>
@@ -387,12 +387,6 @@
 
     <roomosdoc>xCommand Video SelfView Set</roomosdoc>
 
-    <!-- <a class="md-button md-button--primary" href="https://roomos.cisco.com/xapi/Command.Video.SelfView.Set/" target="_blank" >
-      Learn more about <strong>xCommand Video SelfView Set</strong> <i class="fa-solid fa-square-up-right"></i>
-    </a> -->
-
-
-
 ??? lesson "Lesson: Execute an xCommand with multiple arguments with the same name ~({{config.cProps.rxp.sectionIds.ssh}}.3.2)~"
 
     - **xAPI(s)**:
@@ -450,7 +444,8 @@
 
         - Observe the change to your Codec's Display, your SelfView should be gone now
 
-    <roomosdoc>xCommand Video Input SetMainVideoSource</roomosdoc> 
+    <roomosdoc>xCommand Video SelfView Set</roomosdoc>
+    <roomosdoc>xCommand Video Input SetMainVideoSource</roomosdoc>
 
 ??? lesson "Lesson: Execute an xCommand with a multiline argument  ~({{config.cProps.rxp.sectionIds.ssh}}.3.3)~"
 
@@ -499,11 +494,13 @@
         <figure markdown>
           ![Official API Doc](./images/2-2-3_UI-Panel-Save.png){ width="600" }
         </figure>
+    
+    <roomosdoc>xCommand UserInterface Extensions Panel Save</roomosdoc>
 
 ??? lesson "Lesson: Execute an xCommand which generates data and responds  ~({{config.cProps.rxp.sectionIds.ssh}}.3.4)~"
 
     !!! info
-        Some commands will generate data and output a response of that data. All commands will respond with either "OK" or "Error" but other commands can provide data.
+        Some commands will generate data and output a response of that data. All commands will respond with either "OK" or "Error" but other commands can provide additional information.
 
 
     - **xAPI**: xCommand Extensions List
@@ -539,6 +536,7 @@
         *r ExtensionsListResult Extensions Panel 2 Color: "#1170CF"
         *r ExtensionsListResult Extensions Panel 2 Visibility: Auto
         ```
+    <roomosdoc>xCommand UserInterface Extensions List</roomosdoc>
 
 ## **Getting, Setting and Subscribing to xConfigurations** ~({{config.cProps.rxp.sectionIds.ssh}}.4)~
 
@@ -554,18 +552,20 @@
     - **Task**: 
 
         ```shell title="Type into terminal and press Enter"
-        xConfig Audio DefaultVolume
+        xConfiguration Audio DefaultVolume
         ```
         
         - Observe your Terminal Window's output, you should see the value for your Audio DefaultVolume
 
-        ??? info "Click to Compare your Terminal Output"
+        ???+ info "Compare your Terminal Output"
             ``` {.shell, .no-copy}
             *c xConfiguration Audio DefaultVolume: 50
             ** end
 
             OK
             ```
+
+    <roomosdoc>xConfiguration Audio DefaultVolume</roomosdoc>
 
 ??? lesson "Lesson: Set a new xConfiguration Value ~({{config.cProps.rxp.sectionIds.ssh}}.4.2)~"
 
@@ -574,7 +574,7 @@
     - **Task**: 
 
         ```shell title="Type into terminal and press Enter"
-        xConfig Audio DefaultVolume: 75
+        xConfiguration Audio DefaultVolume: 75
         ```
 
         - Observe your terminal output and review the response
@@ -589,7 +589,7 @@
         - Now that we've set the default volume to 75, let's double check our work by getting that value one more time
 
         ```shell title="Type into terminal and press Enter"
-        xConfig Audio DefaultVolume
+        xConfiguration Audio DefaultVolume
         ```
         
         ??? info "Click to Compare your Terminal Output"
@@ -618,13 +618,15 @@
         
         ??? curious ":thinking: Do xConfigurations offer Multiple Parameters or have Multiline execution?"
 
-            No, that's solely related to commands. When setting an xConfig, they only ever contain 1 value and though some of those values can be quite long as a string, the syntax to enter them into the console is all written in the same line of the terminal shell
+            No, that's solely related to commands. When setting an xConfiguration, they only ever contain 1 value and though some of those values can be quite long as a string, the syntax to enter them into the console is all written in the same line of the terminal shell
+
+    <roomosdoc>xConfiguration Audio DefaultVolume</roomosdoc>
 
 ??? lesson "Lesson: Get multiple xConfiguration Values under a Common Node ~({{config.cProps.rxp.sectionIds.ssh}}.4.3)~"
 
     !!! info
 
-        In many cases, you may want to pull information in bulk. We can do this easily by moving running an xConfig get request on ==Higher Common Node== in the xAPI path
+        In many cases, you may want to pull information in bulk. We can do this easily by moving running an xConfiguration get request on ==Higher Common Node== in the xAPI path
 
         !!! curious "What do we mean by `Higher Common Node`"
 
@@ -632,15 +634,15 @@
 
             === "Full xAPI Path"
 
-                {++xConfig Bluetooth Allowed++}
+                {++xConfiguration Bluetooth Allowed++}
 
             === "Next Higher Common Node"
 
-                {++xConfig Bluetooth++} {--Allowed--}
+                {++xConfiguration Bluetooth++} {--Allowed--}
 
             === "Highest Common Node"
 
-                {++xConfig++} {--Bluetooth Allowed--}
+                {++xConfiguration++} {--Bluetooth Allowed--}
 
             === "View Visual Diagram"
 
@@ -678,12 +680,12 @@
                   A --> |Nodes Continued| F(...)
                 ```
     
-    - **xAPI**: xConfig Audio
+    - **xAPI**: xConfiguration Audio
 
     - **Task**: 
     
         ```shell title="Type into terminal and press Enter"
-        xConfig Audio
+        xConfiguration Audio
         ```
 
         - Observe your terminal output and review the response
@@ -723,15 +725,21 @@
         ** end
         ```
 
-        By simply removing ==DefaultVolume== from ==xConfiguration Audio== {--DefaultVolume--}, we get all of the Configurations listed under the Audio Node of the Codec
+        By simply removing <hl_7>`DefaultVolume`</hl_7> from <hl_1>xConfiguration Audio</hl_1>, we get all of the Configurations listed under the Audio Node of the Codec
+    
+    <roomosdoc>xConfiguration Audio</roomosdoc>
 
 ??? lesson "Lesson: Subscribing to an xConfiguration  ~({{config.cProps.rxp.sectionIds.ssh}}.4.4)~"
     
-    ???+ curious ":thinking: What do we mean by Subscribe?"
+    ??? curious ":thinking: What do we mean by Subscribe?"
 
-        A subscription, or feedback registration, is a means to monitor changes to any xConfiguration, xStatus or xEvent
+        A <hl_6>subscription</hl_6>, also called a <hl_4>feedback registration</hl_4> in an SSH terminal session, is a way to monitor changes to any xConfigurations, xStatuses, or xEvents using xAPI.
 
-        This allows you to monitor those changes as they occur and, more importantly, react to those changes and automate a process without needing to constantly get that value
+        - This lets you automatically watch for changes as they happen, and react to them—for example, to automate a process—without needing to keep checking the value yourself.
+
+        - When you start a subscription, you won’t see any results right away. You’ll only see something printed to the console *after* a change happens in that xAPI branch.
+
+        - If you need to know the current value as soon as your script starts, you should perform a Get request against the same branch to retrieve it, then subscribe to monitor for any future changes.
 
     - **xAPI:** xConfiguration Audio DefaultVolume
 
@@ -758,18 +766,20 @@
             <figure markdown>
               ![SubAssist Operation](./images/SubscriptionAssitantMacro-Operation.gif){ width="600" }
             </figure>
+    
+    <roomosdoc>xConfiguration Audio DefaultVolume</roomosdoc>
 
 ??? lesson "Lesson: Unsubscribing from an xConfiguration  ~({{config.cProps.rxp.sectionIds.ssh}}.4.5)~"
 
-    Just as we can subscribe to information on the endpoint, we can unsubscribe from that same information
+    Just as we can subscribe to information, we can unsubscribe from that same information
 
     ??? curious ":thinking: Why bother with Unsubscribing?"
 
-        You can run up to 50 unique subscriptions (feedback registrations) on a device at any given time. 
+        Today, we have a limit of 50 unique subscriptions (or feedback registrations) that can be enabled on a device at any given time.
 
         Documented on page 40 of the <a href="https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-1114/api-reference-guide-roomos-1114.pdf" target="_blank">Official xAPI Guide</a>
 
-        So as your solutions grow, managing your subscriptions become increasingly important important. 
+        So as your solutions grow, managing your subscriptions can become increasingly more important.
 
     - **xAPI**: xConfiguration Audio DefaultVolume
 
@@ -784,13 +794,15 @@
             - Observe your <hl_6>Terminal Window's</hl_6> output, those responses you saw in the previous lesson should have stopped outputting in your <hl_6>Terminal Window</hl_6>
                 - <hl_3>Optional</hl_3>: Move the slider a few more times to verify
 
+    <roomosdoc>xConfiguration Audio DefaultVolume</roomosdoc>
+
 ??? lesson "Lesson: Subscribe to Multiple xConfigurations under a Common Node  ~({{config.cProps.rxp.sectionIds.ssh}}.4.6)~"
 
     !!! info
 
-        Similarly to Getting multiple xConfiguration Values, we can subscribe to multiple values under a Higher Common Node
+        Just as we can Get multiple xConfiguration values, we can also subscribe to multiple xConfiguration values under a Higher Common Node
 
-        Subscribing to a Higher Common Node, doesn't consume multiple subscriptions and can allow you to subscribe to a larger dataset while consuming less subscriptions
+        Subscribing to a Higher Common Node doesn't consume multiple subscriptions, in fact it only consumes 1 of the 50 alloted to you. This can allow you to subscribe to a larger dataset while consuming less subscriptions in your automation.
 
         !!! example ""
 
@@ -833,6 +845,7 @@
               ![SubAssist Operation](./images/SubscriptionAssitantMacro-Operation.gif){ width="600" }
             </figure>
 
+    <roomosdoc>xConfiguration Audio Input Airplay</roomosdoc>
 
 ??? lesson "Lesson: Unsubscribe to Multiple xConfigurations under a Higher Common Node  ~({{config.cProps.rxp.sectionIds.ssh}}.4.7)~"
 
@@ -845,7 +858,7 @@
         ```
 
         - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
-            - Under the xConfigurations Page, press the toggles and buttons in the ==Airplay== row
+            - Under the xConfigurations Page, press the toggles and buttons in the <hl_0>Airplay<hl_0> row
             - Observe your <hl_6>Terminal Window's</hl_6> output, those responses you saw in the previous lesson should have stopped outputting in your <hl_6>Terminal Window</hl_6>
                 - <hl_3>Optional</hl_3>: Press those buttons and switches a few times to see more changes come in
 
@@ -857,12 +870,12 @@
         xFeedback DeregisterAll
         ```
 
-## **Setting and Subscribing to Status** ~({{config.cProps.rxp.sectionIds.ssh}}.5)~
+## **Getting and Subscribing to Status** ~({{config.cProps.rxp.sectionIds.ssh}}.5)~
 
 !!! abstract "xStatuses"
-    xStatuses contain information about the current state of the device, such as connected calls, the status of the gatekeeper registration, connected inputs and output sources. This status information will fire a callback when that particular status occurs and their last known state is stored and can be retrieved
+    xStatuses contain information about the current state of the device, such as connected calls, the status of the gatekeeper registration, connected inputs and output sources. This status information will fire a callback when that particular status occurs and their last known state is stored and can be retrieved.
 
-    Many of the same techniques we reviewed under section **Getting, Setting and Subscribing to xConfigurations** ~({{config.cProps.rxp.sectionIds.ssh}}.4)~ will apply to this section
+    Many of the same techniques we reviewed under section **Getting, Setting and Subscribing to xConfigurations** ~({{config.cProps.rxp.sectionIds.ssh}}.4)~ will apply to xStatuses
 
     Be sure to complete **Getting, Setting and Subscribing to xConfigurations** ~({{config.cProps.rxp.sectionIds.ssh}}.4)~ prior to continuing in this section, as many pieces of additional context were covered there, and won't be repeated moving forward
 
@@ -885,6 +898,8 @@
             *s Audio Volume: 65
             ** end
             ```
+            
+    <roomosdoc>xStatus Audio Volume</roomosdoc>
 
 ??? lesson "Lesson: Get multiple xStatus Values under a Common Node ~({{config.cProps.rxp.sectionIds.ssh}}.5.2)~"
 
@@ -903,6 +918,8 @@
         [PLACEHOLDER - LUIS OUTPUT]
         ```
 
+    <roomosdoc>xStatus Audio Input</roomosdoc>
+
 ??? lesson "Lesson: Subscribing to an xStatus ~({{config.cProps.rxp.sectionIds.ssh}}.5.3)~"
 
     - **xAPI**: xStatus Audio Volume
@@ -914,7 +931,7 @@
         ```
 
         - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
-            - Under the xStatuses Page, move the Slider labeled ==Adjust Volume,== to a new position and release
+            - Under the xStatuses Page, move the Slider labeled <hl_0>Adjust Volume</hl_0> to a new position and release
                 - Alternatively, you can adjust the volume with the Codec's native volume control buttons
             - Observe your <hl_6>Terminal Window's</hl_6> output, you should see events for your Subscription fill the <hl_6>Terminal Window</hl_6>
                 - <hl_3>Optional</hl_3>: Move the slider a few more times to see more changes come in
@@ -931,6 +948,8 @@
               ![SubAssist Operation](./images/SubscriptionAssitantMacro-Operation.gif){ width="600" }
             </figure>
 
+    <roomosdoc>xStatus Audio Volume<roomosdoc>
+
 ??? lesson "Lesson: Unsubscribing to an xStatus  ~({{config.cProps.rxp.sectionIds.ssh}}.5.4)~"
 
     - **xAPI**: xStatus Audio Input
@@ -942,14 +961,14 @@
         ```
 
         - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
-            - Under the xStatuses Page, move the Slider labeled ==Adjust Volume,== to a new position and release
+            - Under the xStatuses Page, move the Slider labeled <hl_0>Adjust Volume</hl_0> to a new position and release
                 - Alternatively, you can adjust the volume with the Codec's native volume control buttons
             - Observe your <hl_6>Terminal Window's</hl_6> output, those responses you saw in the previous lesson should have stopped outputting in your <hl_6>Terminal Window</hl_6>
                 - <hl_3>Optional</hl_3>: Move the slider a few more times to see more changes come in
 
 ??? lesson "Lesson: Subscribe to Multiple xStatuses under a Common Node ~({{config.cProps.rxp.sectionIds.ssh}}.5.5)~"
 
-    - **xAPI**: xStatus Cameras Camera [N] Position
+    - **xAPI**: xStatus Cameras Camera[n] Position
 
     - **Task**:
 
@@ -957,11 +976,11 @@
         xFeedback Register Status/Cameras/Camera/Position
         ```
 
-        ??? curious "What happened to the <hl_6>[N]</hl_6> in the xAPI Path?"
+        ??? curious "What happened to the <hl_6>[n]</hl_6> in the xAPI Path?"
 
-            You may have noticed we never declared <hl_6>[N]</hl_6> in the xAPI Path for the command we ran. This was left out on purpose. <hl_6>[N]</hl_6> corresponds to the <hl_1>CameraId</hl_1> you want to target. Some Codecs can control up 7 cameras, so these xAPI paths branch per connected Camera
+            You may have noticed we never declared <hl_6>[n]</hl_6> in the xAPI Path for the command we ran. This was left out on purpose. <hl_6>[n]</hl_6> corresponds to the <hl_1>CameraId</hl_1> you want to target. Some Codecs can control up 7 cameras, so these xAPI paths branch per connected Camera
 
-            Whereas you could be running this lab on a variety of RoomOS Devices, it's better to leave this out for Lab Purposes, but also has value in a multi-camera system, allowing us to subscribe to ALL camera's positions as they change :smiley:
+            Whereas you could be running this lab on a variety of RoomOS Devices, it's better to leave [n] out of the path for Lab Purposes. Not declaring [n] adds new value to us as developers in a multi-camera system; it allows us to subscribe to ALL camera's positions as they change rather than having to specify 1 camera of interest :smiley:
 
         - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
             - Under the xStatuses Page, click the button in the <hl_1>Camera Control Wheel</hl_1> row
@@ -974,7 +993,7 @@
             === "Compare Terminal"
 
                 <figure markdown>
-                  ![xStatus Cameras Camera[N] Position Output Gif](./images/2-2-4_xStatus-Subscribe-CameraPosition.gif){ width="600" }
+                  ![xStatus Cameras Camera[n] Position Output Gif](./images/2-2-4_xStatus-Subscribe-CameraPosition.gif){ width="600" }
                 </figure>
 
             === "View Subscription Assistant"
@@ -988,6 +1007,8 @@
                 <figure markdown>
                   ![Navigate to Camera Control Menu GIF](./images/2-2-4_CameraMenuAccess.gif){ width="600" }
                 </figure>
+
+    <roomosdoc>xStatus Cameras Camera[n] Position</roomosdoc>
 
 ??? lesson "Lesson: Unsubscribe from all xStatuses ~({{config.cProps.rxp.sectionIds.ssh}}.5.6)~"
 
@@ -1009,15 +1030,15 @@
 
 !!! Abstract "xEvents"
 
-    Similar to xStatuses, xEvents will fire a callback when that particular event occurs; however, xEvents are contain simpler information that's not necessary to store on the device, so you will not be able to get the value of the event after it fires.
+    Similar to xStatuses, xEvents will fire a callback when that particular event occurs; however, xEvents contain simpler information that's not necessary to store on the device, so you will not be able to get the value of the event after it fires.
 
     ??? curios "Why not store xEvent Data?"
 
         As noted above, xEvents are much simpler callbacks. 
         
-        For example, <hl_0>xStatus Call</hl_0> contains information on the call such as the Display Name, CallBack Number, CallId and so on. This information is very useful for building something like a Favorites List or Troubleshooting a call. 
+        For example, <hl_0>xStatus Call</hl_0> contains information about the call such as the Display Name, CallBack Number, CallId and so on. This information is very useful for building something like a Favorites List or Troubleshooting that call. 
         
-        When compared to <hl_0>xEvent UserInterface Extensions Widget Action</hl_0>, this even fires whenever a widget is interacted with. We simply want to know when the button is pressed, but storing this event has little to know value outside general log collection on the device.
+        When compared to <hl_0>xEvent UserInterface Extensions Widget Action</hl_0>, this event fires whenever a widget is interacted with by a user. We simply want to know when the button is pressed in order for use to run an automation, but storing this event has little to no value outside the general log collection on the device.
 
     Click to expand each xEvent Lesson below, execute them in your terminal session and observe the responses in the terminal window.
 
@@ -1034,12 +1055,12 @@
         - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
             - Under the xEvents Page, click the <hl_1>Prompt Button</hl_1> in the <hl_0>UserInterface Message</hl_0> row
                 - This will create a Pop Up with 5 options
-                - Click on any of these 5 Options
+                - Click on any one of these 5 Options
             - Observe your <hl_6>Terminal Window's</hl_6> output, you should see events for your Subscription fill the <hl_6>Terminal Window</hl_6>
-                - <hl_3>Optional</hl_3>: Try each of the options under `Prompt` and continue to observe your <hl_6>Terminal Window's</hl_6>
-            - Press click either the `TextInput`, the `Rating` or the `Alert` button and submit any accompanying actions in that interface
+                - <hl_3>Optional</hl_3>: Feel free to try each of the options under that `Prompt` and continue to observe your <hl_6>Terminal Window's</hl_6> to understand how each one of them differs
+            - Now click either the `TextInput`, the `Rating` or the `Alert` button and follow any instructions those interfaces offer
             - Observe your <hl_6>Terminal Window's</hl_6> output, you should see events for your Subscription fill the <hl_6>Terminal Window</hl_6>
-                - Responses for `TextInput`, `Rating` or `Alert` shouldn't show since you're currently only subscribed to `Prompt`
+                - Responses for `TextInput`, `Rating` or `Alert` shouldn't show since you're currently only subscribed to the `Prompt` branch
     
         ??? gif "Click to Compare your Terminal Output"
 
@@ -1053,6 +1074,7 @@
               ![SubAssist Operation](./images/SubscriptionAssitantMacro-Operation.gif){ width="600" }
             </figure>
 
+    <roomosdoc>xEvent UserInterface Message Prompt Response</roomosdoc>
 
 ??? lesson "Lesson: Unsubscribing to an xEvent ~({{config.cProps.rxp.sectionIds.ssh}}.6.2)~"
 
@@ -1067,6 +1089,8 @@
         - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
             - Under the xEvents Page, click either the `Prompt`, the `TextInput`, the `Rating` or the `Alert` button in the <hl_0>UserInterface Message</hl_0> row and submit any accompanying actions in that interface
             - Observe your <hl_6>Terminal Window's</hl_6> output, those responses you saw in the previous lesson should have stopped outputting in your <hl_6>Terminal Window</hl_6>
+
+    <roomosdoc>xEvent UserInterface Message Prompt Response</roomosdoc>
 
 ??? lesson "Lesson: Subscribe to Multiple xEvents under a Common Node ~({{config.cProps.rxp.sectionIds.ssh}}.6.3)~"
 
@@ -1085,7 +1109,7 @@
         - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
             - Under the xEvents Page, try any of the `Widgets` on this page, and submit any accompanying actions in that interface if any
             - Observe your <hl_6>Terminal Window's</hl_6> output, you should see events for your Subscription fill the <hl_6>Terminal Window</hl_6>
-                - <hl_3>Optional</hl_3>: Try all of the `Widget` on that page :smiley:
+                - <hl_3>Optional</hl_3>: Try all of the `Widgets` on that page :smiley:
     
         ??? gif "Click to Compare your Terminal Output"
 
@@ -1098,6 +1122,8 @@
             <figure markdown>
               ![SubAssist Operation](./images/SubscriptionAssitantMacro-Operation.gif){ width="600" }
             </figure>
+
+    <roomosdoc>xEvent UserInterface</roomosdoc>
 
 ??? lesson "Lesson: Unsubscribe from all xEvents ~({{config.cProps.rxp.sectionIds.ssh}}.6.4)~"
 
@@ -1116,11 +1142,11 @@
 
 ## **Tagging your xAPI Calls** ~({{config.cProps.rxp.sectionIds.ssh}}.7)~
 
-As you work to build your automation in a SSH terminal session, you may find yourself making multiple calls against the same path and the timing of that output may be critical of your solution.
+As you work to build your automation in a SSH terminal session, you may find yourself making multiple calls against the same path and the timing of that output may be critical for your solution.
 
 To help simplify which data belongs where, you can tag your xAPI paths with a custom value to better track your work.
 
-By appending `|resultId="myValue"` to the end of any xAPI Call, the response from that xAPI will include that resultId you assign
+By appending <hl_6>|resultId="`myValue`"</hl_6> to the end of any xAPI Call, the response from that xAPI will include that resultId you assign
 
 !!! example "Review Tagging examples below"
 
@@ -1187,38 +1213,4 @@ By appending `|resultId="myValue"` to the end of any xAPI Call, the response fro
 
 ## **Section {{config.cProps.rxp.sectionIds.ssh}} Cleanup** ~({{config.cProps.rxp.sectionIds.ssh}}.8)~
 
-!!! abstract
-
-    As we move into the rest of Part 2 of this lab, we'll cover alot of the same xAPI concepts as we had in our SSH terminal session from other integration methods available on the endpoint
-
-    To be respectful of time, we'll only cover the minimum needed in those other integration methods, know if there is an xAPI accessible, there is a way from nearly all integration methods
-
-!!! important
-
-    - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
-    - Under the ==Section Cleanup== Page, select the ==Run Section Cleanup?== button
-    - Select ==Yes, Run the Cleanup Script==
-
-    <figure markdown="span">
-        <!-- docs/Main-Lab/RoomOS/rxp_xapi/ -->
-      ![Section cleanup](./images/SubscriptionAssitantMacro-ConfirmCleanup.png){ width="400" }
-      <figcaption>Section Cleanup Confirmation</figcaption>
-    </figure>
-
-    This will reverse the changes we've made to the endpoint, and leave us ready for the next section
-
-
-    ??? question "You can run the cleanup via the terminal as well"
-
-        Copy the contents below into your terminal window and run them all at once
-
-        ```shell title="Type into terminal and press Enter"
-        xFeedback DeregisterAll
-        xConfig Audio DefaultVolume: 50
-        xCommand UserInterface Extensions Panel Remove PanelId: wx1_lab_multilineCommand
-        xCommand Video SelfView Set Mode: Off FullscreenMode: Off
-        xCommand Video Input SetMainVideoSource ConnectorId: 1
-        xCommand Audio Volume SetToDefault Device: Internal
-        ```
-    
-    Feel free to close your Terminal Window
+{{config.cProps.rxp.sectionCleanup}}
