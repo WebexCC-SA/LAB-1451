@@ -125,18 +125,26 @@ Output
     &lt;highlight_5&gt;highlight_5 introduces a new color for highlighting&lt;/highlight_5&gt;
     &lt;highlight_6&gt;highlight_6 introduces a new color for highlighting&lt;/highlight_6&gt;
     &lt;highlight_7&gt;highlight_7 introduces a new color for highlighting&lt;/highlight_7&gt;
+    <br><\!-- Shorthand Versions of Each Tag added --><br>
+    &lt;hl_0&gt;The hl_0 tag mimics the original MK Docs Colors but matches the styling to the new highlights&lt;/hl_0&gt;
+    &lt;hl_1&gt;hl_1 introduces a new color for highlighting&lt;/hl_1&gt;
+    &lt;hl_2&gt;hl_2 introduces a new color for highlighting&lt;/hl_2&gt;
+    &lt;hl_3&gt;hl_3 introduces a new color for highlighting&lt;/hl_3&gt;
+    &lt;hl_4&gt;hl_4 introduces a new color for highlighting&lt;/hl_4&gt;
+    &lt;hl_5&gt;hl_5 introduces a new color for highlighting&lt;/hl_5&gt;
+    &lt;hl_6&gt;hl_6 introduces a new color for highlighting&lt;/hl_6&gt;
+    &lt;hl_7&gt;hl_7 introduces a new color for highlighting&lt;/hl_7&gt;
     </code></pre>
 
     !!! success "Rendered Results"
 
         To use additional custom highlighting, do the following with your text
-
         
-        <highlight_0>The highlight_0 tag mimics the original MK Docs Colors but matches the styling to the new highlights</highlight_0><br>
-        <highlight_1>highlight_1 introduces a new color for highlighting</highlight_1><br>
-        <highlight_2>highlight_2 introduces a new color for highlighting</highlight_2><br>
-        <highlight_3>highlight_3 introduces a new color for highlighting</highlight_3><br>
-        <highlight_4>highlight_4 introduces a new color for highlighting</highlight_4><br>
-        <highlight_5>highlight_5 introduces a new color for highlighting</highlight_5><br>
-        <highlight_6>highlight_6 introduces a new color for highlighting</highlight_6><br>
-        <highlight_7>highlight_7 introduces a new color for highlighting</highlight_7>
+        <highlight_0>The highlight_0 or hl_0 tag mimics the original MK Docs Colors but matches the styling to the new highlights</highlight_0><br>
+        <highlight_1>highlight_1 or hl_1 introduces a new color for highlighting</highlight_1><br>
+        <highlight_2>highlight_2 or hl_2 introduces a new color for highlighting</highlight_2><br>
+        <highlight_3>highlight_3 or hl_3 introduces a new color for highlighting</highlight_3><br>
+        <highlight_4>highlight_4 or hl_4 introduces a new color for highlighting</highlight_4><br>
+        <highlight_5>highlight_5 or hl_5 introduces a new color for highlighting</highlight_5><br>
+        <highlight_6>highlight_6 or hl_6 introduces a new color for highlighting</highlight_6><br>
+        <highlight_7>highlight_7 or hl_7 introduces a new color for highlighting</highlight_7>

@@ -119,9 +119,9 @@ nav:
         - Quick Dial Button <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.quickDial }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Quick_Dial_Button.md
         - Camera Compositions <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.cameraComposition }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Camera_Compositions.md
         - Codec to Codec Communication <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.codecToCodec }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Codec_To_Codec_Comms.md
-  - "PhoneOS xAPI&nbsp<i class=\"fa-solid fa-phone\" style=\"color: #00c753;\"></i>": 
-    - PhoneOS Introduction: Main-Lab/PhoneOS/pxp_intro.md
-    - PhoneOS Lab Prerequisites: Main-Lab/PhoneOS/pxp_prerequisites.md
+  # - "PhoneOS xAPI&nbsp<i class=\"fa-solid fa-phone\" style=\"color: #00c753;\"></i>": 
+  #   - PhoneOS Introduction: Main-Lab/PhoneOS/pxp_intro.md
+  #   - PhoneOS Lab Prerequisites: Main-Lab/PhoneOS/pxp_prerequisites.md
     # - PhoneOS Conclusion: Main-Lab/Deployment/dep_conclusion.md
   - "Deployment&nbsp<i class=\"fa-solid fa-cloud-arrow-up\" style=\"color: #ff0000;\"></i>": 
     - Deployment Introduction: Main-Lab/Deployment/dep_intro.md
@@ -172,11 +172,42 @@ cProps:
     *[WSS]: WebSocket Secure
     *[UI]: User Interface
     *[PiP]: Picture in Picture
+    *[PIP]: Picture in Picture
+    *[MainSource]: Your camera feed rendered in SelfView or sent to the Far End of a Video Call
   rxp:
     x: placeholder
     name: RoomOS xAPI & Extensions
     secNotice: |
-  
+    sectionCleanup: |         
+      !!! important
+
+          - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
+          - Under the <hl_3>Section Cleanup</hl_3> Page, select the <hl_0>Run Section Cleanup?</hl_0> button
+          - Select <hl_7>Yes, Run the Cleanup Script</hl_7>
+
+          <figure markdown="span">
+              <!-- docs/Main-Lab/RoomOS/rxp_xapi/ -->
+            ![Section cleanup](./images/SubscriptionAssitantMacro-ConfirmCleanup.png){ width="400" }
+            <figcaption>Section Cleanup Confirmation</figcaption>
+          </figure>
+
+          This will reverse the changes we've made to the endpoint, and leave us ready for the next section
+
+
+          ??? question "You can run the cleanup via the terminal as well"
+
+              Copy the contents below into your terminal window and run them all at once
+
+              ```shell title="Type into terminal and press Enter"
+              xFeedback DeregisterAll
+              xConfiguration Audio DefaultVolume: 50
+              xCommand UserInterface Extensions Panel Remove PanelId: wx1_lab_multilineCommand
+              xCommand Video SelfView Set Mode: Off FullscreenMode: Off
+              xCommand Video Input SetMainVideoSource ConnectorId: 1
+              xCommand Audio Volume SetToDefault Device: Internal
+              ```
+          
+          Feel free to close your Terminal Window
     sectionIds:
       ssh: rxp-1
       serial: rxp-2

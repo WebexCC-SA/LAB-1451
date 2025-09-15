@@ -29,7 +29,15 @@ function applyCustomHighlights() {
         'highlight_4': 'custom-highlight-4',
         'highlight_5': 'custom-highlight-5',
         'highlight_6': 'custom-highlight-6',
-        'highlight_7': 'custom-highlight-7'
+        'highlight_7': 'custom-highlight-7',
+        'hl_0': 'custom-highlight-0',
+        'hl_1': 'custom-highlight-1',
+        'hl_2': 'custom-highlight-2',
+        'hl_3': 'custom-highlight-3',
+        'hl_4': 'custom-highlight-4',
+        'hl_5': 'custom-highlight-5',
+        'hl_6': 'custom-highlight-6',
+        'hl_7': 'custom-highlight-7'
     };
 
     // Iterate over each custom tag type
