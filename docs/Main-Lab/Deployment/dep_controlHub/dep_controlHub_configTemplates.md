@@ -46,7 +46,7 @@
       <figcaption></figcaption>
     </figure>
     
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.5</highlight_1> Name your template Wbx1LabTemplate<yourPodNumber> and select Next. 
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.5</highlight_1> Name your template Wbx1LabTemplate"yourPodNumber" and select Next. 
     For example Wbx1LabTemplate101.
     
     <figure markdown="span">
@@ -69,8 +69,14 @@
       <figcaption></figcaption>
     </figure>
     
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.9</highlight_1> Once you have set Audio to 60 select "All" to go back to the configuration search
-    
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.9</highlight_1> Once you have set Audio to 60 select "All" from the
+    setting breadcrumb links to go back to the configuration search
+
+    <figure markdown="span">
+      ![Setting breadcrumb](images/dep-1-2-9.png){ width="300" }
+      <figcaption></figcaption>
+    </figure>
+
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.10</highlight_1> In the Search by configuration name type Macro
     
     <figure markdown="span">

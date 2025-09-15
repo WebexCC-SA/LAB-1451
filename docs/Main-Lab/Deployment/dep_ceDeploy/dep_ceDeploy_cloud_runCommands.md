@@ -21,7 +21,8 @@
 
 ??? lesson "{{config.cProps.dep.sectionIds.cD}}.3 Lab"
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.3.1</highlight_1> Open Ce-deploy and load the environment your created in the last lab.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.3.1</highlight_1> Open Ce-deploy and load the environment your 
+    created in the last lab if its not already loaded.
     
     ??? cedeploy "Loading Environments"
     
@@ -62,10 +63,36 @@
     In this case what is returned is the system time running on the endpoints.
     
     <figure markdown="span">
-      ![Message Console](images/5-2-8.png){ width="300" }
+      ![Message Console](images/dep-2-3-8.png){ width="300" }
       <figcaption></figcaption>
     </figure>
 
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.3.9</highlight_1> Switch back to CE-Deploy staying in XAPI abd select
+    the =="Command Builder"== button. This launches the Command Builder window. This allows us to search for commands based
+    on the command syntex.
+
+    <figure markdown="span">
+      ![Command Builder](images/dep-2-3-9.png){ width="300" }
+      <figcaption></figcaption>
+    </figure>
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.3.10</highlight_1> In the search area type "macros log" and select the
+    Macros Log Get command.
+
+    <figure markdown="span">
+      ![Command Builder Macro Log Command](images/dep-2-3-10.png){ width="300" }
+      <figcaption></figcaption>
+    </figure>   
+    
+    Click =="Insert"==. You should now see the command populate the main XAPI Command area. You should also take note that
+    the Recents drop down is now populated with the last command you ran. This just makes life a little easier to access
+    commands you repeatedly run.
+
+    <figure markdown="span">
+      ![Command Builder Macro Log Command Recents](images/dep-2-3-10b.png){ width="300" }
+      <figcaption></figcaption>
+    </figure> 
+    
     !!! Success
     
         This concludes this section. While this is a simple use case, any xAPI command can be run in this fashion 

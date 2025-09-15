@@ -41,7 +41,11 @@
       <figcaption></figcaption>
     </figure>
     
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.2.4</highlight_1> In the environment name section, name your environment =="EnvLab"== and click =="save Environment"==.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.2.4</highlight_1> In the Environment Name section, enter EnvLab and 
+    click Save Environment. The new environment is now saved, but the default will continue to be used unless you load 
+    the newly saved environment token. With this setup, you can control which Control Hub instance to deploy to. If you 
+    have multiple Control Hub instances, simply switch between different environments as you save them. Token refresh is 
+    automatic but can also be done manually after the environment is loaded.
     
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.2.5</highlight_1> To load our new environment, use the dropdown in the Environment loading section and select your 
     new Environment  and select =="Load Environment"==.

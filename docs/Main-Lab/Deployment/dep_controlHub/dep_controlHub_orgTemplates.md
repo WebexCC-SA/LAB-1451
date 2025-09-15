@@ -71,9 +71,9 @@
 
     !!! Success
     
-        Congrats you have now viewed an org-wide configuration template. Now every time a new 
-        device is added to this organization by default the settings from org-wide defaults will be applied.
-        be set to on unless a more specific location or device configuration supersedes it.
+        Congratulations! You’ve just viewed an organization-wide configuration template. From now on, whenever a new 
+        device is added to this organization, the org-wide default settings will be applied automatically. These settings 
+        will remain in effect unless overridden by a more specific location or device configuration.
     
         <figure markdown="span">
             ![Congrats](images/4-3-8.png){ width="300" }

@@ -47,8 +47,8 @@
       <figcaption></figcaption>
     </figure>
     
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.9</highlight_1> Select -> Choose a File and navigate to Post_Meeting_Survey_Macro.js. If the file is not available 
-    copy the javascript below, paste into a text editor of your choice and save it as a .js file named Post_Meeting_Survey_Macro.js.
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.6.9</highlight_1> Copy the javascript below, paste into a text editor 
+    of your choice and save it as a .js file named Post_Meeting_Survey_Macro.js.
     
     ```javascript title="Post_Meeting_Survey_Macro.js" linenums="1"
     import xapi from 'xapi';
@@ -151,6 +151,8 @@
         }
     })
     ```
+    Return to the add macro browser and Select -> Choose a File and navigate to Post_Meeting_Survey_Macro.js.
+    
     <figure markdown="span">
       ![Save Macro](images/4-6-9.png){ width="300" }
       <figcaption></figcaption>

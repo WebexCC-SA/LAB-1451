@@ -55,4 +55,5 @@
     
         Well done. While this is a simple example we will dive a little deeper next with using 
         the same method to deploy extensions so don’t stray to far. Cancel out the Time > DateTime > Get 
-        text in the search bar by using the x button on the left hand side of the text box.
+        text in the search bar by using the x button on the left hand side of the text box and do not move a muscle. 
+        We are jumping straight into our next lab Deploy UI Extensions <highlight_1>{{config.cProps.dep.sectionIds.cH}}.5</highlight_1>

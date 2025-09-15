@@ -7,7 +7,8 @@
     Adding custom buttons can be achieved in several ways, including via the API, embedded in a macro
     , the web admin portal on the device, Control Hub, or CE-Deploy. Regardless of the method you 
     choose, all approaches yield the same outcome. In our labs, we will try using Control Hub and 
-    then CE-Deploy.
+    then CE-Deploy. Make sure to complete lab <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4</highlight_1> before 
+    continuing with this lab. The Run Commands lab lays the foundation for this lab.
 
 ??? lesson "{{config.cProps.dep.sectionIds.cH}}.5 Lab"
 
@@ -26,8 +27,10 @@
       <figcaption></figcaption>
     </figure>
     
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.5.3</highlight_1> Use Post_Meeting_Survey as the PanelId. Open Post_Meeting_Survey.xml or copy the xml below in a 
-    text editor then copy and paste the Post_Meeting_Survey.xml text into the Body section.
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.5.3</highlight_1> Use Post_Meeting_Survey as the PanelId. 
+    Open Post_Meeting_Survey.xml in a text editor, or copy the XML provided below. Then, paste the contents of 
+    Post_Meeting_Survey.xml into the Body section. To make this easier, you can also use the copy button located on the 
+    right of any text section.
     
     ```xml title="Post_Meeting_Survey_Macro.xml" linenums="1"
     <Extensions>
