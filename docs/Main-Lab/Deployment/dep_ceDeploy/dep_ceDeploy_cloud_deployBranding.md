@@ -126,5 +126,5 @@
         Congrats you just deployed your QR file as a logo using branding to your endpoint. You should now see
         the QR on the screen of your endpoint home screen. This was a pretty simple example, but as you can imagine 
         if you have 100's or 1000's of endpoints to deploy new branding assets to this could save 
-        hours of work. By using tags to deploy your branding you can now see how effect filtering is. 
+        hours of work. By using tags to deploy your branding you can now see how effective filtering is. 
         You could deploy unique branding assets to different devices based on the tags you create.
