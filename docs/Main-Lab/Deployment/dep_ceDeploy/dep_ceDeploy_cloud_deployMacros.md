@@ -64,10 +64,15 @@
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.6</highlight_1> Select ==Customizations->Macros== from the deployment features panel.
     
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.7</highlight_1> Using the Macros deployment feature we can easily deploy a macro to hundreds of endpoints in minutes.
-    Name your macro LaunchHalfwake and use the Macro Javascript File Browse button to select 
+    Name your macro ==LaunchHalfwake== and use the Macro Javascript File Browse button to select 
     the js file you create just moments ago.
     
     Ensure the ==Activate on deployment== checkbox is selected.
+
+    <figure markdown="span">
+      ![Deployment Setup](images/dep-2-5-7.png){ width="300" }
+      <figcaption></figcaption>
+    </figure>
     
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.8</highlight_1> Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.
     
@@ -85,7 +90,7 @@
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.12</highlight_1> The Message Console will now appear, you can follow along the deployment process.
     
     <figure markdown="span">
-      ![Message Console](images/4-10-12.png){ width="300" }
+      ![Message Console](images/dep-2-5-12.png){ width="300" }
       <figcaption></figcaption>
     </figure>
 
@@ -100,7 +105,7 @@
     xCommand Macros Runtime Restart
     ```
     <figure markdown="span">
-      ![xCommand](images/4-10-15.png){ width="300" }
+      ![xCommand](images/dep-2-5-14.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
