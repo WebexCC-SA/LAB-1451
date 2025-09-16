@@ -1,4 +1,3 @@
-{{ config.cProps.devNotice }}
 {{ config.cProps.acronyms }}
 # Deploy Extensions via CE-Deploy
 
@@ -43,7 +42,7 @@
       </Panel>
     </Extensions>
     ```
-    It should look something like this, ignore that the current file is called "New Macro.js". When we save it further on 
+    It should look something like this, ignore that the current file is called ==New Macro.js==. When we save it further on 
     the file name will be updated:
     
     <figure markdown="span">
@@ -51,24 +50,25 @@
       <figcaption></figcaption>
     </figure>
     
-    Save the xml file by clicking the "Save As" button and name your file "LaunchHalfWake.xml". Don't forget to change 
-    file extension:
+    Save the xml file by clicking the ==Save As== button and name your file ==LaunchHalfWake.xml==. Don't forget to change 
+    the file extension to .xml:
 
     <figure markdown="span">
       ![Save XML File](images/dep-2-6-2b.png){ width="300" }
       <figcaption></figcaption>
     </figure>
 
-    You should now see the file under the file manager in the left hand pane. Use the "Select" button to navigate to your
-    desired folder.
+    You should now see the file under the file manager in the left hand pane of the Macro Editor. Use the ==Select== 
+    button to navigate to your desired folder. You wont see all your files though, the file manager filters all the files
+    based on their extension and only shows .js and .xml files.
 
     <figure markdown="span">
       ![Saved XML File](images/dep-2-6-2c.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.3</highlight_1> Now we have our xml file lets role it out to our endpoint. For a single panel in the deployment panel select 
-    ==Customizations->UIExtensions->Panel==. This allows ot deploy or update a single panel.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.3</highlight_1> Now we have our xml file lets role it out to our 
+    endpoint. For a single panel in the deployment panel select ==Customizations->UIExtensions->Panel==. This allows ot deploy or update a single panel.
     
     <figure markdown="span">
       ![Add a Panel](images/4-11-3.png){ width="300" }
@@ -105,13 +105,15 @@
         An error may occur if this check box is not selected. Just make sure that it is checked
         if you receive an error while deploying.
     
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.7</highlight_1> Press button Start Deployment.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.7</highlight_1> Press button ==Start Deployment==.
     
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.8</highlight_1> Ensure the ==Scheduler== has the ==Run Deployment Now== check box selected and click ==Next==.
     
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.6.9</highlight_1> The Message Console will now appear, you can follow along the deployment process.
+    
+    Its test time. The halfwake button should now appear on your home screen of your device.
+    Pressing the button should place your endpoint into the halfwake state.
 
     !!! Success
     
-        Its test time. The halfwake button should now appear on your home screen of your device. 
-        Pressing the button should place your endpoint into the halfwake state.
+        You now have a working Macro and Extension. Look at you go.

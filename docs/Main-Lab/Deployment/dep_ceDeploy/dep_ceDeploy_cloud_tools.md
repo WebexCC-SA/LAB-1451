@@ -12,11 +12,6 @@
 ??? lesson "{{config.cProps.dep.sectionIds.cD}}.9 Lab"
 
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.9.1</highlight_1> From the ==local interface== in the deployment panel select ==Tools->SSH-TTY==.
-    
-    <figure markdown="span">
-      ![SSH Options](images/4-13-1.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
 
     !!! warning
 
@@ -27,7 +22,7 @@
     from the IP address challenge. 
     
     <figure markdown="span">
-      ![SSH Window Options](images/4-13-2.png){ width="300" }
+      ![SSH Window Options](images/dep-2-9-1.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
@@ -42,4 +37,4 @@
     !!! Success
     
         Once you have tried a few commands type in ==Bye== command and the window 
-        will automatically close.
+        will automatically close. Lets switch back to Cloud now ready for our next lab.

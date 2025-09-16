@@ -122,4 +122,4 @@
     !!! Success
     
         All done. Congrats, you have now seen the most commonly used functions in CE-Deploy, but there 
-        is still plenty to explore. Stay on the local tab as we dive in deep to some lesser known features.
+        is still plenty to explore. Stay on the ==local tab== as we dive in deep to some lesser known features.
