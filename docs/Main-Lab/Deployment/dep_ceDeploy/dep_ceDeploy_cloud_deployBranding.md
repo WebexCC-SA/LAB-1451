@@ -51,7 +51,7 @@
     ==Tools->QRCode==.
     
     <figure markdown="span">
-      ![QRCode Panel](images/4-9-4.png){ width="300" }
+      ![QRCode Panel](images/dep-2-4-4.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
@@ -74,7 +74,7 @@
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.6</highlight_1> Once you have picked your options select ==Process QRCode==.
     
     <figure markdown="span">
-      ![QRCode](images/4-9-6.png){ width="300" }
+      ![QRCode](images/dep-2-4-6.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
@@ -114,10 +114,12 @@
     
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.13</highlight_1> Ensure the ==Scheduler== has the ==Run Deployment Now== check box selected and click ==Next==.
     
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.14</highlight_1> The Message Console will now appear, you can follow along the deployment process.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.14</highlight_1> The Message Console will now appear, you can 
+    follow along the deployment process. Depending on file size this may take a little while, so be patient as it completes
+    the deployment.
     
     <figure markdown="span">
-      ![Message Console](images/4-9-13.png){ width="300" }
+      ![Message Console](images/dep-2-4-14.png){ width="300" }
       <figcaption></figcaption>
     </figure>
 

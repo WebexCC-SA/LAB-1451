@@ -84,22 +84,39 @@
       <figcaption></figcaption>
     </figure>   
     
-    Click =="Insert"==. You should now see the command populate the main XAPI Command area. You should also take note that
+    Click ==Insert==. You should now see the command populate the main XAPI Command area. You should also take note that
     the Recents drop down is now populated with the last command you ran. This just makes life a little easier to access
     commands you repeatedly run.
 
     <figure markdown="span">
       ![Command Builder Macro Log Command Recents](images/dep-2-3-10b.png){ width="300" }
       <figcaption></figcaption>
-    </figure> 
+    </figure>
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.3.11</highlight_1> Click ==Start Deployment==. You should see the Macro
+    logs being pulled from each endpoint in the Org. To narrow the amount of data you can use your tag under the deployment
+    options.
+
+    <figure markdown="span">
+      ![Macro logs command](images/dep-2-3-11.png){ width="300" }
+      <figcaption></figcaption>
+    </figure>    
     
+    The message console should now populate with the log data.
+
+    <figure markdown="span">
+      ![Macro logs command data](images/dep-2-3-12.png){ width="300" }
+      <figcaption></figcaption>
+    </figure>
+
     !!! Success
     
-        This concludes this section. While this is a simple use case, any xAPI command can be run in this fashion 
-        including multiline commands that contain a body section.
+        This concludes this section. Now that you know how to find and run commands feel free to try a few more commands
+        from the command builder. Make sure to stick with your pod's tag if making changes to your endpoint. Using the Org ID
+        deployment option will make a change to every endpoint in the Control Hub Org.
 
     ??? challenge "Running a xStatus Command"
 
         Now that you know how to run a xCommand, can you work out how to run a xStatus command?
         
-        Find a command at [RoomOS](roomos.cisco.com)
+        Find a command at [RoomOS](roomos.cisco.com) or use the Command Builder in CE-Deploy.
