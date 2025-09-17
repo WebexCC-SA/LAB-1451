@@ -28,6 +28,15 @@
     
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.9.3</highlight_1> Select ==Connect==. The terminal will appear in a new Window and you can start 
     interacting with it.
+
+    Commands to try:
+
+    | `Command`                    |
+    |------------------------------|
+    | `xCommand ?`                 |
+    | `xCommand Time DateTime Get` |
+    | `xConfiguration ?`           |
+    | `xConfiguration NetworkServices Websocket`|
     
     <figure markdown="span">
       ![Window](images/4-13-3.png){ width="300" }
@@ -36,5 +45,5 @@
 
     !!! Success
     
-        Once you have tried a few commands type in ==Bye== command and the window 
+        Once you have tried a few commands type in the ==Bye== command and the window 
         will automatically close. Lets switch back to Cloud now ready for our next lab.
