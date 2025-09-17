@@ -20,19 +20,49 @@
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.10.2</highlight_1> Select the ==Dashboards== tab and the from the 
     ==Deployment Options== drop down select ==Org Id==. The Org Id will auto populate.
 
-    Next select ==Inventory== from the Dashboards panel.
+    Next, select ==Inventory== from the Dashboards panel.
 
     <figure markdown="span">
-      ![Inventory](images/dep-2-10-1.png){ width="300" }
+      ![Inventory](images/dep-2-10-2.png){ width="300" }
       <figcaption></figcaption>
     </figure>
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.10.1</highlight_1>
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.10.1</highlight_1>
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.10.1</highlight_1>
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.10.1</highlight_1>
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.10.1</highlight_1>
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.10.1</highlight_1>
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.10.3</highlight_1> A new window will open with a view into every endpoint
+    in your Control Hub Org. 
+
+    <figure markdown="span">
+      ![Inventory](images/dep-2-10-3.png){ width="300" }
+      <figcaption></figcaption>
+    </figure>
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.10.4</highlight_1> Explore the types of data it makes accessible.
+    Some examples are Serial Numbers, Year of Manufactor and if a touch panel is present its compatibility to MTR.
+
+    <figure markdown="span">
+      ![Inventory data](images/dep-2-10-4.png){ width="300" }
+      <figcaption></figcaption>
+    </figure>
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.10.5</highlight_1> Close the Inventory window.
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.10.6</highlight_1> Click the Dashboard button button in the 
+    Dashboards pane. Ensure that Org Id is still the selected Deployment Option. If you click away frolm the Dashboards pane
+    this will revert back to the default blank choice.
+
+    <figure markdown="span">
+      ![Inventory data](images/dep-2-10-6.png){ width="300" }
+      <figcaption></figcaption>
+    </figure>
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.10.7</highlight_1> Notice the data available. Some examples are 
+    active call status even in MTR mode, upgrade channel and any current errors.
+
+    <figure markdown="span">
+      ![Inventory data](images/dep-2-10-7.png){ width="300" }
+      <figcaption></figcaption>
+    </figure>
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.10.8</highlight_1> Close the Dashboard window.
 
     !!! Success
 
