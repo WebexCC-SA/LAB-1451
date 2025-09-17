@@ -1,4 +1,3 @@
-{{ config.cProps.devNotice }}
 {{ config.cProps.acronyms }}
 # Deploy Branding via CE-Deploy
 

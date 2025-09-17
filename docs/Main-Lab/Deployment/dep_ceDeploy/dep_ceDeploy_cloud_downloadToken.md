@@ -1,4 +1,3 @@
-{{ config.cProps.devNotice }}
 {{ config.cProps.acronyms }}
 # Download a Webex token and create an Environment in CE-Deploy
 

@@ -1,4 +1,3 @@
-{{ config.cProps.devNotice }}
 {{ config.cProps.acronyms }}
 # Building and deploying Org-Wide configuration templates via Control Hub
 

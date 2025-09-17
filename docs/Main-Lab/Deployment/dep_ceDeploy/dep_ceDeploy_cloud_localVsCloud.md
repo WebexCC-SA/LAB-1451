@@ -1,4 +1,3 @@
-{{ config.cProps.devNotice }}
 {{ config.cProps.acronyms }}
 # Switch Between Deploying via Cloud xAPI and Local xAPI
 
