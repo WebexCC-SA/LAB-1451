@@ -174,6 +174,8 @@ cProps:
     *[PiP]: Picture in Picture
     *[PIP]: Picture in Picture
     *[MainSource]: Your camera feed rendered in SelfView or sent to the Far End of a Video Call
+    *[URL]: Uniform Resource Locator
+    *[XML]: Extensible Markup Language
   rxp:
     x: placeholder
     name: RoomOS xAPI & Extensions

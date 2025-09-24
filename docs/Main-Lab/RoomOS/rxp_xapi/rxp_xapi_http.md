@@ -4,49 +4,49 @@
 
 !!! abstract
 
-    Like we can with SSH, the xAPI can be accessed via the HTTP protocol. What we'll do in this section is run through the same commands, configs, statuses and events as we did in the SSH section, but the techniques involved executed in a different manner
+    In this section, we'll dive into the various pieces of the RoomOS Device xAPI stack and how to make use of them in various ways over the Hypertext Transfer Protocol (HTTP) using local authentication on a Cisco RoomOS Device.
+
+    Here, we'll see the relationships between HTTP and SSH on how to structure an xConfiguration, xCommand, xStatus and xEvents to a Cisco RoomOS device
 
 
-!!! important "Section Requirements"
+## Section {{config.cProps.rxp.sectionIds.http}} Requirements
 
-    Postman should have been installed on your loaner laptop, make sure it is
-    
-    - If Postman is **==NOT==** installed, be sure to install it before continuing section {{config.cProps.rxp.sectionIds.http}}
+!!! important ""
 
-    We'll also be leveraging a Webhook testing site, make sure you have that open in another tab/window as well
+    !!! note inline end
 
-    <div class="grid cards" markdown>
+        This lab assumes you have access to a Cisco RoomOS Device that is already setup and ready for use. If your device is not registered and online, please do so before beginning
 
-    -   <i class="fa-solid fa-download"></i> __Click the icon below for the Postman Download Page__
+    **Hardware**
 
-          ---
+    - A Laptop
+    - A Cisco Desk, Board or Room Series Device running the most recent On Premise or Cloud Stable software
+        - A Touch Controller is required when working on a Room Series Device. Either Room navigator or 3rd part touch display
+        - Preferred Device: Cisco Desk Pro
+    - A minimum of 1 camera (Either Integrated or External)
 
-          <a href="https://www.Postman.com/downloads/" target="_blank">
-            <figure markdown="span">
-                ![Postman Download](https://voyager.postman.com/logo/postman-logo-icon-orange.svg){ width="75" }
-            </figure>
-          </a>
-    
-    -   <i class="fa-solid fa-download"></i> __Click the icon below for the Section {{config.cProps.rxp.sectionIds.http}} Postman Collection__
+    **Software**
 
-        ---
+    - Laptop
+        - Recommended Browser: Chrome or Firefox
+        - Postman
+        - Section {{config.cProps.rxp.sectionIds.http}} Postman Collection
+        - Webhook.site
 
-        <a href="https://github.com/WebexCC-SA/LAB-1451/raw/refs/heads/main/docs/assets/downloadable_resources/PostMan%20Collections/WX1-Lab-1451-HTTP-PostMan-Collection.postman_collection.zip" target="_blank">
-          <figure markdown="span">
-              ![Postman Collection](https://voyager.postman.com/logo/postman-logo-icon-orange.svg){ width="75" }
-          </figure>
-        </a>
+    - RoomOS Device
+        - Either the current On Premise or Cloud Stable release
 
-    -   <i class="fa-solid fa-globe"></i> __Click the icon below for the WebHook Site__ <br><br>
 
-        ---
-        <a href="https://webhook.site/" target="_blank">
-          <figure markdown="span">
-            ![Webhook.site](https://cdn.webhook.site/icon.png){ width="75" }
-          </figure>
-        </a>
+## Section {{config.cProps.rxp.sectionIds.http}} Setup
 
-    </div>
+!!! important ""
+
+    - Download and install [Postman <i class="fa-solid fa-square-up-right"></i>](https://www.postman.com/downloads/){ "target": "blank" }
+        - If joining this lab at a Cisco or Webex Event, this software comes pre-installed on your loaner laptop
+    - Download and install the [Postman Collection for section {{config.cProps.rxp.sectionIds.http}} <i class="fa-solid fa-square-up-right"></i>](#){ "target": "blank" }
+        - These a pre-made paths made specifically for this lab
+        - These will be used to interact with the device
+    - In another tab, open [https://webhook.site <i class="fa-solid fa-square-up-right"></i>](https://webhook.site){ "target": "blank" }
 
 ## **HTTP Authentication and Format** ~({{config.cProps.rxp.sectionIds.http}}.1)~
 
@@ -56,52 +56,56 @@
 
     The request URL for your Codec will change depending on whether you're making a Get or Post Call
 
+    Click the tabs below to see an example of each URL structure
+
     !!! example ""
 
-        === "Get Url"
+        === "Get URL"
 
-            https://[YOUR_DEVICE_IP]/==getxml?location=[YOUR_XAPI_PATH_BODY]==
+            https://[YOUR_DEVICE_IP]/<hl_0>getxml?location=[YOUR_XAPI_PATH_BODY]</hl_0>
 
-        === "Post Url"
+        === "Post URL"
 
-            https://[YOUR_DEVICE_IP]/==putxml==
+            https://[YOUR_DEVICE_IP]/<hl_0>putxml</hl_0>
 
 
     - - -
 
     <h4>Authentication Format ~({{config.cProps.rxp.sectionIds.http}}.1.2)~</h4>
 
-    The Codec uses basic authentication to accept incoming HTTP requests. This authentication is formatted in base64 with it's username and password concatenated as a single string separated by a colon ==:==
+    When using HTTP to talk to a Cisco RoomOS Device locally, the device uses basic authentication to accept those requests. This authentication is formatted in base64 with it's username and password concatenated as a single string separated by a colon <hl_4>**:**</hl_4>
 
-    !!! example "Click on the tabs below to see how an example Username and Password transitions to base64"
+    !!! example "Click on the tabs below to see how a Username and Password transitions to an encoded base64 string"
 
-        === "Base Credentials >"
+        === "Device Credentials >"
 
-            **Username**: ==admin==
+            **Username**: <hl_0>admin</hl_0>
             <br>
-            **Password**: ==admin1234==
+            **Password**: <hl_7>admin1234</hl_7>
 
         === "Decoded String >"
 
-            ==admin:admin1234==
+            <hl_0>admin</hl_0><hl_4>**:**</hl_4><hl_7>admin1234</hl_7>
             <br>
             <br>
 
-        === "Base64 Encoded String >"
+        === "Encoded Base64 String >"
 
-            ==YWRtaW46YWRtaW4xMjM0==
+            <hl_5>YWRtaW46YWRtaW4xMjM0</hl_5>
             <br>
             <br>
 
         === "Authorization Request Header"
 
-            "Authorization": "Basic ==YWRtaW46YWRtaW4xMjM0=="
+            "Authorization": "Basic <hl_5>YWRtaW46YWRtaW4xMjM0</hl_5>"
             <br>
             <br>
 
     - - -
 
     <h4>Request Headers ~({{config.cProps.rxp.sectionIds.http}}.1.3)~</h4>
+
+    HTTP Requests have a myriad of headers that could be used, and this is usually defined by the device or service you're communicating with. For Cisco RoomOS devices using local authentication your requests will use the following headers
 
     Your Get and Post requests will use this Authorization in one of its 2 headers
 
@@ -112,50 +116,72 @@
 
     - - -
 
-    <h4>Body Format ~({{config.cProps.rxp.sectionIds.http}}.1.4)~</h4>
+    <h4>URL Parameter Format ~({{config.cProps.rxp.sectionIds.http}}.1.4)~</h4>
 
-    To target a specific path, you need to provide a body to either your Get or Post request
+    When retrieving xStatus or xConfiguration information, you'll perform an HTTP Get request. Get requests using HTTP and local authentication will target this base url
 
-    Get Requests define their xAPI in the ==location== parameter in the Url itself
+    <pre><code>https://<hl_0>[YOUR_DEVICE_IP]</hl_0>/getxml</code></pre>
 
-    For Post requests, a body structured as XML and provided as a string is required
+    The xAPI path you want to target is then defined as a URL parameter
 
-    Here is the fully realized path for **`xConfiguration SystemUnit Name`**
+    This xAPI path is separated by a <hl_3>/</hl_3> and is placed behind the parameter <hl_6>?location=</hl_6> the prefix <hl_7>x</hl_7> is removed from that start of the xAPI Path
+
+    ??? "Click here to see the difference between a shell path and a Local HTTP Get Path"
+
+        === "Shell Path"
+            <pre class="no-copy-code-button"><code> <hl_7>x</hl_7><hl_1>Path Bookings Current Id</hl_1> </code></pre>
+
+        === "Local HTTP GET Path"
+            <pre class="no-copy-code-button"><code>https://<hl_0>[YOUR_DEVICE_IP]</hl_0>/getxml?location=<hl_1>Status</hl_1><hl_3>/</hl_3><hl_1>Bookings</hl_1><hl_3>/</hl_3><hl_1>Current</hl_1><hl_3>/</hl_3><hl_1>Id</hl_1></code></pre>
 
     !!! example ""
 
-        === "Get"
+        === "xConfiguration Example"
 
-            Url: https://<highlight_0>[YOUR_DEVICE_IP]</highlight_0>/getxml?location\=<highlight_1>Configuration<highlight_3>/</highlight_3>SystemUnit<highlight_3>/</highlight_3>Name</highlight_1>
+            xAPI: xConfiguration SystemUnit Name
 
-            Body: N/A
+            URL: https://<hl_0>[YOUR_DEVICE_IP]</hl_0>/getxml?location\=<hl_1>Configuration</hl_1><hl_3>/</hl_3><hl_1>SystemUnit</hl_1><hl_3>/</hl_3><hl_1>Name</hl_1>
 
-            !!! important ""
+        === "xStatus Example"
 
-                Notice how <highlight_1>xConfiguration SystemUnit Name</highlight_1> is structured in the <highlight_5>?location</highlight_5> Url Parameter using <highlight_3>/</highlight_3> as a separator. When formatting a Get Request, the full xAPI path will go here, but be sure to remove the <highlight_7>x</highlight_7> in the Parent xAPI Path
+            xAPI: xStatus Logging ExtendedLogging Mode
 
-                - <highlight_7>x</highlight_7><highlight_1>Configuration</highlight_1><highlight_3>/</highlight_3>Child<highlight_3>/</highlight_3>Child<highlight_3>/</highlight_3>...
-                - <highlight_1>Configuration</highlight_1><highlight_3>/</highlight_3>Child<highlight_3>/</highlight_3>Child<highlight_3>/</highlight_3>...
-                - <highlight_1>Configuration<highlight_3>/</highlight_3>SystemUnit<highlight_3>/</highlight_3>Name</highlight_1>
+            URL: https://<hl_0>[YOUR_DEVICE_IP]</hl_0>/getxml?location\=<hl_1>Status</hl_1><hl_3>/</hl_3><hl_1>Logging</hl_1><hl_3>/</hl_3><hl_1>ExtendedLogging</hl_1><hl_3>/</hl_3><hl_1>Mode</hl_1>
 
-        === "Post"
+    <h4>Body Format ~({{config.cProps.rxp.sectionIds.http}}.1.5)~</h4>
 
-            Url: https://[YOUR_DEVICE_IP]/putxml
+    When issuing a change to an xConfig or issuing an xCommand, you'll perform an HTTP POST request. POST requests using HTTP and local authentication will target this base url
 
-            Body: ==<Configuration\><SystemUnit\><Name\>=={++My New System Name++}==</Name\></SystemUnit\></Configuration\>==
+    <pre><code>https://<hl_0>[YOUR_DEVICE_IP]</hl_0>/putxml</code></pre>
+    
+    The xAPI path you want to target is then defined in the body of the request
+    
+    The body is structured as XML and is formatted as a string. The entire xAPI path, parameters and any values are defined within this XML string.
 
-            !!! important ""
+    !!! example ""
 
-                With Post requests, a body payload must be provided and the xAPI path is no longer structured in the Url
+        URL: https://[YOUR_DEVICE_IP]/putxml
 
-                The body must be a String in XML format and each Path for the xAPI are instead the Opening and Closing Tags for the xAPI in question
+        Click the tabs below to see an example xConfiguration and xCommand body structured as XML
 
-                All closing tags must have a `/` added in front
+        !!! important ""
 
-                All Values are placed in between their respective parameter tags
+            === "xConfiguration Example"
 
-                Remove the `x` in the Parent xAPI Path
+                - <{--x--}{++Configuration++}></{--x--}{++Configuration++}>
+                - <{--x--}{++Command++}></{--x--}{++Configuration++}>
+                - <{--x--}{++Status++}></{--x--}{++Configuration++}>
 
+                ``` { .xml , title="Example XML Structure" } 
+                <Parent>
+                  <Child>
+                    <ChildParameter>Value<ChildParameter>
+                  </Child>
+                <Parent>
+                ```
+                
+            === "xCommand Example"
+            
                 - <{--x--}{++Configuration++}></{--x--}{++Configuration++}>
                 - <{--x--}{++Command++}></{--x--}{++Configuration++}>
                 - <{--x--}{++Status++}></{--x--}{++Configuration++}>
