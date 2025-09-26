@@ -1,7 +1,7 @@
 {{ config.cProps.devNotice }}
 {{ config.cProps.acronyms }}
 
-# **Section 2.6: Accessing the xAPI via the Macro Editor** ~(section\ {{config.cProps.rxp.sectionIds.cloud}})~
+# **Section 2.6: Accessing the xAPI via the Macro Editor** ~(section\ {{config.cProps.rxp.sectionIds.macro}})~
 
 !!! abstract
 
@@ -44,7 +44,7 @@
     </div>
 
 
-## **Enabling Macros** ~({{config.cProps.rxp.sectionIds.cloud}}.1)~
+## **Enabling Macros** ~({{config.cProps.rxp.sectionIds.macro}}.1)~
 
 !!! blank ""
 
@@ -59,7 +59,7 @@
 
         You can even run xConfigurations in bulk across your portfolio using Webex Control Hub or Ce-Deploy, both are covered in, regards to Macro Customization, part 4 of this lab.
 
-## **Navigating the Macro Editor and installing the MacroPak** ~({{config.cProps.rxp.sectionIds.cloud}}.2)~
+## **Navigating the Macro Editor and installing the MacroPak** ~({{config.cProps.rxp.sectionIds.macro}}.2)~
 
 ??? vidcast "Vidcast: Macro Editor IDE Review"
 
@@ -73,7 +73,7 @@
       <iframe src="https://app.vidcast.io/share/embed/f31a92e0-609d-430c-bb45-d834c52cb1d3" width="100%" height="100%" title="Installing MacroPak Files - WX1 2024 Lab 1451" frameborder="0" loading="lazy" allowfullscreen style="position:absolute; top:0; left: 0;border: solid; border-radius:12px;"></iframe>
     </div>
 
-## **Executing xCommands** ~({{config.cProps.rxp.sectionIds.cloud}}.3)~
+## **Executing xCommands** ~({{config.cProps.rxp.sectionIds.macro}}.3)~
 
 ???+ lesson "Lesson: Execute an xCommand"
 
@@ -570,7 +570,7 @@
 
     
 
-## **Setting, Getting and Subscribing to xConfigurations** ~({{config.cProps.rxp.sectionIds.cloud}}.4)~
+## **Setting, Getting and Subscribing to xConfigurations** ~({{config.cProps.rxp.sectionIds.macro}}.4)~
 
 !!! Abstract
 
@@ -1073,7 +1073,7 @@
           Giving Up? Check out the Challenge Answers Page <i class="fa-solid fa-square-up-right"></i>
     </a>
 
-## **Getting and Subscribing to xStatuses** ~({{config.cProps.rxp.sectionIds.cloud}}.5)~
+## **Getting and Subscribing to xStatuses** ~({{config.cProps.rxp.sectionIds.macro}}.5)~
 
 ???+ lesson "Lesson: Get an xStatus Value"
 
@@ -1397,7 +1397,7 @@
             | HH:MM:SS  | xStatuses_Lesson-4_MacroPak_2-6-5      | CameraPositions Subscription stopped!        |
 
 
-## **Subscribing to xEvents** ~({{config.cProps.rxp.sectionIds.cloud}}.6)~
+## **Subscribing to xEvents** ~({{config.cProps.rxp.sectionIds.macro}}.6)~
 
 ???+ lesson "Lesson: Subscribe and Unsubscribe to an xEvent"
 

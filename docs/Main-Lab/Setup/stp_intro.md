@@ -25,8 +25,8 @@
           <label for="password">RoomOS Device Password:</label>
           <input type="text" id="password" name="password"><br>
 
-          <label for="webexToken">Webex Developer Token:</label>
-          <input type="text" id="webexToken" name="webexToken"><br>
+          <!-- <label for="webexToken">Webex Developer Token:</label>
+          <input type="text" id="webexToken" name="webexToken"><br> -->
 
           <button id="setLabValues" onclick="setValues()">Update Lab Guide</button>
 

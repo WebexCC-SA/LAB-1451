@@ -49,7 +49,7 @@
     - In another tab, open [https://webhook.site <i class="fa-solid fa-square-up-right"></i>](https://webhook.site){ "target": "blank" }
 
 ## **HTTP Authentication and Format** ~({{config.cProps.rxp.sectionIds.http}}.1)~
-
+ 
 !!! blank ""
 
     <h4>URL Structure ~({{config.cProps.rxp.sectionIds.http}}.1.1)~</h4>

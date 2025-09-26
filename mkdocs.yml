@@ -106,9 +106,9 @@ nav:
       - What are RoomOS xAPI: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_intro.md
       - SSH <sup><sup>{{ config.cProps.rxp.sectionIds.ssh }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_ssh.md
       # - Serial <sup><sup>{{ config.cProps.rxp.sectionIds.serial }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_serial.md
-      # - HTTP <sup><sup>{{ config.cProps.rxp.sectionIds.http }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_http.md
+      - HTTP <sup><sup>{{ config.cProps.rxp.sectionIds.http }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_http.md
       # - WebSockets <sup><sup>{{ config.cProps.rxp.sectionIds.websocket }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_websockets.md
-      - Webex Cloud <sup><sup>{{ config.cProps.rxp.sectionIds.cloud }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_cloud.md
+      # - Webex Cloud <sup><sup>{{ config.cProps.rxp.sectionIds.cloud }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_cloud.md
       - Macros <sup><sup>{{ config.cProps.rxp.sectionIds.macro }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_macros.md
     - RoomOS UserInterfaces: 
       - What are RoomOS UserInterfaces: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_intro.md
@@ -118,7 +118,9 @@ nav:
     - Solution Exercises:
       - Abstract & Best Practices: Main-Lab/RoomOS/rxp_exercises/rxp_exe_intro.md
       - Macro Based Exercises: 
-        - Quick Docs <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.quickDocs }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Quick_Docs.md
+        - Quick Docs:
+          - Part 1 - Start Simple <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.quickDocs_pt1 }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Quick_Docs_PT1.md
+          - Part 2 - Optimize<sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.quickDocs_pt2 }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Quick_Docs_PT2.md
         # - Quick Dial Button <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.quickDial }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Quick_Dial_Button.md
         # - Camera Compositions <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.cameraComposition }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Camera_Compositions.md
         # - Codec to Codec Communication <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.codecToCodec }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Codec_To_Codec_Comms.md
@@ -182,7 +184,6 @@ cProps:
   rxp:
     x: placeholder
     name: RoomOS xAPI & UserInterfaces
-    secNotice: |
     sectionCleanup: |         
       !!! important
 
@@ -228,10 +229,11 @@ cProps:
       exe:
         bestPractice: rxe-0
         macros:
-          quickDocs: rxe-m1
-          quickDial: rxe-m2
-          cameraComposition: rxe-m3
-          codecToCodec: rxe-m4
+          quickDocs_pt1: rxe-m1
+          quickDocs_pt2: rxe-m2
+          quickDial: rxe-m3
+          cameraComposition: rxe-m4
+          codecToCodec: rxe-m5
   pxp:
     x: placeholder
   stp:
