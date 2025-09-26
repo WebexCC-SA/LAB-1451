@@ -1,9 +1,7 @@
 {{ config.cProps.devNotice }}
 {{ config.cProps.acronyms }}
-
-
 ## **3.2.1 - Navigating the UI Extensions Editor**
-docs/Main-Lab/RoomOS/rxp_userInterface/images/UI_Extension_Gifs
+
 !!! example "Access the UI Extensions Editor"
 
     === "Device Login"
@@ -12,7 +10,7 @@ docs/Main-Lab/RoomOS/rxp_userInterface/images/UI_Extension_Gifs
         - Login with your Username and Password
 
         <figure markdown="span">
-            ![Device Login](../images/UI_Extension_Gifs/3-2_DeviceLogin.png){ width="600" }
+            ![Device Login](../images/3-2_DeviceLogin.png){ width="600" }
             <figcaption>Device Login Page</figcaption>
         </figure>
 
@@ -21,14 +19,14 @@ docs/Main-Lab/RoomOS/rxp_userInterface/images/UI_Extension_Gifs
         - Select the UI Extensions Editor on the Left-Hand Navigation Bar
 
         <figure markdown="span">
-            ![Device Home](../images/UI_Extension_Gifs/3-2_DeviceHome.png){ width="700" }
+            ![Device Home](../images/3-2_DeviceHome.png){ width="700" }
             <figcaption>Device Home Page</figcaption>
         </figure>
 
     === "UI Extensions Editor"
 
         <figure markdown="span">
-            ![Device Login](../images/UI_Extension_Gifs/3-2_UI_Editor.png){ width="800" }
+            ![Device Login](../images/3-2_UI_Editor.png){ width="800" }
             <figcaption>UI Extensions Editor</figcaption>
         </figure>
 
@@ -41,7 +39,7 @@ docs/Main-Lab/RoomOS/rxp_userInterface/images/UI_Extension_Gifs
         !!! Gif "How to Add a Panel"
 
             <figure markdown="span">
-                ![Adding a Panel](../images/UI_Extension_Gifs/3-2_Add_UI_Panel.gif){ width="600" }
+                ![Adding a Panel](../images/3-2_Add_UI_Panel.gif){ width="600" }
                 <figcaption>Adding a new Panel</figcaption>
             </figure>
 
@@ -65,7 +63,7 @@ docs/Main-Lab/RoomOS/rxp_userInterface/images/UI_Extension_Gifs
         !!! Gif "How to Add Widgets"
 
               <figure markdown="span">
-                ![Adding Widgets](../images/UI_Extension_Gifs/3-2_Add_UI_Widgets.gif){ width="600" }
+                ![Adding Widgets](../images/3-2_Add_UI_Widgets.gif){ width="600" }
                 <figcaption>Adding bew Widgets</figcaption>
             </figure>
 
@@ -80,7 +78,7 @@ docs/Main-Lab/RoomOS/rxp_userInterface/images/UI_Extension_Gifs
         !!! Gif
 
               <figure markdown="span">
-                ![Edit Text Elements](../images/UI_Extension_Gifs/3-2_Rename_Text_Elements.gif){ width="600" }
+                ![Edit Text Elements](../images/3-2_Rename_Text_Elements.gif){ width="600" }
                 <figcaption>Editing Text Elements</figcaption>
             </figure>
 
@@ -99,7 +97,7 @@ docs/Main-Lab/RoomOS/rxp_userInterface/images/UI_Extension_Gifs
         !!! Gif
 
               <figure markdown="span">
-                ![Adding a Panel](../images/UI_Extension_Gifs/3-2_Add-Delete_Pages-Rows.gif){ width="600" }
+                ![Adding a Panel](../images/3-2_Add-Delete_Pages-Rows.gif){ width="600" }
                 <figcaption>Adding a new Panel</figcaption>
             </figure>
 

@@ -112,6 +112,7 @@ nav:
       - Macros <sup><sup>{{ config.cProps.rxp.sectionIds.macro }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_macros.md
     - RoomOS UserInterfaces: 
       - What are RoomOS UserInterfaces: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_intro.md
+      - Features <sup><sup>{{ config.cProps.rxp.sectionIds.ui.features }}</sup></sup>: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_features.md
       - Extensions <sup><sup>{{ config.cProps.rxp.sectionIds.ui.extensions }}</sup></sup>: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_extensions.md
       - Messages <sup><sup>{{ config.cProps.rxp.sectionIds.ui.messages }}</sup></sup>: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_messages.md
       - Web Content <sup><sup>{{ config.cProps.rxp.sectionIds.ui.webContent }}</sup></sup>: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_webContent.md
@@ -223,9 +224,10 @@ cProps:
       macro: rxp-6
       sdk: rxp-7
       ui:
-        extensions: rxu-1
-        messages: rxu-2
-        webContent: rxu-3
+        features: rxu-1
+        extensions: rxu-2
+        messages: rxu-3
+        webContent: rxu-4
       exe:
         bestPractice: rxe-0
         macros:
