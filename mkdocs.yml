@@ -162,6 +162,7 @@ cProps:
     roomosPass: <copy><w class="password">[ROOMOS_PASSWORD]</w></copy>
     devToken: <copy><w class="webexToken">[WEBEX_TOKEN]</w></copy>
   devNotice: | 
+  commentedDevNotice: |
     !!! important "Under Construction"
 
         This Lab is under development for Webex One 2025

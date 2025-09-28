@@ -1,6 +1,17 @@
 {{ config.cProps.devNotice }}
 {{ config.cProps.acronyms }}
-!!! important "Abstract"
+
+!!! important "Welcome"
+
+    This section of the lab consists 3 main sections. 
+
+    RoomOS xAPI will teach you to interact with the RoomOS xAPI stack from several different integration points, such as SSH, HTTP and Macros. The xAPI are the building blocks to help you bring your solution to life.
+
+    RoomOS UserInterfaces will guide you through the customizable interfaces of the device. These pieces help you communicate with your users and build new experiences.
+
+    Solution Exercises discusses best practices for developing any customization with the RoomOS xAPI and contains walkthroughs of real solutions for you to build leveraging what you learned from the RoomOS xAPI and UserInterfaces sections
+
+<!-- !!! important "Abstract"
 
     Throughout the {{ config.cProps.rxp.name }} section, we'll run through many examples on how you can interface with your Codec's xAPI through the following integration methods
 
@@ -43,4 +54,4 @@
 
     Time Permitting, certainly check out the sections on WebSockets ^{{config.cProps.rxp.sectionIds.websocket}}^ and Webex Cloud ^{{config.cProps.rxp.sectionIds.cloud}}^
 
-    Every integration method serves a purpose, whether your a customer optimizing your workflow, an integrator wanting a deeper understanding on how all these pieces connect or a partner wanting to building new opportunities for your business with Cisco RoomOS Devices
+    Every integration method serves a purpose, whether your a customer optimizing your workflow, an integrator wanting a deeper understanding on how all these pieces connect or a partner wanting to building new opportunities for your business with Cisco RoomOS Devices -->
