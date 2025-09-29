@@ -151,6 +151,7 @@ nav:
       - Tools <sup><sup>{{config.cProps.dep.sectionIds.cD}}.9</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_tools.md
       - Dashboards <sup><sup>{{config.cProps.dep.sectionIds.cD}}.10</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_dashboards.md
     - Deployment Conclusion: Main-Lab/Deployment/dep_conclusion.md
+  - Tools&nbsp<i class="fa-solid fa-gear"></i>: Main-Lab/Resources/res_tools.md
   - Resources&nbsp<i class="fa-solid fa-globe" style="color:#ffd903;"></i>: 
     - Lab Tools: Main-Lab/Resources/res_tools.md
     - Guides: Main-Lab/Resources/res_guides.md

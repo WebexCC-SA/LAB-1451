@@ -41,12 +41,44 @@
 
 !!! important ""
 
-    - Download and install [Postman <i class="fa-solid fa-square-up-right"></i>](https://www.postman.com/downloads/){ "target": "blank" }
-        - If joining this lab at a Cisco or Webex Event, this software comes pre-installed on your loaner laptop
-    - Download and install the [Postman Collection for section {{config.cProps.rxp.sectionIds.http}} <i class="fa-solid fa-square-up-right"></i>](#){ "target": "blank" }
-        - These a pre-made paths made specifically for this lab
-        - These will be used to interact with the device
-    - In another tab, open [https://webhook.site <i class="fa-solid fa-square-up-right"></i>](https://webhook.site){ "target": "blank" }
+    - If joining from a Lab at WebexOne, Postman should be installed on your loaner laptop already, if not, please install the application now using the link below
+    
+    - In addition to the Postman application, please download the Postman Collection listed below
+
+    - We'll also be leveraging a Webhook testing site, click the link below to open this is site in a new tab
+
+    <div class="grid cards" markdown>
+
+    -   <i class="fa-solid fa-download"></i> __Click the icon below for the Postman Download Page__
+
+        ---
+
+        <a href="https://www.Postman.com/downloads/" target="_blank">
+          <figure markdown="span">
+              ![Postman Download](https://voyager.postman.com/logo/postman-logo-icon-orange.svg){ width="75" }
+          </figure>
+        </a>
+    
+    -   <i class="fa-solid fa-download"></i> __Click the icon below for the Section {{config.cProps.rxp.sectionIds.http}} Postman Collection__
+
+        ---
+
+        <a href="https://github.com/WebexCC-SA/LAB-1451/raw/refs/heads/main/docs/Main-Lab/DownloadContent/PostMan%20Collections/WX1-Lab-1451-HTTP-PostMan-Collection.postman_collection.json.zip" target="_blank">
+          <figure markdown="span">
+              ![Postman Collection](https://voyager.postman.com/logo/postman-logo-icon-orange.svg){ width="75" }
+          </figure>
+        </a>
+
+    -   <i class="fa-solid fa-globe"></i> __Click the icon below for the WebHook Site__ <br><br>
+
+        ---
+        <a href="https://webhook.site/" target="_blank">
+          <figure markdown="span">
+            ![Webhook.site](https://cdn.webhook.site/icon.png){ width="75" }
+          </figure>
+        </a>
+
+    </div>
 
 ## **HTTP Authentication and Format** ~({{config.cProps.rxp.sectionIds.http}}.1)~
  
@@ -421,7 +453,7 @@ This collection has most pieces structured as we'd need it to and will be used t
 ??? gif "View Import Postman Collection"
 
     <figure markdown>
-      ![Import Lab Postman Collection](./assets/wx1_1451_part_2/2-3-2_Import-PostmanCollection.gif){ width="600" }
+      ![Import Lab Postman Collection](./images/2-3-2_Import-PostmanCollection.gif){ width="600" }
     </figure>
 
 - - -
@@ -441,7 +473,7 @@ This collection has most pieces structured as we'd need it to and will be used t
 ??? gif "View Configure Postman Collection for sections {{config.cProps.rxp.sectionIds.http}}.3 through {{config.cProps.rxp.sectionIds.http}}.5"
 
     <figure markdown>
-      ![Import Lab Postman Collection](./assets/wx1_1451_part_2/2-3-2_Configure-PostmanCollection.gif){ width="600" }
+      ![Import Lab Postman Collection](./images/2-3-2_Configure-PostmanCollection.gif){ width="600" }
     </figure>
 
 ## **Executing xCommands** ~({{config.cProps.rxp.sectionIds.http}}.3)~
@@ -457,7 +489,7 @@ This collection has most pieces structured as we'd need it to and will be used t
     !!! info inline end "XML Body Location"
 
         <figure markdown>
-          ![XML Body Location](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-BodyLocation.png){ width="400" }
+          ![XML Body Location](./images/2-3-3_Execute-xCommand-BodyLocation.png){ width="400" }
         </figure>
 
     - **xAPI:** xCommand Video Selfview Set
@@ -473,7 +505,7 @@ This collection has most pieces structured as we'd need it to and will be used t
 
     ??? success "View properly formatted XML and Successful Response"
 
-        ![Successful HTTP Response](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-Success.png){ width="600", align=right }
+        ![Successful HTTP Response](./images/2-3-3_Execute-xCommand-Success.png){ width="600", align=right }
 
         ``` { .xml }
         <Command>
@@ -494,7 +526,7 @@ This collection has most pieces structured as we'd need it to and will be used t
         If you have a failed response, review the errors as it will point out how to resolve your particular issue in your XML payload and try again
 
         <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
         </figure>
 
 ??? lesson "Lesson: Execute multiple xCommands in a single request ~({{config.cProps.rxp.sectionIds.http}}.3.2)~"
@@ -520,13 +552,13 @@ This collection has most pieces structured as we'd need it to and will be used t
     ??? success "View Successful OSD Output"
 
         <figure markdown="span">
-          ![OSD Output](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-MultipleCommands-OSD.png){ width="500" }
+          ![OSD Output](./images/2-3-3_Execute-xCommand-MultipleCommands-OSD.png){ width="500" }
           <figcaption>What to expect on your OSD on a successful request</figcaption>
         </figure>
 
     ??? success "View properly formatted XML and Successful Response"
 
-        ![Successful HTTP Response](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-MultipleCommands-Success.png){ width="500", align=right }
+        ![Successful HTTP Response](./images/2-3-3_Execute-xCommand-MultipleCommands-Success.png){ width="500", align=right }
 
         === "Message Rating Display XML"
 
@@ -584,7 +616,7 @@ This collection has most pieces structured as we'd need it to and will be used t
         If you have a failed response, review the errors as it will point out how to resolve your particular issue in your XML payload and try again
 
         <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
         </figure>
 
 ??? lesson "Lesson: Execute an xCommand with multiple arguments with the same name  ~({{config.cProps.rxp.sectionIds.http}}.3.3)~"
@@ -615,13 +647,13 @@ This collection has most pieces structured as we'd need it to and will be used t
     ??? success "View Successful OSD Output"
 
         <figure markdown="span">
-          ![OSD Output](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-MultipleSameNameParameter-OSD.png){ width="500" }
+          ![OSD Output](./images/2-3-3_Execute-xCommand-MultipleSameNameParameter-OSD.png){ width="500" }
           <figcaption>What to expect on your OSD on a successful request</figcaption>
         </figure>
     
     ??? success "View properly formatted XML and Successful Response"
 
-        ![Successful HTTP Response](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-MultipleSameNameParameter-Success.png){ width="500", align=right }
+        ![Successful HTTP Response](./images/2-3-3_Execute-xCommand-MultipleSameNameParameter-Success.png){ width="500", align=right }
 
         === "Video Input SetMainVideoSource XML"
 
@@ -681,7 +713,7 @@ This collection has most pieces structured as we'd need it to and will be used t
         If you have a failed response, review the errors as it will point out how to resolve your particular issue in your XML payload and try again
 
         <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
         </figure> 
 
 ??? lesson "Lesson: Execute an xCommand with a multiline argument  ~({{config.cProps.rxp.sectionIds.http}}.3.4)~"
@@ -739,20 +771,20 @@ This collection has most pieces structured as we'd need it to and will be used t
 
         Luckily, you can use the **Stringify XML Body** on the Tools Page to do this for you
 
-        <a class="md-button md-button--primary" href="../tools/" target="_blank" >
+        <a class="md-button md-button--primary" href="../../../Resources/res_tools/" target="_blank" >
           Open **Tools** <i class="fa-solid fa-gear"></i> Page <i class="fa-solid fa-square-up-right"></i>
         </a>
 
     ??? success "View Successful OSD Output"
 
         <figure markdown="span">
-          ![OSD Output](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-MultiLine-OSD.png){ width="500" }
+          ![OSD Output](./images/2-3-3_Execute-xCommand-MultiLine-OSD.png){ width="500" }
           <figcaption>What to expect on your OSD on a successful request</figcaption>
         </figure>
 
     ??? success "View properly formatted XML and Successful Response"
 
-        ![Successful HTTP Response](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-MultiLine-Success.png){ width="500", align=right }
+        ![Successful HTTP Response](./images/2-3-3_Execute-xCommand-MultiLine-Success.png){ width="500", align=right }
 
         === "UserInterface Extensions Panel Save XML"
 
@@ -810,7 +842,7 @@ This collection has most pieces structured as we'd need it to and will be used t
         If you have a failed response, review the errors as it will point out how to resolve your particular issue in your XML payload and try again
 
         <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
         </figure> 
 
 ??? lesson "Lesson: Execute an xCommand which generates data and responds ~({{config.cProps.rxp.sectionIds.http}}.3.5)~"
@@ -830,7 +862,7 @@ This collection has most pieces structured as we'd need it to and will be used t
 
     ??? success "View properly formatted XML and Successful Response"
 
-        ![Successful HTTP Response](./assets/wx1_1451_part_2/2-3-3_Execute-xCommandWithResponse-Success.png){ width="700", align=right }
+        ![Successful HTTP Response](./images/2-3-3_Execute-xCommandWithResponse-Success.png){ width="700", align=right }
 
         ``` { .xml }
         <Command>
@@ -849,10 +881,10 @@ This collection has most pieces structured as we'd need it to and will be used t
         If you have a failed response, review the errors as it will point out how to resolve your particular issue in your XML payload and try again
 
         <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
         </figure>
 
-??? challenge "Challenge: Open a Text Input Prompt!"
+<!-- ??? challenge "Challenge: Open a Text Input Prompt!"
 
     - Duplicate the ==Execute an xCommand== request in Postman
     - Replace the body of this request with a new body that implements <a href="https://roomos.cisco.com/xapi/Command.UserInterface.Message.TextInput.Display/" target="_blank">xCommand UserInterface Message TextInput Display</a>
@@ -866,12 +898,12 @@ This collection has most pieces structured as we'd need it to and will be used t
     ??? success "View a Successful Touch Controller ScreenShot"
 
         <figure markdown>
-          ![Successful Text Input Pop Up](./assets/wx1_1451_part_2/2-3-3_Challenge-TextInput.png){ width="800" }
+          ![Successful Text Input Pop Up](./images/2-3-3_Challenge-TextInput.png){ width="800" }
         </figure>
 
         <a class="md-button md-button--primary" href="../challengeAnswers/" target="_blank" >
           Giving Up? Check out the Challenge Answers Page <i class="fa-solid fa-square-up-right"></i>
-        </a>
+        </a> -->
 
 ## **Setting and Getting xConfigurations** ~({{config.cProps.rxp.sectionIds.http}}.4)~
 
@@ -891,7 +923,7 @@ This collection has most pieces structured as we'd need it to and will be used t
 
     ??? success "View properly formatted XML and Successful Response"
 
-        ![Successful HTTP Response](./assets/wx1_1451_part_2/2-3-4_Set-xConfig_Single-Success.png){ width="700", align=right }
+        ![Successful HTTP Response](./images/2-3-4_Set-xConfig_Single-Success.png){ width="700", align=right }
 
         ``` { .xml }
         <Configuration>
@@ -906,7 +938,7 @@ This collection has most pieces structured as we'd need it to and will be used t
         If you have a failed response, review the errors as it will point out how to resolve your particular issue in your XML payload and try again
 
         <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
         </figure>
 
 
@@ -922,7 +954,7 @@ This collection has most pieces structured as we'd need it to and will be used t
 
     ??? success "View properly formatted XML and Successful Response"
 
-        ![Successful HTTP Response](./assets/wx1_1451_part_2/2-3-4_Set-xConfig_Multi-Success.png){ width="500", align=right }
+        ![Successful HTTP Response](./images/2-3-4_Set-xConfig_Multi-Success.png){ width="500", align=right }
 
         === "SystemUnit Name XML"
 
@@ -954,7 +986,7 @@ This collection has most pieces structured as we'd need it to and will be used t
         If you have a failed response, review the errors as it will point out how to resolve your particular issue in your XML payload and try again
 
         <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-3_Execute-xCommand-AllFailure.png){ width="600" }
         </figure>
 
 ??? lesson "Lesson: Getting an xConfiguration Value ~({{config.cProps.rxp.sectionIds.http}}.4.3)~"
@@ -973,7 +1005,7 @@ This collection has most pieces structured as we'd need it to and will be used t
 
     ??? success "View properly formatted URL and Successful Response"
 
-        ![Successful HTTP Response](./assets/wx1_1451_part_2/2-3-4_Get-xConfig_Single-Success.png){ width="500", align=right }
+        ![Successful HTTP Response](./images/2-3-4_Get-xConfig_Single-Success.png){ width="500", align=right }
 
         === "Audio DefaultVolume URL"
 
@@ -986,12 +1018,12 @@ This collection has most pieces structured as we'd need it to and will be used t
         But a lack of response information can tell you that you may have a fault in your xAPI path in the URL
 
         <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-4_Get-xConfig-WrongPath.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-4_Get-xConfig-WrongPath.png){ width="600" }
           <figcaption>What to expect for a bad path</figcaption>
         </figure>
 
          <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-4_Get-xConfig-MissingPath.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-4_Get-xConfig-MissingPath.png){ width="600" }
           <figcaption>What to expect for a missing path</figcaption>
         </figure>
 
@@ -1039,12 +1071,12 @@ This collection has most pieces structured as we'd need it to and will be used t
         But a lack of response information can tell you that you may have a fault in your xAPI path in the URL
 
         <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-4_Get-xConfig-WrongPath.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-4_Get-xConfig-WrongPath.png){ width="600" }
           <figcaption>What to expect for a bad path</figcaption>
         </figure>
 
          <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-4_Get-xConfig-MissingPath.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-4_Get-xConfig-MissingPath.png){ width="600" }
           <figcaption>What to expect for a missing path</figcaption>
         </figure>
 
@@ -1064,7 +1096,7 @@ This collection has most pieces structured as we'd need it to and will be used t
 
     ??? success "View properly formatted URL and Successful Response"
 
-        ![Successful HTTP Response](./assets/wx1_1451_part_2/2-3-5_Get-xStatus_Single-Success.png){ width="500", align=right }
+        ![Successful HTTP Response](./images/2-3-5_Get-xStatus_Single-Success.png){ width="500", align=right }
 
         === "Audio DefaultVolume URL"
 
@@ -1077,12 +1109,12 @@ This collection has most pieces structured as we'd need it to and will be used t
         But a lack of response information can tell you that you may have a fault in your xAPI path in the URL
 
         <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-4_Get-xConfig-WrongPath.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-4_Get-xConfig-WrongPath.png){ width="600" }
           <figcaption>What to expect for a bad path</figcaption>
         </figure>
 
          <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-4_Get-xConfig-MissingPath.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-4_Get-xConfig-MissingPath.png){ width="600" }
           <figcaption>What to expect for a missing path</figcaption>
         </figure>
 
@@ -1128,12 +1160,12 @@ This collection has most pieces structured as we'd need it to and will be used t
         But a lack of response information can tell you that you may have a fault in your xAPI path in the URL
 
         <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-4_Get-xConfig-WrongPath.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-4_Get-xConfig-WrongPath.png){ width="600" }
           <figcaption>What to expect for a bad path</figcaption>
         </figure>
 
          <figure markdown>
-          ![Failed HTTP Response](./assets/wx1_1451_part_2/2-3-4_Get-xConfig-MissingPath.png){ width="600" }
+          ![Failed HTTP Response](./images/2-3-4_Get-xConfig-MissingPath.png){ width="600" }
           <figcaption>What to expect for a missing path</figcaption>
         </figure>
 
@@ -1227,7 +1259,7 @@ This collection has most pieces structured as we'd need it to and will be used t
             - ++command+s++ for Mac
 
     <figure markdown>
-      ![Locate and Configure your Unique URL from Webhook.Site](./assets/wx1_1451_part_2/2-3-6_ConfigureWebHookPostman.gif){ width="600" }
+      ![Locate and Configure your Unique URL from Webhook.Site](./images/2-3-6_ConfigureWebHookPostman.gif){ width="600" }
     </figure>
 
 
@@ -1242,7 +1274,7 @@ This collection has most pieces structured as we'd need it to and will be used t
     ??? question "View Example WebHook.site output"
 
         <figure markdown>
-          ![Webhook.Site Output Example](./assets/wx1_1451_part_2/2-3-6_WebHookSite_Output.png){ width="600" }
+          ![Webhook.Site Output Example](./images/2-3-6_WebHookSite_Output.png){ width="600" }
         </figure>
 
 ??? lesson "Lesson: Subscribe to the full xConfiguration Branch ~({{config.cProps.rxp.sectionIds.http}}.6.1)~"

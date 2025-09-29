@@ -1,13 +1,13 @@
 {{ config.cProps.devNotice }}
 {{ config.cProps.acronyms }}
 
-# **Section 2.6: Accessing the xAPI via the Macro Editor** ~(section\ {{config.cProps.rxp.sectionIds.macro}})~
+# Accessing the xAPI via the Macro Editor** ~(section\ {{config.cProps.rxp.sectionIds.macro}})~
 
 !!! abstract
 
     The Macro Editor is a `Web Based IDE` that's built into each Cisco Codec running {++ce9.2.X or higher (excluding the Sx10)++} that allows for the development of solutions using the ==Device xAPI and ES6 Javascript==. In a sense, the Macro Editor is like a virtual room control processor built right into the product.
 
-    It's capable of running {++10 active macros++} at any given time and allows for storage of up to ==2mb of text across all files== (Sounds small, but it's more than you thin :smiley:).
+    It's capable of running {++10 active macros++} at any given time and allows for storage of up to ==2mb of text across all files== (Sounds small, but it's more than you think :smiley:).
 
     You may have as many inactive macros as you can contain with the 2mb limit, which can be useful for storing information, organizing and modularizing work.
 
@@ -29,7 +29,7 @@
 
 !!! important "Section Requirements"
 
-    Download the MacroPak below, these Macros will be used throughout section 2.6
+    Download the MacroPak below, these Macros will be used throughout this section
 
     <div class="grid cards" markdown>
 
@@ -38,7 +38,7 @@
         ---
 
         <figure markdown="span">
-              [![MacroPak](./assets/general/cisco-logo-transparent.png){ width="200" }](https://raw.githubusercontent.com/WebexCC-SA/LAB-1451/main/docs/assets/downloadable_resources/MacroPak.zip)
+              [![MacroPak](./images/cisco-logo-transparent.png){ width="200" }](https://github.com/WebexCC-SA/LAB-1451/raw/refs/heads/main/docs/Main-Lab/DownloadContent/MacroPak.zip)
             <figcaption>MacroPak</figcaption>
         </figure>
     </div>
@@ -75,7 +75,7 @@
 
 ## **Executing xCommands** ~({{config.cProps.rxp.sectionIds.macro}}.3)~
 
-???+ lesson "Lesson: Execute an xCommand"
+???+ lesson "Lesson: Execute an xCommand ~({{config.cProps.rxp.sectionIds.macro}}.3.1)~"
 
     All device xAPIs are referenced by the imported `xapi` object. By default, a new Macro will contain
 
@@ -261,7 +261,7 @@
             </a>
 
 
-??? lesson "Lesson: Execute an xCommand with multiple arguments with the same name"
+??? lesson "Lesson: Execute an xCommand with multiple arguments with the same name ~({{config.cProps.rxp.sectionIds.macro}}.3.2)~"
 
     In cases where we need to declare multiple arguments of the same name, rather than duplicating and re-running the parameters, we instead leverage Javascript's Array capabilities
 
@@ -328,7 +328,7 @@
         showAndComposeCamera();
         ```
 
-    ??? challenge "Challenge: Log and Handle Errors"
+    <!-- ??? challenge "Challenge: Log and Handle Errors"
 
         - Convert the `showAndComposeCamera()` function into an Async Function
         - Wrap all xAPI references in a Try Catch block
@@ -339,9 +339,9 @@
 
         <a class="md-button md-button--primary" href="../challengeAnswers/" target="_blank" >
           Giving Up? Check out the Challenge Answers Page <i class="fa-solid fa-square-up-right"></i>
-        </a>
+        </a> -->
 
-??? lesson "Lesson: Execute an xCommand with a multiline argument"
+??? lesson "Lesson: Execute an xCommand with a multiline argument ~({{config.cProps.rxp.sectionIds.macro}}.3.3)~"
 
     !!! example "Click on the tabs to see how Terminal Syntax relates to Macro Syntax"
 
@@ -383,7 +383,7 @@
                 <Location>HomeScreen</Location>
                 <Icon>Info</Icon>
                 <Color>#00FFFF</Color>
-                <Name>MultiLine Command [Section 2.6.3]</Name>
+                <Name>MultiLine Command [2.6.3]</Name>
                 <ActivityType>Custom</ActivityType>
               </Panel>
             </Extensions>
@@ -417,7 +417,7 @@
                 <Location>HomeScreen</Location>
                 <Icon>Info</Icon>
                 <Color>#00FFFF</Color>
-                <Name>MultiLine Command [Section 2.6.3]</Name>
+                <Name>MultiLine Command [2.6.3]</Name>
                 <ActivityType>Custom</ActivityType>
               </Panel>
             </Extensions>`
@@ -492,7 +492,7 @@
           Learn more about <strong>Strings</strong> <i class="fa-solid fa-square-up-right"></i>
         </a>
 
-??? lesson "Lesson: Execute an xCommand which generates data and responds"
+??? lesson "Lesson: Execute an xCommand which generates data and responds ~({{config.cProps.rxp.sectionIds.macro}}.3.4)~"
 
     When collecting data from an xCommand in the Macro Editor, you either need to use the `.then()` method and log that value to the console or use an Async function to capture the value of that xCommand into a object, then log that object
 
@@ -598,7 +598,7 @@
 
         We'll continue the remainder of the examples with only Async Await syntax, as a best practice, but if you're familiar with `.then()`, `.catch()` and `.finally()` syntax and prefer writing like that, feel free to do so
 
-???+ lesson "Lesson: Get an xConfiguration Value"
+???+ lesson "Lesson: Get an xConfiguration Value ~({{config.cProps.rxp.sectionIds.macro}}.4.1)~"
 
     - **xAPI:** xConfig Audio DefaultVolume
 
@@ -652,7 +652,7 @@
             | HH:MM:SS  | xConfigs_Lesson-1_MacroPak_2-6-4   | QJS Ready                 |
             | HH:MM:SS  | xConfigs_Lesson-1_MacroPak_2-6-4   | DefaultVolume: 75         |
 
-??? lesson "Lesson: Set a new xConfiguration Value"
+??? lesson "Lesson: Set a new xConfiguration Value ~({{config.cProps.rxp.sectionIds.macro}}.4.2)~"
 
     - **xAPI:** xConfig Audio DefaultVolume
 
@@ -725,7 +725,7 @@
             | HH:MM:SS  | xConfigs_Lesson-2_MacroPak_2-6-4   | QJS Ready                 |
             | HH:MM:SS  | xConfigs_Lesson-2_MacroPak_2-6-4   | DefaultVolume: [Some Value]         |
 
-??? lesson "Lesson: Get multiple xConfigurations under a Common Node"
+??? lesson "Lesson: Get multiple xConfigurations under a Common Node ~({{config.cProps.rxp.sectionIds.macro}}.4.3)~"
 
     - **xAPI:** xConfig Audio
 
@@ -778,7 +778,7 @@
             | HH:MM:SS  | xConfigs_Lesson-3_MacroPak_2-6-4   | QJS Ready                 |
             | HH:MM:SS  | xConfigs_Lesson-3_MacroPak_2-6-4   | `{"DefaultVolume":"100","Ethernet":{"Encryption":"Required","SAPDiscovery":{"Address":"239.255.255.255","Mode":"Off"}},"Input":{"Ethernet":[{"Channel":[{"Gain":"45","Mode":"On","Pan":"Mono","Zone":"1","id":"1"},{"Gain":"45","Mode":"On","Pan":"Mono","Zone":"1","id":"2"},{"Gain":"45","Mode":"On","Pan":"Mono","Zone":"1","id":"3"},{"Gain":"45","Mode":"On","Pan":"Mono","Zone":"1","id":"4"},{"Gain":"45","Mode":"On","Pan":"Mono","Zone":"1","id":"5"},{"Gain":"45","Mode":"On","Pan":"Mono","Zone":"1","id":"6"},{"... And the list goes on"}],"EchoControl":{"Mode":"On","NoiseReduction":"On"},"Equalizer":{"ID":"1","Mode":"Off"},"Mode":"On","id":"1"}]}}{..."And the List Goes On"}`         |
 
-??? lesson "Lesson: Subscribe and Unsubscribe to an xConfiguration"
+??? lesson "Lesson: Subscribe and Unsubscribe to an xConfiguration ~({{config.cProps.rxp.sectionIds.macro}}.4.4)~"
 
     !!! info
 
@@ -928,7 +928,7 @@
             | HH:MM:SS   | xConfigs_Lesson-4_MacroPak_2-6-4 | DefaultVolume Set to: 57                       |
             | HH:MM:SS   | xConfigs_Lesson-4_MacroPak_2-6-4 | DefaultVolume Subscription stopped!             |
 
-??? lesson "Lesson: Subscribe and Unsubscribe to Multiple xConfigurations under a Common Node"
+??? lesson "Lesson: Subscribe and Unsubscribe to Multiple xConfigurations under a Common Node ~({{config.cProps.rxp.sectionIds.macro}}.4.5)~"
 
     !!! info
 
@@ -1061,7 +1061,7 @@
             | HH:MM:SS   | xConfigs_Lesson-5_MacroPak_2-6-4 | Airplay Changes: \{"Password":"***"}            |
             | HH:MM:SS   | xConfigs_Lesson-5_MacroPak_2-6-4 | Airplay Subscription stopped!                   |
 
-??? challenge "Challenge: Can you spot the Error?"
+<!-- ??? challenge "Challenge: Can you spot the Error?"
 
     In both the `xConfigs_Lesson-4_MacroPak_2-6-4` and `xConfigs_Lesson-5_MacroPak_2-6-4` macros, there is an error
 
@@ -1071,11 +1071,11 @@
 
     <a class="md-button md-button--primary" href="../challengeAnswers/" target="_blank" >
           Giving Up? Check out the Challenge Answers Page <i class="fa-solid fa-square-up-right"></i>
-    </a>
+    </a> -->
 
 ## **Getting and Subscribing to xStatuses** ~({{config.cProps.rxp.sectionIds.macro}}.5)~
 
-???+ lesson "Lesson: Get an xStatus Value"
+???+ lesson "Lesson: Get an xStatus Value ~({{config.cProps.rxp.sectionIds.macro}}.5.1)~"
 
     - **xAPI:** xStatus Audio Volume
 
@@ -1128,7 +1128,7 @@
             | HH:MM:SS  | xStatuses_Lesson-1_MacroPak_2-6-4   | QJS Ready                 |
             | HH:MM:SS  | xStatuses_Lesson-1_MacroPak_2-6-4   | Volume: 50         |
 
-??? lesson "Lesson: Get multiple xStatuses under a Common Node"
+??? lesson "Lesson: Get multiple xStatuses under a Common Node ~({{config.cProps.rxp.sectionIds.macro}}.5.2)~"
 
     - **xAPI:** xStatus Audio
 
@@ -1181,7 +1181,7 @@
             | HH:MM:SS  | xStatuses_Lesson-2_MacroPak_2-6-4   | QJS Ready                 |
             | HH:MM:SS  | xStatuses_Lesson-2_MacroPak_2-6-4   | `{ "Devices": { "Bluetooth": { "ActiveProfile": "None" }, "HandsetUSB": { "ConnectionStatus": "NotConnected", "Cradle": "OnHook" }, "HeadsetUSB": { "ConnectionStatus": "NotConnected", "Description": "", "Manufacturer": "" } }, "Input": { "Connectors": { "HDMI": [ { "Mute": "On", "id": "1" } ], "Microphone": [ { "ConnectionStatus": "Connected", "id": "1" }, { "ConnectionStatus": "NotConnected", "id": "2" }, { "ConnectionStatus": "NotConnected", "id": "3" } ], "USBC": [ { "Mute": "On", "id": "1" } ] } } }{..."And the List Goes On"}`         |
 
-??? lesson "Lesson: Subscribe and Unsubscribe to an xStatus"
+??? lesson "Lesson: Subscribe and Unsubscribe to an xStatus ~({{config.cProps.rxp.sectionIds.macro}}.5.3)~"
 
     - **xAPI:** xStatus Audio Volume
 
@@ -1283,7 +1283,7 @@
             | HH:MM:SS  | xStatuses_Lesson-3_MacroPak_2-6-5      | Volume Subscription stopped!                  |
 
 
-??? lesson "Lesson: Subscribe and Unsubscribe to Multiple xStatuses under a Common Node"
+??? lesson "Lesson: Subscribe and Unsubscribe to Multiple xStatuses under a Common Node ~({{config.cProps.rxp.sectionIds.macro}}.5.4)~"
 
     - **xAPI:** xStatus Cameras Camera[N] Position
 
@@ -1305,7 +1305,7 @@
     ??? gif "Accessing the Camera Menu"
 
         <figure markdown>
-          ![Navigate to Camera Control Menu GIF](./assets/wx1_1451_part_2/2-2-4_CameraMenuAccess.gif){ width="600" }
+          ![Navigate to Camera Control Menu GIF](./images/2-2-4_CameraMenuAccess.gif){ width="600" }
         </figure>
 
     ??? success "View Successful Macro Syntax and Log output"
@@ -1399,7 +1399,7 @@
 
 ## **Subscribing to xEvents** ~({{config.cProps.rxp.sectionIds.macro}}.6)~
 
-???+ lesson "Lesson: Subscribe and Unsubscribe to an xEvent"
+???+ lesson "Lesson: Subscribe and Unsubscribe to an xEvent ~({{config.cProps.rxp.sectionIds.macro}}.6.1)~"
 
     - **xAPI:** xEvent UserInterface Extensions Widget Action
 
@@ -1408,16 +1408,16 @@
         - Modify the `subscribeToWidgetActions` object by replacing it's value with ==xEvent UserInterface Widget Action== written in Macro Syntax using the `.on()` method
             - In order to unsubscribe, we need to assign our xAPI subscription to an object, so we can later call it, which will end it's subscription
             - For example, after you assign the ==subscribeToWidgetActions== properly, running ==subscribeToWidgetActions=={++()++} will stop your active subscription
-        - Save your Macro, open the ==MultiLine Command [Section 2.6.6]== Panel on your Codec's touch interface, press one or more of the buttons and observe the Macro Log Output
+        - Save your Macro, open the ==MultiLine Command [2.6.6]== Panel on your Codec's touch interface, press one or more of the buttons and observe the Macro Log Output
 
             - NOTE: This macro will automatically unsubscribe for you. Review those steps, to get a better understand as to how we unsubscribe.
 
         - When Complete, deactivate the ==xEvents_Lesson-1_MacroPak_2-6-6== macro
 
-    ??? gif "Open the **MultiLine Command [Section 2.6.6]** Panel"
+    ??? gif "Open the **MultiLine Command [2.6.6]** Panel"
 
         <figure markdown>
-          ![Open the MultiLine Command [Section 2.6.] Panel](./assets/wx1_1451_part_2/2-6-6_Get-xEvent-WidgetActions.gif){ width="600" }
+          ![Open the MultiLine Command [2.6.6] Panel](./images/2-6-6_Get-xEvent-WidgetActions.gif){ width="600" }
         </figure>
 
     ??? success "View Successful Macro Syntax and Log output"
@@ -1480,7 +1480,7 @@
                 <Location>HomeScreen</Location>
                 <Icon>Info</Icon>
                 <Color>#FC5143</Color>
-                <Name>MultiLine Command [Section 2.6.6]</Name>
+                <Name>MultiLine Command [2.6.6]</Name>
                 <ActivityType>Custom</ActivityType>
                 <Page>
                   <Name>Page</Name>
@@ -1617,7 +1617,7 @@
             | HH:MM:SS  | xEvents_Lesson-1_MacroPak_2-6-6        | WidgetActions Subscription stopped!        |
 
 
-??? lesson "Lesson: Subscribe and Unsubscribe to Multiple xEvents under a Common Node"
+??? lesson "Lesson: Subscribe and Unsubscribe to Multiple xEvents under a Common Node ~({{config.cProps.rxp.sectionIds.macro}}.6.2)~"
 
     - **xAPI:** xEvent UserInterface Extensions
 
@@ -1626,16 +1626,16 @@
         - Modify the `subscribeToAllExtensions` object by replacing it's value with ==xEvent UserInterface== written in Macro Syntax using the `.on()` method
             - In order to unsubscribe, we need to assign our xAPI subscription to an object, so we can later call it, which will end it's subscription
             - For example, after you assign the ==subscribeToAllExtensions== properly, running ==subscribeToAllExtensions=={++()++} will stop your active subscription
-        - Save your Macro, open the ==MultiLine Command [Section 2.6.6]== Panel on your Codec's touch interface, press one or more of the buttons and observe the Macro Log Output
+        - Save your Macro, open the ==MultiLine Command [2.6.6]== Panel on your Codec's touch interface, press one or more of the buttons and observe the Macro Log Output
 
             - NOTE: This macro will automatically unsubscribe for you. Review those steps, to get a better understand as to how we unsubscribe.
 
         - When Complete, deactivate the ==xEvents_Lesson-1_MacroPak_2-6-6== macro
 
-    ??? gif "Open the **MultiLine Command [Section 2.6.6]** Panel"
+    ??? gif "Open the **MultiLine Command [2.6.6]** Panel"
 
         <figure markdown>
-          ![Open the MultiLine Command [Section 2.6.6] Panel](./assets/wx1_1451_part_2/2-6-6_Get-xEvent-WidgetActions.gif){ width="600" }
+          ![Open the MultiLine Command [2.6.6] Panel](./images/2-6-6_Get-xEvent-WidgetActions.gif){ width="600" }
         </figure>
 
     ??? success "View Successful Macro Syntax and Log output"
@@ -1698,7 +1698,7 @@
                 <Location>HomeScreen</Location>
                 <Icon>Info</Icon>
                 <Color>#FF6F20</Color>
-                <Name>MultiLine Command [Section 2.6.6]</Name>
+                <Name>MultiLine Command [2.6.6]</Name>
                 <ActivityType>Custom</ActivityType>
                 <Page>
                   <Name>Page</Name>
