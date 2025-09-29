@@ -727,7 +727,7 @@
 
         By simply removing <hl_7>`DefaultVolume`</hl_7> from <hl_1>xConfiguration Audio</hl_1>, we get all of the Configurations listed under the Audio Node of the Codec
     
-    <roomosdoc>xConfiguration Audio</roomosdoc>
+    <roomosfind>xConfiguration Audio</roomosfind>
 
 ??? lesson "Lesson: Subscribing to an xConfiguration  ~({{config.cProps.rxp.sectionIds.ssh}}.4.4)~"
     
@@ -820,7 +820,7 @@
 
                 xFeedback Register <hl_1>Configuration</hl_1>{--/Bluetooth/Allowed--}
 
-    - **xAPI**: xConfiguration Audio Input Airplay
+    - **xAPI**: xConfiguration Video Input Airplay
 
     - **Task**: 
 
@@ -845,11 +845,11 @@
               ![SubAssist Operation](./images/SubscriptionAssitantMacro-Operation.gif){ width="600" }
             </figure>
 
-    <roomosdoc>xConfiguration Audio Input Airplay</roomosdoc>
+    <roomosfind>xConfiguration Video Input Airplay</roomosfind>
 
 ??? lesson "Lesson: Unsubscribe to Multiple xConfigurations under a Higher Common Node  ~({{config.cProps.rxp.sectionIds.ssh}}.4.7)~"
 
-    - **xAPI**: xConfiguration Audio Input Airplay
+    - **xAPI**: xConfiguration Video Input Airplay
 
     - **Task**: 
 
@@ -918,7 +918,7 @@
         [PLACEHOLDER - LUIS OUTPUT]
         ```
 
-    <roomosdoc>xStatus Audio Input</roomosdoc>
+    <roomosfind>xStatus Audio Input</roomosfind>
 
 ??? lesson "Lesson: Subscribing to an xStatus ~({{config.cProps.rxp.sectionIds.ssh}}.5.3)~"
 
@@ -1008,7 +1008,7 @@
                   ![Navigate to Camera Control Menu GIF](./images/2-2-4_CameraMenuAccess.gif){ width="600" }
                 </figure>
 
-    <roomosdoc>xStatus Cameras Camera[n] Position</roomosdoc>
+    <roomosfind>xStatus Cameras Camera[n] Position</roomosfind>
 
 ??? lesson "Lesson: Unsubscribe from all xStatuses ~({{config.cProps.rxp.sectionIds.ssh}}.5.6)~"
 
@@ -1123,7 +1123,7 @@
               ![SubAssist Operation](./images/SubscriptionAssitantMacro-Operation.gif){ width="600" }
             </figure>
 
-    <roomosdoc>xEvent UserInterface</roomosdoc>
+    <roomosfind>xEvent UserInterface</roomosfind>
 
 ??? lesson "Lesson: Unsubscribe from all xEvents ~({{config.cProps.rxp.sectionIds.ssh}}.6.4)~"
 

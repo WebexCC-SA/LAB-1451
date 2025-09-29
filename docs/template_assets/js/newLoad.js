@@ -107,6 +107,37 @@ function applyCustomHighlights() {
             window.open(`https://roomos.cisco.com/xapi/${path.join('.')}/`, '_blank');
         });
     });
+
+    Array.from(document.getElementsByTagName("roomosfind")).forEach(el => {
+        //https://roomos.cisco.com/xapi/search?search=Configuration+Audio
+        el.addEventListener("click", function (event) {
+            let rawPath;
+            let path;
+            if (event.target.tagName === "ROOMOSFIND") {
+                console.log(event.target.innerText)
+                if (!event.target.innerText.includes(':')) {
+                    rawPath = event.target.innerText.trim().replace(/\"/gm, '');
+                } else {
+                    alert('Malformed Object')
+                    return;
+                }
+            }
+            if (event.target.tagName === "W") { // Assuming 'W' is a nested tag within 'copy'
+                if (!event.target.parentNode.innerText.includes(':')) {
+                    rawPath = event.target.parentNode.innerText.trim().replace(/\"/gm, '');
+                } else {
+                    alert('Malformed Object')
+                    return;
+                }
+            }
+            path = rawPath.replace(/\s+/gm, ' ').split(' ');
+            path = path.map(item => item.trim().replace(/\[/g, '\\[').replace(/\]/g, '\\]'));
+            if (path[0][0].toLowerCase() == 'x') {
+                path[0] = path[0].slice(1)
+            }
+            window.open(`https://roomos.cisco.com/xapi/search?search=${path.join('+')}`, '_blank');
+        });
+    });
 }
 
 // Ensure the highlighting function runs after the entire HTML document has been loaded and parsed.
