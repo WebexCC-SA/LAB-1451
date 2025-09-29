@@ -57,7 +57,7 @@
 ??? tool "Download Device Pod Assignment Sheet"
 
     <figure markdown="span">
-          [![MacroPak](./assets/general/cisco-logo-transparent.png){ width="200" }](https://raw.githubusercontent.com/WebexCC-SA/LAB-1451/main/docs/Main-Lab/Deployment/files/WbxOne2025xxxDetails.xlsx)
+          [![MacroPak](./assets/general/cisco-logo-transparent.png){ width="200" }](https://raw.githubusercontent.com/WebexCC-SA/LAB-1451/main/docs/Main-Lab/Deployment/files/WbxOne2025PodDetails.xlsx)
         <figcaption>Device Pod Assignment Sheet</figcaption>
     </figure>
 

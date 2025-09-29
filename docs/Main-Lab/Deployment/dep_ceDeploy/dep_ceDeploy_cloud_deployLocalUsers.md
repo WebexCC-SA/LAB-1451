@@ -39,7 +39,7 @@
     | `Setting`            | <!-- -->                |
     |----------------------|-------------------------|
     | `Device User Action` | Add                     |
-    | `Username`           | userxxx(yourPodNumber)  |
+    | `Username`           | adminUserxx(yourPodNo.) |
     | `Passphrase`         | Cisco12345              |
     | `User Role`          | Admin, User, Integrator |
     | `PassPhase Change`   | No                      |
@@ -48,7 +48,7 @@
     
     
     <figure markdown="span">
-      ![User Options](images/4-12-2.png){ width="300" }
+      ![User Options](images/dep-2-7-2.png){ width="300" }
       <figcaption></figcaption>
     </figure>
     
