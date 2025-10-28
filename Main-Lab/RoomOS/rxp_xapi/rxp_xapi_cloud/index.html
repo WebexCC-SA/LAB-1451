@@ -1,0 +1,3502 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Deep-dive into Cisco devices xAPIs">
+      
+      
+        <meta name="author" content="Bobby McGonigle, Christopher Norman">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Accessing xAPI via Cloud xAPI (section rxp-5) - LAB-1451: Deep-dive into Cisco devices xAPIs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/customTextHighlight.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#accessing-xapi-via-cloud-xapi-section-rxp-5" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="LAB-1451: Deep-dive into Cisco devices xAPIs" class="md-header__button md-logo" aria-label="LAB-1451: Deep-dive into Cisco devices xAPIs" data-md-component="logo">
+      
+  <img src="../../../../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LAB-1451: Deep-dive into Cisco devices xAPIs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Accessing xAPI via Cloud xAPI (section rxp-5)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home&nbsp;<i class="fa-solid fa-house" style="color:#B197FC;"></i>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Setup/stp_intro/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Lab Setup&nbsp;<i class="fa-solid fa-gear"></i>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../rxp_intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  RoomOS xAPI &amp; UserInterfaces&nbsp;<i class="fa-solid fa-video" style="color: #428bff;"></i>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Deployment/dep_intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Deployment&nbsp;<i class="fa-solid fa-cloud-arrow-up" style="color: #ff0000;"></i>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Resources/res_tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tools&nbsp;<i class="fa-solid fa-gear"></i>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Resources/res_tools/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources&nbsp;<i class="fa-solid fa-globe" style="color:#ffd903;"></i>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="LAB-1451: Deep-dive into Cisco devices xAPIs" class="md-nav__button md-logo" aria-label="LAB-1451: Deep-dive into Cisco devices xAPIs" data-md-component="logo">
+      
+  <img src="../../../../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    LAB-1451: Deep-dive into Cisco devices xAPIs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home&nbsp;<i class="fa-solid fa-house" style="color:#B197FC;"></i>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Setup/stp_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab Setup&nbsp;<i class="fa-solid fa-gear"></i>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RoomOS xAPI &amp; UserInterfaces&nbsp;<i class="fa-solid fa-video" style="color: #428bff;"></i>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            RoomOS xAPI &amp; UserInterfaces&nbsp;<i class="fa-solid fa-video" style="color: #428bff;"></i>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rxp_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RoomOS Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2">
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RoomOS xAPI
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            RoomOS xAPI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rxp_xapi_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What are RoomOS xAPI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rxp_xapi_ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SSH <sup><sup>rxp-1</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rxp_xapi_http/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HTTP <sup><sup>rxp-3</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rxp_xapi_macros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Macros <sup><sup>rxp-6</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RoomOS UserInterfaces
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            RoomOS UserInterfaces
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rxp_userInterface/rxp_ui_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What are RoomOS UserInterfaces
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rxp_userInterface/rxp_ui_features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Features <sup><sup>rxu-1</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rxp_userInterface/rxp_ui_extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extensions <sup><sup>rxu-2</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rxp_userInterface/rxp_ui_messages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Messages <sup><sup>rxu-3</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rxp_userInterface/rxp_ui_webContent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web Content <sup><sup>rxu-4</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4">
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Solution Exercises
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Solution Exercises
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rxp_exercises/rxp_exe_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Abstract &amp; Best Practices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_2">
+        
+          
+          <label class="md-nav__link" for="__nav_3_4_2" id="__nav_3_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Macro Based Exercises
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Macro Based Exercises
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_2_1">
+        
+          
+          <label class="md-nav__link" for="__nav_3_4_2_1" id="__nav_3_4_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Quick Docs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_4_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Quick Docs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rxp_exercises/macros/rxp_exe_Quick_Docs_PT1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Part 1 - Start Simple <sup><sup>rxe-m1</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rxp_exercises/macros/rxp_exe_Quick_Docs_PT2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Part 2 - Optimize<sup><sup>rxe-m2</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Deployment&nbsp;<i class="fa-solid fa-cloud-arrow-up" style="color: #ff0000;"></i>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Deployment&nbsp;<i class="fa-solid fa-cloud-arrow-up" style="color: #ff0000;"></i>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment Lab Prerequisites
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3">
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Control Hub
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Control Hub
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_controlHub/dep_controlHub_prepDevices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Preparing Your Devices <sup><sup>dep-1.1</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_controlHub/dep_controlHub_configTemplates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Templates <sup><sup>dep-1.2</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_controlHub/dep_controlHub_orgTemplates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Org-Wide Templates <sup><sup>dep-1.3</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_controlHub/dep_controlHub_runCommands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Run Commands <sup><sup>dep-1.4</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_controlHub/dep_controlHub_deployExtensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy UI Extensions <sup><sup>dep-1.5</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_controlHub/dep_controlHub_deployMacros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy Macros <sup><sup>dep-1.6</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CE-Deploy
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            CE-Deploy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_ceDeploy/dep_ceDeploy_cloud_localVsCloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local vs Cloud Auth <sup><sup>dep-2.1</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_ceDeploy/dep_ceDeploy_cloud_downloadToken/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Download Webex Token <sup><sup>dep-2.2</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_ceDeploy/dep_ceDeploy_cloud_runCommands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Run Commands <sup><sup>dep-2.3</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployBranding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Branding <sup><sup>dep-2.4</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployMacros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Macros <sup><sup>dep-2.5</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployExtensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UI Extensions <sup><sup>dep-2.6</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployLocalUsers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local User Accounts <sup><sup>dep-2.7</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_ceDeploy/dep_ceDeploy_cloud_backupsAndLogs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Device Backups and Logs <sup><sup>dep-2.8</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_ceDeploy/dep_ceDeploy_cloud_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools <sup><sup>dep-2.9</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_ceDeploy/dep_ceDeploy_cloud_dashboards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dashboards <sup><sup>dep-2.10</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/dep_conclusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment Conclusion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Resources/res_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools&nbsp;<i class="fa-solid fa-gear"></i>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources&nbsp;<i class="fa-solid fa-globe" style="color:#ffd903;"></i>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Resources&nbsp;<i class="fa-solid fa-globe" style="color:#ffd903;"></i>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Resources/res_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools&nbsp;<i class="fa-solid fa-gear"></i>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Resources/res_guides/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guides
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Resources/res_communities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="accessing-xapi-via-cloud-xapi-section-rxp-5"><strong>Accessing xAPI via Cloud xAPI</strong> <sub>(section rxp-5)</sub></h1>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>Cloud xAPIs are only accessible for devices registered to the Webex Cloud or Cloud Edge for Devices</p>
+<p>They are <abbr title="Hypertext Transfer Protocol">HTTP</abbr> requests, but differ in the sens that you're not directly communicating to the endpoint in a 1:1 relationship like we would with every other protocol we offer.</p>
+<p>You instead make a request, or offer a WebHook, to your Webex Cloud instance and then your cloud instance will broker the communication between itself and the device</p>
+<p>In short, when using Cloud xAPIs you're communicating using the Webex Cloud APIs, not directly interfacing with the Device xAPI. but fortunately, the paths fo the Device xAPI stack remain the same</p>
+<div class="admonition curious">
+<p class="admonition-title">Click the Tabs Below to see how <abbr title="Hypertext Transfer Protocol">HTTP</abbr> xAPI calls differ from Cloud xAPI calls</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1"><abbr title="Hypertext Transfer Protocol">HTTP</abbr> API</label><label for="__tabbed_1_2">Cloud xAPI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><input id="__tabbed_2_3" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">Get Requests [xStatuses/xConfigs]</label><label for="__tabbed_2_2">Post Requests [xCommands/xConfigs]</label><label for="__tabbed_2_3">Subscriptions [HTTPFeedback]</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<pre class="mermaid"><code>%%{init: {'theme':'dark'}}%%
+sequenceDiagram
+  participant My Customization
+  participant Target Codec
+  My Customization-&gt;&gt;+Target Codec: xStatus/xConfig Get Request
+  Note over My Customization,Target Codec: If Device Online
+  Target Codec-&gt;&gt;- My Customization: Responds 200 OK</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>%%{init: {'theme':'dark'}}%%
+sequenceDiagram
+  participant My Customization
+  participant Target Codec
+  My Customization-&gt;&gt;+Target Codec: xCommand/xConfig Post Request
+  Note over My Customization,Target Codec: If Device Online
+  Target Codec-&gt;&gt;- My Customization: Responds 200 OK</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>%%{init: {'theme':'dark'}}%%
+sequenceDiagram
+  participant My Customization
+  participant Target Codec
+  activate Target Codec
+  Note over My Customization, Target Codec: WebHook Offered by My Customization&lt;br&gt;Configured in Target Codec
+  Target Codec --&gt;&gt;+ My Customization: Forwards Subscription Traffic
+  Note over My Customization,Target Codec: On Subscription callBack from Target Codec
+  deactivate Target Codec
+  activate My Customization
+  Target Codec-&gt;&gt;+ My Customization: Ex. xEvent UserInterface Extension Panel Clicked (QuickDial)
+  activate Target Codec
+  My Customization-&gt;&gt;+Target Codec: Responds with xCommand Dial Post Request
+  deactivate My Customization
+  Target Codec-&gt;&gt;- My Customization: Responds 200 OK</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><input id="__tabbed_3_3" name="__tabbed_3" type="radio"><input id="__tabbed_3_4" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">Get Requests [xStatuses/xConfigs]</label><label for="__tabbed_3_2">Post Requests [xCommands]</label><label for="__tabbed_3_3">Patch Requests [xConfigs]</label><label for="__tabbed_3_4">Subscriptions [Workspace Integrations]</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<pre class="mermaid"><code>%%{init: {'theme':'dark'}}%%
+sequenceDiagram
+  participant My Customization
+  participant Webex Cloud
+  participant Target Codec
+  Webex Cloud&lt;&lt;--&gt;&gt;Target Codec: WebSocket Connection
+  Note over Webex Cloud,Target Codec: Forwarding xStatus, xConfig&lt;br&gt; and xEvent information
+  My Customization-&gt;&gt;+Webex Cloud: xStatus/xConfig Get Request
+  Webex Cloud -&gt;&gt;- My Customization: 200 OK
+  Note over My Customization,Webex Cloud: xStatus and xConfig&lt;br&gt; Information Saved in Cloud</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>%%{init: {'theme':'dark'}}%%
+sequenceDiagram
+  participant My Customization
+  participant Webex Cloud
+  participant Target Codec
+  Webex Cloud&lt;&lt;--&gt;&gt;Target Codec: WebSocket Connection
+  Note over Webex Cloud,Target Codec: Forwarding xStatus, xConfig&lt;br&gt; and xEvent information
+  My Customization-&gt;&gt;+Webex Cloud: xCommand Post Request
+  activate Webex Cloud
+  Note over Webex Cloud,Target Codec: Runs xCommand if&lt;br&gt;Device is Online
+  Webex Cloud-&gt;&gt;+Target Codec: Forwards Request
+  activate Target Codec
+  Target Codec-&gt;&gt;+Webex Cloud: Responds to Request
+  deactivate Target Codec
+  Webex Cloud-&gt;&gt;- My Customization: Forwards Response 200 OK
+  deactivate Webex Cloud</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>%%{init: {'theme':'dark'}}%%
+sequenceDiagram
+  participant My Customization
+  participant Webex Cloud
+  participant Target Codec
+  Webex Cloud&lt;&lt;--&gt;&gt;Target Codec: WebSocket Connection
+  Note over Webex Cloud,Target Codec: Forwarding xStatus, xConfig&lt;br&gt; and xEvent information
+  My Customization-&gt;&gt;+Webex Cloud: xConfig Patch Request
+  activate Webex Cloud
+  %% Note over Webex Cloud,Target Codec: Runs xConfig
+  %% Webex Cloud-&gt;&gt;+Target Codec: Forwards Patch Request
+  %% Target Codec-&gt;&gt;+Webex Cloud: Responds Error 503
+  %% deactivate Target Codec
+  Note over Webex Cloud,My Customization: Cloud Accepts Changes
+  Webex Cloud-&gt;&gt;+ My Customization: Forwards Response 200 OK
+  deactivate Webex Cloud
+  activate Target Codec
+  Webex Cloud-&gt;&gt;+Target Codec: Forwards xConfig Patch Request
+  Note over Webex Cloud,Target Codec: If the Target Codec is Offline, On Boot,&lt;br&gt;Webex Cloud Re-issues all xConfig Changes
+  Target Codec-&gt;&gt;+Webex Cloud: Responds 200 OK
+  deactivate Target Codec</code></pre>
+</div>
+<div class="tabbed-block">
+<pre class="mermaid"><code>%%{init: {'theme':'dark'}}%%
+sequenceDiagram
+  participant My Customization
+  participant Webex Cloud
+  participant All Org Codecs
+  participant Target Codec
+  Webex Cloud&lt;&lt;--&gt;&gt;All Org Codecs: WebSocket Connection&lt;br&gt;HTTP LongPoll
+  Note over Webex Cloud,All Org Codecs: Forwarding xStatus, xConfig&lt;br&gt; and xEvent information
+  Note over My Customization, Webex Cloud: WebHook Offered by My Customization&lt;br&gt;Configured in Webex Cloud
+  Webex Cloud --&gt;&gt;+ My Customization: Forwards Subscription Traffic&lt;br&gt;
+  par
+  Note over My Customization, Target Codec: On Subscription callBack from Target Codec
+  Target Codec --&gt;&gt;+ Webex Cloud: Ex. xEvent UserInterface Extension Panel Clicked (QuickDial)
+  Webex Cloud --&gt;&gt;- My Customization: Forwards xEvent UserInterface Extension Panel Clicked
+  My Customization-&gt;&gt;+Webex Cloud: Responds with xCommand Dial Post Request
+  Note over Webex Cloud,Target Codec: Runs xCommand if&lt;br&gt;Device is Online
+  Webex Cloud-&gt;&gt;-Target Codec: Forwards xCommand Dial Request
+  Target Codec-&gt;&gt;+Webex Cloud: Responds 200 OK
+  Webex Cloud-&gt;&gt;- My Customization: Forwards Response 200 OK
+  end</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Section Requirements</p>
+<p>Postman should have been installed on your loaner laptop, make sure it is</p>
+<ul>
+<li>If Postman is <strong><mark>NOT</mark></strong> installed, be sure to install it before continuing section 2.5</li>
+</ul>
+<div class="grid cards" markdown>
+<ul>
+<li>
+<p><i class="fa-solid fa-download"></i> <strong>Click the icon below for the Postman Download Page</strong></p>
+<hr>
+<p><a href="https://www.Postman.com/downloads/" target="_blank">
+  </a></p><figure markdown="span"><a href="https://www.Postman.com/downloads/" target="_blank">
+      <img alt="Postman Download" src="https://voyager.postman.com/logo/postman-logo-icon-orange.svg" width="75">
+  </a></figure><a href="https://www.Postman.com/downloads/" target="_blank">
+</a><p></p>
+</li>
+<li>
+<p><i class="fa-solid fa-download"></i> <strong>Click the icon below for the Section 2.3 Postman Collection</strong></p>
+<hr>
+<p><a href="https://github.com/WebexCC-SA/LAB-1451/raw/refs/heads/main/docs/assets/downloadable_resources/PostMan%20Collections/WX1-Lab-1451-CloudxAPI-PostMan-Collection.postman_collection.zip" target="_blank">
+  </a></p><figure markdown="span"><a href="https://github.com/WebexCC-SA/LAB-1451/raw/refs/heads/main/docs/assets/downloadable_resources/PostMan%20Collections/WX1-Lab-1451-CloudxAPI-PostMan-Collection.postman_collection.zip" target="_blank">
+      <img alt="Postman Collection" src="https://voyager.postman.com/logo/postman-logo-icon-orange.svg" width="75">
+  </a></figure><a href="https://github.com/WebexCC-SA/LAB-1451/raw/refs/heads/main/docs/assets/downloadable_resources/PostMan%20Collections/WX1-Lab-1451-CloudxAPI-PostMan-Collection.postman_collection.zip" target="_blank">
+</a><p></p>
+</li>
+</ul>
+</div>
+</div>
+<h2 id="cloud-xapi-authentication-and-format-rxp-51"><strong>Cloud xAPI Authentication and Format</strong> <sub>(rxp-5.1)</sub></h2>
+<div class="admonition blank">
+<p></p><h4><abbr title="Uniform Resource Locator">URL</abbr> Structure</h4><p></p>
+<p>The request <abbr title="Uniform Resource Locator">URL</abbr> for your Codec will change depending on whether you're making a Get, Post, Patch or Delete request to the Webex Cloud Service</p>
+<div class="admonition example">
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><input id="__tabbed_4_3" name="__tabbed_4" type="radio"><input id="__tabbed_4_4" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">Get</label><label for="__tabbed_4_2">Post</label><label for="__tabbed_4_3">Patch</label><label for="__tabbed_4_4">Delete</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><input id="__tabbed_5_3" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">xAPI Branch</label><label for="__tabbed_5_2">Devices Branch</label><label for="__tabbed_5_3">WorkSpaces Branch</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>https://webexapis.com/v1/<mark>xapi/status</mark>?[URL_Params]</p>
+</div>
+<div class="tabbed-block">
+<p>https://webexapis.com/v1/<mark>devices</mark>?[URL_Params]</p>
+</div>
+<div class="tabbed-block">
+<p>https://webexapis.com/v1/<mark>workspaces</mark>?[URL_Params]</p>
+</div>
+</div>
+</div>
+<details class="curious">
+<summary>Why is there a split between <code>xAPI</code>, <code>Devices</code> and <code>Workspaces</code></summary>
+<p>The Webex API stack offers APIs from all technologies within it's portfolio, not just for Video Devices. You'll have APIs for phone services, messaging, user management and the list goes on</p>
+<p>The <code>Devices</code> branch represents cloud-registered Webex RoomOS devices and Webex Calling phones. Devices may be associated with Workspaces.</p>
+<p>The <code>xAPI</code> branch allows developers to programmatically invoke commands and query the status of devices that run Webex RoomOS software. This is the very same xAPI we've been working with in the Previous Sections. These Video Devices themselves fall under the <code>Devices</code> branch and <code>Workspaces</code> branches, but mainly for management purposes.</p>
+<p>The <code>Workspaces</code> branch represents where people work, such as conference rooms, meeting spaces, lobbies, and lunch rooms. Devices may be associated with workspaces.</p>
+<p>We'll only cover 2 simple examples for the <code>Devices</code> and <code>Workspaces</code> branches in this lab as they are a bit out of scope, but they are worthwhile to know about, as they can help you build solutions for your video devices that scale across your organization.</p>
+</details>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"><input id="__tabbed_6_3" name="__tabbed_6" type="radio"><div class="tabbed-labels"><label for="__tabbed_6_1">xAPI Branch</label><label for="__tabbed_6_2">Devices Branch</label><label for="__tabbed_6_3">Workspaces Branch</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>https://webexapis.com/v1/xapi/<mark>command/[Command_xAPI_Path]</mark></p>
+</div>
+<div class="tabbed-block">
+<p>https://webexapis.com/v1/<mark>devices/[Devices_API_Path]?[URL_Params]</mark></p>
+</div>
+<div class="tabbed-block">
+<p>https://webexapis.com/v1/<mark>workspaces[Workspaces_API_Path]?[URL_Params]</mark></p>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="7:3"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"><input id="__tabbed_7_2" name="__tabbed_7" type="radio"><input id="__tabbed_7_3" name="__tabbed_7" type="radio"><div class="tabbed-labels"><label for="__tabbed_7_1">xAPI Branch</label><label for="__tabbed_7_2">Devices Branch</label><label for="__tabbed_7_3">Workspaces Branch</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>https://webexapis.com/v1/<mark>deviceConfigurations?[URL_Params]</mark></p>
+<details class="curious">
+<summary>I thought this was the <code>xAPI</code> branch, Not the <code>deviceConfigurations</code>?</summary>
+<p>Keen Eye <img alt="😃" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f603.svg" title=":smiley:">. This is the branch to access Device xAPI/xConfigurations but in Webex, all Device Related Configurations run under this branch</p>
+<p>So when working with Video Device or Phone Devices, you'll configure them here.</p>
+</details>
+</div>
+<div class="tabbed-block">
+<p>https://webexapis.com/v1/<mark>devices/[Device_Id]?[URL_Params]</mark></p>
+</div>
+<div class="tabbed-block">
+<p>https://webexapis.com/v1/<mark>workspaces[Workspaces_API_Path]?[URL_Params]</mark></p>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="8:3"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio"><input id="__tabbed_8_2" name="__tabbed_8" type="radio"><input id="__tabbed_8_3" name="__tabbed_8" type="radio"><div class="tabbed-labels"><label for="__tabbed_8_1">xAPI Branch</label><label for="__tabbed_8_2">Devices Branch</label><label for="__tabbed_8_3">Workspaces Branch</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition error">
+<p class="admonition-title">None Available</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>https://webexapis.com/v1/<mark>devices/[deviceId]?[URL_Params]</mark></p>
+</div>
+<div class="tabbed-block">
+<p>https://webexapis.com/v1/<mark>workspaceLocations/[locationId]/[Workspaces_API_Path]</mark></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p></p><h4>Authentication Format</h4><p></p>
+<p>Authentication can vary between Webex API branches and it's a bit of a broad topic depending on the solution.</p>
+<p>If you're interested in learning more about Webex APIs and the various scopes, check out the</p>
+<p><a class="md-button md-button--primary" href="https://developer.webex.com/docs/platform-introduction" target="_blank">
+  Platform Introduction Guide <i class="fa-solid fa-square-up-right"></i>
+</a></p>
+<p>On developer.webex.com</p>
+<p>For the lab, we'll use our Personal Access Token, which, with admin or device admin rights, will suffice.</p>
+<p>Your Personal Access Token is a form of <code>Bearer</code> authentication</p>
+<p></p><h4>Request Headers</h4><p></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Key</th>
+<th style="text-align: left;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Content-Type</code></td>
+<td style="text-align: left;"><code>application/json</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Content-Type</code></td>
+<td style="text-align: left;"><code>application/json-patch+json</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Authorization</code></td>
+<td style="text-align: left;"><code>Bearer [YOUR_TOKEN]</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="get-your-personal-access-token-import-and-configure-postman-collection-rxp-52"><strong>Get your Personal Access Token, Import and Configure Postman Collection</strong> <sub>(rxp-5.2)</sub></h2>
+<div class="admonition info">
+<p class="admonition-title">Get your Personal Access Token</p>
+<p>First, go to the Webex Developer Site</p>
+<p><a class="md-button md-button--primary" href="https://developer.webex.com" target="_blank">
+      Webex for Developers <i class="fa-solid fa-square-up-right"></i>
+</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Click the Tabs and follow the steps to get your Token</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:5"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio"><input id="__tabbed_9_2" name="__tabbed_9" type="radio"><input id="__tabbed_9_3" name="__tabbed_9" type="radio"><input id="__tabbed_9_4" name="__tabbed_9" type="radio"><input id="__tabbed_9_5" name="__tabbed_9" type="radio"><div class="tabbed-labels"><label for="__tabbed_9_1">1. Select Login &gt;&gt;</label><label for="__tabbed_9_2">2. Enter Your Email &gt;&gt;</label><label for="__tabbed_9_3">3. Select Documentation &gt;&gt;</label><label for="__tabbed_9_4">4. Find Devices Reference &gt;&gt;</label><label for="__tabbed_9_5">5. Copy Personal Access Token</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In the Top Navigation Bar</p>
+</div>
+<p></p><figure markdown="span">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="./assets/general/DevToken-Login.png" data-title="Webex Dev Login" data-desc-position="top"><img alt="Webex Dev Login" src="./assets/general/DevToken-Login.png" width="400"></a>
+    <figcaption>Select Login</figcaption>
+</figure><p></p>
+</div>
+<div class="tabbed-block">
+<div class="admonition important">
+<p class="admonition-title">Use the email provided to you in this lab</p>
+</div>
+<p></p><figure markdown="span">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="./assets/general/DevToken-EnterEmail.png" data-title="Webex Dev Enter Email" data-desc-position="top"><img alt="Webex Dev Enter Email" src="./assets/general/DevToken-EnterEmail.png" width="400"></a>
+    <figcaption>Enter Your Email</figcaption>
+</figure><p></p>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In the Top Navigation Bar</p>
+</div>
+<p></p><figure markdown="span">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="./assets/general/DevToken-SelectDocs.png" data-title="Webex Dev Documentation" data-desc-position="top"><img alt="Webex Dev Documentation" src="./assets/general/DevToken-SelectDocs.png" width="400"></a>
+    <figcaption>Select Documentation</figcaption>
+</figure><p></p>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In the left Navigation Bar</p>
+</div>
+<p></p><figure markdown="span">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="./assets/general/DevToken-FindDevices.png" data-title="Webex Dev Device Reference" data-desc-position="top"><img alt="Webex Dev Device Reference" src="./assets/general/DevToken-FindDevices.png" width="250"></a>
+    <figcaption>Select Device References</figcaption>
+</figure><p></p>
+</div>
+<div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">In the Top Navigation Bar, then in the right content menu</p>
+</div>
+<p></p><figure markdown="span">
+    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="./assets/general/DevToken-CopyToken.png" data-title="Webex Dev Copy Token" data-desc-position="top"><img alt="Webex Dev Copy Token" src="./assets/general/DevToken-CopyToken.png" width="600"></a>
+    <figcaption>Select List Devices and Copy Personal Access Token</figcaption>
+</figure><p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Import and Configure Postman Collection</p>
+<p></p><h4>Import Collection</h4><p></p>
+<ul>
+<li>With Postman open, in a new or existing workspace select <mark>import</mark></li>
+<li>Select File</li>
+<li>Locate the <mark>WX1-Lab:1451-CloudxAPI-Postman-Collection.Postman_collection.json</mark> and Open it</li>
+<li>You should now have the Postman Collection installed for this lab</li>
+</ul>
+<details class="gif">
+<summary>View Import Postman Collection</summary>
+<p></p><figure markdown>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="./assets/wx1_1451_part_2/2-3-2_Import-PostmanCollection.gif" data-title="Import Lab Postman Collection" data-desc-position="top"><img alt="Import Lab Postman Collection" src="./assets/wx1_1451_part_2/2-3-2_Import-PostmanCollection.gif" width="600"></a>
+</figure><p></p>
+</details>
+<p></p><h4>Configure Collection</h4><p></p>
+<ul>
+<li>Click on the <mark>WX1-Lab:1451-CloudxAPI-Postman-Collection</mark> root folder</li>
+<li>Select Variables</li>
+<li>
+<p>Add the following information for your codec in both the <code>Initial Value</code> and <code>Current Value</code> fields</p>
+<ul>
+<li>developer_Token</li>
+<li>device_Id</li>
+</ul>
+<div class="admonition important">
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="./assets/wx1_1451_part_2/2-5-2_DevToken.png" data-title="Developer Id" data-desc-position="top"><img _="," align="right" alt="Developer Id" src="./assets/wx1_1451_part_2/2-5-2_DevToken.png" width="600"></a></p>
+<ul>
+<li>To get the Device ID, open an <abbr title="Secure Shell">SSH</abbr> terminal window and run the following xAPI</li>
+</ul>
+<div class="highlight"><pre><span></span><code>xStatus<span class="w"> </span>Webex<span class="w"> </span>DeveloperId
+</code></pre></div>
+<ul>
+<li>Copy the response contained within the double quotes <mark>""</mark>, just be sure not include the double quotes</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Select Save (or one of the keyboard shortcuts for your computer)</p>
+<ul>
+<li><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span> for Windows</li>
+<li><span class="keys"><kbd class="key-command">Cmd</kbd><span>+</span><kbd class="key-s">S</kbd></span> for Mac</li>
+</ul>
+</li>
+</ul>
+<details class="gif">
+<summary>View Configure Postman Collection</summary>
+<p></p><figure markdown>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="./assets/wx1_1451_part_2/2-5-2_Config-Postman.gif" data-title="Configure Cloud xAPI Postman Collection" data-desc-position="top"><img alt="Configure Cloud xAPI Postman Collection" src="./assets/wx1_1451_part_2/2-5-2_Config-Postman.gif" width="600"></a>
+</figure><p></p>
+</details>
+</div>
+<hr>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>For each lesson throughout Sections 2.5.3 through 2.5.7, use the <mark>WX1-Lab:1451-CloudxAPI-Postman-Collection.Postman_collection.json</mark> Postman collection.</p>
+<p>Each Section has it's own Folder and each lesson name below matches a Postman Request in that folder.</p>
+<p>When tasked to use Postman, use the Request that matches your current lesson.</p>
+</div>
+<hr>
+<h2 id="webex-devices-and-workspace-apis-rxp-53"><strong>Webex Devices and Workspace APIs</strong> <sub>(rxp-5.3)</sub></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In section 2.5.3, we'll review a single API from the Devices and Workspaces branches. These APIs are not directly associated to the Devices xAPI, but help highlights what's possible to do at scale when interacting with your devices.</p>
+</div>
+<details class="lesson" open="open">
+<summary>Lesson: List Devices</summary>
+<ul>
+<li>
+<p><strong>Webex Api</strong>: List Devices</p>
+</li>
+<li>
+<p><strong>Task</strong>:</p>
+<ul>
+<li>This Postman Request comes predefined, no action other than selecting <mark>Send</mark> and review the Postman Terminal's repsonse</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The result will contain all devices you have access to in your Webex Control Hub Organization. This includes not only Video Collaboration devices, but Phones, headsets and any other hardware listed as a Device</p>
+<p>You can apply filters to this Get request in the form of <abbr title="Uniform Resource Locator">URL</abbr> parameters to refine which devices you're interested in listing</p>
+</div>
+<details class="success">
+<summary>View properly formatted Url, Body and Successful Response</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:3"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio"><input id="__tabbed_10_2" name="__tabbed_10" type="radio"><input id="__tabbed_10_3" name="__tabbed_10" type="radio"><div class="tabbed-labels"><label for="__tabbed_10_1"><abbr title="Uniform Resource Locator">URL</abbr></label><label for="__tabbed_10_2">Body</label><label for="__tabbed_10_3">Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/<ins class="critic">devices</ins></code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<div class="admonition failure">
+<p class="admonition-title">No Body Required</p>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-XXXX"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"placeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"capabilities"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cisco Desk Mini"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"roomdesk"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">"ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXX.XXX.XXX.XXX"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"mac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XX:XX:XX:XX:XX:XX"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXXXXXXXX"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"activeInterface"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LAN"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RoomOS XX.XX.XX.XX xxxxxxxxxx"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"upgradeChannel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stable"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"primarySipUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@example.com"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"sipUrls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"example@example.com"</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"errorCodes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">"connectionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Online"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00T00:00:00.000Z"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"firstSeen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00T00:00:00.000Z"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"lastSeen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00T00:00:00.000Z"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"managedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Webex"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"devicePlatform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cisco"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"workspaceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">"Devices Continued..."</span><span class="p">]</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<details class="lesson">
+<summary>Lesson: List Workspaces</summary>
+<ul>
+<li>
+<p><strong>Webex Api</strong>: List Workspaces</p>
+</li>
+<li>
+<p><strong>Task</strong>:</p>
+<ul>
+<li>This Postman Request comes predefined, no action other than selecting <mark>Send</mark> and review the Postman Terminal's repsonse</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The result will contain all workspaces you have access to in your Webex Control Hub Organization. This includes information about each workspace you've defined. Keep in mind, each device is apart of a Workspace</p>
+<p>You can apply filters to this Get request in the form of <abbr title="Uniform Resource Locator">URL</abbr> parameters to refine which workspaces you're interested in listing</p>
+</div>
+<details class="success">
+<summary>View properly formatted Url, Body and Successful Response</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:3"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio"><input id="__tabbed_11_2" name="__tabbed_11" type="radio"><input id="__tabbed_11_3" name="__tabbed_11" type="radio"><div class="tabbed-labels"><label for="__tabbed_11_1"><abbr title="Uniform Resource Locator">URL</abbr></label><label for="__tabbed_11_2">Body</label><label for="__tabbed_11_3">Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/<ins class="critic">workspaces</ins></code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<div class="admonition failure">
+<p class="admonition-title">No Body Required</p>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"workspaceLocationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"locationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"floorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXX-XXXX"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"meetingRoom"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"sipAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@example.rooms.webex.com"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00T00:00:00.000Z"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"calling"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webexCalling"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"licenses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"calendar"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"none"</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"hotdeskingStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"deviceHostedMeetings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"siteUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example.webex.com"</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"supportedDevices"</span><span class="p">:</span><span class="w"> </span><span class="s2">"collaborationDevices"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"devicePlatform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cisco"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">"Workspaces Continued..."</span><span class="p">]</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<h2 id="executing-xcommands-rxp-54"><strong>Executing xCommands</strong> <sub>(rxp-5.4)</sub></h2>
+<details class="lesson" open="open">
+<summary>Lesson: Execute an xCommand</summary>
+<div class="admonition example">
+<p class="admonition-title">Click on the tabs to see how Terminal Syntax relates to Cloud xAPI Syntax</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio"><input id="__tabbed_12_2" name="__tabbed_12" type="radio"><div class="tabbed-labels"><label for="__tabbed_12_1">Terminal Syntax</label><label for="__tabbed_12_2">Cloud xAPI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Url:
+</p><pre><code>x<ins class="critic">Command</ins> <ins class="critic">Child</ins> <ins class="critic">Child</ins> <ins class="critic">ChildParam_X</ins>: <mark>SomeValue</mark> </code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<p>Url:
+</p><pre><code>https://webexapis.com/v1/xapi/<ins class="critic">status</ins>?deviceId={{ device_Id }}&amp;name=<ins class="critic">Child.Child</ins></code></pre><p></p>
+<div class="highlight"><span class="filename">Body</span><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"ChildParam_X"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SomeValue"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>
+<p><strong>xAPI:</strong> xCommand Video Selfview Set</p>
+</li>
+<li>
+<p><strong>Task:</strong></p>
+<ul>
+<li>
+<p>Structure the xAPI Path above in the <code>URL</code></p>
+</li>
+<li>
+<p>In the Postman request Body, structure the following parameters using JSON format into the <code>arguments</code> object</p>
+<ul>
+<li>Mode: On</li>
+<li>FullScreenMode: On</li>
+<li>OnMonitorRole: First</li>
+</ul>
+</li>
+</ul>
+<p>Once the Postman Request has been updated, <mark>Save</mark> the request, select <mark>Send</mark> and review the Postman Terminal's repsonse and observe any changes to your device</p>
+</li>
+</ul>
+<details class="success">
+<summary>View properly formatted Url, Body and Successful Response</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:3"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio"><input id="__tabbed_13_2" name="__tabbed_13" type="radio"><input id="__tabbed_13_3" name="__tabbed_13" type="radio"><div class="tabbed-labels"><label for="__tabbed_13_1">Url</label><label for="__tabbed_13_2">Body</label><label for="__tabbed_13_3">Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/xapi/command/<mark>Video.Selfview.Set</mark></code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"Mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"On"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"FullScreenMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"On"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"OnMonitorRole"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[YOUR_DEVICE_ID]"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<details class="lesson">
+<summary>Lesson: Execute an xCommand with multiple arguments with the same name</summary>
+<p>In cases where we need to declare multiple arguments of the same name, rather than duplicating and re-running the parameters, we instead leverage an Array in place of the value, containing all values we want to implement under that Parameter</p>
+<p><a class="md-button md-button--primary" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">
+  Learn more about <strong>Arrays</strong> <i class="fa-solid fa-square-up-right"></i>
+</a></p>
+<div class="admonition example">
+<p class="admonition-title">Click on the tabs to see how Terminal Syntax relates to Cloud xAPI Syntax</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="14:2"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio"><input id="__tabbed_14_2" name="__tabbed_14" type="radio"><div class="tabbed-labels"><label for="__tabbed_14_1">Terminal Syntax</label><label for="__tabbed_14_2">Cloud xAPI Syntax</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xParent<span class="w"> </span>Child<span class="w"> </span>ChildParam_X:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>ChildParam_X:<span class="w"> </span><span class="m">2</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Url: https://webexapis.com/v1/xapi/command/<mark>Parent.Child</mark></p>
+<div class="highlight"><span class="filename">Body</span><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"ChildParam_X"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>
+<p><strong>xAPI:</strong> xCommand Video Input SetMainVideoSource</p>
+</li>
+<li>
+<p><strong>Task:</strong></p>
+<ul>
+<li>
+<p>Structure the xAPI Path above in the <code>URL</code></p>
+</li>
+<li>
+<p>In the Postman request Body, structure the following parameters using JSON format into the <code>arguments</code> object, but duplicate the ConnectorId parameter twice</p>
+<ul>
+<li>ConnectorId: 1</li>
+<li>Layout: Equal</li>
+</ul>
+</li>
+</ul>
+<p>Once the Postman Request has been updated, <mark>Save</mark> the request, select <mark>Send</mark> and review the Postman Terminal's repsonse and observe any changes to your device</p>
+</li>
+</ul>
+<details class="success">
+<summary>View properly formatted Url, Body and Successful Response</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="15:3"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio"><input id="__tabbed_15_2" name="__tabbed_15" type="radio"><input id="__tabbed_15_3" name="__tabbed_15" type="radio"><div class="tabbed-labels"><label for="__tabbed_15_1">Url</label><label for="__tabbed_15_2">Body</label><label for="__tabbed_15_3">Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/xapi/command/<mark>Video.Input.SetMainVideoSource</mark></code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"ConnectorId"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"Layout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equal"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[YOUR_DEVICE_ID]"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<details class="lesson">
+<summary>Lesson: Execute an xCommand with a multiline argument</summary>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Multiline Arguments can be placed into the <code>body</code> object object of your post. This is defined after the arguments object, not within it.</p>
+<p>The structure of a Multiline argument should look similar to the following</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Click on the tabs to see how Terminal Syntax relates to WebSocket Syntax</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="16:2"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio"><input id="__tabbed_16_2" name="__tabbed_16" type="radio"><div class="tabbed-labels"><label for="__tabbed_16_1">Terminal Syntax</label><label for="__tabbed_16_2">WebSocket Syntax</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="o">[</span>xParent<span class="w"> </span>Child<span class="w"> </span>ChildParam_X:<span class="w"> </span>SomeValue<span class="o">]</span>
+<span class="o">[</span>Multi<span class="w"> </span>Line<span class="w"> </span>Content<span class="o">]</span>
+.
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Url: https://webexapis.com/v1/xapi/command/<mark>Parent.Child</mark></p>
+<div class="highlight"><span class="filename">Body</span><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,,</span>
+<span class="w">  </span><span class="nt">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"ChildParam_X"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SomeValue"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Multi Line Content"</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your Selfview may still be open</p>
+<p>Run the following in your terminal window to close selfview</p>
+<div class="highlight"><pre><span></span><code>xCommand<span class="w"> </span>Video<span class="w"> </span>Selfview<span class="w"> </span>Set<span class="w"> </span>Mode:<span class="w"> </span>Off
+</code></pre></div>
+<details class="challenge">
+<summary>Challenge: Alter <code>Execute an xCommand</code> in your Cloud xAPI Postman Collection</summary>
+<p>Rather than re-open your terminal session, you can go back to <code>Execute an xCommand</code> in your Cloud xAPI Postman Collection, and update the <code>argument</code> object to set the Mode parameter to Off</p>
+<p><a class="md-button md-button--primary" href="../challengeAnswers/" target="_blank">
+    Giving Up? Check out the Challenge Answers Page <i class="fa-solid fa-square-up-right"></i>
+  </a></p>
+</details>
+</div>
+<ul>
+<li>
+<p><strong>xAPI:</strong> xCommand UserInterface Extensions Panel Save</p>
+</li>
+<li>
+<p><strong>Task:</strong></p>
+<ul>
+<li>
+<p>Structure the xAPI Path above in the <code>URL</code></p>
+</li>
+<li>
+<p>In the Postman request Body, structure the following parameters into the <code>arguments</code> object</p>
+<ul>
+<li>PanelId: wx1_lab_multilineCommand</li>
+</ul>
+</li>
+<li>
+<p>In the Postman request Body, format the <abbr title="Extensible Markup Language">XML</abbr> below into the <code>body</code> object</p>
+<div class="highlight"><span class="filename">Your &lt;body&gt; Value</span><pre><span></span><code><span class="nt">&lt;Extensions&gt;</span>
+<span class="w">  </span><span class="nt">&lt;Panel&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Order&gt;</span>1<span class="nt">&lt;/Order&gt;</span>
+<span class="w">    </span><span class="nt">&lt;PanelId&gt;</span>wx1_lab_multilineCommand<span class="nt">&lt;/PanelId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Location&gt;</span>HomeScreen<span class="nt">&lt;/Location&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Icon&gt;</span>Info<span class="nt">&lt;/Icon&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Color&gt;</span>#FF70CF<span class="nt">&lt;/Color&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Name&gt;</span>MultiLine<span class="w"> </span>Command<span class="w"> </span>[Section<span class="w"> </span>2.4.3]<span class="nt">&lt;/Name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;ActivityType&gt;</span>Custom<span class="nt">&lt;/ActivityType&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/Panel&gt;</span>
+<span class="nt">&lt;/Extensions&gt;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Once the Postman Request has been updated, <mark>Save</mark> the request, select <mark>Send</mark> and review the Postman Terminal's repsonse and observe any changes to your device</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>JSON is not a big fan of multiline strings. No need to flatten it to one line yourself, we have a <code>Flatten Multiline String Tool</code> on the Tools page</p>
+<p><a class="md-button md-button--primary" href="../tools/" target="_blank">
+  Open <strong>Tools</strong> <i class="fa-solid fa-gear"></i> Page <i class="fa-solid fa-square-up-right"></i>
+</a></p>
+</div>
+<p>Once the Postman Request has been updated, <mark>Save</mark> the request, select <mark>Send</mark> and review the Postman Terminal's repsonse and observe any changes to your device</p>
+</li>
+</ul>
+<details class="success">
+<summary>View properly formatted Url, Body and Successful Response</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="17:3"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio"><input id="__tabbed_17_2" name="__tabbed_17" type="radio"><input id="__tabbed_17_3" name="__tabbed_17" type="radio"><div class="tabbed-labels"><label for="__tabbed_17_1">Url</label><label for="__tabbed_17_2">Body</label><label for="__tabbed_17_3">Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/xapi/command/<mark>UserInterface.Extensions.Panel.Save</mark></code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"PanelId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wx1_lab_multilineCommand"</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Extensions&gt; &lt;Panel&gt; &lt;Order&gt;1&lt;/Order&gt; &lt;PanelId&gt;wx1_lab_multilineCommand&lt;/PanelId&gt; &lt;Location&gt;HomeScreen&lt;/Location&gt; &lt;Icon&gt;Info&lt;/Icon&gt; &lt;Color&gt;#FF70CF&lt;/Color&gt; &lt;Name&gt;MultiLine Command [Section 2.5.4]&lt;/Name&gt; &lt;ActivityType&gt;Custom&lt;/ActivityType&gt; &lt;/Panel&gt; &lt;/Extensions&gt;"</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[YOUR_DEVICE_ID]"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<details class="lesson">
+<summary>Lesson: Execute an xCommand which generates data and responds</summary>
+<ul>
+<li>
+<p><strong>xAPI:</strong> xCommand UserInterface Extensions List</p>
+</li>
+<li>
+<p><strong>Task:</strong></p>
+<ul>
+<li>
+<p>Structure the xAPI Path above in the <code>URL</code></p>
+</li>
+<li>
+<p>In the Postman request Body, structure the following parameters using JSON format into the <code>arguments</code> object.</p>
+<ul>
+<li>ActivityType: Custom</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Once the Postman Request has been updated, <mark>Save</mark> the request, select <mark>Send</mark> and review the Postman Terminal's repsonse and observe any changes to your device</p>
+</li>
+</ul>
+<details class="success">
+<summary>View properly formatted Url, Body and Successful Response</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="18:3"><input checked="checked" id="__tabbed_18_1" name="__tabbed_18" type="radio"><input id="__tabbed_18_2" name="__tabbed_18" type="radio"><input id="__tabbed_18_3" name="__tabbed_18" type="radio"><div class="tabbed-labels"><label for="__tabbed_18_1">Url</label><label for="__tabbed_18_2">Body</label><label for="__tabbed_18_3">Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/xapi/command/<mark>UserInterface.Extensions.List</mark></code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"ActivityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"Extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"Panel"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"ActivityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"Color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#FF70CF"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"Icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Info"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"Location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HomeScreen"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MultiLine Command [Section 2.5.4]"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"Order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"Origin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"local"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"PanelId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wx1_lab_multilineCommand"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"Visibility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Auto"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="s2">"Continues..."</span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.11"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<h2 id="getting-and-setting-to-xconfigurations-rxp-55"><strong>Getting and Setting to xConfigurations</strong> <sub>(rxp-5.5)</sub></h2>
+<details class="lesson" open="open">
+<summary>Lesson: Getting an xConfiguration Value</summary>
+<div class="admonition example">
+<p class="admonition-title">Click on the tabs to see how Terminal Syntax relates to Cloud xAPI Syntax</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="19:2"><input checked="checked" id="__tabbed_19_1" name="__tabbed_19" type="radio"><input id="__tabbed_19_2" name="__tabbed_19" type="radio"><div class="tabbed-labels"><label for="__tabbed_19_1">Terminal Syntax</label><label for="__tabbed_19_2">Cloud xAPI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>x<ins class="critic">Configuration</ins> <ins class="critic">Child</ins> <ins class="critic">Child</ins></code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/device<ins class="critic">Configurations</ins>?deviceId={{ device_Id }}=<ins class="critic">Child.Child</ins></code></pre><p></p>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>
+<p><strong>xAPI:</strong> xConfiguration Audio DefaultVolume</p>
+</li>
+<li>
+<p><strong>Task:</strong></p>
+<ul>
+<li>
+<p>Structure the xAPI Path above in the <code>URL</code></p>
+</li>
+<li>
+<p>Once the Postman Request has been updated, <mark>Save</mark> the request, select <mark>Send</mark> and review the Postman Terminal's repsonse and observe any changes to your device</p>
+</li>
+</ul>
+</li>
+</ul>
+<details class="success">
+<summary>View properly formatted <abbr title="Uniform Resource Locator">URL</abbr>, Body and Successful Response</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="20:3"><input checked="checked" id="__tabbed_20_1" name="__tabbed_20" type="radio"><input id="__tabbed_20_2" name="__tabbed_20" type="radio"><input id="__tabbed_20_3" name="__tabbed_20" type="radio"><div class="tabbed-labels"><label for="__tabbed_20_1"><abbr title="Uniform Resource Locator">URL</abbr></label><label for="__tabbed_20_2">Body</label><label for="__tabbed_20_3">Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/deviceConfigurations?deviceId={{ device_Id }}&amp;key=<ins class="critic">Audio.DefaultVolume</ins></code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<div class="admonition failure">
+<p class="admonition-title">No Body Required</p>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="no-copy highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"Audio.DefaultVolume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w"> </span><span class="c1">// &lt;-- Response Includes New Value for Path</span>
+<span class="w">            </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"configured"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"editability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">"isEditable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FACTORY_DEFAULT"</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"schemaDefault"</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"enforced"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">"configured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"editability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">"isEditable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"device"</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"enforced"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">"valueSpace"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"minimum"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<details class="lesson">
+<summary>Lesson: Getting multiple xConfiguration Values under a common Node</summary>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In order to Get all configuration values under a common node, we need to insert a wildcard (<ins class="critic">*</ins>) into the path as the last argument</p>
+<div class="admonition example">
+<p class="admonition-title">Click each Tab below to see how the wildcard is implemented in the <abbr title="Uniform Resource Locator">URL</abbr></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="21:3"><input checked="checked" id="__tabbed_21_1" name="__tabbed_21" type="radio"><input id="__tabbed_21_2" name="__tabbed_21" type="radio"><input id="__tabbed_21_3" name="__tabbed_21" type="radio"><div class="tabbed-labels"><label for="__tabbed_21_1">Full xAPI Path</label><label for="__tabbed_21_2">Next Higher Common Node</label><label for="__tabbed_21_3">Highest Common Node</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/deviceConfigurations?deviceId={{ device_Id }}&amp;key=Bluetooth.Allowed</code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/deviceConfigurations?deviceId={{ device_Id }}&amp;key=Bluetooth<ins class="critic">.*</ins></code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/deviceConfigurations?deviceId={{ device_Id }}<del class="critic">&amp;key=</del></code></pre><p></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When requesting the entire xConfiguration Branch, path or wildcard id not required, simply remove the entire <code>key</code> <abbr title="Uniform Resource Locator">URL</abbr> parameter</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>
+<p><strong>xAPI:</strong> xConfiguration Audio</p>
+</li>
+<li>
+<p><strong>Task:</strong></p>
+<ul>
+<li>
+<p>Structure the xAPI Path above in the <code>URL</code></p>
+</li>
+<li>
+<p>Once the Postman Request has been updated, <mark>Save</mark> the request, select <mark>Send</mark> and review the Postman Terminal's repsonse and observe any changes to your device</p>
+</li>
+</ul>
+</li>
+</ul>
+<details class="success">
+<summary>View properly formatted <abbr title="Uniform Resource Locator">URL</abbr>, Body and Successful Response</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="22:3"><input checked="checked" id="__tabbed_22_1" name="__tabbed_22" type="radio"><input id="__tabbed_22_2" name="__tabbed_22" type="radio"><input id="__tabbed_22_3" name="__tabbed_22" type="radio"><div class="tabbed-labels"><label for="__tabbed_22_1"><abbr title="Uniform Resource Locator">URL</abbr></label><label for="__tabbed_22_2">Body</label><label for="__tabbed_22_3">Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/deviceConfigurations?deviceId={{ device_Id }}&amp;key=<ins class="critic">Audio.*</ins></code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<div class="admonition failure">
+<p class="admonition-title">No Body Required</p>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="no-copy highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// &lt;-- Response Includes New Values for Common Path</span>
+<span class="w">      </span><span class="nt">"Audio.Input.Ethernet[1].Channel[2].Gain"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"editability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">"isEditable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FACTORY_DEFAULT"</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"schemaDefault"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"enforced"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">"configured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"editability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">"isEditable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"device"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"enforced"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"valueSpace"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"minimum"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">[</span><span class="s2">"And the list continues...[5000+ Lines]"</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<details class="lesson">
+<summary>Lesson: Set a new xConfiguration Value</summary>
+<div class="admonition webex">
+<p class="admonition-title">Note</p>
+<p>Unlike commands, configurations use <abbr title="Hypertext Transfer Protocol">HTTP</abbr> Patches. This is because you're making a change to the configuration stored on Webex Control Hub, then control hub will forward changes to the device.</p>
+<p>The benefit here, is that your device doesn't need to be online to make these changes <img alt="😃" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f603.svg" title=":smiley:">. So in the case of making bulk changes across your portfolio, Webex Control Hub will apply the configurations you set to all online devices, and should a device be offline, Webex Control Hub will apply those config changes after the device reconnects to the cloud on boot</p>
+<p>With that said, execution of xConfiguration changes via Cloud xAPI changes how the <abbr title="Uniform Resource Locator">URL</abbr> and Body are structured</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Click on the tabs to see how Terminal Syntax relates to Cloud xAPI Syntax</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="23:2"><input checked="checked" id="__tabbed_23_1" name="__tabbed_23" type="radio"><input id="__tabbed_23_2" name="__tabbed_23" type="radio"><div class="tabbed-labels"><label for="__tabbed_23_1">Terminal Syntax</label><label for="__tabbed_23_2">Cloud xAPI Syntax</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>xConfig<span class="w"> </span>Child<span class="w"> </span>ChildParam_X:<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Url: https://webexapis.com/v1/deviceConfigurations?deviceId={{ device_Id }}</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="24:2"><input checked="checked" id="__tabbed_24_1" name="__tabbed_24" type="radio"><input id="__tabbed_24_2" name="__tabbed_24" type="radio"><div class="tabbed-labels"><label for="__tabbed_24_1">Set new Value</label><label for="__tabbed_24_2">Set Default Value</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>To set a new value, the <code>op</code> object must have a value of <mark>replace</mark> and the <code>value</code> object requires the configurations new value</p>
+<div class="highlight"><span class="filename">Body</span><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replace"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Child.ChildParam_X/sources/configured/value"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>To the configuration back to it's default value, the <code>op</code> object must have a value of <mark>remove</mark> and omit <del class="critic"><code>value</code></del> object</p>
+<div class="highlight"><span class="filename">Body</span><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"remove"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Child.Child/sources/configured/value"</span><span class="p">,</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>All xAPI paths in the <code>path</code> object must end with <ins class="critic">/sources/configured/value</ins></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>
+<p><strong>xAPI:</strong> xConfiguration Audio DefaultVolume</p>
+</li>
+<li>
+<p><strong>Task:</strong> </p>
+<ul>
+<li>
+<p>Assign the correct value to the <code>op</code> object in order to <mark>Set</mark> a new value for the xAPI above</p>
+</li>
+<li>
+<p>Structure the xAPI above in the path correctly, be sure to end that path with <ins class="critic">/sources/configured/value</ins></p>
+</li>
+<li>
+<p>Assign a value of <mark>100</mark> to the <code>value</code> object</p>
+</li>
+</ul>
+</li>
+</ul>
+<details class="success">
+<summary>View properly formatted <abbr title="Uniform Resource Locator">URL</abbr>, Body and Successful Response</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="25:3"><input checked="checked" id="__tabbed_25_1" name="__tabbed_25" type="radio"><input id="__tabbed_25_2" name="__tabbed_25" type="radio"><input id="__tabbed_25_3" name="__tabbed_25" type="radio"><div class="tabbed-labels"><label for="__tabbed_25_1"><abbr title="Uniform Resource Locator">URL</abbr></label><label for="__tabbed_25_2">Body</label><label for="__tabbed_25_3">Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/deviceConfigurations?deviceId={{ device_Id }}</code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"replace"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Audio.DefaultVolume/sources/configured/value"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="no-copy highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"Audio.DefaultVolume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="c1">// &lt;-- Response Includes New Value for Path</span>
+<span class="w">      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"configured"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"editability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"isEditable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FACTORY_DEFAULT"</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"schemaDefault"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"enforced"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"configured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"editability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"isEditable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"device"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"enforced"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"valueSpace"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"minimum"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">"10000+ Line Response..."</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<details class="lesson">
+<summary>Lesson: Set an xConfiguration to it's Default Value</summary>
+<ul>
+<li>
+<p><strong>xAPI:</strong> xConfiguration Audio DefaultVolume</p>
+</li>
+<li>
+<p><strong>Task:</strong> </p>
+<ul>
+<li>
+<p>Assign the correct value to the <code>op</code> object in order to <mark>Set the Default Value</mark> for the xAPI above</p>
+</li>
+<li>
+<p>Structure the xAPI above in the path correctly, be sure to end that path with <ins class="critic">/sources/configured/value</ins></p>
+</li>
+</ul>
+</li>
+</ul>
+<details class="success">
+<summary>View properly formatted <abbr title="Uniform Resource Locator">URL</abbr>, Body and Successful Response</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="26:3"><input checked="checked" id="__tabbed_26_1" name="__tabbed_26" type="radio"><input id="__tabbed_26_2" name="__tabbed_26" type="radio"><input id="__tabbed_26_3" name="__tabbed_26" type="radio"><div class="tabbed-labels"><label for="__tabbed_26_1"><abbr title="Uniform Resource Locator">URL</abbr></label><label for="__tabbed_26_2">Body</label><label for="__tabbed_26_3">Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/deviceConfigurations?deviceId={{ device_Id }}</code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"remove"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Audio.DefaultVolume/sources/configured/value"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="no-copy highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"Audio.DefaultVolume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">  </span><span class="c1">// &lt;-- Response Includes New Value for Path</span>
+<span class="w">      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"configured"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"editability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"isEditable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FACTORY_DEFAULT"</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"schemaDefault"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"enforced"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"configured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"editability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"isEditable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"device"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"enforced"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"valueSpace"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"minimum"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">"10000+ Line Response..."</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<details class="lesson">
+<summary>Lesson: Setting multiple xConfiguration Values in a single Request</summary>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Setting multiple configuration values can be handled in a single Patch request. The Body starts as an Array, we only need to push more properties into the array</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Click the Tabs below to view multiple xConfigurations structured in a single request body</p>
+<p>=== "Single xConfig"</p>
+<div class="highlight"><pre><span></span><code>  ``` JSON
+  [
+      {
+          "op": "remove",
+          "path": "Child_A.Child_A_Param/sources/configured/value"
+      }
+  ]
+  ```
+</code></pre></div>
+<p>=== "2 xConfigs"</p>
+<div class="highlight"><pre><span></span><code>  ``` JSON
+  [
+      {
+          "op": "remove",
+          "path": "Child_A.Child_A_Param/sources/configured/value"
+      },
+      {
+          "op": "remove",
+          "path": "Child_B.Child_B_Param/sources/configured/value"
+      }
+  ]
+  ```
+</code></pre></div>
+<p>=== "3 xConfigs"</p>
+<div class="highlight"><pre><span></span><code>  ``` JSON
+  [
+      {
+          "op": "remove",
+          "path": "Child_A.Child_A_Param/sources/configured/value"
+      },
+      {
+          "op": "remove",
+          "path": "Child_B.Child_B_Param/sources/configured/value"
+      },
+      {
+          "op": "remove",
+          "path": "Child_B.Child_B_Param/sources/configured/value"
+      }
+  ]
+  ```
+</code></pre></div>
+</div>
+<ul>
+<li>
+<p><strong>xAPI(s):</strong></p>
+<ul>
+<li>xConfiguration Video Input Airplay Mode: On</li>
+<li>xConfiguration Video Input Airplay Beacon: Auto</li>
+</ul>
+</li>
+<li>
+<p><strong>Task:</strong></p>
+<ul>
+<li>
+<p>Assign the correct value to the <code>op</code> object in order to <mark>Set</mark> a new value for <mark>each</mark> xAPI above</p>
+</li>
+<li>
+<p>Structure the xAPI above in the path correctly, be sure to end that path with <ins class="critic">/sources/configured/value</ins></p>
+</li>
+<li>
+<p>Assign the Values for <mark>each</mark> xAPI Value above to their <code>value</code> object</p>
+</li>
+<li>
+<p><strong>Hint</strong>: Reference the <code>2 xConfig</code> tab above</p>
+</li>
+</ul>
+</li>
+</ul>
+<details class="success">
+<summary>View properly formatted <abbr title="Uniform Resource Locator">URL</abbr>, Body and Successful Response</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="27:3"><input checked="checked" id="__tabbed_27_1" name="__tabbed_27" type="radio"><input id="__tabbed_27_2" name="__tabbed_27" type="radio"><input id="__tabbed_27_3" name="__tabbed_27" type="radio"><div class="tabbed-labels"><label for="__tabbed_27_1"><abbr title="Uniform Resource Locator">URL</abbr></label><label for="__tabbed_27_2">Body</label><label for="__tabbed_27_3">Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/deviceConfigurations?deviceId={{ device_Id }}</code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"remove"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Audio.DefaultVolume/sources/configured/value"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="no-copy highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"Video.Input.AirPlay.Mode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"On"</span><span class="p">,</span><span class="w"> </span><span class="c1">// &lt;-- Response Includes New Value for Path</span>
+<span class="w">      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"configured"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Off"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"editability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"isEditable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FACTORY_DEFAULT"</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"schemaDefault"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"enforced"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"configured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"On"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"editability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"isEditable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"device"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"enforced"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"valueSpace"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"enum"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">"Off"</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">"On"</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"Video.Input.AirPlay.Beacon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Auto"</span><span class="p">,</span><span class="w"> </span><span class="c1">// &lt;-- Response Includes New Value for Path</span>
+<span class="w">      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"configured"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Auto"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"editability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"isEditable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FACTORY_DEFAULT"</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"schemaDefault"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"enforced"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"configured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Auto"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"editability"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"isEditable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"device"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"enforced"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"valueSpace"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"enum"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">"Auto"</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">"Off"</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">"10000+ Line Response..."</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<h2 id="getting-xstatuses-rxp-56"><strong>Getting xStatuses</strong> <sub>(rxp-5.6)</sub></h2>
+<details class="lesson">
+<summary>Lesson: Getting an xStatus Value</summary>
+<div class="admonition example">
+<p class="admonition-title">Click on the tabs to see how Terminal Syntax relates to Cloud xAPI Syntax</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="28:2"><input checked="checked" id="__tabbed_28_1" name="__tabbed_28" type="radio"><input id="__tabbed_28_2" name="__tabbed_28" type="radio"><div class="tabbed-labels"><label for="__tabbed_28_1">Terminal Syntax</label><label for="__tabbed_28_2">Cloud xAPI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>x<ins class="critic">Status</ins> <ins class="critic">Child</ins> <ins class="critic">Child</ins></code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/xapi/<ins class="critic">status</ins>?deviceId={{ device_Id }}&amp;name=<ins class="critic">Child.Child</ins></code></pre><p></p>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>
+<p><strong>xAPI:</strong> xStatus Audio Volume</p>
+</li>
+<li>
+<p><strong>Task:</strong></p>
+<ul>
+<li>
+<p>Structure the xAPI Path above in the <code>URL</code> of your Postman Request</p>
+</li>
+<li>
+<p>Once the Postman Request has been updated, <mark>Save</mark> the request, select <mark>Send</mark> and review the Postman Terminal's repsonse and observe any changes to your device</p>
+</li>
+</ul>
+</li>
+</ul>
+<details class="success">
+<summary>View properly formatted <abbr title="Uniform Resource Locator">URL</abbr>, Body and Successful Response</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="29:3"><input checked="checked" id="__tabbed_29_1" name="__tabbed_29" type="radio"><input id="__tabbed_29_2" name="__tabbed_29" type="radio"><input id="__tabbed_29_3" name="__tabbed_29" type="radio"><div class="tabbed-labels"><label for="__tabbed_29_1"><abbr title="Uniform Resource Locator">URL</abbr></label><label for="__tabbed_29_2">Body</label><label for="__tabbed_29_3">Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/xapi/status?deviceId={{ device_Id }}&amp;name=<ins class="critic">Audio.*</ins></code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<div class="admonition failure">
+<p class="admonition-title">No Body Required</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>``` { .json , .no-copy }
+{
+  "deviceId": "{{ device_Id }}",
+  "result": {
+    "Audio": {
+      "Volume": 71
+    }
+  }
+}</p>
+</div>
+</div>
+</div>
+</details>
+</details>
+<details class="lesson">
+<summary>Lesson: Get multiple xStatus Values under a Common Node</summary>
+<ul>
+<li>
+<p><strong>xAPI:</strong> xStatus Audio</p>
+</li>
+<li>
+<p><strong>Task:</strong></p>
+<ul>
+<li>
+<p>Structure the xAPI Path above in the <code>URL</code> of your Postman Request</p>
+</li>
+<li>
+<p>Once the Postman Request has been updated, <mark>Save</mark> the request, select <mark>Send</mark> and review the Postman Terminal's repsonse and observe any changes to your device</p>
+</li>
+</ul>
+</li>
+</ul>
+<details class="success">
+<summary>View properly formatted <abbr title="Uniform Resource Locator">URL</abbr>, Body and Successful Response</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="30:3"><input checked="checked" id="__tabbed_30_1" name="__tabbed_30" type="radio"><input id="__tabbed_30_2" name="__tabbed_30" type="radio"><input id="__tabbed_30_3" name="__tabbed_30" type="radio"><div class="tabbed-labels"><label for="__tabbed_30_1"><abbr title="Uniform Resource Locator">URL</abbr></label><label for="__tabbed_30_2">Body</label><label for="__tabbed_30_3">Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p></p><pre><code>https://webexapis.com/v1/xapi/status?deviceId={{ device_Id }}&amp;name=<ins class="critic">Audio.*</ins></code></pre><p></p>
+</div>
+<div class="tabbed-block">
+<div class="admonition failure">
+<p class="admonition-title">No Body Required</p>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="no-copy highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ device_Id }}"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"Audio"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"Devices"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"Bluetooth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"ActiveProfile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"None"</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"HandsetUSB"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"ConnectionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NotConnected"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"Cradle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OnHook"</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"HeadsetUSB"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"ConnectionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NotConnected"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"Description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"Manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">[</span><span class="s2">"500+ Line Response..."</span><span class="p">]</span><span class="err">.</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+</details>
+<h2 id="subscribing-to-xconfigurations-xstatuses-and-xevents-rxp-57"><strong>Subscribing to xConfigurations, xStatuses and xEvents</strong> <sub>(rxp-5.7)</sub></h2>
+<p>Subscribing to Cloud xAPI requires us to setup a Workspace Integration</p>
+<p>A Workspace Integration is a service you spin up that provides a Webhook, which you take and configure it your Webex Control hub instance.</p>
+<p>This is not covered by this lab</p>
+<p><a class="md-button md-button--primary" href="https://developer.webex.com/docs/workspace-integrations" target="_blank">
+  Learn More about Workspace Integrations <i class="fa-solid fa-square-up-right"></i>
+</a></p>
+<h2 id="section-rxp-5-cleanup-rxp-58"><strong>Section rxp-5 Cleanup</strong> <sub>(rxp-5.8)</sub></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul>
+<li>Press the <code>Subscription Assistant Button</code> on your Touch Interface</li>
+<li>Under the <mark>Section Cleanup</mark> Page, select the <mark>Run Section Cleanup?</mark> button</li>
+<li>Select <mark>Yes, Run the Cleanup Script</mark></li>
+</ul>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="./assets/general/SubscriptionAssitantMacro-ConfirmCleanup.png" data-title="Section cleanup" data-desc-position="top"><img alt="Section cleanup" src="./assets/general/SubscriptionAssitantMacro-ConfirmCleanup.png" width="400"></a>
+  <figcaption>Section Cleanup Confirmation</figcaption>
+</figure><p></p>
+<p>This will reverse the changes we've made to the endpoint, and leave us ready for the next section</p>
+<details class="question">
+<summary>You can run the cleanup via the terminal as well</summary>
+<p>Copy the contents below into your terminal window and run them all at once</p>
+<div class="highlight"><span class="filename">Type into terminal and press Enter</span><pre><span></span><code>xConfig<span class="w"> </span>Audio<span class="w"> </span>DefaultVolume:<span class="w"> </span><span class="m">50</span>
+xCommand<span class="w"> </span>UserInterface<span class="w"> </span>Extensions<span class="w"> </span>Panel<span class="w"> </span>Remove<span class="w"> </span>PanelId:<span class="w"> </span>wx1_lab_multilineCommand
+xCommand<span class="w"> </span>Video<span class="w"> </span>Selfview<span class="w"> </span>Set<span class="w"> </span>Mode:<span class="w"> </span>Off<span class="w"> </span>FullscreenMode:<span class="w"> </span>Off
+xCommand<span class="w"> </span>Video<span class="w"> </span>Input<span class="w"> </span>SetMainVideoSource<span class="w"> </span>ConnectorId:<span class="w"> </span><span class="m">1</span>
+xCommand<span class="w"> </span>Audio<span class="w"> </span>Volume<span class="w"> </span>SetToDefault<span class="w"> </span>Device:<span class="w"> </span>Internal
+xCommand<span class="w"> </span>HTTPFeedBack<span class="w"> </span>Deregister<span class="w"> </span>FeedbackSlot:<span class="w"> </span><span class="m">1</span><span class="w"> </span>FeedbackSlot:<span class="w"> </span><span class="m">2</span><span class="w"> </span>FeedbackSlot:<span class="w"> </span><span class="m">3</span><span class="w"> </span>FeedbackSlot:<span class="w"> </span><span class="m">4</span>
+</code></pre></div>
+</details>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2025 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.integrate", "content.tooltips", "content.footnote.tooltips"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../../template_assets/js/newLoad.js"></script>
+      
+        <script src="../../../../template_assets/js/setInfo.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

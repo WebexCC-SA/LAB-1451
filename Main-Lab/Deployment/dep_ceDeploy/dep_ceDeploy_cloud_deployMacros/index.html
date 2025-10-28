@@ -1,0 +1,2123 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Deep-dive into Cisco devices xAPIs">
+      
+      
+        <meta name="author" content="Bobby McGonigle, Christopher Norman">
+      
+      
+      
+        <link rel="prev" href="../dep_ceDeploy_cloud_deployBranding/">
+      
+      
+        <link rel="next" href="../dep_ceDeploy_cloud_deployExtensions/">
+      
+      
+      <link rel="icon" href="../../../../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Macros dep-2.5 - LAB-1451: Deep-dive into Cisco devices xAPIs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/customTextHighlight.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deploy-macros-via-ce-deploy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="LAB-1451: Deep-dive into Cisco devices xAPIs" class="md-header__button md-logo" aria-label="LAB-1451: Deep-dive into Cisco devices xAPIs" data-md-component="logo">
+      
+  <img src="../../../../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LAB-1451: Deep-dive into Cisco devices xAPIs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Macros <sup><sup>dep-2.5</sup></sup>
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home&nbsp;<i class="fa-solid fa-house" style="color:#B197FC;"></i>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Setup/stp_intro/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Lab Setup&nbsp;<i class="fa-solid fa-gear"></i>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../RoomOS/rxp_intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  RoomOS xAPI &amp; UserInterfaces&nbsp;<i class="fa-solid fa-video" style="color: #428bff;"></i>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../dep_intro/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Deployment&nbsp;<i class="fa-solid fa-cloud-arrow-up" style="color: #ff0000;"></i>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Resources/res_tools/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tools&nbsp;<i class="fa-solid fa-gear"></i>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Resources/res_tools/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources&nbsp;<i class="fa-solid fa-globe" style="color:#ffd903;"></i>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="LAB-1451: Deep-dive into Cisco devices xAPIs" class="md-nav__button md-logo" aria-label="LAB-1451: Deep-dive into Cisco devices xAPIs" data-md-component="logo">
+      
+  <img src="../../../../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    LAB-1451: Deep-dive into Cisco devices xAPIs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home&nbsp;<i class="fa-solid fa-house" style="color:#B197FC;"></i>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Setup/stp_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab Setup&nbsp;<i class="fa-solid fa-gear"></i>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RoomOS xAPI &amp; UserInterfaces&nbsp;<i class="fa-solid fa-video" style="color: #428bff;"></i>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            RoomOS xAPI &amp; UserInterfaces&nbsp;<i class="fa-solid fa-video" style="color: #428bff;"></i>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RoomOS/rxp_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RoomOS Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2">
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RoomOS xAPI
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            RoomOS xAPI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RoomOS/rxp_xapi/rxp_xapi_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What are RoomOS xAPI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RoomOS/rxp_xapi/rxp_xapi_ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SSH <sup><sup>rxp-1</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RoomOS/rxp_xapi/rxp_xapi_http/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HTTP <sup><sup>rxp-3</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RoomOS/rxp_xapi/rxp_xapi_macros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Macros <sup><sup>rxp-6</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RoomOS UserInterfaces
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            RoomOS UserInterfaces
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RoomOS/rxp_userInterface/rxp_ui_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What are RoomOS UserInterfaces
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RoomOS/rxp_userInterface/rxp_ui_features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Features <sup><sup>rxu-1</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RoomOS/rxp_userInterface/rxp_ui_extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extensions <sup><sup>rxu-2</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RoomOS/rxp_userInterface/rxp_ui_messages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Messages <sup><sup>rxu-3</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RoomOS/rxp_userInterface/rxp_ui_webContent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web Content <sup><sup>rxu-4</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4">
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Solution Exercises
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Solution Exercises
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RoomOS/rxp_exercises/rxp_exe_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Abstract &amp; Best Practices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_2">
+        
+          
+          <label class="md-nav__link" for="__nav_3_4_2" id="__nav_3_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Macro Based Exercises
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Macro Based Exercises
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_2_1">
+        
+          
+          <label class="md-nav__link" for="__nav_3_4_2_1" id="__nav_3_4_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Quick Docs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_4_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Quick Docs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RoomOS/rxp_exercises/macros/rxp_exe_Quick_Docs_PT1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Part 1 - Start Simple <sup><sup>rxe-m1</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RoomOS/rxp_exercises/macros/rxp_exe_Quick_Docs_PT2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Part 2 - Optimize<sup><sup>rxe-m2</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Deployment&nbsp;<i class="fa-solid fa-cloud-arrow-up" style="color: #ff0000;"></i>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Deployment&nbsp;<i class="fa-solid fa-cloud-arrow-up" style="color: #ff0000;"></i>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dep_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dep_prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment Lab Prerequisites
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3">
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Control Hub
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Control Hub
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dep_controlHub/dep_controlHub_prepDevices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Preparing Your Devices <sup><sup>dep-1.1</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dep_controlHub/dep_controlHub_configTemplates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Templates <sup><sup>dep-1.2</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dep_controlHub/dep_controlHub_orgTemplates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Org-Wide Templates <sup><sup>dep-1.3</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dep_controlHub/dep_controlHub_runCommands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Run Commands <sup><sup>dep-1.4</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dep_controlHub/dep_controlHub_deployExtensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy UI Extensions <sup><sup>dep-1.5</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dep_controlHub/dep_controlHub_deployMacros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy Macros <sup><sup>dep-1.6</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CE-Deploy
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            CE-Deploy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dep_ceDeploy_cloud_localVsCloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local vs Cloud Auth <sup><sup>dep-2.1</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dep_ceDeploy_cloud_downloadToken/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Download Webex Token <sup><sup>dep-2.2</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dep_ceDeploy_cloud_runCommands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Run Commands <sup><sup>dep-2.3</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dep_ceDeploy_cloud_deployBranding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Branding <sup><sup>dep-2.4</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Macros <sup><sup>dep-2.5</sup></sup>
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dep_ceDeploy_cloud_deployExtensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UI Extensions <sup><sup>dep-2.6</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dep_ceDeploy_cloud_deployLocalUsers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local User Accounts <sup><sup>dep-2.7</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dep_ceDeploy_cloud_backupsAndLogs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Device Backups and Logs <sup><sup>dep-2.8</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dep_ceDeploy_cloud_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools <sup><sup>dep-2.9</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dep_ceDeploy_cloud_dashboards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dashboards <sup><sup>dep-2.10</sup></sup>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dep_conclusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment Conclusion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Resources/res_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools&nbsp;<i class="fa-solid fa-gear"></i>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources&nbsp;<i class="fa-solid fa-globe" style="color:#ffd903;"></i>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Resources&nbsp;<i class="fa-solid fa-globe" style="color:#ffd903;"></i>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Resources/res_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools&nbsp;<i class="fa-solid fa-gear"></i>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Resources/res_guides/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guides
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Resources/res_communities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="deploy-macros-via-ce-deploy">Deploy Macros via CE-Deploy</h1>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>Macros enhance your customization capabilities, allowing you to tailor your experience exactly 
+as you want it. However, deploying these macros can be challenging, especially when dealing 
+with multiple endpoints. While Control Hub supports single-endpoint deployment, this approach 
+becomes cumbersome and time-consuming for larger deployments. With CE-Deploy, you can roll out 
+a macro in minutes to hundreds or even thousands of endpoints. The CE-Deploy Macro Factory also 
+enables you to monitor your deployment for consistency and performance without needing to log 
+into the endpoint admin portal or control hub. Additionally, you can write your macro code 
+directly in CE-Deploy and deploy it in just a few easy steps. In this lab, we will write a new 
+macro, save it, and deploy it to your endpoints. We will then use the Macro Factory  to monitor 
+the rollout of everyone's macros.</p>
+</div>
+<details class="vidcast">
+<summary>CE-Deploy Macro deployment and the Macro Factory</summary>
+<p></p><div style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+    <iframe src="https://app.vidcast.io/share/embed/5a2a7a03-441a-48d4-afa9-4dccc47c48c3" width="100%" height="100%" title="CE-Deploy Macro Deployment and the Macro Factory" frameborder="0" loading="lazy" allowfullscreen style="position:absolute; top:0; left: 0;border: solid; border-radius:12px;"></iframe>
+</div><p></p>
+</details>
+<details class="lesson">
+<summary>dep-2.5 Lab</summary>
+<p><highlight_1>dep-2.5.1</highlight_1> Open CE-Deploy and load your environment you created in the previous lab</p>
+<details class="cedeploy">
+<summary>Loading Environments</summary>
+<p>To load an environment, use the dropdown in the Environment loading section and select your
+new Environment and select <mark>Load Environment</mark>.</p>
+</details>
+<p>Then select <mark>Design-&gt;CE Macro Editor Pro</mark> from the main menu</p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/5-4-1.png" data-title="Macro Editor Pro" data-desc-position="top"><img alt="Macro Editor Pro" src="../images/5-4-1.png" width="300"></a>
+  <figcaption></figcaption>
+</figure><p></p>
+<p><highlight_1>dep-2.5.2</highlight_1> Copy the following code and paste it into the editor page and save the file as <mark>LaunchHalfwake.js</mark></p>
+<p></p><div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">LaunchHalfwake.js</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">xapi</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'xapi'</span><span class="p">;</span>
+
+<span class="nx">xapi</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">UserInterface</span><span class="p">.</span><span class="nx">Extensions</span><span class="p">.</span><span class="nx">Panel</span><span class="p">.</span><span class="nx">Clicked</span><span class="p">.</span><span class="nx">on</span><span class="p">((</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">PanelId</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">'halfwake'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">xapi</span><span class="p">.</span><span class="nx">Command</span><span class="p">.</span><span class="nx">Standby</span><span class="p">.</span><span class="nx">Halfwake</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></td></tr></tbody></table></div>
+Once completed it should look like the screenshot below.<p></p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/4-10-2.png" data-title="Macro Editor Pro with Macro" data-desc-position="top"><img alt="Macro Editor Pro with Macro" src="../images/4-10-2.png" width="300"></a>
+  <figcaption></figcaption>
+</figure><p></p>
+<p><highlight_1>dep-2.5.3</highlight_1> Click <mark>Save As</mark>.</p>
+<p><highlight_1>dep-2.5.4</highlight_1> Name your file and select a directory <mark>LaunchHalfwake.js</mark> and click <mark>Save</mark></p>
+<p><highlight_1>dep-2.5.5</highlight_1> Exit the Macro Editor.</p>
+<p><highlight_1>dep-2.5.6</highlight_1> Select <mark>Customizations-&gt;Macros</mark> from the deployment features panel.</p>
+<p><highlight_1>dep-2.5.7</highlight_1> Using the Macros deployment feature we can easily deploy a macro to hundreds of endpoints in minutes.
+Name your macro <mark>LaunchHalfwake</mark> and use the Macro Javascript File Browse button to select 
+the js file you create just moments ago.</p>
+<p>Ensure the <mark>Activate on deployment</mark> checkbox is selected.</p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/dep-2-5-7.png" data-title="Deployment Setup" data-desc-position="top"><img alt="Deployment Setup" src="../images/dep-2-5-7.png" width="300"></a>
+  <figcaption></figcaption>
+</figure><p></p>
+<p><highlight_1>dep-2.5.8</highlight_1> Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.</p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/4-9-9a.png" data-title="Deployment Options" data-desc-position="top"><img alt="Deployment Options" src="../images/4-9-9a.png" width="300"></a>
+  <figcaption></figcaption>
+</figure><p></p>
+<p><highlight_1>dep-2.5.9</highlight_1> Again ensure the <mark>Video Devices Only</mark> checkbox is selected.</p>
+<p><highlight_1>dep-2.5.10</highlight_1> Press button Start Deployment.</p>
+<p><highlight_1>dep-2.5.11</highlight_1> Ensure the <mark>Scheduler</mark> has the <mark>Run Deployment Now</mark> check box selected and click <mark>Next</mark>.</p>
+<p><highlight_1>dep-2.5.12</highlight_1> The Message Console will now appear, you can follow along the deployment process.</p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/dep-2-5-12.png" data-title="Message Console" data-desc-position="top"><img alt="Message Console" src="../images/dep-2-5-12.png" width="300"></a>
+  <figcaption></figcaption>
+</figure><p></p>
+<p><highlight_1>dep-2.5.13</highlight_1> You just deployed a macro to your device and activated it, we still need one more step 
+to ensure that it is in fact running. Unlike the device web admin portal which will restart the macro engine
+automatically everytime a change is made to a macro the APIs are not as polite. So in the next step
+we will use CE-Deploy xCommand to restart the endpoint macro engine.</p>
+<p><highlight_1>dep-2.5.14</highlight_1> Open the deployment panel xAPI-&gt;Command feature and enter the restart command:</p>
+<p></p><div class="highlight"><pre><span></span><code>xCommand Macros Runtime Restart
+</code></pre></div>
+<figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/dep-2-5-14.png" data-title="xCommand" data-desc-position="top"><img alt="xCommand" src="../images/dep-2-5-14.png" width="300"></a>
+  <figcaption></figcaption>
+</figure><p></p>
+<p><highlight_1>dep-2.5.15</highlight_1> Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.</p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/4-9-9a.png" data-title="Deployment Options" data-desc-position="top"><img alt="Deployment Options" src="../images/4-9-9a.png"></a> { width="300" }
+  <figcaption></figcaption>
+</figure><p></p>
+<p><highlight_1>dep-2.5.16</highlight_1> Ensure the <mark>Video Devices Only</mark> checkbox is checked.</p>
+<p><highlight_1>dep-2.5.17</highlight_1> Press button Start Deployment.</p>
+<p><highlight_1>dep-2.5.18</highlight_1> Ensure the <mark>Scheduler</mark> has the <mark>Run Deployment Now</mark> check box selected and click <mark>Next</mark>.</p>
+<p><highlight_1>dep-2.5.19</highlight_1> The Message Console will now appear, you can follow along the deployment process.</p>
+<p><highlight_1>dep-2.5.20</highlight_1> We have our macro rolled out across all our endpoints but lets checkin on the other pods and see how they 
+doing. We are going to use the Macro Factory to monitor how the other pods are doing. In the deployment panel
+select the Dashboards. Do not select the Macro Factory just yet. First we need to select our deployment option.</p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/dep-2-5-20.png" data-title="Dashboards" data-desc-position="top"><img alt="Dashboards" src="../images/dep-2-5-20.png" width="300"></a>
+  <figcaption></figcaption>
+</figure><p></p>
+<p><highlight_1>dep-2.5.21</highlight_1> This time around we are going to select the <mark>Org Id</mark></p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/dep-2-5-21.png" data-title="Org ID" data-desc-position="top"><img alt="Org ID" src="../images/dep-2-5-21.png" width="300"></a>
+  <figcaption></figcaption>
+</figure><p></p>
+<p>When you select Org Id, the id automatically populates for our lab Control Hub org.</p>
+<p><highlight_1>dep-2.5.22</highlight_1> Select the Macro Factory from the Dashboards</p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/dep-2-5-22.png" data-title="MacroFactory" data-desc-position="top"><img alt="MacroFactory" src="../images/dep-2-5-22.png" width="300"></a>
+  <figcaption></figcaption>
+</figure><p></p>
+<p>You should now see the Macro Factory appear with all the pod endpoints that have added their macros.</p>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/dep-2-5-22b.png" data-title="MF Window" data-desc-position="top"><img alt="MF Window" src="../images/dep-2-5-22b.png" width="300"></a>
+  <figcaption></figcaption>
+</figure><p></p>
+<p>Take a look around. Keep it open and move the window to the side when done. We are going to 
+use the Macro Factory to clean up later.</p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Now that we have our macro deployed we will turn our attention to deploying the accompanying
+extension to make it work.</p>
+</div>
+<details class="challenge">
+<summary>Macro Factory Add a Macro</summary>
+<p>Can you load or remove a different Macro from an earlier lab? Have a go, its easy.</p>
+</details>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Things to note for the Macro Factory.</p>
+<ol>
+<li>Visual way to monitor macros</li>
+<li>Easy to use buttons, no need to remember commands</li>
+<li>Great for managment of a few endpoints adding, removing and activating macros</li>
+<li>For large bulk rollouts of Macros using the Deployment panel Customizations-&gt;Macros is a better option</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../dep_ceDeploy_cloud_deployBranding/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Branding &lt;sup&gt;&lt;sup&gt;dep-2.4&lt;/sup&gt;&lt;/sup&gt;">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Branding <sup><sup>dep-2.4</sup></sup>
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../dep_ceDeploy_cloud_deployExtensions/" class="md-footer__link md-footer__link--next" aria-label="Next: UI Extensions &lt;sup&gt;&lt;sup&gt;dep-2.6&lt;/sup&gt;&lt;/sup&gt;">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                UI Extensions <sup><sup>dep-2.6</sup></sup>
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2025 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.integrate", "content.tooltips", "content.footnote.tooltips"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../../template_assets/js/newLoad.js"></script>
+      
+        <script src="../../../../template_assets/js/setInfo.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
