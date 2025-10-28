@@ -49,10 +49,10 @@ extra_javascript:
 plugins:
   - search
   - macros
-  # - with-pdf:
-  #     cover_title: LABXXX-1234
-  #     cover_subtitle: My famous WebexOne Lab
-  #     cover_logo: template_assets/Wx1_25_PDF_image.jpg
+  - with-pdf:
+      cover_title: LABXXX-1234
+      cover_subtitle: My famous WebexOne Lab
+      cover_logo: template_assets/Wx1_25_PDF_image.jpg
 
   - glightbox:
       touchNavigation: true
