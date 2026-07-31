@@ -1,0 +1,164 @@
+name: Create RoomOS audit issues
+
+run-name: Create RoomOS audit issues — ${{ inputs.batch_name }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch_name:
+        description: Short name shown in the workflow run
+        required: true
+        type: string
+      issues_json:
+        description: JSON array of issue objects with key, title, body, and optional labels
+        required: true
+        type: string
+      dry_run:
+        description: Validate and check duplicates without creating issues
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: roomos-audit-issue-publisher
+  cancel-in-progress: false
+
+jobs:
+  create-issues:
+    name: Validate and create issues
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Validate payload and publish issues
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          INPUT_ISSUES_JSON: ${{ inputs.issues_json }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if ! jq -e '
+            type == "array" and
+            length > 0 and
+            length <= 100 and
+            ([.[].key] | length == (unique | length)) and
+            all(.[];
+              type == "object" and
+              (.key |
+                type == "string" and
+                test("^[a-z0-9][a-z0-9-]{0,79}$")
+              ) and
+              (.title |
+                type == "string" and
+                length > 0 and
+                length <= 256 and
+                (contains("\n") | not)
+              ) and
+              (.body |
+                type == "string" and
+                length > 0 and
+                length <= 60000
+              ) and
+              ((.labels // []) |
+                type == "array" and
+                length <= 20 and
+                all(.[];
+                  type == "string" and
+                  length > 0 and
+                  length <= 50 and
+                  (contains("\n") | not)
+                )
+              )
+            )
+          ' <<<"$INPUT_ISSUES_JSON" >/dev/null; then
+            echo "::error::Invalid issues_json payload. Expected 1-100 unique issue objects with key, title, body, and optional labels."
+            exit 1
+          fi
+
+          issue_count="$(jq 'length' <<<"$INPUT_ISSUES_JSON")"
+          created_count=0
+          skipped_count=0
+          failed_count=0
+
+          {
+            echo "## RoomOS audit issue publication"
+            echo
+            echo "Repository: \`$GH_REPO\`"
+            echo
+          } >>"$GITHUB_STEP_SUMMARY"
+
+          for ((index = 0; index < issue_count; index++)); do
+            key="$(jq -r --argjson index "$index" '.[$index].key' <<<"$INPUT_ISSUES_JSON")"
+            title="$(jq -r --argjson index "$index" '.[$index].title' <<<"$INPUT_ISSUES_JSON")"
+            body="$(jq -r --argjson index "$index" '.[$index].body' <<<"$INPUT_ISSUES_JSON")"
+            marker="<!-- roomos-audit-key:${key} -->"
+
+            existing_url="$(
+              gh issue list \
+                --repo "$GH_REPO" \
+                --state all \
+                --limit 100 \
+                --search "roomos-audit-key:${key} in:body" \
+                --json body,url \
+                --jq "map(select((.body // \"\") | contains(\"${marker}\")))[0].url // empty"
+            )"
+
+            if [ -n "$existing_url" ]; then
+              echo "- SKIPPED \`$key\`: $existing_url" >>"$GITHUB_STEP_SUMMARY"
+              skipped_count=$((skipped_count + 1))
+              continue
+            fi
+
+            if [ "$DRY_RUN" = "true" ]; then
+              echo "- DRY RUN \`$key\`" >>"$GITHUB_STEP_SUMMARY"
+              skipped_count=$((skipped_count + 1))
+              continue
+            fi
+
+            declare -a labels=()
+            declare -a label_args=()
+            mapfile -t labels < <(
+              jq -r --argjson index "$index" '.[$index].labels[]?' <<<"$INPUT_ISSUES_JSON"
+            )
+
+            for label in "${labels[@]}"; do
+              label_args+=(--label "$label")
+            done
+
+            issue_body="${body}"$'\n\n'"${marker}"
+
+            if issue_url="$(
+              gh issue create \
+                --repo "$GH_REPO" \
+                --title "$title" \
+                --body "$issue_body" \
+                "${label_args[@]}"
+            )"; then
+              echo "- CREATED \`$key\`: $issue_url" >>"$GITHUB_STEP_SUMMARY"
+              created_count=$((created_count + 1))
+            else
+              echo "::error::Failed to create issue for audit key $key"
+              echo "- FAILED \`$key\`" >>"$GITHUB_STEP_SUMMARY"
+              failed_count=$((failed_count + 1))
+            fi
+          done
+
+          {
+            echo
+            echo "| Result | Count |"
+            echo "| --- | ---: |"
+            echo "| Created | $created_count |"
+            echo "| Skipped or dry run | $skipped_count |"
+            echo "| Failed | $failed_count |"
+          } >>"$GITHUB_STEP_SUMMARY"
+
+          if [ "$failed_count" -ne 0 ]; then
+            exit 1
+          fi
