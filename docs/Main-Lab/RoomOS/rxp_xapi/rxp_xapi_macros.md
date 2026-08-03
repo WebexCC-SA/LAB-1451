@@ -25,7 +25,7 @@
 
     {++Part 3: Building a Customization using Macros++} will leverage the Macro Editor and the UI Extensions of your codec to develop a solution using the xAPI
 
-    Syntax covered here is not only relevant for the Macro Editor but also the `jsxapi` Node.Js module which is not covered in this Lab
+    Syntax covered here is also relevant to the JSXAPI Node.js SDK, which is covered in JSXAPI ^{{ config.cProps.rxp.sectionIds.jsxapi }}^.
 
 !!! important "Section Requirements"
 

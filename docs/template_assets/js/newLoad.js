@@ -142,7 +142,11 @@ function applyCustomHighlights() {
 
 // Ensure the highlighting function runs after the entire HTML document has been loaded and parsed.
 // This is crucial because the script needs to find and manipulate elements that exist on the page.
-document.addEventListener('DOMContentLoaded', applyCustomHighlights);
+if (typeof document$ !== 'undefined') {
+    document$.subscribe(applyCustomHighlights);
+} else {
+    document.addEventListener('DOMContentLoaded', applyCustomHighlights);
+}
 
 // Your existing setValues function (keep this as is)
 function setValues() {

@@ -400,3 +400,7 @@ tmp/
 
 # Rendered Documentation
 site/
+
+# Local agent continuity files (intentionally never committed)
+/AGENTS.md
+/CONTEXT.md
