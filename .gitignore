@@ -400,3 +400,5 @@ tmp/
 
 # Rendered Documentation
 site/
+AGENTS.md
+CONTEXT.md
