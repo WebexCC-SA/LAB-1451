@@ -134,7 +134,7 @@ nav:
     - Deployment Introduction: Main-Lab/Deployment/dep_intro.md
     - Deployment Lab Prerequisites: Main-Lab/Deployment/dep_prerequisites.md
     - Control Hub:
-      - Preparing Your Device <sup><sup>{{config.cProps.dep.sectionIds.cH}}.1</sup></sup>: Main-Lab/Deployment/dep_controlHub/dep_controlHub_prepDevices.md
+      - Tag Your Pod Device <sup><sup>{{config.cProps.dep.sectionIds.cH}}.1</sup></sup>: Main-Lab/Deployment/dep_controlHub/dep_controlHub_prepDevices.md
       - Configuration Templates <sup><sup>{{config.cProps.dep.sectionIds.cH}}.2</sup></sup>: Main-Lab/Deployment/dep_controlHub/dep_controlHub_configTemplates.md
       - Run Commands <sup><sup>{{config.cProps.dep.sectionIds.cH}}.3</sup></sup>:  Main-Lab/Deployment/dep_controlHub/dep_controlHub_runCommands.md
     - CE-Deploy:
