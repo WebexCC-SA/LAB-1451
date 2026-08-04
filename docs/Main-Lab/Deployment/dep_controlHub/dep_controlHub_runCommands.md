@@ -3,56 +3,30 @@
 
 !!! abstract
 
-    Running xAPI commands in Control Hub can be done on an endpoint by endpoint basis. In this lab 
-    you will execute a simple xAPI command to get the system time to understand how to 
-    execute and find a command. In the next lab we will follow that up with deploying extensions 
-    in a similar fashion.
+    Running xAPI commands in Control Hub can be done on an endpoint by endpoint basis. In this
+    short lab you'll execute a simple xAPI command to get the system time, just to see how to find
+    and run a command this way. Control Hub can push a single macro or UI panel to one device by
+    hand the same way, but that gets old fast past a handful of devices. Next section, CE-Deploy
+    runs this exact command, plus macros and panels, across your **entire fleet** in one shot.
 
-??? lesson "{{config.cProps.dep.sectionIds.cH}}.4 Lab"
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.1</highlight_1> Login to control hub with your lab admin credentials
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.2</highlight_1> Select Management>Devices
-    
-    <figure markdown="span">
-      ![Select Devices](images/4-1-2.png){ width="150" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.3</highlight_1> Right-click on your lab device, no need to highlight the checkbox 
+??? lesson "{{config.cProps.dep.sectionIds.cH}}.3 Lab"
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.1</highlight_1> Login to control hub with your lab admin credentials
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.2</highlight_1> Select Management>Devices
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.3</highlight_1> Right-click on your lab device, no need to highlight the checkbox
     this time(Room Bar or Desk Pro)
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.4</highlight_1> Select Actions and Run xCommand
-    
-    <figure markdown="span">
-      ![Run xCommand](images/4-4-4.png){ width="200" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.5</highlight_1> Type time into the search for a command name text box. Select Time>DateTime
-    
-    <figure markdown="span">
-      ![Select Time](images/4-4-5.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.6</highlight_1> Select Get from the two options for DateTime
-    
-    <figure markdown="span">
-      ![Select Get](images/4-4-6.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.4.7</highlight_1> Select Execute
-    
-    <figure markdown="span">
-      ![Execute](images/4-4-7.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.4</highlight_1> Select Actions and Run xCommand
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.5</highlight_1> Type time into the search for a command name text box. Select Time>DateTime
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.6</highlight_1> Select Get from the two options for DateTime
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.7</highlight_1> Select Execute and confirm the device returns its current time.
 
     !!! Success
-    
-        Well done. While this is a simple example we will dive a little deeper next with using 
-        the same method to deploy extensions so don’t stray to far. Cancel out the Time > DateTime > Get 
-        text in the search bar by using the x button on the left hand side of the text box and do not move a muscle. 
-        We are jumping straight into our next lab Deploy UI Extensions <highlight_1>{{config.cProps.dep.sectionIds.cH}}.5</highlight_1>
+
+        Well done. That's the entire workflow for a single device via Control Hub: search, select,
+        execute. Now let's see what happens when you point that same idea at a whole organization.

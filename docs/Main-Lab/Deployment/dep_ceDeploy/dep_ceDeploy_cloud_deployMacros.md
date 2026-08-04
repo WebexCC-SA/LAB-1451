@@ -1,177 +1,156 @@
 {{ config.cProps.acronyms }}
-# Deploy Macros via CE-Deploy
+# Customizations: Macros (xAPI Forge) & UI Extensions
 
 !!! abstract
 
-    Macros enhance your customization capabilities, allowing you to tailor your experience exactly 
-    as you want it. However, deploying these macros can be challenging, especially when dealing 
-    with multiple endpoints. While Control Hub supports single-endpoint deployment, this approach 
-    becomes cumbersome and time-consuming for larger deployments. With CE-Deploy, you can roll out 
-    a macro in minutes to hundreds or even thousands of endpoints. The CE-Deploy Macro Factory also 
-    enables you to monitor your deployment for consistency and performance without needing to log 
-    into the endpoint admin portal or control hub. Additionally, you can write your macro code 
-    directly in CE-Deploy and deploy it in just a few easy steps. In this lab, we will write a new 
-    macro, save it, and deploy it to your endpoints. We will then use the Macro Factory  to monitor 
-    the rollout of everyone's macros.
+    Macros and UI Extensions almost always travel together: a macro needs a button to trigger it,
+    and a button needs a macro listening for the click. The old Macro Editor Pro is retired in
+    CE-Deploy 16, replaced by **xAPI Forge**, a full Monaco-based IDE with xAPI IntelliSense, an AI
+    assistant, and a live device connection for streaming macro engine logs. In this lab you'll
+    write a macro in xAPI Forge, publish it straight into CE-Deploy, deploy it and its matching
+    panel to your device with your pod tag, then confirm it's actually running.
 
-??? vidcast "CE-Deploy Macro deployment and the Macro Factory"
+<div class="grid cards" markdown>
 
-    <div style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
-	    <iframe src="https://app.vidcast.io/share/embed/5a2a7a03-441a-48d4-afa9-4dccc47c48c3" width="100%" height="100%" title="CE-Deploy Macro Deployment and the Macro Factory" frameborder="0" loading="lazy" allowfullscreen style="position:absolute; top:0; left: 0;border: solid; border-radius:12px;"></iframe>
-    </div>
+-   <i class="fa-solid fa-location-dot"></i> **Where**
 
-??? lesson "{{config.cProps.dep.sectionIds.cD}}.5 Lab"
+    ---
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.1</highlight_1> Open CE-Deploy and load your environment you created in the previous lab
-    
-    ??? cedeploy "Loading Environments"
-    
-        To load an environment, use the dropdown in the Environment loading section and select your
-        new Environment and select ==Load Environment==.
-    
-    Then select ==Design->CE Macro Editor Pro== from the main menu
-    
-    <figure markdown="span">
-      ![Macro Editor Pro](images/5-4-1.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.2</highlight_1> Copy the following code and paste it into the editor page and save the file as ==LaunchHalfwake.js==
-    
+    ==Apps== → Design & Development → xAPI Forge, then ==Customizations==
+
+-   <i class="fa-solid fa-clock"></i> **Time**
+
+    ---
+
+    About 12 minutes
+
+-   <i class="fa-solid fa-bullseye"></i> **Goal**
+
+    ---
+
+    Write a macro, publish it, and deploy it plus its matching panel to your device
+
+</div>
+
+??? lesson "{{config.cProps.dep.sectionIds.cD}}.4 Lab"
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.1</highlight_1> Open CE-Deploy. Check the organization switcher at the top of the
+    window and confirm your Cloud organization (added in "Connect CE-Deploy to Your Organization")
+    is active. In the left sidebar select ==Apps==, then under the ==Design & Development== category
+    click the ==xAPI Forge== card. It opens in its own window.
+
+    !!! cedeploy "Not under a Design menu anymore"
+
+        If you've used an older CE-Deploy version, you may remember a "Design" item in the main
+        menu bar. That's gone in this version — all the design tools, including xAPI Forge, moved
+        into the Apps dashboard.
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.2</highlight_1> Type the following into a new file and save it as ==LaunchHalfwake.js==:
+
     ```Javascript title="LaunchHalfwake.js" linenums="1"
     import xapi from 'xapi';
-    
+
     xapi.Event.UserInterface.Extensions.Panel.Clicked.on((e) => {
       if (e.PanelId === 'halfwake') {
         xapi.Command.Standby.Halfwake();
       }
     });
     ```
-    Once completed it should look like the screenshot below.
-    
-    <figure markdown="span">
-      ![Macro Editor Pro with Macro](images/4-10-2.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.3</highlight_1> Click ==Save As==.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.4</highlight_1> Name your file and select a directory ==LaunchHalfwake.js== and click ==Save==
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.5</highlight_1> Exit the Macro Editor.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.6</highlight_1> Select ==Customizations->Macros== from the deployment features panel.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.7</highlight_1> Using the Macros deployment feature we can easily deploy a macro to hundreds of endpoints in minutes.
-    Name your macro ==LaunchHalfwake== and use the Macro Javascript File Browse button to select 
-    the js file you create just moments ago.
-    
-    Ensure the ==Activate on deployment== checkbox is selected.
 
-    <figure markdown="span">
-      ![Deployment Setup](images/dep-2-5-7.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.8</highlight_1> Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.
-    
-    <figure markdown="span">
-      ![Deployment Options](images/4-9-9a.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.9</highlight_1> Again ensure the ==Video Devices Only== checkbox is selected.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.10</highlight_1> Press button Start Deployment.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.11</highlight_1> Ensure the ==Scheduler== has the ==Run Deployment Now== check box selected and click ==Next==.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.12</highlight_1> The Message Console will now appear, you can follow along the deployment process.
-    
-    <figure markdown="span">
-      ![Message Console](images/dep-2-5-12.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
+    !!! cedeploy "Try the AI Assistant"
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.13</highlight_1> You just deployed a macro to your device and activated it, we still need one more step 
-    to ensure that it is in fact running. Unlike the device web admin portal which will restart the macro engine
-    automatically everytime a change is made to a macro the APIs are not as polite. So in the next step
-    we will use CE-Deploy xCommand to restart the endpoint macro engine.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.14</highlight_1> Open the deployment panel xAPI->Command feature and enter the restart command:
-    
+        Instead of typing the snippet above, click ==AI== in the toolbar and ask it to "Create a
+        macro that puts the device into halfwake when a panel called halfwake is clicked." Compare
+        what it generates to the snippet above — then use ==Explain== on the result to see how the
+        assistant describes its own code.
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.3</highlight_1> Optionally, click ==Connect== in the Device panel, select your pod
+    device from the cloud device picker, and click ==Connect==. Once connected, click ==Deploy== to
+    push the macro directly and watch the engine logs stream in at the bottom of the window — a fast
+    way to iterate before you commit to a fleet-wide rollout.
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.4</highlight_1> When you're happy with the macro, click ==Publish== to send it to
+    the main CE-Deploy window for bulk deployment.
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.5</highlight_1> Close xAPI Forge and go back to the main CE-Deploy window. In the
+    left sidebar select ==Customizations==, then the ==Macros== tab near the top of the page. Your
+    published macro should already be selected. Name it ==LaunchHalfwake== and ensure the
+    ==Activate on deployment== checkbox is selected.
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.6</highlight_1> Click ==Next: Select Devices== at the bottom of the page. In the
+    Deployment Options modal, select ==Tags== as the target and enter your pod tag, then check
+    ==Video Devices Only==. Click ==Next: Schedule==, leave ==Run Now== selected in the Deployment
+    Scheduler modal, and click ==Continue==.
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.7</highlight_1> You've deployed and activated a macro, but unlike the device's own
+    web admin portal, the API doesn't restart the macro engine for you automatically. In the left
+    sidebar select ==xAPI== and, in the Command Builder's command card, enter:
+
     ```text
     xCommand Macros Runtime Restart
     ```
-    <figure markdown="span">
-      ![xCommand](images/dep-2-5-14.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.15</highlight_1> Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.
-    
-    <figure markdown="span">
-      ![Deployment Options](images/4-9-9a.png) { width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.16</highlight_1> Ensure the ==Video Devices Only== checkbox is checked.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.17</highlight_1> Press button Start Deployment.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.18</highlight_1> Ensure the ==Scheduler== has the ==Run Deployment Now== check box selected and click ==Next==.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.19</highlight_1> The Message Console will now appear, you can follow along the deployment process.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.20</highlight_1> We have our macro rolled out across all our endpoints but lets checkin on the other pods and see how they 
-    doing. We are going to use the Macro Factory to monitor how the other pods are doing. In the deployment panel
-    select the Dashboards. Do not select the Macro Factory just yet. First we need to select our deployment option.
-    
-    <figure markdown="span">
-      ![Dashboards](images/dep-2-5-20.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.21</highlight_1> This time around we are going to select the ==Org Id==
-    
-    <figure markdown="span">
-      ![Org ID](images/dep-2-5-21.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    When you select Org Id, the id automatically populates for our lab Control Hub org.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.22</highlight_1> Select the Macro Factory from the Dashboards
-    
-    <figure markdown="span">
-      ![MacroFactory](images/dep-2-5-22.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    You should now see the Macro Factory appear with all the pod endpoints that have added their macros.
-    
-    <figure markdown="span">
-      ![MF Window](images/dep-2-5-22b.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    Take a look around. Keep it open and move the window to the side when done. We are going to 
-    use the Macro Factory to clean up later.
+
+    Click ==Next: Select Devices==, target it at your pod tag with ==Video Devices Only== checked
+    (same as before), then ==Next: Schedule== and ==Continue==.
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.8</highlight_1> Now let's give the macro a button to trigger it. Back in xAPI Forge,
+    create a new file with this content and save it as ==LaunchHalfwake.xml== (change the default
+    extension from `.js` to `.xml`):
+
+    ```xml title="LaunchHalfwake.xml" linenums="1"
+    <Extensions>
+      <Version>1.8</Version>
+      <Panel>
+        <Order>1</Order>
+        <PanelId>halfwake</PanelId>
+        <Origin>local</Origin>
+        <Type>Home</Type>
+        <Icon>Power</Icon>
+        <Color>#07C1E4</Color>
+        <Name>HalfWake</Name>
+        <ActivityType>Custom</ActivityType>
+      </Panel>
+    </Extensions>
+    ```
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.9</highlight_1> Back in the main CE-Deploy window, in the left sidebar select
+    ==Customizations==, then click the ==UI Extensions== tab near the top of the page. Within it,
+    stay on the nested ==Panel== tab (as opposed to ==Config==, which replaces every panel on the
+    device at once). Enter ==halfwake== as the Panel ID and browse to your XML file.
+
+    !!! Tip
+
+        Deploying a single panel with the same Panel ID creates it the first time and overwrites it
+        on every later deploy. If you ever need to push more than one panel at once, use the nested
+        ==Config== tab instead, which accepts an XML file containing several `<Panel>` blocks.
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.10</highlight_1> Click ==Next: Select Devices== at the bottom of the page. In the
+    Deployment Options modal, select ==Tags== as the target, enter your pod tag, and check
+    ==Video Devices Only==.
+
+    !!! warning
+
+        An error may occur if this checkbox is not selected. Make sure it's checked if you receive an
+        error while deploying.
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.11</highlight_1> Click ==Next: Schedule==, leave ==Run Now== selected in the
+    Deployment Scheduler modal, and click ==Continue==. The message console shows the deployment in
+    progress.
 
     !!! Success
 
-        Now that we have our macro deployed we will turn our attention to deploying the accompanying
-        extension to make it work.
+        The halfwake button should now appear on your device's home screen. Press it and the
+        device drops into halfwake :smiley: Look at you go: a working macro and its matching UI
+        extension, written, tested, and deployed entirely from CE-Deploy.
 
-    ??? challenge "Macro Factory Add a Macro"
-        
-        Can you load or remove a different Macro from an earlier lab? Have a go, its easy.
+        <figure markdown="span">
+          ![Device home screen showing the new HalfWake button, with the blue power icon and color from the panel XML](images/dep-2-4-halfwake-button.png){ width="600" }
+          <figcaption>The HalfWake button, live on the touch panel — same icon, color, and name from the XML you wrote</figcaption>
+        </figure>
 
-!!! Tip
-    
-    Things to note for the Macro Factory.
+    ??? challenge "Catch Your Own Drift"
 
-    1. Visual way to monitor macros
-    2. Easy to use buttons, no need to remember commands
-    3. Great for managment of a few endpoints adding, removing and activating macros
-    4. For large bulk rollouts of Macros using the Deployment panel Customizations->Macros is a better option
+        Later in this module you'll use Config Auditor to audit a fleet's configuration against a
+        baseline. Its sibling feature, Macro Drift Detection, does the same thing for macros: it can
+        tell you if a device's macro has drifted from what you just deployed. Worth a look after
+        this lab if you have time.

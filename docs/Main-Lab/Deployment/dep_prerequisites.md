@@ -66,14 +66,12 @@
 
     !!! important "CE-Deploy Install"
 
-        Before we begin our lab you will need to download  and install CE-Deploy using the links below:
+        Before we begin our lab you will need to download and install CE-Deploy 16 (v16.3.1 or later) using the links below:
 
-        - <a target="_blank" href="https://github.com/voipnorm/CE-Deploy/releases/download/v14.2.6/CE-Deploy-Installer.14.2.6.exe">Windows Installer <i class="fa-solid fa-square-arrow-up-right"></i></a>
+        - <a target="_blank" href="https://github.com/voipnorm/CE-Deploy/releases/download/v16.3.1/CE-Deploy-Installer.16.3.1.exe">Windows Installer <i class="fa-solid fa-square-arrow-up-right"></i></a>
 
-        - <a target="_blank" href="https://github.com/voipnorm/CE-Deploy/releases/download/v14.2.6/CE-Deploy-14.2.6-universal.dmg">Mac Installer <i class="fa-solid fa-square-arrow-up-right"></i></a>
+        - <a target="_blank" href="https://github.com/voipnorm/CE-Deploy/releases/download/v16.3.1/CE-Deploy-16.3.1-universal.dmg">Mac Installer <i class="fa-solid fa-square-arrow-up-right"></i></a>
 
-    ???+ gif "Explore CE-Deploy"
-
-        <figure markdown>
-            ![Explore CE-Deploy](images%2FCE-Deploy.gif){ width="700" }
-        </figure>
+        If this is your first time opening CE-Deploy 16, don't worry about signing in yet — the
+        "Connect Your Organization" lesson coming up walks you through it. The old token-download
+        flow has been replaced with an Organizations screen.

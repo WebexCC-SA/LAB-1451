@@ -1,124 +1,97 @@
 {{ config.cProps.acronyms }}
-# Deploy a local user admin using CE-Deploy
+# Device Users & On-Premise Access
 
 !!! abstract
 
-    A local user admin account allows direct access to the device without needing to go through 
-    its web portal via Control Hub or the cloud xAPI. Some tasks and configuration options are not available 
-    via the cloud, so having a local admin account provides a way to set configurations 
-    and manage personal mode devices. Typically, setting up a new cloud device removes local 
-    admin accounts, making the device's web portal accessible only through Control Hub. In this lab,
-    you will add a new local admin account to the device via the cloud xAPI using CE-Deploy. 
+    A local admin account gets you into the device directly, no need to go through Control Hub or
+    the cloud xAPI at all. Some tasks just aren't available from the cloud, so a local admin account
+    is essential for on-prem work. Trouble is, a newly-added cloud device usually has its local
+    admin accounts stripped out, leaving the web portal reachable only through Control Hub. In this
+    lab you'll add one back via the cloud, then use it to confirm access through the On-Premise
+    organization you set up earlier.
 
-??? lesson "{{config.cProps.dep.sectionIds.cD}}.7 Labs"
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.1</highlight_1> Open CE-Deploy and load your environment you created in the previous lab
-    
-    ??? Tip "Loading Environments"
-    
-        To load an environment, use the dropdown in the Environment loading section and select your
-        new Environment and select ==Load Environment==.
-    
-    Then select ==Users== from the deployment panel
-    
-    <figure markdown="span">
-      ![Users](images/4-12-1.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
+<div class="grid cards" markdown>
+
+-   <i class="fa-solid fa-location-dot"></i> **Where**
+
+    ---
+
+    ==Users== in the left sidebar, then ==Organizations==
+
+-   <i class="fa-solid fa-clock"></i> **Time**
+
+    ---
+
+    About 8 minutes
+
+-   <i class="fa-solid fa-bullseye"></i> **Goal**
+
+    ---
+
+    Add a local admin account and confirm it works via your On-Premise organization
+
+</div>
+
+??? lesson "{{config.cProps.dep.sectionIds.cD}}.5 Lab"
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.1</highlight_1> Open CE-Deploy. Check the organization switcher at the top of the
+    window and confirm your Cloud organization (added in "Connect CE-Deploy to Your Organization")
+    is active. In the left sidebar, select ==Users== (its page header reads "Device Users" once
+    you're on it — same feature, just a shorter label in the sidebar itself).
+
     !!! Tip "Device Users"
-        
-        Device users allows us to add, delete and modify device users via the cloud xAPI in CE-Deploy. If you doing
-        integrations with 3rd party's, setting configurations or doing device backups having a local admin 
-        account on the device may be critical for day to day operations. CE-Deploy can access a device by the
-        IP address to take advantage of the local admin account. 
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.2</highlight_1> Set the following setting.
-    
-    
-    | `Setting`            | <!-- -->                |
-    |----------------------|-------------------------|
-    | `Device User Action` | Add                     |
-    | `Username`           | adminUserxx(yourPodNo.) |
-    | `Passphrase`         | Cisco12345              |
-    | `User Role`          | Admin, User, Integrator |
-    | `PassPhase Change`   | No                      |
-    | `Shell Login`        | Yes                     |
-    | `Activate Account`   | Yes                     |
-    
-    
-    <figure markdown="span">
-      ![User Options](images/dep-2-7-2.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.3</highlight_1> Under deployment Options use the dropdown to select Tags and enter your pod tag for your device.
-    
-    <figure markdown="span">
-      ![Tag Options](images/4-9-9a.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.4</highlight_1> Ensure the ==Video Devices Only== checkbox is checked.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.5</highlight_1> Press button ==Start Deployment==.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.6</highlight_1> Ensure the ==Scheduler== has the ==Run Deployment Now== check box selected and click ==Next==.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.7</highlight_1> The Message Console will now appear, you can follow along the deployment process.
-    
+
+        This feature lets you add, modify, and delete local user accounts via the cloud xAPI. If
+        you're doing integrations with 3rd parties, setting configurations, or running device
+        backups, having a local admin account may be critical for day-to-day operations.
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.2</highlight_1> In the ==User Management== card, use the ==Action== dropdown to
+    select ==Add User==, then set the following:
+
+    | `Setting`     | <!-- --> |
+    |---------------|----------|
+    | `Username`    | adminUserxx(yourPodNo.) |
+    | `Passphrase`  | Cisco12345 |
+    | `Role`        | Admin |
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.3</highlight_1> Click ==Next: Select Devices== at the bottom of the page. In the
+    Deployment Options modal, select ==Tags== as the target and enter your pod tag, then check
+    ==Video Devices Only==. Click ==Next: Schedule==, leave ==Run Now== selected in the Deployment
+    Scheduler modal, and click ==Continue==.
+
     !!! challenge "Network IP Address Challenge"
-        
-        In the next portion of the lab you will need the IP address of your pods endpoint. Using the 
-        command below in CE-Deploy can you retrieve your IP?
+
+        You'll need your pod device's IP address for the next step. Using the xAPI tab in CE-Deploy,
+        can you retrieve it?
 
         ```text
-            xStatus Network[1] IPv4 Address
+        xStatus Network[1] IPv4 Address
         ```
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.8</highlight_1> To test the local admin account we are going to switch CE-Deploy into local mode from cloud
-    and run an xAPI command directly to the device.
-    
-    Select the cloud/local toggle in the main navigation bar.
-    
-    <figure markdown="span">
-      ![Toggle](images/4-12-8a.png){ width="150" }
-      <figcaption></figcaption>
-    </figure>
-    
-    Ensure that it is set to local and the interface updates:
-    
-    <figure markdown="span">
-      ![Local Interface](images/dep-2-7-8.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    Now we can use the IP address of the device to send commands.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.9</highlight_1> Using the IP address from the IP challenge  and your new local admin username and password
-    enter the details as shown along with the command:
-    
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.4</highlight_1> Use the organization switcher at the top of the window to activate
+    your ==On-Premise== organization (created in "Connect CE-Deploy to Your Organization," the first
+    CE-Deploy lesson of this module). If you'd rather use the card view, go to ==Organizations== in
+    the left sidebar and click ==Activate== on the On-Premise card. Either way, once it's active,
+    open that same card's ⋮ menu and select ==Edit On-Premise Settings== to confirm the IP address
+    is set, then enter the local admin username/passphrase you just created above.
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.5</highlight_1> In the left sidebar, select ==xAPI== (you're now looking at the same
+    Command Builder from the "Bulk xAPI Commands" lesson, just targeting your On-Premise
+    organization instead of Cloud). In the command card, enter:
+
     ```text
     xCommand time datetime get
     ```
-    
-    <figure markdown="span">
-      ![xCOmmand](images/dep-2-7-9.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.10</highlight_1> Click on ==Start Deployment==
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.11</highlight_1> Ensure the ==Scheduler== has the ==Run Deployment Now== check box selected and click ==Next==.
-    
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.7.12</highlight_1> The Message Console will now appear, you can follow along the deployment process.
-    
-    <figure markdown="span">
-      ![Message Console](images/dep-2-7-12.png){ width="300" }
-      <figcaption></figcaption>
-    </figure>
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.6</highlight_1> Click ==Next: Select Devices==, then ==Next: Schedule== in the
+    Deployment Options modal, then leave ==Run Now== selected and click ==Continue== in the
+    Deployment Scheduler modal. The message console should return the device's current time,
+    confirming your local admin account works and your On-Premise organization is correctly
+    configured.
 
     !!! Success
-    
-        All done. Congrats, you have now seen the most commonly used functions in CE-Deploy, but there 
-        is still plenty to explore. Stay on the ==local tab== as we dive in deep to some lesser known features.
+
+        All done. You've now got both cloud and direct on-premise access to your pod device, and
+        you've seen the most commonly used deployment functions in CE-Deploy. Keep your On-Premise
+        organization active; next up is the on-prem-only toolkit: backups, logs, and the SSH
+        terminal.
