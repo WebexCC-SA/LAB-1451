@@ -110,25 +110,30 @@
     return [];
   };
 
-  const renderDiffRow = (view, type, oldNumber, newNumber, text) => {
+  const renderDiffCell = (line) => {
+    const cell = document.createElement('div');
+    cell.className = `roomos-tool__diff-cell${line ? ` roomos-tool__diff-cell--${line.type}` : ''}`;
+    const lineNumber = document.createElement('span');
+    lineNumber.className = 'roomos-tool__diff-line-number';
+    lineNumber.textContent = line?.number ?? '';
+    const content = document.createElement('span');
+    content.className = 'roomos-tool__diff-content';
+    content.textContent = line?.text ?? '';
+    cell.append(lineNumber, content);
+    return cell;
+  };
+
+  const renderDiffRow = (view, oldLine, newLine) => {
     const row = document.createElement('div');
-    row.className = `roomos-tool__diff-row roomos-tool__diff-row--${type}`;
-    if (type === 'skip') {
+    row.className = 'roomos-tool__diff-row';
+    if (oldLine?.type === 'skip') {
+      row.classList.add('roomos-tool__diff-row--skip');
       const summary = document.createElement('span');
       summary.className = 'roomos-tool__diff-content';
-      summary.textContent = text;
+      summary.textContent = oldLine.text;
       row.append(summary);
     } else {
-      [oldNumber, newNumber].forEach((number) => {
-        const lineNumber = document.createElement('span');
-        lineNumber.className = 'roomos-tool__diff-line-number';
-        lineNumber.textContent = number ?? '';
-        row.append(lineNumber);
-      });
-      const content = document.createElement('span');
-      content.className = 'roomos-tool__diff-content';
-      content.textContent = text;
-      row.append(content);
+      row.append(renderDiffCell(oldLine), renderDiffCell(newLine));
     }
     view.append(row);
   };
@@ -158,7 +163,7 @@
     view.replaceChildren();
 
     if (!changedIndexes.length) {
-      renderDiffRow(view, 'equal', '—', '—', 'The snippets match.');
+      renderDiffRow(view, { type: 'equal', number: '—', text: 'The snippets match.' }, { type: 'equal', number: '—', text: 'The snippets match.' });
       results.hidden = false;
       setStatus(tool, 'The snippets match.', 'success');
       return;
@@ -176,23 +181,45 @@
 
     let oldNumber = 1;
     let newNumber = 1;
+    operations.forEach((operation) => {
+      if (operation.type !== 'insert') operation.oldNumber = oldNumber++;
+      if (operation.type !== 'delete') operation.newNumber = newNumber++;
+    });
+
     let hiddenLines = 0;
-    operations.forEach((operation, index) => {
+    for (let index = 0; index < operations.length;) {
+      const operation = operations[index];
       if (!visible.has(index)) {
         hiddenLines += 1;
+        index += 1;
       } else {
         if (hiddenLines) {
-          renderDiffRow(view, 'skip', null, null, `⋯ ${hiddenLines} unchanged line${hiddenLines === 1 ? '' : 's'} hidden ⋯`);
+          renderDiffRow(view, { type: 'skip', text: `⋯ ${hiddenLines} unchanged line${hiddenLines === 1 ? '' : 's'} hidden ⋯` });
           hiddenLines = 0;
         }
-        if (operation.type === 'equal') renderDiffRow(view, 'equal', oldNumber, newNumber, oldLines[operation.oldIndex]);
-        if (operation.type === 'delete') renderDiffRow(view, 'delete', oldNumber, null, oldLines[operation.oldIndex]);
-        if (operation.type === 'insert') renderDiffRow(view, 'insert', null, newNumber, newLines[operation.newIndex]);
+        if (operation.type === 'equal') {
+          renderDiffRow(view, { type: 'equal', number: operation.oldNumber, text: oldLines[operation.oldIndex] }, { type: 'equal', number: operation.newNumber, text: newLines[operation.newIndex] });
+          index += 1;
+          continue;
+        }
+
+        const changedBlock = [];
+        while (index < operations.length && operations[index].type !== 'equal') changedBlock.push(operations[index++]);
+        const removed = changedBlock.filter((item) => item.type === 'delete');
+        const added = changedBlock.filter((item) => item.type === 'insert');
+        const rows = Math.max(removed.length, added.length);
+        for (let row = 0; row < rows; row += 1) {
+          const removedLine = removed[row];
+          const addedLine = added[row];
+          renderDiffRow(
+            view,
+            removedLine && { type: 'delete', number: removedLine.oldNumber, text: oldLines[removedLine.oldIndex] },
+            addedLine && { type: 'insert', number: addedLine.newNumber, text: newLines[addedLine.newIndex] },
+          );
+        }
       }
-      if (operation.type !== 'insert') oldNumber += 1;
-      if (operation.type !== 'delete') newNumber += 1;
-    });
-    if (hiddenLines) renderDiffRow(view, 'skip', null, null, `⋯ ${hiddenLines} unchanged line${hiddenLines === 1 ? '' : 's'} hidden ⋯`);
+    }
+    if (hiddenLines) renderDiffRow(view, { type: 'skip', text: `⋯ ${hiddenLines} unchanged line${hiddenLines === 1 ? '' : 's'} hidden ⋯` });
     results.hidden = false;
     setStatus(tool, `${changedIndexes.length} changed line${changedIndexes.length === 1 ? '' : 's'} found.`, 'success');
   };

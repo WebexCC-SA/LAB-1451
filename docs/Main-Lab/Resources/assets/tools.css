@@ -97,7 +97,7 @@
 .roomos-tool__diff-heading,
 .roomos-tool__diff-row {
   display: grid;
-  grid-template-columns: 3rem 3rem minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(16rem, 1fr));
 }
 
 .roomos-tool__diff-heading {
@@ -107,6 +107,15 @@
   font-weight: 700;
   padding: 0.35rem 0;
   text-transform: uppercase;
+}
+
+.roomos-tool__diff-heading span {
+  padding: 0 0.75rem;
+}
+
+.roomos-tool__diff-heading span + span,
+.roomos-tool__diff-cell + .roomos-tool__diff-cell {
+  border-left: 1px solid var(--md-default-fg-color--lighter);
 }
 
 .roomos-tool__diff-view {
@@ -120,7 +129,13 @@
   font-family: var(--md-code-font-family);
   font-size: 0.75rem;
   line-height: 1.45;
-  min-width: 32rem;
+  min-width: 36rem;
+}
+
+.roomos-tool__diff-cell {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  min-width: 0;
 }
 
 .roomos-tool__diff-line-number {
@@ -137,11 +152,11 @@
   white-space: pre-wrap;
 }
 
-.roomos-tool__diff-row--delete {
+.roomos-tool__diff-cell--delete {
   background: color-mix(in srgb, #e55353 20%, transparent);
 }
 
-.roomos-tool__diff-row--insert {
+.roomos-tool__diff-cell--insert {
   background: color-mix(in srgb, #37a169 24%, transparent);
 }
 

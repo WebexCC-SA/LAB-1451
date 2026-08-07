@@ -9,7 +9,7 @@
 
 === "Code Difference Checker"
 
-    Compare code by line. The compact view shows changed hunks with nearby context; turn on **Show unchanged lines** to inspect the full file. When **Ignore all whitespace** is enabled, whitespace-only changes do not count as differences.
+    Compare code by line. The compact side-by-side view pairs old and new lines in changed hunks with nearby context; turn on **Show unchanged lines** to inspect the full file. When **Ignore all whitespace** is enabled, whitespace-only changes do not count as differences.
 
     <section class="roomos-tool" data-roomos-tool="diff">
       <div class="roomos-tool__grid roomos-tool__grid--two-up">
@@ -37,9 +37,8 @@
       <p class="roomos-tool__status" aria-live="polite"></p>
       <div class="roomos-tool__results roomos-tool__diff-results" hidden>
         <div class="roomos-tool__diff-heading" aria-hidden="true">
-          <span>Old</span>
-          <span>New</span>
-          <span>Difference</span>
+          <span>Old version</span>
+          <span>New version</span>
         </div>
         <div class="roomos-tool__diff-view" aria-label="Code comparison result"></div>
       </div>
