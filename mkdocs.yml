@@ -107,7 +107,7 @@ nav:
       - SSH <sup><sup>{{ config.cProps.rxp.sectionIds.ssh }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_ssh.md
       # - Serial <sup><sup>{{ config.cProps.rxp.sectionIds.serial }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_serial.md
       - HTTP <sup><sup>{{ config.cProps.rxp.sectionIds.http }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_http.md
-      # - WebSockets <sup><sup>{{ config.cProps.rxp.sectionIds.websocket }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_websockets.md
+      - WebSockets <sup><sup>{{ config.cProps.rxp.sectionIds.websocket }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_websockets.md
       # - Webex Cloud <sup><sup>{{ config.cProps.rxp.sectionIds.cloud }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_cloud.md
       - Macros <sup><sup>{{ config.cProps.rxp.sectionIds.macro }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_macros.md
     - RoomOS UserInterfaces: 
