@@ -403,9 +403,21 @@ The JSXAPI SDK performs the transport-specific authentication exchange. Your app
 
         === "JSXAPI Syntax"
 
-            ```javascript
-            const time = await xapi.Command.Time.DateTime.Get();
-            console.log(time);
+            ```javascript title="lesson.js"
+            require('dotenv').config();
+            const jsxapi = require('jsxapi');
+
+            jsxapi
+              .connect(`${process.env.ROOMOS_PROTOCOL}://${process.env.ROOMOS_IP}`, {
+                username: process.env.ROOMOS_USERNAME,
+                password: process.env.ROOMOS_PASSWORD
+              })
+              .on('error', console.error)
+              .on('ready', async (xapi) => {
+                const time = await xapi.Command.Time.DateTime.Get();
+                console.log(time);
+                xapi.close();
+              });
 
             /* Log Output
             {
