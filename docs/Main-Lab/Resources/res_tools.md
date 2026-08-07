@@ -49,9 +49,14 @@
     Encode and decode UTF-8 text or self-describing image Data URLs. Every operation stays in this browser tab.
 
     <section class="roomos-tool" data-roomos-tool="base64">
-      === "Encode Text"
+      <div class="roomos-tool__subtabs" role="tablist" aria-label="Base64 tools">
+        <button type="button" role="tab" aria-selected="true" aria-controls="roomos-base64-encode-text" data-base64-tab="text-encode">Encode Text</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="roomos-base64-decode-text" data-base64-tab="text-decode">Decode Text</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="roomos-base64-encode-image" data-base64-tab="image-encode">Encode Image</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="roomos-base64-decode-image" data-base64-tab="image-decode">Decode Image</button>
+      </div>
 
-          <div class="roomos-tool__subtool" data-roomos-subtool="text-encode">
+      <div class="roomos-tool__subtool" id="roomos-base64-encode-text" role="tabpanel" data-roomos-subtool="text-encode">
             <div class="roomos-tool__field">
               <label for="roomos-base64-encode-input">Text to encode</label>
               <textarea id="roomos-base64-encode-input" spellcheck="false" placeholder="username:password"></textarea>
@@ -66,11 +71,9 @@
               <label for="roomos-base64-encode-output">Base64 output</label>
               <textarea id="roomos-base64-encode-output" readonly spellcheck="false" placeholder="Encoded output appears here"></textarea>
             </div>
-          </div>
+      </div>
 
-      === "Decode Text"
-
-          <div class="roomos-tool__subtool" data-roomos-subtool="text-decode">
+      <div class="roomos-tool__subtool" id="roomos-base64-decode-text" role="tabpanel" data-roomos-subtool="text-decode" hidden>
             <div class="roomos-tool__field">
               <label for="roomos-base64-decode-input">Base64 text</label>
               <textarea id="roomos-base64-decode-input" spellcheck="false" placeholder="Paste Base64 text here"></textarea>
@@ -85,11 +88,9 @@
               <label for="roomos-base64-decode-output">Decoded text</label>
               <textarea id="roomos-base64-decode-output" readonly spellcheck="false" placeholder="Decoded text appears here"></textarea>
             </div>
-          </div>
+      </div>
 
-      === "Encode Image"
-
-          <div class="roomos-tool__subtool" data-roomos-subtool="image-encode">
+      <div class="roomos-tool__subtool" id="roomos-base64-encode-image" role="tabpanel" data-roomos-subtool="image-encode" hidden>
             <div class="roomos-tool__field">
               <label for="roomos-base64-image-encode-input">Image file</label>
               <input class="roomos-tool__file-input" id="roomos-base64-image-encode-input" type="file" accept="image/*">
@@ -107,11 +108,9 @@
               <label for="roomos-base64-image-encode-output">Image Data URL</label>
               <textarea id="roomos-base64-image-encode-output" readonly spellcheck="false" placeholder="The encoded image Data URL appears here"></textarea>
             </div>
-          </div>
+      </div>
 
-      === "Decode Image"
-
-          <div class="roomos-tool__subtool" data-roomos-subtool="image-decode">
+      <div class="roomos-tool__subtool" id="roomos-base64-decode-image" role="tabpanel" data-roomos-subtool="image-decode" hidden>
             <div class="roomos-tool__field">
               <label for="roomos-base64-image-decode-input">Image Data URL</label>
               <textarea id="roomos-base64-image-decode-input" spellcheck="false" placeholder="Paste a data:image/...;base64,... value here"></textarea>
@@ -124,7 +123,7 @@
             <div class="roomos-tool__image-preview" data-image-preview hidden>
               <img alt="Decoded image preview">
             </div>
-          </div>
+      </div>
     </section>
 
 === "Flatten Multiline String Tool"

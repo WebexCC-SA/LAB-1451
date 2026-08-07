@@ -278,6 +278,17 @@
   };
 
   const configureBase64Tool = (tool) => {
+    const subtools = [...tool.querySelectorAll('[data-roomos-subtool]')];
+    tool.querySelectorAll('[data-base64-tab]').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const selected = tab.dataset.base64Tab;
+        tool.querySelectorAll('[data-base64-tab]').forEach((candidate) => {
+          candidate.setAttribute('aria-selected', candidate === tab ? 'true' : 'false');
+        });
+        subtools.forEach((subtool) => { subtool.hidden = subtool.dataset.roomosSubtool !== selected; });
+      });
+    });
+
     const textEncode = tool.querySelector('[data-roomos-subtool="text-encode"]');
     const textDecode = tool.querySelector('[data-roomos-subtool="text-decode"]');
     configureTextTool(textEncode, utf8Base64, 'Enter text to encode.');
