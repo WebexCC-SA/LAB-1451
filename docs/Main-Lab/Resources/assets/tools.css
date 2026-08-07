@@ -1,13 +1,13 @@
 .roomos-tool {
   display: grid;
-  gap: 0.9rem;
-  margin-top: 1rem;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
 }
 
 .roomos-tool__grid,
 .roomos-tool__results {
   display: grid;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .roomos-tool__field {
@@ -24,7 +24,7 @@
 .roomos-tool textarea,
 .roomos-tool__output {
   box-sizing: border-box;
-  min-height: 10rem;
+  min-height: 8rem;
   width: 100%;
   padding: 0.75rem;
   border: 1px solid var(--md-default-fg-color--lighter);
@@ -46,7 +46,7 @@
 .roomos-tool__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
 .roomos-tool__actions .md-button:not(.md-button--primary) {
@@ -66,7 +66,7 @@
 }
 
 .roomos-tool__status {
-  min-height: 1.5rem;
+  min-height: 1.25rem;
   margin: 0;
 }
 

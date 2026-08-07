@@ -7,7 +7,7 @@
 
     These tools process text only in the current browser tab. Nothing is sent to a RoomOS device or another service, stored in browser storage, or logged by the Lab Guide. Use **Clear** when you have finished working with credentials or payload fragments.
 
-??? tool "Code Difference Checker"
+=== "Code Difference Checker"
 
     Compare two snippets to find the characters that differ. When **Ignore all whitespace** is enabled, spaces, tabs, and line breaks are removed before comparison.
 
@@ -43,7 +43,7 @@
       </div>
     </section>
 
-??? tool "Base64 Conversion Tool"
+=== "Base64 Conversion Tool"
 
     Convert text to UTF-8 Base64. For a local HTTP Basic authorization value, enter `username:password` and then copy the resulting value after `Basic `.
 
@@ -64,7 +64,7 @@
       </div>
     </section>
 
-??? tool "Flatten Multiline String Tool"
+=== "Flatten Multiline String Tool"
 
     Replace every line break with one space and trim the result. This is useful when a command field requires one line of text.
 
@@ -85,7 +85,7 @@
       </div>
     </section>
 
-??? tool "Escape XML Body"
+=== "Escape XML Body"
 
     Escape XML so that it can safely be used as text inside another XML element, such as the `body` argument of `xCommand UserInterface Extensions Panel Save`.
 
