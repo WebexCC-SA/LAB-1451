@@ -578,7 +578,7 @@
 
 ## **Executing xCommands**  ~({{config.cProps.rxp.sectionIds.websocket}}.3)~
 
-???+ lesson "Lesson: Execute an xCommand" ~({{config.cProps.rxp.sectionIds.websocket}}.3.1)~
+???+ lesson "Lesson: Execute an xCommand ~({{config.cProps.rxp.sectionIds.websocket}}.3.1)~"
 
     !!! info inline end "Message Body Location"
 
