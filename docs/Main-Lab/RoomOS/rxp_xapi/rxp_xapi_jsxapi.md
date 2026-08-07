@@ -17,50 +17,49 @@
 
         === "HTTP API"
 
-            === "GET [xStatuses/xConfigurations]"
+            === "Get Requests [xStatuses/xConfigs]"
 
                 ``` mermaid
                 %%{init: {'theme':'dark'}}%%
                 sequenceDiagram
-                  participant Client as My Customization<br>(HTTP Client)
-                  participant Device as RoomOS Device
-                  Client->>+Device: HTTPS GET xStatus or xConfiguration<br>with Basic credentials
-                  Device-->>-Client: HTTP 200 with the current value
-                  Note over Client,Device: The request and response complete
+                  participant My Customization
+                  participant Target Codec
+                  My Customization->>+Target Codec: xStatus/xConfig Get Request
+                  Note over My Customization,Target Codec: If Device Online
+                  Target Codec->>- My Customization: Responds 200 OK
                 ```
 
-                Each read is an independent authenticated request to the RoomOS device.
-
-            === "POST [xCommands/xConfigurations]"
+            === "Post Requests [xCommands/xConfigs]"
 
                 ``` mermaid
                 %%{init: {'theme':'dark'}}%%
                 sequenceDiagram
-                  participant Client as My Customization<br>(HTTP Client)
-                  participant Device as RoomOS Device
-                  Client->>+Device: HTTPS POST xCommand or xConfiguration<br>with Basic credentials and request body
-                  Device->>Device: Execute the requested operation
-                  Device-->>-Client: HTTP 200 with the xAPI response
-                  Note over Client,Device: The request and response complete
+                  participant My Customization
+                  participant Target Codec
+                  My Customization->>+Target Codec: xCommand/xConfig Post Request
+                  Note over My Customization,Target Codec: If Device Online
+                  Target Codec->>- My Customization: Responds 200 OK
                 ```
-
-                Each write or command is another independent authenticated request.
 
             === "Subscriptions [HTTPFeedback]"
 
                 ``` mermaid
                 %%{init: {'theme':'dark'}}%%
                 sequenceDiagram
-                  participant Client as My Customization<br>(HTTP Client)
-                  participant Webhook as Webhook Endpoint
-                  participant Device as RoomOS Device
-                  Client->>+Device: POST HTTPFeedback Register<br>with the webhook URL and xAPI path
-                  Device-->>-Client: HTTP 200 registration response
-                  Device-->>Webhook: xConfiguration, xStatus, or xEvent feedback
-                  Webhook-->>Device: HTTP 200 acknowledgement
+                  participant My Customization
+                  participant Target Codec
+                  activate Target Codec
+                  Note over My Customization, Target Codec: WebHook Offered by My Customization<br>Configured in Target Codec
+                  Target Codec -->>+ My Customization: Forwards Subscription Traffic
+                  Note over My Customization,Target Codec: On Subscription callBack from Target Codec
+                  deactivate Target Codec
+                  activate My Customization
+                  Target Codec->>+ My Customization: Ex. xEvent UserInterface Extension Panel Clicked (QuickDial)
+                  activate Target Codec
+                  My Customization->>+Target Codec: Responds with xCommand Dial Post Request
+                  deactivate My Customization
+                  Target Codec->>- My Customization: Responds 200 OK
                 ```
-
-                HTTP subscriptions require the RoomOS `HTTPFeedback` feature and a separately reachable webhook endpoint.
 
         === "JSXAPI"
 
