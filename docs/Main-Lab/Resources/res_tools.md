@@ -122,9 +122,9 @@
       </div>
     </section>
 
-=== "Flatten Multiline String Tool"
+=== "Flatten Multiline Text"
 
-    Replace every line break with one space and trim the result. This is useful when a command field requires one line of text.
+    Replace each line break with one space and trim the result. Existing spaces are preserved; this tool does not normalize or collapse them.
 
     <section class="roomos-tool" data-roomos-tool="flatten">
       <div class="roomos-tool__field">
@@ -137,7 +137,7 @@
         <button class="md-button" type="button" data-action="clear">Clear</button>
       </div>
       <p class="roomos-tool__status" aria-live="polite"></p>
-      <div class="roomos-tool__field">
+      <div class="roomos-tool__field" data-roomos-result hidden>
         <label for="roomos-flatten-output">Flattened text</label>
         <textarea id="roomos-flatten-output" readonly spellcheck="false" placeholder="Flattened text appears here"></textarea>
       </div>
@@ -145,22 +145,44 @@
 
 === "Escape XML Body"
 
-    Escape XML so that it can safely be used as text inside another XML element, such as the `body` argument of `xCommand UserInterface Extensions Panel Save`.
+    Escape XML so it can be used as text inside another XML element, such as the `body` argument of `xCommand UserInterface Extensions Panel Save`. Use **Unescape XML** to inspect or revise an existing escaped payload.
 
     <section class="roomos-tool" data-roomos-tool="xml">
-      <div class="roomos-tool__field">
-        <label for="roomos-xml-input">XML to escape</label>
-        <textarea id="roomos-xml-input" spellcheck="false" placeholder="Paste XML here"></textarea>
+      <div class="roomos-tool__subtabs" role="tablist" aria-label="XML tools">
+        <button type="button" role="tab" aria-selected="true" aria-controls="roomos-xml-escape" data-xml-tab="escape">Escape XML</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="roomos-xml-unescape" data-xml-tab="unescape">Unescape XML</button>
       </div>
-      <div class="roomos-tool__actions">
-        <button class="md-button md-button--primary" type="button" data-action="convert">Escape XML</button>
-        <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
-        <button class="md-button" type="button" data-action="clear">Clear</button>
+      <div class="roomos-tool__subtool" id="roomos-xml-escape" role="tabpanel" data-roomos-subtool="escape">
+        <div class="roomos-tool__field">
+          <label for="roomos-xml-escape-input">XML to escape</label>
+          <textarea id="roomos-xml-escape-input" spellcheck="false" placeholder="Paste XML here"></textarea>
+        </div>
+        <div class="roomos-tool__actions">
+          <button class="md-button md-button--primary" type="button" data-action="convert">Escape XML</button>
+          <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
+          <button class="md-button" type="button" data-action="clear">Clear</button>
+        </div>
+        <p class="roomos-tool__status" aria-live="polite"></p>
+        <div class="roomos-tool__field" data-roomos-result hidden>
+          <label for="roomos-xml-escape-output">Escaped XML</label>
+          <textarea id="roomos-xml-escape-output" readonly spellcheck="false" placeholder="Escaped XML appears here"></textarea>
+        </div>
       </div>
-      <p class="roomos-tool__status" aria-live="polite"></p>
-      <div class="roomos-tool__field">
-        <label for="roomos-xml-output">Escaped XML</label>
-        <textarea id="roomos-xml-output" readonly spellcheck="false" placeholder="Escaped XML appears here"></textarea>
+      <div class="roomos-tool__subtool" id="roomos-xml-unescape" role="tabpanel" data-roomos-subtool="unescape" hidden>
+        <div class="roomos-tool__field">
+          <label for="roomos-xml-unescape-input">Escaped XML</label>
+          <textarea id="roomos-xml-unescape-input" spellcheck="false" placeholder="Paste escaped XML here"></textarea>
+        </div>
+        <div class="roomos-tool__actions">
+          <button class="md-button md-button--primary" type="button" data-action="convert">Unescape XML</button>
+          <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
+          <button class="md-button" type="button" data-action="clear">Clear</button>
+        </div>
+        <p class="roomos-tool__status" aria-live="polite"></p>
+        <div class="roomos-tool__field" data-roomos-result hidden>
+          <label for="roomos-xml-unescape-output">XML</label>
+          <textarea id="roomos-xml-unescape-output" readonly spellcheck="false" placeholder="Unescaped XML appears here"></textarea>
+        </div>
       </div>
     </section>
 

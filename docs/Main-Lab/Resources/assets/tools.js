@@ -6,6 +6,14 @@
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&apos;');
 
+  const xmlUnescape = (value) => value.replace(/&(amp|lt|gt|quot|apos);/g, (_, entity) => ({
+    amp: '&',
+    lt: '<',
+    gt: '>',
+    quot: '"',
+    apos: "'",
+  })[entity]);
+
   const utf8Base64 = (value) => {
     const bytes = new TextEncoder().encode(value);
     let binary = '';
@@ -43,6 +51,8 @@
 
   const clearTextTool = (tool) => {
     tool.querySelectorAll('textarea').forEach((element) => { element.value = ''; });
+    const result = tool.querySelector('[data-roomos-result]');
+    if (result) result.hidden = true;
     setCopyEnabled(tool, false);
     setStatus(tool, 'Cleared from this browser tab.', 'success');
   };
@@ -244,19 +254,23 @@
   const configureTextTool = (tool, transform, emptyMessage) => {
     const input = tool.querySelector('textarea:not([readonly])');
     const output = tool.querySelector('textarea[readonly]');
+    const result = tool.querySelector('[data-roomos-result]');
     tool.querySelector('[data-action="convert"]').addEventListener('click', () => {
       if (!input.value) {
         output.value = '';
+        if (result) result.hidden = true;
         setCopyEnabled(tool, false);
         setStatus(tool, emptyMessage, 'error');
         return;
       }
       try {
         output.value = transform(input.value);
+        if (result) result.hidden = false;
         setCopyEnabled(tool, true);
         setStatus(tool, 'Converted locally in this browser tab.', 'success');
       } catch {
         output.value = '';
+        if (result) result.hidden = true;
         setCopyEnabled(tool, false);
         setStatus(tool, 'The Base64 value could not be decoded as UTF-8 text.', 'error');
       }
@@ -351,6 +365,21 @@
     });
   };
 
+  const configureXmlTool = (tool) => {
+    const subtools = [...tool.querySelectorAll('[data-roomos-subtool]')];
+    tool.querySelectorAll('[data-xml-tab]').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const selected = tab.dataset.xmlTab;
+        tool.querySelectorAll('[data-xml-tab]').forEach((candidate) => {
+          candidate.setAttribute('aria-selected', candidate === tab ? 'true' : 'false');
+        });
+        subtools.forEach((subtool) => { subtool.hidden = subtool.dataset.roomosSubtool !== selected; });
+      });
+    });
+    configureTextTool(tool.querySelector('[data-roomos-subtool="escape"]'), htmlEscape, 'Enter XML to escape.');
+    configureTextTool(tool.querySelector('[data-roomos-subtool="unescape"]'), xmlUnescape, 'Enter escaped XML to unescape.');
+  };
+
   const configure = (tool) => {
     if (tool.dataset.initialized === 'true') return;
     tool.dataset.initialized = 'true';
@@ -371,9 +400,13 @@
       return;
     }
 
+    if (kind === 'xml') {
+      configureXmlTool(tool);
+      return;
+    }
+
     const transforms = {
       flatten: [(value) => value.replace(/\r?\n/g, ' ').trim(), 'Enter multiline text to flatten.'],
-      xml: [htmlEscape, 'Enter XML to escape.'],
     };
     configureTextTool(tool, ...transforms[kind]);
   };
