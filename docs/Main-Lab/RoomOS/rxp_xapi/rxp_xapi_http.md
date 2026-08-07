@@ -15,7 +15,7 @@
             ``` mermaid
             %%{init: {'theme':'dark'}}%%
             sequenceDiagram
-              participant Client as HTTP Client
+              participant Client as My Customization<br>(HTTP Client)
               participant Device as RoomOS Device
               Client->>+Device: HTTPS GET xStatus or xConfiguration<br>with Basic credentials
               Device-->>-Client: HTTP 200 with the current value
@@ -29,7 +29,7 @@
             ``` mermaid
             %%{init: {'theme':'dark'}}%%
             sequenceDiagram
-              participant Client as HTTP Client
+              participant Client as My Customization<br>(HTTP Client)
               participant Device as RoomOS Device
               Client->>+Device: HTTPS POST xCommand or xConfiguration<br>with Basic credentials and request body
               Device->>Device: Execute the requested operation
@@ -44,7 +44,7 @@
             ``` mermaid
             %%{init: {'theme':'dark'}}%%
             sequenceDiagram
-              participant Client as HTTP Client
+              participant Client as My Customization<br>(HTTP Client)
               participant Webhook as Webhook Endpoint
               participant Device as RoomOS Device
               Client->>+Device: POST HTTPFeedback Register<br>with the webhook URL and xAPI path
