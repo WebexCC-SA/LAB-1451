@@ -495,11 +495,11 @@
 
             === "Select New"
 
-                ![Select New](./assets/wx1_1451_part_2/2-4-CreatePostmanCollection/Select%20New.png)
+                ![Select New](./images/2-4-CreatePostmanCollection/Select%20New.png)
 
             === "Select WebSocket"
 
-                ![Select WebSocket](./assets/wx1_1451_part_2/2-4-CreatePostmanCollection/Select%20WebSocket.png)
+                ![Select WebSocket](./images/2-4-CreatePostmanCollection/Select%20WebSocket.png)
 
 
         === "2. Save the Request and create a new Collection"
@@ -512,7 +512,7 @@
 
             - Name the folder {++xAPI-WebSockets++}
 
-            ![First WebSocket Request](./assets/wx1_1451_part_2/2-4-CreatePostmanCollection/Save%20Request%20and%20Make%20Collection.png)
+            ![First WebSocket Request](./images/2-4-CreatePostmanCollection/Save%20Request%20and%20Make%20Collection.png)
 
 
         === "3. Configure your Collection Variables"
@@ -531,7 +531,7 @@
                 - Set your Device IP Address for `device_ipAddress`
                 - Set your device login credentials encoded in base64 for `device_base64_encoded_auth`
 
-            ![Configure Variables](./assets/wx1_1451_part_2/2-4-CreatePostmanCollection/Add%20Variables.png)
+            ![Configure Variables](./images/2-4-CreatePostmanCollection/Add%20Variables.png)
 
         === "4. Assign your Request Template URL and Headers"
 
@@ -549,7 +549,7 @@
                 | Sec-WebSocket-Protocol | auth- {{device_base64_encoded_auth}}  |
 
             
-            ![Assign URL and Headers](./assets/wx1_1451_part_2/2-4-CreatePostmanCollection/Configure%20Request.png)
+            ![Assign URL and Headers](./images/2-4-CreatePostmanCollection/Configure%20Request.png)
 
 
         === "5. Assign Request Template Message Body"
@@ -565,7 +565,7 @@
             }
             ```
 
-            ![Message Body](./assets/wx1_1451_part_2/2-4-CreatePostmanCollection/Message%20Body.png);
+            ![Message Body](./images/2-4-CreatePostmanCollection/Message%20Body.png)
 
 !!! important
 
@@ -583,7 +583,7 @@
     !!! info inline end "Message Body Location"
 
         <figure markdown>
-          ![Message body location](./assets/wx1_1451_part_2/2-4-3_Execute-xCommand-BodyLocation.png){ width="400" }
+          ![Message body location](./images/2-4-3_Execute-xCommand-BodyLocation.png){ width="400" }
         </figure>
 
     - **xAPI:** xCommand Video Selfview Set
@@ -686,7 +686,7 @@
     ??? success "View Successful OSD Output"
 
         <figure markdown>
-          ![Official API Doc](./assets/wx1_1451_part_2/2-2-3_SetMain-2xEqual.png){ width="400" }
+          ![Official API Doc](./images/2-2-3_SetMain-2xEqual.png){ width="400" }
         </figure>
 
     ??? success "View properly formatted Message and Successful Response"
@@ -800,7 +800,7 @@
     ??? success "View Successful OSD Output"
 
         <figure markdown="span">
-          ![OSD Output](./assets/wx1_1451_part_2/2-4-3_xCommand-MultiLineOSD-Success.png){ width="500" }
+          ![OSD Output](./images/2-4-3_xCommand-MultiLineOSD-Success.png){ width="500" }
           <figcaption>What to expect on your OSD on a successful request</figcaption>
         </figure>
 
@@ -899,7 +899,7 @@
     !!! info inline end "Message Body Location"
 
         <figure markdown>
-          ![Message Body Location](./assets/wx1_1451_part_2/2-4-3_Execute-xCommand-BodyLocation.png){ width="400" }
+          ![Message Body Location](./images/2-4-3_Execute-xCommand-BodyLocation.png){ width="400" }
         </figure>
 
     - **xAPI:** xConfiguration Audio DefaultVolume
@@ -1414,7 +1414,7 @@
     !!! info inline end "Message body location"
 
         <figure markdown>
-          ![Message body location](./assets/wx1_1451_part_2/2-4-3_Execute-xCommand-BodyLocation.png){ width="400" }
+          ![Message body location](./images/2-4-3_Execute-xCommand-BodyLocation.png){ width="400" }
         </figure>
 
     - **xAPI:** xStatus Audio Volume
@@ -1588,7 +1588,7 @@
                 "VolumeMute": "Off"
               }
             }
-                        ```
+            ```
 
 ??? lesson "Lesson: Query an xStatus Value"
 
@@ -1774,7 +1774,7 @@
     ??? gif "View Subscription Assistant"
                 
         <figure markdown>
-          ![SubAssist Operation](./assets/general/SubscriptionAssitantMacro-Operation.gif){ width="600" }
+          ![SubAssist Operation](./images/SubscriptionAssitantMacro-Operation.gif){ width="600" }
         </figure>
 
 ??? lesson "Lesson: Subscribe and Unsubscribe to Multiple xStatuses under a Common Node"
@@ -1848,7 +1848,7 @@
     ??? gif "View Subscription Assistant"
                 
         <figure markdown>
-          ![SubAssist Operation](./assets/general/SubscriptionAssitantMacro-Operation.gif){ width="600" }
+          ![SubAssist Operation](./images/SubscriptionAssitantMacro-Operation.gif){ width="600" }
         </figure>
 
 ## **Subscribing to xEvents** ~({{config.cProps.rxp.sectionIds.websocket}}.6)~
@@ -1858,7 +1858,7 @@
     !!! info inline end "XML Body Location"
 
         <figure markdown>
-          ![Message body location](./assets/wx1_1451_part_2/2-4-3_Execute-xCommand-BodyLocation.png){ width="400" }
+          ![Message body location](./images/2-4-3_Execute-xCommand-BodyLocation.png){ width="400" }
         </figure>
 
     - **xAPI:** xEvent UserInterface Message Prompt Response
@@ -1938,7 +1938,7 @@
     ??? gif "View Subscription Assistant"
                 
         <figure markdown>
-          ![SubAssist Operation](./assets/general/SubscriptionAssitantMacro-Operation.gif){ width="600" }
+          ![SubAssist Operation](./images/SubscriptionAssitantMacro-Operation.gif){ width="600" }
         </figure>
 
 ??? lesson "Lesson: Subscribe and Unsubscribe to Multiple xEvents under a Common Node"
@@ -2009,7 +2009,7 @@
     ??? gif "View Subscription Assistant"
                 
         <figure markdown>
-          ![SubAssist Operation](./assets/general/SubscriptionAssitantMacro-Operation.gif){ width="600" }
+          ![SubAssist Operation](./images/SubscriptionAssitantMacro-Operation.gif){ width="600" }
         </figure>
 
 ## **Section {{config.cProps.rxp.sectionIds.websocket}} Cleanup** ~({{config.cProps.rxp.sectionIds.websocket}}.8)~
@@ -2021,7 +2021,7 @@
     - Select ==Yes, Run the Cleanup Script==
 
     <figure markdown="span">
-      ![Section cleanup](./assets/general/SubscriptionAssitantMacro-ConfirmCleanup.png){ width="400" }
+      ![Section cleanup](./images/SubscriptionAssitantMacro-ConfirmCleanup.png){ width="400" }
       <figcaption>Section Cleanup Confirmation</figcaption>
     </figure>
 
