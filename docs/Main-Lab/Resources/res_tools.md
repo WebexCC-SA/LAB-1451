@@ -44,7 +44,7 @@
       </div>
     </section>
 
-=== "Base64 Conversion Tool"
+=== "Base64 Conversion Tools"
 
     Encode and decode UTF-8 text or self-describing image Data URLs. Every operation stays in this browser tab.
 
@@ -55,7 +55,6 @@
         <button type="button" role="tab" aria-selected="false" aria-controls="roomos-base64-encode-image" data-base64-tab="image-encode">Encode Image</button>
         <button type="button" role="tab" aria-selected="false" aria-controls="roomos-base64-decode-image" data-base64-tab="image-decode">Decode Image</button>
       </div>
-
       <div class="roomos-tool__subtool" id="roomos-base64-encode-text" role="tabpanel" data-roomos-subtool="text-encode">
             <div class="roomos-tool__field">
               <label for="roomos-base64-encode-input">Text to encode</label>
@@ -72,7 +71,6 @@
               <textarea id="roomos-base64-encode-output" readonly spellcheck="false" placeholder="Encoded output appears here"></textarea>
             </div>
       </div>
-
       <div class="roomos-tool__subtool" id="roomos-base64-decode-text" role="tabpanel" data-roomos-subtool="text-decode" hidden>
             <div class="roomos-tool__field">
               <label for="roomos-base64-decode-input">Base64 text</label>
@@ -89,7 +87,6 @@
               <textarea id="roomos-base64-decode-output" readonly spellcheck="false" placeholder="Decoded text appears here"></textarea>
             </div>
       </div>
-
       <div class="roomos-tool__subtool" id="roomos-base64-encode-image" role="tabpanel" data-roomos-subtool="image-encode" hidden>
             <div class="roomos-tool__field">
               <label for="roomos-base64-image-encode-input">Image file</label>
@@ -109,7 +106,6 @@
               <textarea id="roomos-base64-image-encode-output" readonly spellcheck="false" placeholder="The encoded image Data URL appears here"></textarea>
             </div>
       </div>
-
       <div class="roomos-tool__subtool" id="roomos-base64-decode-image" role="tabpanel" data-roomos-subtool="image-decode" hidden>
             <div class="roomos-tool__field">
               <label for="roomos-base64-image-decode-input">Image Data URL</label>
