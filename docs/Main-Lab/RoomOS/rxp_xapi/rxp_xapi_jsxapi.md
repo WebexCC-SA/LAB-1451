@@ -145,9 +145,9 @@
     - Username: {{ config.cProps.auth.roomosUser }}
     - Password: {{ config.cProps.auth.roomosPass }}
 
-!!! note
+!!! warning
 
-    The examples use secure WebSockets (`wss`) first. If the lab device certificate is not trusted by your laptop, use JSXAPI's SSH transport for the lab rather than disabling TLS certificate validation.
+    The examples use encrypted WebSockets (`wss`) first. In `jsxapi@6.0.0`, the Node.js WebSocket transport does not validate the RoomOS device certificate. Treat that as a lab convenience, not a production certificate-trust pattern. JSXAPI's SSH transport is available as the alternate direct connection.
 
 ## **JSXAPI Authentication and Communication** ~({{ config.cProps.rxp.sectionIds.jsxapi }}.1)~
 
@@ -155,11 +155,14 @@ JSXAPI uses <hl_0>user-based authentication</hl_0> against the RoomOS device. It
 
 | Connection element | Lab value | Purpose |
 |:--|:--|:--|
-| Transport URL | `wss://[ROOMOS_IP_ADDRESS]` | Opens a secure WebSocket directly to the RoomOS device |
-| Alternate transport | `ssh://[ROOMOS_IP_ADDRESS]` | Uses the same local user through SSH when secure WebSocket certificate trust prevents the lab connection |
+| Transport URL | `wss://[ROOMOS_IP_ADDRESS]` | Opens an encrypted WebSocket directly to the RoomOS device |
+| Alternate transport | `ssh://[ROOMOS_IP_ADDRESS]` | Uses the same local user through a direct SSH connection |
 | `username` | `[ROOMOS_USERNAME]` | Identifies the local RoomOS user |
 | `password` | `[ROOMOS_PASSWORD]` | Authenticates that local RoomOS user |
 | `ready` event | `(xapi) => { ... }` | Confirms authentication and supplies the connected `xapi` object |
+| `error` event | `(error) => { ... }` | Reports a connection or transport failure |
+| `close` event | `() => { ... }` | Reports that the connection has ended |
+| `xapi.close()` | `xapi.close()` | Intentionally closes the open WebSocket or SSH connection |
 
 The JSXAPI SDK performs the transport-specific authentication exchange. Your application supplies the connection URL and credentials to `jsxapi.connect()`, handles connection errors, and begins xAPI work only after the `ready` event supplies the authenticated `xapi` object.
 
@@ -200,6 +203,85 @@ The JSXAPI SDK performs the transport-specific authentication exchange. Your app
     - Exit the SSH session when the checks are complete.
 
     [Open NetworkServices Websocket in the RoomOS xAPI Reference](https://roomos.cisco.com/xapi/Configuration.NetworkServices.Websocket/){ .md-button .md-button--primary target="_blank" }
+
+??? lesson "Lesson: Understand JSXAPI Connection Events ~({{ config.cProps.rxp.sectionIds.jsxapi }}.1.3)~"
+
+    `jsxapi.connect()` returns the connection object immediately. Its `.on()` method registers a function to run when JSXAPI emits a named connection event. `.on()` also returns that same connection object, which is why the event handlers can be chained.
+
+    | Event handler | When it runs | Use it to |
+    |:--|:--|:--|
+    | `.on('ready', (xapi) => { ... })` | The transport is open and authentication is complete. The function receives the connected `xapi` object. | Start commands, reads, writes, or subscriptions |
+    | `.on('error', (error) => { ... })` | The connection or its transport reports a failure. The function receives the reported error. | Record the failure and decide whether the application should stop or reconnect |
+    | `.on('close', () => { ... })` | The underlying connection ends. The function does not receive an `xapi` object. | Record an expected shutdown or detect a lost session |
+
+    Begin xAPI work inside <hl_1>ready</hl_1>. Treat this event as the gate that confirms the connection is available before the application sends an xAPI operation.
+
+    Treat <hl_7>error</hl_7> as a connection-lifecycle event. It does **not** catch a rejected `xapi.Command...()`, `.get()`, or `.set()` Promise. Handle those operation failures where the operation is awaited.
+
+    ``` mermaid
+    %%{init: {'theme':'dark'}}%%
+    sequenceDiagram
+      participant App as Node.js Application
+      participant SDK as JSXAPI SDK
+      participant Device as RoomOS Device
+      App->>SDK: jsxapi.connect(...)
+      SDK->>Device: Open transport and authenticate
+      alt Connection succeeds
+        Device-->>SDK: Authenticated session
+        SDK-->>App: ready(xapi)
+        App->>SDK: Await an xAPI operation
+        SDK->>Device: Send through the open connection
+        Device-->>SDK: xAPI result or rejection
+        SDK-->>App: Resolve or reject the operation Promise
+      else Connection or transport fails
+        SDK-->>App: error(error)
+      end
+      opt Application ends the session
+        App->>SDK: xapi.close()
+        SDK->>Device: Close the transport
+        SDK-->>App: close
+      end
+    ```
+
+    JSXAPI does not add an automatic reconnection policy. If a persistent application loses its connection, its `error` and `close` handlers should decide whether, when, and how to call `jsxapi.connect()` again.
+
+??? lesson "Lesson: Decide When to Close the JSXAPI Connection ~({{ config.cProps.rxp.sectionIds.jsxapi }}.1.4)~"
+
+    `xapi.close()` closes the current JSXAPI transport. It does not disable the RoomOS xAPI service or affect another application's session.
+
+    | Application pattern | Call `xapi.close()`? | Reason |
+    |:--|:--|:--|
+    | One command, read, or configuration change | **Yes**, after the final awaited operation | The work is complete and the Node.js process no longer needs the open session |
+    | Short subscription test | **Yes**, after its unsubscribe function runs | Feedback is no longer needed and the lab script can exit cleanly |
+    | Persistent monitoring or automation | **Not while it must keep listening** | Closing the transport also ends feedback delivery |
+    | Several pending xAPI operations | **Not yet** | Wait for required operations to resolve or reject before closing their transport |
+    | Intentional application shutdown | **Yes** | Closing explicitly identifies a planned end to the session |
+
+    The one-shot Lessons in this section call `xapi.close()` after their awaited xAPI operation. The subscription Lessons keep the connection open while listening, run the unsubscribe function, and then close it.
+
+    A larger application may keep one connection open for its lifetime and call `xapi.close()` only during shutdown. After a connection closes, create a new one with `jsxapi.connect()` rather than trying to reuse the closed `xapi` object. Connection structure beyond that lifecycle decision is intentionally left to the application designer.
+
+??? lesson "Lesson: Recognize JSXAPI Connection and Feedback Helpers ~({{ config.cProps.rxp.sectionIds.jsxapi }}.1.5)~"
+
+    Cisco's JSXAPI package includes several public helpers for managing connections and feedback. Use them when their lifecycle matches the task.
+
+    | Public JSXAPI capability | What it provides | When it is useful |
+    |:--|:--|:--|
+    | `xapi.version` | The JSXAPI package version exposed by the connected object | Logging the runtime version while troubleshooting |
+    | `xapi.Config...once(callback)`<br>`xapi.Status...once(callback)`<br>`xapi.Event...once(callback)` | A Feedback Subscription that removes itself after its first matching update | Waiting for one configuration, status, or event change |
+    | `subscription.registration` | A Promise that resolves after the RoomOS device accepts the feedback registration | Confirming a listener is active before the application announces it is ready |
+    | `xapi.feedback.group([...])` | One group for several independently registered feedback handlers | Stopping several subscriptions together with `group.off()` |
+    | The function returned by `.on()` or `.once()` | A targeted unsubscribe function | Removing one feedback registration without disturbing others |
+
+    `.once()` still returns an unsubscribe function, so an application can cancel it before the first matching update. After the first update, JSXAPI deregisters it automatically.
+
+    !!! warning
+
+        Do not call the generic `xapi.Config.off()`, `xapi.Status.off()`, or `xapi.Event.off()` methods. JSXAPI marks that form as deprecated and throws an error. Keep the function returned by `.on()` or `.once()`, or use a feedback group and call `group.off()`.
+
+    The later subscription Lessons use `.on()` because the learner needs to observe several changes. Use `.once()` when only the next matching update matters, and use a feedback group when several separate subscriptions share one cleanup point.
+
+    [Open the Cisco JSXAPI API documentation](https://cisco-ce.github.io/jsxapi/){ .md-button .md-button--primary target="_blank" }
 
 ## **Create and Connect the Node.js Project** ~({{ config.cProps.rxp.sectionIds.jsxapi }}.2)~
 
@@ -313,7 +395,7 @@ The JSXAPI SDK performs the transport-specific authentication exchange. Your app
     ROOMOS_PASSWORD=[ROOMOS_PASSWORD]
     ```
 
-    - If secure WebSockets fail because the device certificate is not trusted, change only this line for the lab:
+    - To use JSXAPI's SSH transport instead, change only this line for the lab:
 
     ```text title="Use the SSH transport in .env"
     ROOMOS_PROTOCOL=ssh
@@ -321,7 +403,7 @@ The JSXAPI SDK performs the transport-specific authentication exchange. Your app
 
 ??? lesson "Lesson: Create and Run the JSXAPI Connection ~({{ config.cProps.rxp.sectionIds.jsxapi }}.2.5)~"
 
-    The connection is prerequisite syntax, so you may copy it directly. This is the bare connection pattern shown in Cisco's JSXAPI introduction; it does not add a helper module or application wrapper.
+    The connection is prerequisite syntax, so you may copy it directly. This uses Cisco's direct JSXAPI connection pattern without adding a helper module or application wrapper. The logs make the `ready`, `close`, and installed JSXAPI version visible.
 
     - Create `lesson.js`.
 
@@ -334,9 +416,14 @@ The JSXAPI SDK performs the transport-specific authentication exchange. Your app
         username: process.env.ROOMOS_USERNAME,
         password: process.env.ROOMOS_PASSWORD
       })
-      .on('error', console.error)
+      .on('error', (error) => {
+        console.error('The JSXAPI connection failed:', error);
+      })
+      .on('close', () => {
+        console.log('The JSXAPI connection is closed.');
+      })
       .on('ready', (xapi) => {
-        console.log('The JSXAPI connection is ready.');
+        console.log(`JSXAPI ${xapi.version} is ready.`);
         xapi.close();
       });
     ```
@@ -360,9 +447,14 @@ The JSXAPI SDK performs the transport-specific authentication exchange. Your app
                 username: process.env.ROOMOS_USERNAME,
                 password: process.env.ROOMOS_PASSWORD
               })
-              .on('error', console.error)
+              .on('error', (error) => {
+                console.error('The JSXAPI connection failed:', error);
+              })
+              .on('close', () => {
+                console.log('The JSXAPI connection is closed.');
+              })
               .on('ready', (xapi) => {
-                console.log('The JSXAPI connection is ready.');
+                console.log(`JSXAPI ${xapi.version} is ready.`);
                 xapi.close();
               });
             ```
@@ -371,7 +463,8 @@ The JSXAPI SDK performs the transport-specific authentication exchange. Your app
 
             | Stream | Message |
             |:--|:--|
-            | `stdout` | `The JSXAPI connection is ready.` |
+            | `stdout` | `JSXAPI 6.0.0 is ready.` |
+            | `stdout` | `The JSXAPI connection is closed.` |
 
 ## **Executing xCommands** ~({{ config.cProps.rxp.sectionIds.jsxapi }}.3)~
 
