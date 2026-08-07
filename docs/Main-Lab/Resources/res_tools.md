@@ -151,6 +151,7 @@
       <div class="roomos-tool__subtabs" role="tablist" aria-label="XML tools">
         <button type="button" role="tab" aria-selected="true" aria-controls="roomos-xml-escape" data-xml-tab="escape">Escape XML</button>
         <button type="button" role="tab" aria-selected="false" aria-controls="roomos-xml-unescape" data-xml-tab="unescape">Unescape XML</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="roomos-xml-format" data-xml-tab="format">Format &amp; Validate</button>
       </div>
       <div class="roomos-tool__subtool" id="roomos-xml-escape" role="tabpanel" data-roomos-subtool="escape">
         <div class="roomos-tool__field">
@@ -184,6 +185,44 @@
           <textarea id="roomos-xml-unescape-output" readonly spellcheck="false" placeholder="Unescaped XML appears here"></textarea>
         </div>
       </div>
+      <div class="roomos-tool__subtool" id="roomos-xml-format" role="tabpanel" data-roomos-subtool="format" hidden>
+        <div class="roomos-tool__field">
+          <label for="roomos-xml-format-input">XML to format and validate</label>
+          <textarea id="roomos-xml-format-input" spellcheck="false" placeholder="Paste XML here"></textarea>
+        </div>
+        <div class="roomos-tool__actions">
+          <button class="md-button md-button--primary" type="button" data-action="convert">Format &amp; validate</button>
+          <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
+          <button class="md-button" type="button" data-action="clear">Clear</button>
+        </div>
+        <p class="roomos-tool__status" aria-live="polite"></p>
+        <div class="roomos-tool__field" data-roomos-result hidden>
+          <label for="roomos-xml-format-output">Formatted XML</label>
+          <textarea id="roomos-xml-format-output" readonly spellcheck="false"></textarea>
+        </div>
+      </div>
+    </section>
+
+=== "JSON Formatter & Validator"
+
+    Validate local JSON before using it in Cloud xAPI, WebSocket JSON-RPC, macro parameters, or a site manifest.
+
+    <section class="roomos-tool" data-roomos-tool="json-format">
+      <div class="roomos-tool__field"><label for="roomos-json-format-input">JSON</label><textarea id="roomos-json-format-input" spellcheck="false" placeholder="Paste JSON here"></textarea></div>
+      <div class="roomos-tool__actions"><button class="md-button md-button--primary" type="button" data-action="format">Format &amp; validate</button><button class="md-button" type="button" data-action="minify">Minify</button><button class="md-button" type="button" data-action="copy" disabled>Copy</button><button class="md-button" type="button" data-action="clear">Clear</button></div>
+      <p class="roomos-tool__status" aria-live="polite"></p>
+      <div class="roomos-tool__field" data-roomos-result hidden><label for="roomos-json-format-output">Validated JSON</label><textarea id="roomos-json-format-output" readonly spellcheck="false"></textarea></div>
+    </section>
+
+=== "JSON String Escaper"
+
+    Convert text or XML into one JSON string literal, including its enclosing quotes. This is useful for a JSON request body that needs multiline content.
+
+    <section class="roomos-tool" data-roomos-tool="json-string">
+      <div class="roomos-tool__field"><label for="roomos-json-string-input">Text to escape</label><textarea id="roomos-json-string-input" spellcheck="false" placeholder="Paste text or XML here"></textarea></div>
+      <div class="roomos-tool__actions"><button class="md-button md-button--primary" type="button" data-action="convert">Escape for JSON</button><button class="md-button" type="button" data-action="copy" disabled>Copy</button><button class="md-button" type="button" data-action="clear">Clear</button></div>
+      <p class="roomos-tool__status" aria-live="polite"></p>
+      <div class="roomos-tool__field" data-roomos-result hidden><label for="roomos-json-string-output">JSON string literal</label><textarea id="roomos-json-string-output" readonly spellcheck="false"></textarea></div>
     </section>
 
 <script>

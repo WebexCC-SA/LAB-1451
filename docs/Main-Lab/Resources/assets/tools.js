@@ -14,6 +14,20 @@
     apos: "'",
   })[entity]);
 
+  const formatXml = (value) => {
+    const document = new DOMParser().parseFromString(value, 'application/xml');
+    const error = document.querySelector('parsererror');
+    if (error) throw new Error('Invalid XML');
+    const compact = new XMLSerializer().serializeToString(document).replace(/>\s*</g, '><');
+    let depth = 0;
+    return compact.replace(/(>)(<)(\/?)/g, '$1\n$2$3').split('\n').map((line) => {
+      if (/^<\//.test(line)) depth -= 1;
+      const formatted = `${'  '.repeat(Math.max(0, depth))}${line}`;
+      if (/^<(?!\/|\?|!)[^>]*[^/]>$/.test(line)) depth += 1;
+      return formatted;
+    }).join('\n');
+  };
+
   const utf8Base64 = (value) => {
     const bytes = new TextEncoder().encode(value);
     let binary = '';
@@ -378,6 +392,30 @@
     });
     configureTextTool(tool.querySelector('[data-roomos-subtool="escape"]'), htmlEscape, 'Enter XML to escape.');
     configureTextTool(tool.querySelector('[data-roomos-subtool="unescape"]'), xmlUnescape, 'Enter escaped XML to unescape.');
+    configureTextTool(tool.querySelector('[data-roomos-subtool="format"]'), formatXml, 'Enter XML to format and validate.');
+  };
+
+  const configureJsonFormatTool = (tool) => {
+    const input = tool.querySelector('textarea:not([readonly])');
+    const output = tool.querySelector('textarea[readonly]');
+    const result = tool.querySelector('[data-roomos-result]');
+    const convert = (indent) => {
+      if (!input.value.trim()) { setStatus(tool, 'Enter JSON to validate.', 'error'); return; }
+      try {
+        output.value = JSON.stringify(JSON.parse(input.value), null, indent);
+        result.hidden = false;
+        setCopyEnabled(tool, true);
+        setStatus(tool, 'JSON is valid.', 'success');
+      } catch (error) {
+        result.hidden = true;
+        setCopyEnabled(tool, false);
+        setStatus(tool, `Invalid JSON: ${error.message}`, 'error');
+      }
+    };
+    tool.querySelector('[data-action="format"]').addEventListener('click', () => convert(2));
+    tool.querySelector('[data-action="minify"]').addEventListener('click', () => convert(0));
+    tool.querySelector('[data-action="copy"]').addEventListener('click', () => copyOutput(tool));
+    tool.querySelector('[data-action="clear"]').addEventListener('click', () => clearTextTool(tool));
   };
 
   const configure = (tool) => {
@@ -405,8 +443,14 @@
       return;
     }
 
+    if (kind === 'json-format') {
+      configureJsonFormatTool(tool);
+      return;
+    }
+
     const transforms = {
       flatten: [(value) => value.replace(/\r?\n/g, ' ').trim(), 'Enter multiline text to flatten.'],
+      'json-string': [JSON.stringify, 'Enter text to escape for JSON.'],
     };
     configureTextTool(tool, ...transforms[kind]);
   };
