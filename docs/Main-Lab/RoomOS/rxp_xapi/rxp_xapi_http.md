@@ -8,6 +8,53 @@
 
     Here, we'll see the relationships between HTTP and SSH on how to structure an xConfiguration, xCommand, xStatus and xEvents to a Cisco RoomOS device
 
+    !!! curious "Click the Tabs Below to see how HTTP xAPI calls communicate"
+
+        === "GET [xStatuses/xConfigurations]"
+
+            ``` mermaid
+            %%{init: {'theme':'dark'}}%%
+            sequenceDiagram
+              participant Client as HTTP Client
+              participant Device as RoomOS Device
+              Client->>+Device: HTTPS GET xStatus or xConfiguration<br>with Basic credentials
+              Device-->>-Client: HTTP 200 with the current value
+              Note over Client,Device: The request and response complete
+            ```
+
+            Each read is an independent authenticated request to the RoomOS device.
+
+        === "POST [xCommands/xConfigurations]"
+
+            ``` mermaid
+            %%{init: {'theme':'dark'}}%%
+            sequenceDiagram
+              participant Client as HTTP Client
+              participant Device as RoomOS Device
+              Client->>+Device: HTTPS POST xCommand or xConfiguration<br>with Basic credentials and request body
+              Device->>Device: Execute the requested operation
+              Device-->>-Client: HTTP 200 with the xAPI response
+              Note over Client,Device: The request and response complete
+            ```
+
+            Each write or command is another independent authenticated request.
+
+        === "Subscriptions [HTTPFeedback]"
+
+            ``` mermaid
+            %%{init: {'theme':'dark'}}%%
+            sequenceDiagram
+              participant Client as HTTP Client
+              participant Webhook as Webhook Endpoint
+              participant Device as RoomOS Device
+              Client->>+Device: POST HTTPFeedback Register<br>with the webhook URL and xAPI path
+              Device-->>-Client: HTTP 200 registration response
+              Device-->>Webhook: xConfiguration, xStatus, or xEvent feedback
+              Webhook-->>Device: HTTP 200 acknowledgement
+            ```
+
+            HTTP subscriptions require the RoomOS `HTTPFeedback` feature and a separately reachable webhook endpoint.
+
 
 ## Section {{config.cProps.rxp.sectionIds.http}} Requirements
 
