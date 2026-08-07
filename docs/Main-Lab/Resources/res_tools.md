@@ -9,7 +9,7 @@
 
 === "Code Difference Checker"
 
-    Compare two snippets to find the characters that differ. When **Ignore all whitespace** is enabled, spaces, tabs, and line breaks are removed before comparison.
+    Compare code by line. The compact view shows changed hunks with nearby context; turn on **Show unchanged lines** to inspect the full file. When **Ignore all whitespace** is enabled, whitespace-only changes do not count as differences.
 
     <section class="roomos-tool" data-roomos-tool="diff">
       <div class="roomos-tool__grid roomos-tool__grid--two-up">
@@ -26,20 +26,22 @@
         <input id="roomos-diff-ignore-whitespace" type="checkbox" checked>
         Ignore all whitespace
       </label>
+      <label class="roomos-tool__checkbox" for="roomos-diff-show-unchanged">
+        <input id="roomos-diff-show-unchanged" type="checkbox">
+        Show unchanged lines
+      </label>
       <div class="roomos-tool__actions">
         <button class="md-button md-button--primary" type="button" data-action="compare">Compare</button>
         <button class="md-button" type="button" data-action="clear">Clear</button>
       </div>
       <p class="roomos-tool__status" aria-live="polite"></p>
-      <div class="roomos-tool__results" hidden>
-        <div class="roomos-tool__field">
-          <h3>Your syntax</h3>
-          <pre class="roomos-tool__output" data-output="left"></pre>
+      <div class="roomos-tool__results roomos-tool__diff-results" hidden>
+        <div class="roomos-tool__diff-heading" aria-hidden="true">
+          <span>Old</span>
+          <span>New</span>
+          <span>Difference</span>
         </div>
-        <div class="roomos-tool__field">
-          <h3>Reference syntax</h3>
-          <pre class="roomos-tool__output" data-output="right"></pre>
-        </div>
+        <div class="roomos-tool__diff-view" aria-label="Code comparison result"></div>
       </div>
     </section>
 

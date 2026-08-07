@@ -44,49 +44,157 @@
     }
   };
 
+  const splitLines = (value) => value.replace(/\r\n?/g, '\n').split('\n');
+
+  const myersDiff = (oldLines, newLines, equals) => {
+    const max = oldLines.length + newLines.length;
+    const trace = [];
+    const frontier = new Map([[1, 0]]);
+
+    for (let distance = 0; distance <= max; distance += 1) {
+      trace.push(new Map(frontier));
+      for (let diagonal = -distance; diagonal <= distance; diagonal += 2) {
+        const previousDown = frontier.get(diagonal + 1) ?? 0;
+        const previousRight = frontier.get(diagonal - 1) ?? 0;
+        const moveDown = diagonal === -distance || (diagonal !== distance && previousRight < previousDown);
+        let oldIndex = moveDown ? previousDown : previousRight + 1;
+        let newIndex = oldIndex - diagonal;
+
+        while (oldIndex < oldLines.length && newIndex < newLines.length && equals(oldLines[oldIndex], newLines[newIndex])) {
+          oldIndex += 1;
+          newIndex += 1;
+        }
+        frontier.set(diagonal, oldIndex);
+
+        if (oldIndex >= oldLines.length && newIndex >= newLines.length) {
+          const operations = [];
+          let currentOld = oldLines.length;
+          let currentNew = newLines.length;
+
+          for (let step = trace.length - 1; step > 0; step -= 1) {
+            const prior = trace[step];
+            const currentDiagonal = currentOld - currentNew;
+            const priorDiagonal = currentDiagonal === -step || (currentDiagonal !== step && (prior.get(currentDiagonal - 1) ?? 0) < (prior.get(currentDiagonal + 1) ?? 0))
+              ? currentDiagonal + 1
+              : currentDiagonal - 1;
+            const priorOld = prior.get(priorDiagonal) ?? 0;
+            const priorNew = priorOld - priorDiagonal;
+
+            while (currentOld > priorOld && currentNew > priorNew) {
+              operations.push({ type: 'equal', oldIndex: currentOld - 1, newIndex: currentNew - 1 });
+              currentOld -= 1;
+              currentNew -= 1;
+            }
+
+            if (currentOld === priorOld) {
+              operations.push({ type: 'insert', newIndex: currentNew - 1 });
+              currentNew -= 1;
+            } else {
+              operations.push({ type: 'delete', oldIndex: currentOld - 1 });
+              currentOld -= 1;
+            }
+          }
+
+          while (currentOld > 0 && currentNew > 0) {
+            operations.push({ type: 'equal', oldIndex: currentOld - 1, newIndex: currentNew - 1 });
+            currentOld -= 1;
+            currentNew -= 1;
+          }
+          while (currentOld > 0) operations.push({ type: 'delete', oldIndex: --currentOld });
+          while (currentNew > 0) operations.push({ type: 'insert', newIndex: --currentNew });
+          return operations.reverse();
+        }
+      }
+    }
+
+    return [];
+  };
+
+  const renderDiffRow = (view, type, oldNumber, newNumber, text) => {
+    const row = document.createElement('div');
+    row.className = `roomos-tool__diff-row roomos-tool__diff-row--${type}`;
+    if (type === 'skip') {
+      const summary = document.createElement('span');
+      summary.className = 'roomos-tool__diff-content';
+      summary.textContent = text;
+      row.append(summary);
+    } else {
+      [oldNumber, newNumber].forEach((number) => {
+        const lineNumber = document.createElement('span');
+        lineNumber.className = 'roomos-tool__diff-line-number';
+        lineNumber.textContent = number ?? '';
+        row.append(lineNumber);
+      });
+      const content = document.createElement('span');
+      content.className = 'roomos-tool__diff-content';
+      content.textContent = text;
+      row.append(content);
+    }
+    view.append(row);
+  };
+
   const renderDiff = (tool) => {
     const leftInput = tool.querySelector('#roomos-diff-left');
     const rightInput = tool.querySelector('#roomos-diff-right');
     const ignoreWhitespace = tool.querySelector('#roomos-diff-ignore-whitespace').checked;
-    const normalize = (value) => ignoreWhitespace ? value.replace(/\s/g, '') : value;
-    const left = normalize(leftInput.value);
-    const right = normalize(rightInput.value);
-    const leftOutput = tool.querySelector('[data-output="left"]');
-    const rightOutput = tool.querySelector('[data-output="right"]');
+    const showUnchanged = tool.querySelector('#roomos-diff-show-unchanged').checked;
+    const oldLines = splitLines(leftInput.value);
+    const newLines = splitLines(rightInput.value);
     const results = tool.querySelector('.roomos-tool__results');
+    const view = tool.querySelector('.roomos-tool__diff-view');
+    const normalize = (line) => ignoreWhitespace ? line.replace(/\s/g, '') : line;
 
-    if (!left && !right) {
+    if (!leftInput.value && !rightInput.value) {
       results.hidden = true;
       setStatus(tool, 'Paste syntax into at least one field to compare it.', 'error');
       return;
     }
 
-    if (left === right) {
-      leftOutput.textContent = left || '(Both snippets are empty.)';
-      rightOutput.textContent = right || '(Both snippets are empty.)';
+    const operations = myersDiff(oldLines, newLines, (oldLine, newLine) => normalize(oldLine) === normalize(newLine));
+    const changedIndexes = operations.reduce((indexes, operation, index) => {
+      if (operation.type !== 'equal') indexes.push(index);
+      return indexes;
+    }, []);
+    view.replaceChildren();
+
+    if (!changedIndexes.length) {
+      renderDiffRow(view, 'equal', '—', '—', 'The snippets match.');
       results.hidden = false;
       setStatus(tool, 'The snippets match.', 'success');
       return;
     }
 
-    let prefixLength = 0;
-    while (prefixLength < left.length && left[prefixLength] === right[prefixLength]) prefixLength += 1;
-
-    let leftSuffix = left.length;
-    let rightSuffix = right.length;
-    while (leftSuffix > prefixLength && rightSuffix > prefixLength && left[leftSuffix - 1] === right[rightSuffix - 1]) {
-      leftSuffix -= 1;
-      rightSuffix -= 1;
+    const context = 3;
+    const visible = new Set();
+    if (showUnchanged) {
+      operations.forEach((_, index) => visible.add(index));
+    } else {
+      changedIndexes.forEach((index) => {
+        for (let candidate = Math.max(0, index - context); candidate <= Math.min(operations.length - 1, index + context); candidate += 1) visible.add(candidate);
+      });
     }
 
-    const sharedPrefix = htmlEscape(left.slice(0, prefixLength));
-    const sharedSuffix = htmlEscape(left.slice(leftSuffix));
-    const leftDifference = htmlEscape(left.slice(prefixLength, leftSuffix));
-    const rightDifference = htmlEscape(right.slice(prefixLength, rightSuffix));
-    leftOutput.innerHTML = `${sharedPrefix}<mark class="roomos-tool__difference">${leftDifference || '∅'}</mark>${sharedSuffix}`;
-    rightOutput.innerHTML = `${sharedPrefix}<mark class="roomos-tool__addition">${rightDifference || '∅'}</mark>${sharedSuffix}`;
+    let oldNumber = 1;
+    let newNumber = 1;
+    let hiddenLines = 0;
+    operations.forEach((operation, index) => {
+      if (!visible.has(index)) {
+        hiddenLines += 1;
+      } else {
+        if (hiddenLines) {
+          renderDiffRow(view, 'skip', null, null, `⋯ ${hiddenLines} unchanged line${hiddenLines === 1 ? '' : 's'} hidden ⋯`);
+          hiddenLines = 0;
+        }
+        if (operation.type === 'equal') renderDiffRow(view, 'equal', oldNumber, newNumber, oldLines[operation.oldIndex]);
+        if (operation.type === 'delete') renderDiffRow(view, 'delete', oldNumber, null, oldLines[operation.oldIndex]);
+        if (operation.type === 'insert') renderDiffRow(view, 'insert', null, newNumber, newLines[operation.newIndex]);
+      }
+      if (operation.type !== 'insert') oldNumber += 1;
+      if (operation.type !== 'delete') newNumber += 1;
+    });
+    if (hiddenLines) renderDiffRow(view, 'skip', null, null, `⋯ ${hiddenLines} unchanged line${hiddenLines === 1 ? '' : 's'} hidden ⋯`);
     results.hidden = false;
-    setStatus(tool, 'Differences are highlighted. ∅ marks a missing character sequence.', 'success');
+    setStatus(tool, `${changedIndexes.length} changed line${changedIndexes.length === 1 ? '' : 's'} found.`, 'success');
   };
 
   const configureTextTool = (tool, transform, emptyMessage) => {
