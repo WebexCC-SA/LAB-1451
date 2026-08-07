@@ -11,6 +11,48 @@
 
     You will translate familiar terminal xAPI forms into JSXAPI. Each Lesson gives you a bounded scaffold, but keeps the completed assessed expression inside a collapsed **Successful Syntax and Log Output** disclosure. The examples use Cisco's direct `connect` → `ready` pattern without prescribing how you should structure a larger JavaScript application.
 
+    Like the direct HTTP API, JSXAPI authenticates with a local RoomOS user and communicates directly with the RoomOS device. The difference is the session: HTTP sends independent requests, while JSXAPI authenticates as it opens a persistent WebSocket or SSH connection and then uses that connection for xAPI calls and feedback.
+
+    !!! curious "Click the Tabs Below to compare HTTP API and JSXAPI communication"
+
+        === "HTTP API"
+
+            ``` mermaid
+            %%{init: {'theme':'dark'}}%%
+            sequenceDiagram
+              participant Client as HTTP Client
+              participant Device as RoomOS Device
+              Client->>+Device: HTTPS GET or POST<br>with Basic credentials
+              Device-->>-Client: HTTP response
+              Note over Client,Device: The request and response complete
+            ```
+
+            - In this lab, every request carries local user credentials through an HTTP Basic authorization header.
+            - Each xAPI GET or POST is an independent request and response.
+            - Subscriptions require the RoomOS `HTTPFeedback` feature and a separate webhook endpoint.
+
+        === "JSXAPI"
+
+            ``` mermaid
+            %%{init: {'theme':'dark'}}%%
+            sequenceDiagram
+              participant App as Node.js Application
+              participant SDK as JSXAPI SDK
+              participant Device as RoomOS Device
+              App->>+SDK: connect(wss://device,<br>username and password)
+              SDK->>+Device: Open connection and authenticate
+              Device-->>-SDK: Authenticated xAPI session
+              SDK-->>-App: ready(xapi)
+              App->>+SDK: xAPI call or subscription
+              SDK->>+Device: Send through the open connection
+              Device-->>-SDK: Response or feedback
+              SDK-->>-App: Promise result or callback
+            ```
+
+            - Local RoomOS credentials are supplied once when `jsxapi.connect()` opens the connection.
+            - The `ready` event provides the same `xapi` JavaScript object used by macros.
+            - Calls, responses, and `.on()` subscription feedback share the persistent connection.
+
 ## Section {{ config.cProps.rxp.sectionIds.jsxapi }} Requirements
 
 !!! important "Previous Sections"
@@ -37,7 +79,19 @@
 
     The examples use secure WebSockets (`wss`) first. If the lab device certificate is not trusted by your laptop, use JSXAPI's SSH transport for the lab rather than disabling TLS certificate validation.
 
-## **Understand JSXAPI and Prepare the RoomOS Device** ~({{ config.cProps.rxp.sectionIds.jsxapi }}.1)~
+## **JSXAPI Authentication and Communication** ~({{ config.cProps.rxp.sectionIds.jsxapi }}.1)~
+
+JSXAPI uses <hl_0>user-based authentication</hl_0> against the RoomOS device. It does not use a Webex access token or send requests through Webex Cloud. The Node.js application must be able to reach the device and must provide credentials for a local RoomOS user with permission to access the required xAPI paths.
+
+| Connection element | Lab value | Purpose |
+|:--|:--|:--|
+| Transport URL | `wss://[ROOMOS_IP_ADDRESS]` | Opens a secure WebSocket directly to the RoomOS device |
+| Alternate transport | `ssh://[ROOMOS_IP_ADDRESS]` | Uses the same local user through SSH when secure WebSocket certificate trust prevents the lab connection |
+| `username` | `[ROOMOS_USERNAME]` | Identifies the local RoomOS user |
+| `password` | `[ROOMOS_PASSWORD]` | Authenticates that local RoomOS user |
+| `ready` event | `(xapi) => { ... }` | Confirms authentication and supplies the connected `xapi` object |
+
+The JSXAPI SDK performs the transport-specific authentication exchange. Your application supplies the connection URL and credentials to `jsxapi.connect()`, handles connection errors, and begins xAPI work only after the `ready` event supplies the authenticated `xapi` object.
 
 ???+ lesson "Lesson: Relate JSXAPI to the Macro Runtime ~({{ config.cProps.rxp.sectionIds.jsxapi }}.1.1)~"
 
