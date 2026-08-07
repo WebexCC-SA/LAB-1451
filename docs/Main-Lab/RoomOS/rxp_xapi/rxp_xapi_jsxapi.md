@@ -17,41 +17,112 @@
 
         === "HTTP API"
 
-            ``` mermaid
-            %%{init: {'theme':'dark'}}%%
-            sequenceDiagram
-              participant Client as HTTP Client
-              participant Device as RoomOS Device
-              Client->>+Device: HTTPS GET or POST<br>with Basic credentials
-              Device-->>-Client: HTTP response
-              Note over Client,Device: The request and response complete
-            ```
+            === "GET [xStatuses/xConfigurations]"
 
-            - In this lab, every request carries local user credentials through an HTTP Basic authorization header.
-            - Each xAPI GET or POST is an independent request and response.
-            - Subscriptions require the RoomOS `HTTPFeedback` feature and a separate webhook endpoint.
+                ``` mermaid
+                %%{init: {'theme':'dark'}}%%
+                sequenceDiagram
+                  participant Client as HTTP Client
+                  participant Device as RoomOS Device
+                  Client->>+Device: HTTPS GET xStatus or xConfiguration<br>with Basic credentials
+                  Device-->>-Client: HTTP 200 with the current value
+                  Note over Client,Device: The request and response complete
+                ```
+
+                Each read is an independent authenticated request to the RoomOS device.
+
+            === "POST [xCommands/xConfigurations]"
+
+                ``` mermaid
+                %%{init: {'theme':'dark'}}%%
+                sequenceDiagram
+                  participant Client as HTTP Client
+                  participant Device as RoomOS Device
+                  Client->>+Device: HTTPS POST xCommand or xConfiguration<br>with Basic credentials and request body
+                  Device->>Device: Execute the requested operation
+                  Device-->>-Client: HTTP 200 with the xAPI response
+                  Note over Client,Device: The request and response complete
+                ```
+
+                Each write or command is another independent authenticated request.
+
+            === "Subscriptions [HTTPFeedback]"
+
+                ``` mermaid
+                %%{init: {'theme':'dark'}}%%
+                sequenceDiagram
+                  participant Client as HTTP Client
+                  participant Webhook as Webhook Endpoint
+                  participant Device as RoomOS Device
+                  Client->>+Device: POST HTTPFeedback Register<br>with the webhook URL and xAPI path
+                  Device-->>-Client: HTTP 200 registration response
+                  Device-->>Webhook: xConfiguration, xStatus, or xEvent feedback
+                  Webhook-->>Device: HTTP 200 acknowledgement
+                ```
+
+                HTTP subscriptions require the RoomOS `HTTPFeedback` feature and a separately reachable webhook endpoint.
 
         === "JSXAPI"
 
-            ``` mermaid
-            %%{init: {'theme':'dark'}}%%
-            sequenceDiagram
-              participant App as Node.js Application
-              participant SDK as JSXAPI SDK
-              participant Device as RoomOS Device
-              App->>+SDK: connect(wss://device,<br>username and password)
-              SDK->>+Device: Open connection and authenticate
-              Device-->>-SDK: Authenticated xAPI session
-              SDK-->>-App: ready(xapi)
-              App->>+SDK: xAPI call or subscription
-              SDK->>+Device: Send through the open connection
-              Device-->>-SDK: Response or feedback
-              SDK-->>-App: Promise result or callback
-            ```
+            === "Get [xStatuses/xConfigurations]"
 
-            - Local RoomOS credentials are supplied once when `jsxapi.connect()` opens the connection.
-            - The `ready` event provides the same `xapi` JavaScript object used by macros.
-            - Calls, responses, and `.on()` subscription feedback share the persistent connection.
+                ``` mermaid
+                %%{init: {'theme':'dark'}}%%
+                sequenceDiagram
+                  participant App as Node.js Application
+                  participant SDK as JSXAPI SDK
+                  participant Device as RoomOS Device
+                  App->>+SDK: connect(wss://device, credentials)
+                  SDK->>+Device: Open connection and authenticate
+                  Device-->>-SDK: Authenticated xAPI session
+                  SDK-->>-App: ready(xapi)
+                  App->>+SDK: xapi.Status...get()<br>or xapi.Config...get()
+                  SDK->>+Device: Get through the open connection
+                  Device-->>-SDK: Current xAPI value
+                  SDK-->>-App: Promise resolves with the value
+                ```
+
+                The `ready` event provides the authenticated `xapi` object; `.get()` reads use that open connection.
+
+            === "Execute/Set [xCommands/xConfigurations]"
+
+                ``` mermaid
+                %%{init: {'theme':'dark'}}%%
+                sequenceDiagram
+                  participant App as Node.js Application
+                  participant SDK as JSXAPI SDK
+                  participant Device as RoomOS Device
+                  App->>+SDK: connect(wss://device, credentials)
+                  SDK->>+Device: Open connection and authenticate
+                  Device-->>-SDK: Authenticated xAPI session
+                  SDK-->>-App: ready(xapi)
+                  App->>+SDK: xapi.Command...()<br>or xapi.Config...set(value)
+                  SDK->>+Device: Execute through the open connection
+                  Device-->>-SDK: xAPI response
+                  SDK-->>-App: Promise resolves with the result
+                ```
+
+                xCommands and configuration changes use the same connected `xapi` object and return Promise results.
+
+            === "Subscriptions [xConfigurations/xStatuses/xEvents]"
+
+                ``` mermaid
+                %%{init: {'theme':'dark'}}%%
+                sequenceDiagram
+                  participant App as Node.js Application
+                  participant SDK as JSXAPI SDK
+                  participant Device as RoomOS Device
+                  App->>+SDK: connect(wss://device, credentials)
+                  SDK->>+Device: Open connection and authenticate
+                  Device-->>-SDK: Authenticated xAPI session
+                  SDK-->>-App: ready(xapi)
+                  App->>+SDK: xapi.Config, Status, or Event...on(callback)
+                  SDK->>+Device: Register feedback on the open connection
+                  Device-->>-SDK: xAPI change or event feedback
+                  SDK-->>-App: Run the subscribed callback
+                ```
+
+                `.on()` subscriptions deliver xConfiguration, xStatus, and xEvent feedback through the same persistent connection; no separate webhook is required.
 
 ## Section {{ config.cProps.rxp.sectionIds.jsxapi }} Requirements
 
