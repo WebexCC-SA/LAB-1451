@@ -14,11 +14,11 @@
     <section class="roomos-tool" data-roomos-tool="diff">
       <div class="roomos-tool__grid roomos-tool__grid--two-up">
         <div class="roomos-tool__field">
-          <label for="roomos-diff-left">Your syntax</label>
+          <label for="roomos-diff-left">Script Entry 1</label>
           <textarea id="roomos-diff-left" spellcheck="false" placeholder="Paste your syntax here"></textarea>
         </div>
         <div class="roomos-tool__field">
-          <label for="roomos-diff-right">Reference syntax</label>
+          <label for="roomos-diff-right">Script Entry 2</label>
           <textarea id="roomos-diff-right" spellcheck="false" placeholder="Paste the reference syntax here"></textarea>
         </div>
       </div>
@@ -46,23 +46,85 @@
 
 === "Base64 Conversion Tool"
 
-    Convert text to UTF-8 Base64. For a local HTTP Basic authorization value, enter `username:password` and then copy the resulting value after `Basic `.
+    Encode and decode UTF-8 text or self-describing image Data URLs. Every operation stays in this browser tab.
 
     <section class="roomos-tool" data-roomos-tool="base64">
-      <div class="roomos-tool__field">
-        <label for="roomos-base64-input">Text to encode</label>
-        <textarea id="roomos-base64-input" spellcheck="false" placeholder="username:password"></textarea>
-      </div>
-      <div class="roomos-tool__actions">
-        <button class="md-button md-button--primary" type="button" data-action="convert">Encode</button>
-        <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
-        <button class="md-button" type="button" data-action="clear">Clear</button>
-      </div>
-      <p class="roomos-tool__status" aria-live="polite"></p>
-      <div class="roomos-tool__field">
-        <label for="roomos-base64-output">Base64 output</label>
-        <textarea id="roomos-base64-output" readonly spellcheck="false" placeholder="Encoded output appears here"></textarea>
-      </div>
+      === "Encode Text"
+
+          <div class="roomos-tool__subtool" data-roomos-subtool="text-encode">
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-encode-input">Text to encode</label>
+              <textarea id="roomos-base64-encode-input" spellcheck="false" placeholder="username:password"></textarea>
+            </div>
+            <div class="roomos-tool__actions">
+              <button class="md-button md-button--primary" type="button" data-action="convert">Encode text</button>
+              <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
+              <button class="md-button" type="button" data-action="clear">Clear</button>
+            </div>
+            <p class="roomos-tool__status" aria-live="polite"></p>
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-encode-output">Base64 output</label>
+              <textarea id="roomos-base64-encode-output" readonly spellcheck="false" placeholder="Encoded output appears here"></textarea>
+            </div>
+          </div>
+
+      === "Decode Text"
+
+          <div class="roomos-tool__subtool" data-roomos-subtool="text-decode">
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-decode-input">Base64 text</label>
+              <textarea id="roomos-base64-decode-input" spellcheck="false" placeholder="Paste Base64 text here"></textarea>
+            </div>
+            <div class="roomos-tool__actions">
+              <button class="md-button md-button--primary" type="button" data-action="convert">Decode text</button>
+              <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
+              <button class="md-button" type="button" data-action="clear">Clear</button>
+            </div>
+            <p class="roomos-tool__status" aria-live="polite"></p>
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-decode-output">Decoded text</label>
+              <textarea id="roomos-base64-decode-output" readonly spellcheck="false" placeholder="Decoded text appears here"></textarea>
+            </div>
+          </div>
+
+      === "Encode Image"
+
+          <div class="roomos-tool__subtool" data-roomos-subtool="image-encode">
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-image-encode-input">Image file</label>
+              <input class="roomos-tool__file-input" id="roomos-base64-image-encode-input" type="file" accept="image/*">
+            </div>
+            <div class="roomos-tool__image-preview" data-image-preview hidden>
+              <img alt="Selected image preview">
+            </div>
+            <div class="roomos-tool__actions">
+              <button class="md-button md-button--primary" type="button" data-action="encode-image">Encode image</button>
+              <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
+              <button class="md-button" type="button" data-action="clear">Clear</button>
+            </div>
+            <p class="roomos-tool__status" aria-live="polite"></p>
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-image-encode-output">Image Data URL</label>
+              <textarea id="roomos-base64-image-encode-output" readonly spellcheck="false" placeholder="The encoded image Data URL appears here"></textarea>
+            </div>
+          </div>
+
+      === "Decode Image"
+
+          <div class="roomos-tool__subtool" data-roomos-subtool="image-decode">
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-image-decode-input">Image Data URL</label>
+              <textarea id="roomos-base64-image-decode-input" spellcheck="false" placeholder="Paste a data:image/...;base64,... value here"></textarea>
+            </div>
+            <div class="roomos-tool__actions">
+              <button class="md-button md-button--primary" type="button" data-action="decode-image">Decode image</button>
+              <button class="md-button" type="button" data-action="clear">Clear</button>
+            </div>
+            <p class="roomos-tool__status" aria-live="polite"></p>
+            <div class="roomos-tool__image-preview" data-image-preview hidden>
+              <img alt="Decoded image preview">
+            </div>
+          </div>
     </section>
 
 === "Flatten Multiline String Tool"

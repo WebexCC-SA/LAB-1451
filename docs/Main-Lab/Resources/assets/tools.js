@@ -13,6 +13,23 @@
     return btoa(binary);
   };
 
+  const base64Utf8 = (value) => {
+    const normalized = value.replace(/\s/g, '');
+    if (!normalized || !/^[A-Za-z0-9+/]*={0,2}$/.test(normalized) || normalized.length % 4 === 1) throw new Error('Invalid Base64');
+    const binary = atob(normalized);
+    const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
+    return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+  };
+
+  const imageDataUrlPattern = /^data:image\/(?:avif|bmp|gif|jpe?g|png|svg\+xml|webp);base64,[A-Za-z0-9+/]+={0,2}$/i;
+
+  const readFileAsDataUrl = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => resolve(reader.result));
+    reader.addEventListener('error', () => reject(reader.error));
+    reader.readAsDataURL(file);
+  });
+
   const setStatus = (tool, message, state = '') => {
     const status = tool.querySelector('.roomos-tool__status');
     status.textContent = message;
@@ -234,9 +251,92 @@
         setStatus(tool, emptyMessage, 'error');
         return;
       }
-      output.value = transform(input.value);
-      setCopyEnabled(tool, true);
-      setStatus(tool, 'Converted locally in this browser tab.', 'success');
+      try {
+        output.value = transform(input.value);
+        setCopyEnabled(tool, true);
+        setStatus(tool, 'Converted locally in this browser tab.', 'success');
+      } catch {
+        output.value = '';
+        setCopyEnabled(tool, false);
+        setStatus(tool, 'The Base64 value could not be decoded as UTF-8 text.', 'error');
+      }
+    });
+    tool.querySelector('[data-action="copy"]').addEventListener('click', () => copyOutput(tool));
+    tool.querySelector('[data-action="clear"]').addEventListener('click', () => clearTextTool(tool));
+  };
+
+  const configureImagePreview = (tool, dataUrl) => {
+    const preview = tool.querySelector('[data-image-preview]');
+    preview.querySelector('img').src = dataUrl;
+    preview.hidden = false;
+  };
+
+  const clearImagePreview = (tool) => {
+    const preview = tool.querySelector('[data-image-preview]');
+    preview.querySelector('img').removeAttribute('src');
+    preview.hidden = true;
+  };
+
+  const configureBase64Tool = (tool) => {
+    const textEncode = tool.querySelector('[data-roomos-subtool="text-encode"]');
+    const textDecode = tool.querySelector('[data-roomos-subtool="text-decode"]');
+    configureTextTool(textEncode, utf8Base64, 'Enter text to encode.');
+    configureTextTool(textDecode, base64Utf8, 'Enter Base64 text to decode.');
+
+    const imageEncode = tool.querySelector('[data-roomos-subtool="image-encode"]');
+    const imageFile = imageEncode.querySelector('input[type="file"]');
+    const imageOutput = imageEncode.querySelector('textarea[readonly]');
+    imageFile.addEventListener('change', async () => {
+      const [file] = imageFile.files;
+      if (!file) return;
+      try {
+        configureImagePreview(imageEncode, await readFileAsDataUrl(file));
+        setStatus(imageEncode, 'Image selected locally. Encode it to copy a Data URL.', 'success');
+      } catch {
+        clearImagePreview(imageEncode);
+        setStatus(imageEncode, 'The selected image could not be read.', 'error');
+      }
+    });
+    imageEncode.querySelector('[data-action="encode-image"]').addEventListener('click', async () => {
+      const [file] = imageFile.files;
+      if (!file) {
+        setStatus(imageEncode, 'Choose an image file to encode.', 'error');
+        return;
+      }
+      try {
+        imageOutput.value = await readFileAsDataUrl(file);
+        configureImagePreview(imageEncode, imageOutput.value);
+        setCopyEnabled(imageEncode, true);
+        setStatus(imageEncode, 'Image encoded locally as a Data URL.', 'success');
+      } catch {
+        setStatus(imageEncode, 'The selected image could not be encoded.', 'error');
+      }
+    });
+    imageEncode.querySelector('[data-action="copy"]').addEventListener('click', () => copyOutput(imageEncode));
+    imageEncode.querySelector('[data-action="clear"]').addEventListener('click', () => {
+      imageFile.value = '';
+      imageOutput.value = '';
+      clearImagePreview(imageEncode);
+      setCopyEnabled(imageEncode, false);
+      setStatus(imageEncode, 'Cleared from this browser tab.', 'success');
+    });
+
+    const imageDecode = tool.querySelector('[data-roomos-subtool="image-decode"]');
+    const imageInput = imageDecode.querySelector('textarea');
+    imageDecode.querySelector('[data-action="decode-image"]').addEventListener('click', () => {
+      const dataUrl = imageInput.value.trim();
+      if (!imageDataUrlPattern.test(dataUrl)) {
+        clearImagePreview(imageDecode);
+        setStatus(imageDecode, 'Paste a valid image Data URL to decode.', 'error');
+        return;
+      }
+      configureImagePreview(imageDecode, dataUrl);
+      setStatus(imageDecode, 'Image decoded locally in this browser tab.', 'success');
+    });
+    imageDecode.querySelector('[data-action="clear"]').addEventListener('click', () => {
+      imageInput.value = '';
+      clearImagePreview(imageDecode);
+      setStatus(imageDecode, 'Cleared from this browser tab.', 'success');
     });
   };
 
@@ -255,14 +355,16 @@
       return;
     }
 
+    if (kind === 'base64') {
+      configureBase64Tool(tool);
+      return;
+    }
+
     const transforms = {
-      base64: [utf8Base64, 'Enter text to encode.'],
       flatten: [(value) => value.replace(/\r?\n/g, ' ').trim(), 'Enter multiline text to flatten.'],
       xml: [htmlEscape, 'Enter XML to escape.'],
     };
     configureTextTool(tool, ...transforms[kind]);
-    tool.querySelector('[data-action="copy"]').addEventListener('click', () => copyOutput(tool));
-    tool.querySelector('[data-action="clear"]').addEventListener('click', () => clearTextTool(tool));
   };
 
   window.RoomosTools = {
