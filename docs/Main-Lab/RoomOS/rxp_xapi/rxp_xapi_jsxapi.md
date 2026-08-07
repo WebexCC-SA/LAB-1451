@@ -381,6 +381,45 @@ The JSXAPI SDK performs the transport-specific authentication exchange. Your app
 
 ???+ lesson "Lesson: Execute an xCommand ~({{ config.cProps.rxp.sectionIds.jsxapi }}.3.1)~"
 
+    Once the `ready` event supplies the connected `xapi` object, the terminal command path maps directly to JSXAPI dot notation.
+
+    !!! example "Click on the tabs to see how Terminal Syntax relates to JSXAPI Syntax"
+
+        === "Terminal Syntax"
+
+            ```shell
+            xCommand Time DateTime Get
+
+            OK
+            *r DateTimeGetResult (status=OK):
+            *r DateTimeGetResult Day: 24
+            *r DateTimeGetResult Hour: 0
+            *r DateTimeGetResult Minute: 47
+            *r DateTimeGetResult Month: 9
+            *r DateTimeGetResult Second: 1
+            *r DateTimeGetResult Year: 2024
+            ** end
+            ```
+
+        === "JSXAPI Syntax"
+
+            ```javascript
+            const time = await xapi.Command.Time.DateTime.Get();
+            console.log(time);
+
+            /* Log Output
+            {
+              "Day": "24",
+              "Hour": "0",
+              "Minute": "47",
+              "Month": "9",
+              "Second": "1",
+              "Year": "2024",
+              "status": "OK"
+            }
+            */
+            ```
+
     - **xAPI:** `xCommand Video Selfview Set`
 
     ```shell title="Terminal xAPI form"
