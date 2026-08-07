@@ -402,3 +402,6 @@ tmp/
 site/
 AGENTS.md
 CONTEXT.md
+
+# Local branch-preview registry
+branchPreview
