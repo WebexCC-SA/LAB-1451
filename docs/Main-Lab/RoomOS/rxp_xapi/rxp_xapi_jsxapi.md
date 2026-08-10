@@ -269,9 +269,9 @@ The JSXAPI SDK performs the transport-specific authentication exchange. Your app
     |:--|:--|:--|
     | `xapi.version` | The JSXAPI package version exposed by the connected object | Logging the runtime version while troubleshooting |
     | `xapi.Config...once(callback)`<br>`xapi.Status...once(callback)`<br>`xapi.Event...once(callback)` | A Feedback Subscription that removes itself after its first matching update | Waiting for one configuration, status, or event change |
-    | `subscription.registration` | A Promise that resolves after the RoomOS device accepts the feedback registration | Confirming a listener is active before the application announces it is ready |
     | `xapi.feedback.group([...])` | One group for several independently registered feedback handlers | Stopping several subscriptions together with `group.off()` |
     | The function returned by `.on()` or `.once()` | A targeted unsubscribe function | Removing one feedback registration without disturbing others |
+    | `xapi.doc(path)` | Schema metadata for an xAPI path on the connected RoomOS device | Inspecting supported paths, arguments, and value spaces |
 
     `.once()` still returns an unsubscribe function, so an application can cancel it before the first matching update. After the first update, JSXAPI deregisters it automatically.
 
@@ -465,6 +465,68 @@ The JSXAPI SDK performs the transport-specific authentication exchange. Your app
             |:--|:--|
             | `stdout` | `JSXAPI 6.0.0 is ready.` |
             | `stdout` | `The JSXAPI connection is closed.` |
+
+??? lesson "Lesson: Inspect an xAPI Schema Document ~({{ config.cProps.rxp.sectionIds.jsxapi }}.2.6)~"
+
+    `xapi.doc(path)` requests <hl_1>schema metadata</hl_1> from the connected RoomOS device. It describes an xAPI path; it does not return that path's current value.
+
+    - **xAPI:** `xStatus Audio Volume`
+
+    ```shell title="Terminal xDocument form"
+    xDocument Format: JSON Path: Status/Audio/Volume Schema: True
+    ```
+
+    - Create `schema.js` from the connection pattern used in the previous Lesson.
+    - Replace the marked expression with the JSXAPI method that requests the schema for `Status/Audio/Volume`.
+
+    ```javascript title="schema.js — replace the marked expression"
+    .on('ready', async (xapi) => {
+      const schema =
+        /* Request the schema for Status/Audio/Volume */;
+
+      console.log('Schema:', JSON.stringify(schema));
+      xapi.close();
+    });
+    ```
+
+    - Run the file in the <hl_6>Laptop Terminal</hl_6>.
+
+    ```shell title="Run in your laptop terminal"
+    node schema.js
+    ```
+
+    - Confirm the returned object describes the path's value space and access instead of printing the current volume.
+
+    ??? success "Successful Syntax and Log Output"
+
+        === "JSXAPI"
+
+            ```javascript title="schema.js"
+            require('dotenv').config();
+            const jsxapi = require('jsxapi');
+
+            jsxapi
+              .connect(`${process.env.ROOMOS_PROTOCOL}://${process.env.ROOMOS_IP}`, {
+                username: process.env.ROOMOS_USERNAME,
+                password: process.env.ROOMOS_PASSWORD
+              })
+              .on('error', console.error)
+              .on('ready', async (xapi) => {
+                const schema =
+                  await xapi.doc('Status/Audio/Volume');
+
+                console.log('Schema:', JSON.stringify(schema));
+                xapi.close();
+              });
+            ```
+
+        === "Log Output"
+
+            | Stream | Message |
+            |:--|:--|
+            | `stdout` | `Schema: {"ValueSpace":{"type":"Integer"},"access":"public-api","description":"Shows the volume level (dB) of the loudspeaker output.","read":"Admin;Integrator;User"}` |
+
+    The exact fields can vary with the RoomOS device and software version. Use `.get()` when you need the current value; use `xapi.doc()` when the application needs to inspect the path's schema.
 
 ## **Executing xCommands** ~({{ config.cProps.rxp.sectionIds.jsxapi }}.3)~
 
@@ -1467,6 +1529,86 @@ The JSXAPI SDK performs the transport-specific authentication exchange. Your app
             | `stdout` | `UI Extensions subscription stopped.` |
 
     [Search the RoomOS xAPI Reference for UI Extension events](https://roomos.cisco.com/xapi/search?search=Event+UserInterface+Extensions){ .md-button .md-button--primary target="_blank" }
+
+??? lesson "Lesson: Group and Unsubscribe Multiple Feedback Subscriptions ~({{ config.cProps.rxp.sectionIds.jsxapi }}.6.3)~"
+
+    A common-node subscription uses one callback for everything beneath that node. A <hl_3>feedback group</hl_3> instead keeps the unsubscribe functions from several exact Feedback Subscriptions together so one `group.off()` call can stop the set.
+
+    ```shell title="Terminal xAPI forms"
+    xFeedback Register Event/UserInterface/Extensions/Panel/Clicked
+    xFeedback Register Event/UserInterface/Extensions/Event/PageOpened
+    xFeedback Register Event/UserInterface/Extensions/Widget/Action
+    ```
+
+    - Reuse `subscription.js`.
+    - Replace the marked lines with three `.on()` subscriptions based on the terminal paths above.
+    - Add each subscription to the array passed to `xapi.feedback.group()`.
+
+    ```javascript title="Replace the grouped subscription expressions"
+    const subscriptionGroup = xapi.feedback.group([
+      /* Subscribe to Panel Clicked and log the event */,
+      /* Subscribe to Event PageOpened and log the event */,
+      /* Subscribe to Widget Action and log the event */
+    ]);
+    ```
+
+    - Run the file in the <hl_6>Laptop Terminal</hl_6>.
+    - Press the <hl_5>Subscription Assistant Button</hl_5> on the RoomOS device's Touch Interface.
+        - Opening the panel generates a <hl_0>Panel Clicked</hl_0> event.
+        - Open a page, then interact with a widget.
+        - Confirm the <hl_6>Laptop Terminal</hl_6> identifies each exact event separately.
+    - After `Feedback group stopped.` appears, continue using the panel and confirm none of the three callbacks print again.
+
+    ??? success "Successful Syntax and Log Output"
+
+        === "JSXAPI"
+
+            ```javascript title="subscription.js"
+            require('dotenv').config();
+            const jsxapi = require('jsxapi');
+
+            jsxapi
+              .connect(`${process.env.ROOMOS_PROTOCOL}://${process.env.ROOMOS_IP}`, {
+                username: process.env.ROOMOS_USERNAME,
+                password: process.env.ROOMOS_PASSWORD
+              })
+              .on('error', console.error)
+              .on('ready', (xapi) => {
+                const subscriptionGroup = xapi.feedback.group([
+                  xapi.Event.UserInterface.Extensions.Panel.Clicked.on((event) => {
+                    console.log('Panel clicked:', JSON.stringify(event));
+                  }),
+                  xapi.Event.UserInterface.Extensions.Event.PageOpened.on((event) => {
+                    console.log('Page opened:', JSON.stringify(event));
+                  }),
+                  xapi.Event.UserInterface.Extensions.Widget.Action.on((event) => {
+                    console.log('Widget action:', JSON.stringify(event));
+                  })
+                ]);
+
+                console.log('Listening for 20 seconds...');
+
+                setTimeout(() => {
+                  subscriptionGroup.off();
+                  xapi.close();
+                  console.log('Feedback group stopped.');
+                }, 20000);
+              });
+            ```
+
+        === "Log Output"
+
+            | Stream | Message |
+            |:--|:--|
+            | `stdout` | `Listening for 20 seconds...` |
+            | `stdout` | `Panel clicked: {"PanelId":"wx1_1451_pt2_labBuddy"}` |
+            | `stdout` | `Page opened: {"PageId":"wx1_1451_lB~xEvents"}` |
+            | `stdout` | `Widget action: {"Type":"clicked","Value":"","WidgetId":"wx1_1451_lB~xEvents~Button~TextButton"}` |
+            | `stdout` | `Feedback group stopped.` |
+
+    Each `.on()` call creates its own Feedback Subscription before the group receives its unsubscribe function. The group does not merge the three subscriptions into one RoomOS feedback path.
+
+    `subscriptionGroup.add(unsubscribe)` can track a later unsubscribe function. `subscriptionGroup.remove(unsubscribe)` only removes that function from the group; it does not unsubscribe it.
 
 ## **Keep the Lab Examples in Scope** ~({{ config.cProps.rxp.sectionIds.jsxapi }}.7)~
 
