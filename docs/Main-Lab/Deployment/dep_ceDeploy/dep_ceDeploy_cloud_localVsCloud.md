@@ -49,7 +49,7 @@
     org showing its Display Name, Organization ID, connection Status, and Token Expiry.
 
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.1.5</highlight_1> Rename the card to something you'll recognize, for example ==Lab Org
-    - pod"yourPodNumber"==. Click the ⋮ (more options) icon in the corner of the card to find
+    - podXX==, replacing `XX` with your two-digit pod number. Click the ⋮ (more options) icon in the corner of the card to find
     ==Rename== — it's in that dropdown menu, not a button on the card face. Then click the
     ==Activate== button that sits directly on the card (no menu needed for this one) to make it the
     active organization for deployments. You'll see a highlighted card border and the org name
@@ -65,7 +65,22 @@
         anymore. If a token ever does expire you'll see a warning right on the card; click
         ==Refresh== and re-authenticate.
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.1.7</highlight_1> Now let's add your pod's on-premises access. Click ==+ Add
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.1.7</highlight_1> Before creating the On-Premise organization, find and record the
+    **video device's IP address** from its touch interface:
+
+    - On a Desk-series device, use the device's integrated touchscreen.
+    - On a room system, use its paired Room Navigator.
+    - Open the control panel by swiping in from the right or tapping the controls icon in the upper-right corner. Select
+      ==Device settings==, then ==About this room device==, and record the IP address.
+    - If the device is running in Microsoft Teams Rooms mode, the path may begin with ==More== > ==Settings== >
+      ==Device settings== > ==About this room device==.
+
+    RoomOS menu wording can vary slightly by device and software version. Look for ==About== or
+    device information if the labels are different. For a room system, record the address of the
+    **video endpoint**, not a standalone Room Navigator's own management address. Ask your proctor
+    if you are unsure which address is the endpoint.
+
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.1.8</highlight_1> Now let's add your pod's on-premises access. Click ==+ Add
     Organization== again. This time, in the deployment type picker choose ==On-Premise== (look for
     the "New" badge) instead of Cloud or FedRAMP.
 
@@ -75,12 +90,13 @@
         alongside Cloud and FedRAMP in the same Add Organization screen. Once created, it becomes an
         organization card just like the one you made in step {{config.cProps.dep.sectionIds.cD}}.1.5.
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.1.8</highlight_1> Give it an ==Organization Name== (for example ==pod"yourPodNumber"
-    - onprem==). You can leave Default Username/Password blank for now — you'll create a local
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.1.9</highlight_1> Give it an ==Organization Name== (for example ==podXX-onprem==,
+    replacing `XX` with your two-digit pod number). You can leave Default Username/Password blank for now — you'll create a local
     admin account for this device in a later lesson.
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.1.9</highlight_1> Under Target Devices choose ==Single Device== (you're only targeting
-    your one pod device today) and enter its IP address as the Device IP Address.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.1.10</highlight_1> Under Target Devices choose ==Single Device== (you're only targeting
+    your one pod device today) and enter the endpoint IP address you recorded in step
+    {{config.cProps.dep.sectionIds.cD}}.1.7 as the Device IP Address.
 
     !!! important "NetworkServices HTTP Mode must be enabled"
 
@@ -90,10 +106,11 @@
 
     ??? challenge "Find My Setting!"
 
-        Can you find the setting NetworkServices HTTP Mode and confirm it is enabled, either in
-        Control Hub or directly on the endpoint?
+        Can you use an xAPI query or the device web interface to find `NetworkServices HTTP Mode`
+        and confirm it is enabled? This configuration is not exposed in Control Hub for a
+        cloud-registered RoomOS device.
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.1.10</highlight_1> Save it, then look at the ==Organizations== screen in the left
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.1.11</highlight_1> Save it, then look at the ==Organizations== screen in the left
     sidebar: you now have two cards, a Cloud org and an On-Premise org (with its purple "On-Premise"
     badge), each with the same ==Activate== button plus a ⋮ menu with Test Connection / Rename /
     Remove. Click ==Activate== on either card — or use the organization switcher dropdown at the

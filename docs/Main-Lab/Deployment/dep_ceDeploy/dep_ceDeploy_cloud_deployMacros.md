@@ -64,10 +64,12 @@
         what it generates to the snippet above — then use ==Explain== on the result to see how the
         assistant describes its own code.
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.3</highlight_1> Optionally, click ==Connect== in the Device panel, select your pod
-    device from the cloud device picker, and click ==Connect==. Once connected, click ==Deploy== to
-    push the macro directly and watch the engine logs stream in at the bottom of the window — a fast
-    way to iterate before you commit to a fleet-wide rollout.
+    <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.3</highlight_1> **Optional development test:** click ==Connect== in the Device
+    panel, select your pod device from the cloud device picker, and click ==Connect==. Once
+    connected, click ==Deploy== to push the macro directly and watch the engine logs stream in at
+    the bottom of the window. This tests one device while you are developing; it does not replace
+    the required Publish and tag-targeted deployment workflow in the next steps. If you skip this
+    optional test, continue directly to step {{config.cProps.dep.sectionIds.cD}}.4.4.
 
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.4</highlight_1> When you're happy with the macro, click ==Publish== to send it to
     the main CE-Deploy window for bulk deployment.

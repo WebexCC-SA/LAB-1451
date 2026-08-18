@@ -56,14 +56,15 @@
 
 ??? lesson "{{config.cProps.dep.sectionIds.cH}}.2 Lab"
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.1</highlight_1> Login to control hub with your lab admin credentials
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.1</highlight_1> Return to Control Hub and sign in with your lab admin credentials
+    if necessary.
 
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.2</highlight_1> Select Management>Devices>Templates
 
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.3</highlight_1> Select Create template
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.4</highlight_1> Name your template ==LabTemplate"yourPodNumber"== and select Next.
-    For example LabTemplate01.
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.4</highlight_1> Name your template ==LabTemplateXX==, replacing `XX` with your
+    two-digit pod number, and select Next. For example, pod 1 uses ==LabTemplate01==.
 
     <figure markdown="span">
       ![Create configuration template wizard, General step, template name field](images/4-2-5.png){ width="300" }
@@ -110,10 +111,11 @@
 
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.11</highlight_1> Now that we have created a new template lets apply it to our device. Select Go to Devices
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.12</highlight_1> Select your lab device — the one you tagged with your pod tag in
-    the previous lesson ("Tag Your Pod Device"). If you don't remember which device is yours, type
-    ==Tags:== followed by your pod tag in the Find by devices search box at the top of the page and
-    it'll be the only result.
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.12</highlight_1> Select the checkbox beside your lab device — the one you tagged in
+    the previous lesson ("Tag Your Pod Device"). If you don't remember which device is yours, use
+    the ==Tags== filter and select your pod tag; if your view exposes the ==Find by devices== search
+    box, you can instead type ==Tags:== followed by your pod tag. Your device should be the only
+    result. Keep its checkbox selected so that the bulk ==Edit== action appears.
 
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.13</highlight_1> Select ==Edit==
 
@@ -124,7 +126,8 @@
       <figcaption></figcaption>
     </figure>
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.15</highlight_1> From the template dropdown select LabTemplate"yourPodNumber" and review your settings
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.2.15</highlight_1> From the template dropdown, select your ==LabTemplateXX== template
+    and review its settings.
 
     <figure markdown="span">
       ![Template dropdown selection and settings review](images/4-2-17.png){ width="300" }

@@ -57,9 +57,22 @@
 ??? tool "Download Device Pod Assignment Sheet"
 
     <figure markdown="span">
-          [![MacroPak](./assets/general/cisco-logo-transparent.png){ width="200" }](https://raw.githubusercontent.com/WebexCC-SA/LAB-1451/main/docs/Main-Lab/Deployment/files/WbxOne2025PodDetails.xlsx)
+          [![Download the Device Pod Assignment Sheet](../GlobalImages/cisco-logo-transparent.png){ width="200" }](../DownloadContent/WbxOne2025PodDetails.xlsx)
         <figcaption>Device Pod Assignment Sheet</figcaption>
     </figure>
+
+    !!! important "Record Your Pod Details"
+
+        Open the assignment sheet and record the values for your pod before continuing:
+
+        | `Value` | `Why you need it` |
+        |---------|-------------------|
+        | Pod number | Used in your tag, template, organization, and local username |
+        | Device name and model | Confirms that you are changing the correct endpoint |
+        | Control Hub credentials | Used in the Control Hub and CE-Deploy OAuth lessons |
+
+        You will retrieve the device IP address from its touchscreen or paired Room Navigator in
+        the first CE-Deploy lesson. Keep these values handy throughout the module.
 
 
 ??? tool "Install Ce-Deploy"

@@ -6,8 +6,9 @@
     Running xAPI commands in Control Hub can be done on an endpoint by endpoint basis. In this
     short lab you'll execute a simple xAPI command to get the system time, just to see how to find
     and run a command this way. Control Hub can push a single macro or UI panel to one device by
-    hand the same way, but that gets old fast past a handful of devices. Next section, CE-Deploy
-    runs this exact command, plus macros and panels, across your **entire fleet** in one shot.
+    hand the same way, but that gets old fast past a handful of devices. In the next section,
+    CE-Deploy runs this exact command, plus macros and panels, across whichever fleet scope you
+    select — the whole organization, a tag, or one device.
 
 <div class="grid cards" markdown>
 
@@ -15,7 +16,7 @@
 
     ---
 
-    Management → Devices → right-click your device, in Control Hub
+    Management → Devices → open your device, in Control Hub
 
 -   <i class="fa-solid fa-clock"></i> **Time**
 
@@ -33,12 +34,13 @@
 
 ??? lesson "{{config.cProps.dep.sectionIds.cH}}.3 Lab"
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.1</highlight_1> Login to control hub with your lab admin credentials
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.1</highlight_1> Return to Control Hub and sign in with your lab admin credentials
+    if necessary.
 
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.2</highlight_1> Select Management>Devices
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.3</highlight_1> Right-click on your lab device, no need to highlight the checkbox
-    this time(Room Bar or Desk Pro)
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.3</highlight_1> Select the name of your lab device (Room Bar or Desk Pro) to open
+    its device details page. This time, do not select the checkbox used for bulk actions.
 
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.3.4</highlight_1> Select Actions and Run xCommand
 

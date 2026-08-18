@@ -40,7 +40,8 @@
 
 ??? lesson "{{config.cProps.dep.sectionIds.cH}}.1 Lab"
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.1</highlight_1> Login to the lab's Control Hub with your admin credentials
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.1</highlight_1> Sign in to the lab's Control Hub with your admin credentials if
+    necessary.
 
     [Login to Control Hub.](https://admin.webex.com)
 
@@ -51,7 +52,9 @@
       <figcaption></figcaption>
     </figure>
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.3</highlight_1> Select your lab device(Room Bar or Desk Pro)
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.3</highlight_1> Select the checkbox beside your lab device (Room Bar or Desk Pro).
+    Do not open the device details page; selecting the checkbox makes the bulk ==Edit== action
+    available above the device list.
 
     <figure markdown="span">
       ![Device selection in the Devices list](images/4-1-3.png){ width="400" }
@@ -64,8 +67,10 @@
 
     <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.4</highlight_1> Select ==Edit==
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.5</highlight_1> The Edit tag page will now allow you to set as many tags as you need.
-    For this lab we will be using a single tag in the format ==pod"yourPodNumber"==. As an example pod01.
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.5</highlight_1> In the Edit panel, select ==Tags==. The tag field allows you to set
+    as many tags as you need.
+    For this lab, use the format ==podXX==, replacing `XX` with your two-digit pod number. For
+    example, pod 1 uses ==pod01==.
 
     <figure markdown="span">
       ![Tag input field on the Edit tags page](images/4-1-5.png){ width="300" }
@@ -77,21 +82,22 @@
         This is the **only** tag you'll create in this module. Every later lesson — Control Hub or
         CE-Deploy — targets your device using this exact tag. Write it down.
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.6</highlight_1> Select Add tag
-
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.7</highlight_1> Add pod"YourPodNumber" and press enter.
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.6</highlight_1> In the tag field, enter
+    your ==podXX== tag (for example, ==pod01==), then press Enter. Click outside the field if
+    Control Hub still shows the tag as being edited; this applies the tag.
 
     <figure markdown="span">
       ![Tag added and pending confirmation](images/4-1-7.png){ width="300" }
       <figcaption></figcaption>
     </figure>
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.8</highlight_1> Select ==Close== to close the Edit tags page.
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.7</highlight_1> Select ==Close== to close the Tags panel, then close the Edit panel
+    to return to the main Devices page.
 
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.9</highlight_1> Close the edit configurations popout and return to the main devices page.
-
-    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.10</highlight_1> In the Find by devices dialog box type Tags: then enter the device tag previously set.
-    Confirm your device — and only your device — is returned.
+    <highlight_1>{{config.cProps.dep.sectionIds.cH}}.1.8</highlight_1> Filter the device list by your new tag. Use the ==Tags== filter and
+    select your pod tag; if your Control Hub view exposes the ==Find by devices== search box, you
+    can instead type ==Tags:== followed by the tag. Confirm your device — and only your device — is
+    returned.
 
     <figure markdown="span">
       ![Find by devices search box with Tags filter](images/4-1-10a.png){ width="300" }

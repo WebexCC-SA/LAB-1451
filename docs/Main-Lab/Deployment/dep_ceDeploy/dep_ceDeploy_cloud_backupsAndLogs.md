@@ -67,15 +67,6 @@
         Feel free to unzip the backup and poke around. Settings, macros, backgrounds, and
         extensions are all in there.
 
-    ??? challenge "Restore from Backup (Cloud organization)"
-
-        CE-Deploy 16 adds a proper **Backup/Restore** feature — but note it's a Cloud organization
-        feature, not on-premise, so it lives in a different place than what you just used. Activate
-        your Cloud organization again, select ==Backup/Restore== in the left sidebar, click
-        ==Choose Backup File==, select the backup you just downloaded, and restore it back to your
-        device via the cloud xAPI. Heads up, this may trigger a reboot. Switch back to your
-        On-Premise organization when you're done, since the next two parts need it.
-
 ??? lesson "{{config.cProps.dep.sectionIds.cD}}.6 Lab Part 2: Logs"
 
     !!! Tip
@@ -131,3 +122,11 @@
         Once you've tried a few commands, type ==Bye== and the terminal window closes on its own.
         That wraps up the on-prem toolkit. Use the organization switcher at the top of the window to
         activate your Cloud organization again for the final lesson.
+
+    ??? challenge "After Class: Restore from Backup"
+
+        CE-Deploy 16 also has a **Backup/Restore** feature for Cloud organizations. Because a
+        restore may reboot the endpoint, do this only after completing the required on-premises
+        exercises and only if your proctor approves it. Activate your Cloud organization, select
+        ==Backup/Restore== in the left sidebar, click ==Choose Backup File==, select the backup you
+        downloaded in Part 1, and restore it to your pod device through the cloud xAPI.

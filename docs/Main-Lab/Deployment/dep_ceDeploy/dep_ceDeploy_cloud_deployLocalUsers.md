@@ -50,7 +50,7 @@
 
     | `Setting`     | <!-- --> |
     |---------------|----------|
-    | `Username`    | adminUserxx(yourPodNo.) |
+    | `Username`    | adminUserXX, replacing XX with your two-digit pod number (for example, adminUser01) |
     | `Passphrase`  | Cisco12345 |
     | `Role`        | Admin |
 
@@ -59,21 +59,27 @@
     ==Video Devices Only==. Click ==Next: Schedule==, leave ==Run Now== selected in the Deployment
     Scheduler modal, and click ==Continue==.
 
-    !!! challenge "Network IP Address Challenge"
+    !!! challenge "Discover the Same IP Through xAPI"
 
-        You'll need your pod device's IP address for the next step. Using the xAPI tab in CE-Deploy,
-        can you retrieve it?
+        Earlier, you found the endpoint IP address from the device's touchscreen or Room Navigator
+        so you could create the On-Premise organization. Now use the ==xAPI== tab in CE-Deploy to
+        retrieve that same address programmatically:
 
         ```text
         xStatus Network[1] IPv4 Address
         ```
 
+        Compare the returned value with the address you recorded earlier. This is a discovery
+        exercise, not a prerequisite for continuing: it demonstrates how the same information can
+        be collected remotely instead of by walking up to every device.
+
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.4</highlight_1> Use the organization switcher at the top of the window to activate
     your ==On-Premise== organization (created in "Connect CE-Deploy to Your Organization," the first
     CE-Deploy lesson of this module). If you'd rather use the card view, go to ==Organizations== in
     the left sidebar and click ==Activate== on the On-Premise card. Either way, once it's active,
-    open that same card's ⋮ menu and select ==Edit On-Premise Settings== to confirm the IP address
-    is set, then enter the local admin username/passphrase you just created above.
+    open that same card's ⋮ menu and select ==Edit On-Premise Settings==. Confirm its IP address
+    matches both the address you recorded at the device and, if you completed the challenge, the
+    xAPI result. Then enter the local admin username/passphrase you just created above.
 
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.5.5</highlight_1> In the left sidebar, select ==xAPI== (you're now looking at the same
     Command Builder from the "Bulk xAPI Commands" lesson, just targeting your On-Premise
