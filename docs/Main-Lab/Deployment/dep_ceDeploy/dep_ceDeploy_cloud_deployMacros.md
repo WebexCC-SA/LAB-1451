@@ -57,12 +57,20 @@
     });
     ```
 
-    !!! cedeploy "Try the AI Assistant"
+    ??? challenge "Optional: Try the AI Assistant"
 
-        Instead of typing the snippet above, click ==AI== in the toolbar and ask it to "Create a
-        macro that puts the device into halfwake when a panel called halfwake is clicked." Compare
-        what it generates to the snippet above — then use ==Explain== on the result to see how the
-        assistant describes its own code.
+        This challenge is optional and is **not required to complete the lab**. xAPI Forge defaults
+        to Claude for its AI Assistant, which requires a valid Anthropic API key with available API
+        credits. The lab does not provide this key.
+
+        If you already have a suitable key and want to try the feature, open the AI Assistant
+        settings, select ==Claude==, enter your Anthropic API key, and test the connection. Then
+        click ==AI== in the toolbar and ask it to "Create a macro that puts the device into halfwake
+        when a panel called halfwake is clicked." Compare its result with the required snippet
+        above, then use ==Explain== to see how the assistant describes the code.
+
+        If you do not have a valid Claude API key, skip this challenge and type the supplied macro
+        exactly as shown. You will not lose any required lab functionality.
 
     <highlight_1>{{config.cProps.dep.sectionIds.cD}}.4.3</highlight_1> **Optional development test:** click ==Connect== in the Device
     panel, select your pod device from the cloud device picker, and click ==Connect==. Once
