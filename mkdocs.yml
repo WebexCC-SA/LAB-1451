@@ -95,7 +95,8 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path: ["snippets"]
 nav:
   - Home&nbsp<i class="fa-solid fa-house" style="color:#B197FC;"></i>: index.md
   - Lab Setup&nbsp<i class="fa-solid fa-gear"></i>: Main-Lab/Setup/stp_intro.md # Changed from Lab Prerequisites. Moved Prerequisites to each major lab folder
@@ -133,23 +134,17 @@ nav:
     - Deployment Introduction: Main-Lab/Deployment/dep_intro.md
     - Deployment Lab Prerequisites: Main-Lab/Deployment/dep_prerequisites.md
     - Control Hub:
-      - Preparing Your Devices <sup><sup>{{config.cProps.dep.sectionIds.cH}}.1</sup></sup>: Main-Lab/Deployment/dep_controlHub/dep_controlHub_prepDevices.md
+      - Tag Your Pod Device <sup><sup>{{config.cProps.dep.sectionIds.cH}}.1</sup></sup>: Main-Lab/Deployment/dep_controlHub/dep_controlHub_prepDevices.md
       - Configuration Templates <sup><sup>{{config.cProps.dep.sectionIds.cH}}.2</sup></sup>: Main-Lab/Deployment/dep_controlHub/dep_controlHub_configTemplates.md
-      - Org-Wide Templates <sup><sup>{{config.cProps.dep.sectionIds.cH}}.3</sup></sup>: Main-Lab/Deployment/dep_controlHub/dep_controlHub_orgTemplates.md
-      - Run Commands <sup><sup>{{config.cProps.dep.sectionIds.cH}}.4</sup></sup>:  Main-Lab/Deployment/dep_controlHub/dep_controlHub_runCommands.md
-      - Deploy UI Extensions <sup><sup>{{config.cProps.dep.sectionIds.cH}}.5</sup></sup>:  Main-Lab/Deployment/dep_controlHub/dep_controlHub_deployExtensions.md
-      - Deploy Macros <sup><sup>{{config.cProps.dep.sectionIds.cH}}.6</sup></sup>:  Main-Lab/Deployment/dep_controlHub/dep_controlHub_deployMacros.md
+      - Run Commands <sup><sup>{{config.cProps.dep.sectionIds.cH}}.3</sup></sup>:  Main-Lab/Deployment/dep_controlHub/dep_controlHub_runCommands.md
     - CE-Deploy:
-      - Local vs Cloud Auth <sup><sup>{{config.cProps.dep.sectionIds.cD}}.1</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_localVsCloud.md
-      - Download Webex Token <sup><sup>{{config.cProps.dep.sectionIds.cD}}.2</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_downloadToken.md
-      - Run Commands <sup><sup>{{config.cProps.dep.sectionIds.cD}}.3</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_runCommands.md
-      - Branding <sup><sup>{{config.cProps.dep.sectionIds.cD}}.4</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployBranding.md
-      - Macros <sup><sup>{{config.cProps.dep.sectionIds.cD}}.5</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployMacros.md
-      - UI Extensions <sup><sup>{{config.cProps.dep.sectionIds.cD}}.6</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployExtensions.md
-      - Local User Accounts <sup><sup>{{config.cProps.dep.sectionIds.cD}}.7</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployLocalUsers.md
-      - Device Backups and Logs <sup><sup>{{config.cProps.dep.sectionIds.cD}}.8</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_backupsAndLogs.md
-      - Tools <sup><sup>{{config.cProps.dep.sectionIds.cD}}.9</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_tools.md
-      - Dashboards <sup><sup>{{config.cProps.dep.sectionIds.cD}}.10</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_dashboards.md
+      - Connect Your Organization <sup><sup>{{config.cProps.dep.sectionIds.cD}}.1</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_localVsCloud.md
+      - Bulk xAPI Commands <sup><sup>{{config.cProps.dep.sectionIds.cD}}.2</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_runCommands.md
+      - Personalization <sup><sup>{{config.cProps.dep.sectionIds.cD}}.3</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployBranding.md
+      - Macros & UI Extensions <sup><sup>{{config.cProps.dep.sectionIds.cD}}.4</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployMacros.md
+      - Device Users & On-Premise Access <sup><sup>{{config.cProps.dep.sectionIds.cD}}.5</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_deployLocalUsers.md
+      - On-Prem Toolkit <sup><sup>{{config.cProps.dep.sectionIds.cD}}.6</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_backupsAndLogs.md
+      - Fleet Intelligence <sup><sup>{{config.cProps.dep.sectionIds.cD}}.7</sup></sup>: Main-Lab/Deployment/dep_ceDeploy/dep_ceDeploy_cloud_dashboards.md
     - Deployment Conclusion: Main-Lab/Deployment/dep_conclusion.md
   - Tools&nbsp<i class="fa-solid fa-gear"></i>: Main-Lab/Resources/res_tools.md
   - Resources&nbsp<i class="fa-solid fa-globe" style="color:#ffd903;"></i>: 

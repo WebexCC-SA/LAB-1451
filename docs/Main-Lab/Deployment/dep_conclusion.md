@@ -2,12 +2,21 @@
 
 !!! important "Conclusion"
 
-    Thank you for taking part in the lab. Make sure to keep the URL for the lab handy so you can refer back to it at anytime.
-    This lab demonstrated the end-to-end process of configuring devices in Control Hub and streamlining deployments using 
-    CE-Deploy. Participants gained hands-on experience with provisioning and managing Cisco Webex devices, applying 
-    configuration settings, and ensuring they operate within organizational standards. CE-Deploy simplified the bulk 
-    configuration process, reduced setup time, and ensured consistency across devices. Overall, the lab highlighted how 
-    leveraging Control Hub’s centralized management with CE-Deploy’s automation capabilities enhances deployment efficiency, 
-    minimizes errors, and accelerates the readiness of collaboration environments.  
+    You have completed an end-to-end device deployment workflow: targeting a device with a tag,
+    applying a Control Hub template, running xAPI commands, deploying personalization and custom
+    code, establishing direct on-premises access, collecting support files, and detecting
+    configuration drift.
 
+    The final Config Auditor step restored `Audio DefaultVolume` to 60. Unless your proctor asks
+    you to clean up further, leave the remaining lab artifacts in place so they can be reviewed:
+
+    - Your `podXX` tag and `LabTemplateXX` Control Hub template
+    - The QR-code personalization
+    - The `LaunchHalfwake` macro and `halfwake` UI extension
+    - Your `adminUserXX` local account
+    - Your CE-Deploy Cloud and On-Premise organization entries
+
+    If the lab environment must be reset for another student, follow the proctor's cleanup
+    instructions rather than deleting shared-organization resources yourself. Keep the lab URL
+    handy for future reference.
 
