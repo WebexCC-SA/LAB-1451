@@ -122,7 +122,7 @@ nav:
       - Macro Based Exercises: 
         - Quick Docs:
           - Part 1 - Start Simple <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.quickDocs_pt1 }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Quick_Docs_PT1.md
-          - Part 2 - Optimize<sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.quickDocs_pt2 }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Quick_Docs_PT2.md
+          - Part 2 - Optimize <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.quickDocs_pt2 }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Quick_Docs_PT2.md
         # - Quick Dial Button <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.quickDial }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Quick_Dial_Button.md
         # - Camera Compositions <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.cameraComposition }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Camera_Compositions.md
         # - Codec to Codec Communication <sup><sup>{{ config.cProps.rxp.sectionIds.exe.macros.codecToCodec }}</sup></sup>: Main-Lab/RoomOS/rxp_exercises/macros/rxp_exe_Codec_To_Codec_Comms.md
@@ -204,6 +204,10 @@ cProps:
 
               ```shell title="Type into terminal and press Enter"
               xFeedback DeregisterAll
+              xCommand HttpFeedback Deregister FeedbackSlot: 1
+              xCommand HttpFeedback Deregister FeedbackSlot: 2
+              xCommand HttpFeedback Deregister FeedbackSlot: 3
+              xCommand HttpFeedback Deregister FeedbackSlot: 4
               xConfiguration Audio DefaultVolume: 50
               xCommand UserInterface Extensions Panel Remove PanelId: wx1_lab_multilineCommand
               xCommand Video SelfView Set Mode: Off FullscreenMode: Off

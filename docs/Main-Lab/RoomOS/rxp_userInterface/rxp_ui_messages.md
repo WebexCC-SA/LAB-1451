@@ -3,142 +3,132 @@
 
 # Messages ~(section\ {{ config.cProps.rxp.sectionIds.ui.messages }})~
 
-Messages are one of those uniques interfaces that are ONLY accessible by leveraging the RoomOS xAPI
+RoomOS message commands create temporary user-interface elements. `Prompt`, `Rating`, and `TextInput` are interactive and emit response events. `Alert` and `TextLine` display information but do not emit a user-response event.
+
+When `Target` is omitted, RoomOS chooses the normal surface for that message and device topology. In a typical Room Series room, interactive dialogs appear on the paired touch controller while informational overlays appear on the room display. An integrated-touch Board or Desk device can present either type on its OSD. Because an implicit target can vary, every example below supplies `Target` explicitly; the response event's `Origin` identifies the surface used.
+
+| Message | Common surface when `Target` is omitted | Interactive response |
+| --- | --- | --- |
+| Prompt | Touch interface | `Prompt/Response`: `FeedbackId`, `OptionId`, `Origin` |
+| Alert | Room display | None |
+| Rating | Touch interface | `Rating/Response`: `FeedbackId`, `Rating`, `Origin` |
+| TextInput | Touch interface | `TextInput/Response`: `FeedbackId`, `Text`, `Origin` |
+| TextLine | Room display | None |
 
 !!! important
 
-    In the next few lessons, you'll again use SSH to explore these interfaces
-
-    If you haven't completed RoomOS xAPI > SSH ^({{config.cProps.rxp.sectionIds.ssh}})^, please review that material before moving on, or jump to the next section
+    These lessons use SSH. If you have not completed RoomOS xAPI > SSH ^({{ config.cProps.rxp.sectionIds.ssh }})^, review that material before continuing.
 
 ???+ lesson "Lesson: Prompt Display ~({{ config.cProps.rxp.sectionIds.ui.messages }}.1)~"
 
-    - **xAPI**: xCommand UserInterface Message Prompt Display
-
+    - **xAPI**: `xCommand UserInterface Message Prompt Display`
     - **Task**:
 
-        - First, setup a Prompt Subscription, this will let us see all the Prompt Events coming into the device
-        - Keep on your terminal window for any events that fire
+        1. Register only for prompt-response events:
 
-        ``` shell title="Type into terminal and press Enter"
-        xFeedback Register Event/UserInterface/Message/Prompt
-        ```
-  
-        - Now issue your First Prompt
+            ``` shell title="Type into the terminal and press Enter"
+            xFeedback Register Event/UserInterface/Message/Prompt/Response
+            ```
 
-        ``` shell title="Type into terminal and press Enter"
-        xCommand UserInterface Message Prompt Display Duration: 10 FeedbackId: xyz "Option.1": 1 "Option.2": 2 "Option.3": 3 "Option.4": 4 "Option.5": 5 Text: World Title: Hello
-        ```
+        2. Display a two-option prompt on the touch controller:
 
-        - Observe the change to your Codec's Display, you should see a prompt with 5 options, a title, text and will disappear after 10 seconds
+            ``` shell title="Type into the terminal and press Enter"
+            xCommand UserInterface Message Prompt Display Target: Controller FeedbackId: lab1451_prompt "Option.1": "It's the best" "Option.2": "Needs work" Text: "Let us know about this lab." Title: "How is the lab?"
+            ```
 
-        ``` shell title="Type into terminal and press Enter"
-        xCommand UserInterface Message Prompt Display FeedbackId: xyz "Option.1": "It's the best" "Option.2": Yes Text: "Let us know about this Lab" Title: "How's the Lab?"
-        ```
+        3. Select an option. The terminal reports the same `FeedbackId`, the selected `OptionId`, and an `Origin` of `Controller`.
+        4. Display a timed five-option prompt and confirm that it closes after ten seconds if no option is selected:
 
-        - Observe the change to your Codec's Display, you should now see a slightly different Prompt, with less options and the prompt won't dismiss on it's own
-        - Prompts can have up to 5 options, but not all are required
-        - To dismiss, tap any option below ot outside the prompt and it will close
+            ``` shell title="Type into the terminal and press Enter"
+            xCommand UserInterface Message Prompt Display Target: Controller Duration: 10 FeedbackId: lab1451_prompt "Option.1": 1 "Option.2": 2 "Option.3": 3 "Option.4": 4 "Option.5": 5 Text: "Choose a number." Title: "Prompt example"
+            ```
 
-        - Alternatively you can close a prompt by running `xCommand UserInterface Message Prompt Clear`
+        5. Clear any remaining prompt and remove the subscription:
 
-        - Finish off this task deregistering your Subscription
-
-        ```shell title="Type into terminal and press Enter"
-        xFeedback DeregisterAll
-        ```
-
-        Learn more about Prompts
+            ``` shell title="Type into the terminal and press Enter"
+            xCommand UserInterface Message Prompt Clear Target: Controller FeedbackId: lab1451_prompt
+            xFeedback Deregister Event/UserInterface/Message/Prompt/Response
+            ```
 
         <roomosfind>UserInterface Message Prompt</roomosfind>
 
-??? lesson "Lesson: Alert Display ~({{ config.cProps.rxp.sectionIds.ui.messages }}.2)~"
+???+ lesson "Lesson: Alert Display ~({{ config.cProps.rxp.sectionIds.ui.messages }}.2)~"
 
-    - **xAPI**: xCommand UserInterface Message Alert Display
-
+    - **xAPI**: `xCommand UserInterface Message Alert Display`
     - **Task**:
 
-        - First, setup a Alert Subscription, this will let us see all the Alert Events coming into the device
-        - Keep on your terminal window for any events that fire
+        An alert is informational, so there is no response subscription to register.
 
-        ``` shell title="Type into terminal and press Enter"
-        xFeedback Register Event/UserInterface/Message/Alert
-        ```
-  
-        - Now issue your First Alert
+        1. Display a ten-second alert on the room display:
 
-        ``` shell title="Type into terminal and press Enter"
-        xCommand UserInterface Message Alert Display Duration: 10 Text: World Title: Hello
-        ```
+            ``` shell title="Type into the terminal and press Enter"
+            xCommand UserInterface Message Alert Display Target: OSD Duration: 10 Text: "The lab continues in ten seconds." Title: "LAB-1451"
+            ```
 
-        - Observe the change to your Codec's Display, you should see a Alert a title, text and will disappear after 10 seconds
+        2. Confirm that it closes when the duration expires.
+        3. Display an alert without a duration, then clear it explicitly:
 
-        ``` shell title="Type into terminal and press Enter"
-        xCommand UserInterface Message Alert Display Text: "Lab Reviews shouldn't contain all yes answers" Title: "Uh-Oh! ⚠️"
-        ```
-
-        - Observe the change to your Codec's Display
-        - To dismiss, tap any option below ot outside the Alert and it will close
-
-        - Alternatively you can close a Alert by running `xCommand UserInterface Message Alert Clear`
-
-        - Finish off this task deregistering your Subscription
-
-        ```shell title="Type into terminal and press Enter"
-        xFeedback DeregisterAll
-        ```
-
-        Learn more about Alerts
+            ``` shell title="Type into the terminal and press Enter"
+            xCommand UserInterface Message Alert Display Target: OSD Text: "Clear this alert from the terminal." Title: "Cleanup check"
+            xCommand UserInterface Message Alert Clear Target: OSD
+            ```
 
         <roomosfind>UserInterface Message Alert</roomosfind>
 
-??? lesson "Lesson: Rating Display ~({{ config.cProps.rxp.sectionIds.ui.messages }}.3)~"
+???+ lesson "Lesson: Rating Display ~({{ config.cProps.rxp.sectionIds.ui.messages }}.3)~"
 
-    - **xAPI**: xCommand UserInterface Message Rating Display
-
+    - **xAPI**: `xCommand UserInterface Message Rating Display`
     - **Task**:
 
-        - First, setup a Rating Subscription, this will let us see all the Rating Events coming into the device
-        - Keep on your terminal window for any events that fire
+        1. Register only for rating-response events:
 
-        ``` shell title="Type into terminal and press Enter"
-        xFeedback Register Event/UserInterface/Message/Rating
-        ```
-  
-        - Now issue your First Rating
+            ``` shell title="Type into the terminal and press Enter"
+            xFeedback Register Event/UserInterface/Message/Rating/Response
+            ```
 
-        ``` shell title="Type into terminal and press Enter"
-        xCommand UserInterface Message Rating Display Duration: 10 FeedbackId: xyz SubmitReceiptText: "Receipt Text" SubmitReceiptTitle: "Receipt Title" Text: "World" Title: "Hello"
-        ```
+        2. Display the rating interface on the touch controller:
 
-        - Observe the change to your Codec's Display, you should see a Rating with a Choice of 5 stars
+            ``` shell title="Type into the terminal and press Enter"
+            xCommand UserInterface Message Rating Display Target: Controller FeedbackId: lab1451_rating SubmitReceiptText: "Your rating was recorded." SubmitReceiptTitle: "Thank you" Text: "Rate this lab below." Title: "How is the lab?"
+            ```
 
-        ``` shell title="Type into terminal and press Enter"
-        xCommand UserInterface Message Rating Display Duration: 10 FeedbackId: xyz SubmitReceiptText: "Ok, this is a bit more fair of a rating than prompts" SubmitReceiptTitle: "Thanks Text: "Rate this lab below" Title: "How's the Lab?"
-        ```
+        3. Select a star rating. Confirm that the response event includes `FeedbackId`, `Rating`, and `Origin`.
+        4. Clear any remaining rating and remove the subscription:
 
-        - Ratings give you a different style of prompting, that's a bit more quantitative that qualitative when compared to Ratings
-        - To dismiss, tap any option below ot outside the Rating and it will close
-
-        - Alternatively you can close a Rating by running `xCommand UserInterface Message Rating Clear`
-
-        - Finish off this task deregistering your Subscription
-
-        ```shell title="Type into terminal and press Enter"
-        xFeedback DeregisterAll
-        ```
-
-        Learn more about Ratings
+            ``` shell title="Type into the terminal and press Enter"
+            xCommand UserInterface Message Rating Clear Target: Controller FeedbackId: lab1451_rating
+            xFeedback Deregister Event/UserInterface/Message/Rating/Response
+            ```
 
         <roomosfind>UserInterface Message Rating</roomosfind>
 
-??? challenge "Challenge: Explore More Messages"
+??? challenge "Challenge: Compare TextInput and TextLine"
 
-    As you've probably noticed, the structure is similar
+    1. Register for the interactive text-input response:
 
-    Rather than a full lesson, we challenge you to subscribe, execute and interact with TextInput and TextLine
+        ``` shell title="Type into the terminal and press Enter"
+        xFeedback Register Event/UserInterface/Message/TextInput/Response
+        ```
 
-    When done, move onto the next section
+    2. Display a text-input dialog, submit a short comment, and confirm that the event contains `FeedbackId`, `Text`, and `Origin`:
+
+        ``` shell title="Type into the terminal and press Enter"
+        xCommand UserInterface Message TextInput Display Target: Controller FeedbackId: lab1451_text Placeholder: "Type a short comment" SubmitText: "Send" Text: "What should we improve?" Title: "Lab feedback"
+        ```
+
+    3. Display a noninteractive text line on the room display. It produces no response event:
+
+        ``` shell title="Type into the terminal and press Enter"
+        xCommand UserInterface Message TextLine Display Target: OSD Duration: 10 Text: "This is an informational text line."
+        ```
+
+    4. Clean up both message types and the subscription:
+
+        ``` shell title="Type into the terminal and press Enter"
+        xCommand UserInterface Message TextInput Clear Target: Controller FeedbackId: lab1451_text
+        xCommand UserInterface Message TextLine Clear Target: OSD
+        xFeedback Deregister Event/UserInterface/Message/TextInput/Response
+        ```
 
     <roomosfind>UserInterface Message TextInput</roomosfind>
 

@@ -422,13 +422,13 @@
 					"name": "Section: rxp-3.6 - Using WebHooks to subscribe to xConfigurations, xStatuses and xEvents",
 					"item": [
 						{
-							"name": "Subscribe to the full xConfiguration Branch",
+							"name": "Subscribe to Audio DefaultVolume Configuration",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "<Command>\n  <HttpFeedback>\n    <Register>\n      <Expression>Configuration/</Expression>\n      <FeedbackSlot>1</FeedbackSlot>\n      <ServerUrl>{{WebhookSite_Unique_Url}}</ServerUrl>\n    </Register>\n  </HttpFeedback>\n</Command>",
+									"raw": "<Command>\n  <HttpFeedback>\n    <Register>\n      <Expression>Configuration/Audio/DefaultVolume</Expression>\n      <FeedbackSlot>1</FeedbackSlot>\n      <ServerUrl>{{WebhookSite_Unique_Url}}</ServerUrl>\n    </Register>\n  </HttpFeedback>\n</Command>",
 									"options": {
 										"raw": {
 											"language": "xml"
@@ -449,13 +449,13 @@
 							"response": []
 						},
 						{
-							"name": "Subscribe to the full xStatus Branch",
+							"name": "Subscribe to Audio Volume Status",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "<Command>\n  <HttpFeedback>\n    <Register>\n      <Expression>Status/</Expression>\n      <FeedbackSlot>1</FeedbackSlot>\n      <ServerUrl>{{WebhookSite_Unique_Url}}</ServerUrl>\n    </Register>\n  </HttpFeedback>\n</Command>",
+									"raw": "<Command>\n  <HttpFeedback>\n    <Register>\n      <Expression>Status/Audio/Volume</Expression>\n      <FeedbackSlot>1</FeedbackSlot>\n      <ServerUrl>{{WebhookSite_Unique_Url}}</ServerUrl>\n    </Register>\n  </HttpFeedback>\n</Command>",
 									"options": {
 										"raw": {
 											"language": "xml"
@@ -476,13 +476,13 @@
 							"response": []
 						},
 						{
-							"name": "Subscribe to the full xEvent Branch",
+							"name": "Subscribe to Prompt Response Event",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "<Command>\n  <HttpFeedback>\n    <Register>\n      <Expression>Event/</Expression>\n      <FeedbackSlot>1</FeedbackSlot>\n      <ServerUrl>{{WebhookSite_Unique_Url}}</ServerUrl>\n    </Register>\n  </HttpFeedback>\n</Command>",
+									"raw": "<Command>\n  <HttpFeedback>\n    <Register>\n      <Expression>Event/UserInterface/Message/Prompt/Response</Expression>\n      <FeedbackSlot>1</FeedbackSlot>\n      <ServerUrl>{{WebhookSite_Unique_Url}}</ServerUrl>\n    </Register>\n  </HttpFeedback>\n</Command>",
 									"options": {
 										"raw": {
 											"language": "xml"

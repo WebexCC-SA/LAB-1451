@@ -148,7 +148,7 @@
 
     - - -
 
-    <h4>URL Parameter Format ~({{config.cProps.rxp.sectionIds.http}}.1.4)~</h4>
+    <h4 id="http-url-parameter-format">URL Parameter Format ~({{config.cProps.rxp.sectionIds.http}}.1.4)~</h4>
 
     When retrieving xStatus or xConfiguration information, you'll perform an HTTP Get request. Get requests using HTTP and local authentication will target this base url
 
@@ -194,36 +194,46 @@
 
         URL: https://[YOUR_DEVICE_IP]/putxml
 
-        Click the tabs below to see an example xConfiguration and xCommand body structured as XML
+        A configuration write uses a `<Configuration>` root; command execution uses a `<Command>` root. The nested element names follow the xAPI path, and the innermost element contains the value or argument.
 
-        !!! important ""
+        === "xConfiguration Scaffold"
 
-            === "xConfiguration Example"
+            ```xml title="Construct a configuration body"
+            <Configuration>
+              <!-- Add the configuration path and value here. -->
+            </Configuration>
+            ```
 
-                - <{--x--}{++Configuration++}></{--x--}{++Configuration++}>
-                - <{--x--}{++Command++}></{--x--}{++Configuration++}>
-                - <{--x--}{++Status++}></{--x--}{++Configuration++}>
+            ??? success "Completed xConfiguration payload"
 
-                ``` { .xml , title="Example XML Structure" } 
-                <Parent>
-                  <Child>
-                    <ChildParameter>Value<ChildParameter>
-                  </Child>
-                <Parent>
+                ```xml
+                <Configuration>
+                  <Audio>
+                    <DefaultVolume>50</DefaultVolume>
+                  </Audio>
+                </Configuration>
                 ```
-                
-            === "xCommand Example"
-            
-                - <{--x--}{++Configuration++}></{--x--}{++Configuration++}>
-                - <{--x--}{++Command++}></{--x--}{++Configuration++}>
-                - <{--x--}{++Status++}></{--x--}{++Configuration++}>
 
-                ``` { .xml , title="Example XML Structure" } 
-                <Parent>
-                  <Child>
-                    <ChildParameter>Value<ChildParameter>
-                  </Child>
-                <Parent>
+        === "xCommand Scaffold"
+
+            ```xml title="Construct a command body"
+            <Command>
+              <!-- Add the command path and arguments here. -->
+            </Command>
+            ```
+
+            ??? success "Completed xCommand payload"
+
+                ```xml
+                <Command>
+                  <Audio>
+                    <Volume>
+                      <Set>
+                        <Level>50</Level>
+                      </Set>
+                    </Volume>
+                  </Audio>
+                </Command>
                 ```
 
     - - -
@@ -401,8 +411,10 @@
             # Below is the Response Body after making a Successful Request
 
             # <?xml version="1.0"?>
-            # <Configuration>
-            #     <Success/>
+            # <Configuration product="Cisco Codec" version="ce11.20.1.7.913a6c7c769" apiVersion="4">
+            #     <SystemUnit>
+            #         <Name valueSpaceRef="/Valuespace/STR_0_50_NoFilt">My Room Bar Pro</Name>
+            #     </SystemUnit>
             # </Configuration>
             ```
 
@@ -426,16 +438,14 @@
             # Below is the Response Body after making a Successful Request
 
             # <?xml version="1.0"?>
-            # <Configuration product="Cisco Codec" version="ce11.20.1.7.913a6c7c769" apiVersion="4">
-            #     <SystemUnit>
-            #         <Name valueSpaceRef="/Valuespace/STR_0_50_NoFilt"> My Room Bar Pro</Name>
-            #     </SystemUnit>
+            # <Configuration>
+            #     <Success/>
             # </Configuration>
             ```
     
 
 
-## **Import and Configure the section {{config.cProps.rxp.sectionIds.http}}.1 Postman Collection** ~({{config.cProps.rxp.sectionIds.http}}.2)~
+## **Import and Configure the Section {{config.cProps.rxp.sectionIds.http}} Postman Collection** ~({{config.cProps.rxp.sectionIds.http}}.2)~
 
 Whereas we'll be using Postman, this tool will automatically take our basic auth and structure as an with Header for us and convert that string into base64
 
@@ -447,7 +457,7 @@ This collection has most pieces structured as we'd need it to and will be used t
 
 - With Postman open, in a new or existing workspace select ==import==
 - Select File
-- Locate the ==WX1-Lab:1451-HTTP-Postman-Collection.Postman_collection.json== and Open it
+- Locate `WX1-Lab-1451-HTTP-PostMan-Collection.postman_collection.json` in the extracted archive and open it.
 - You should now have the Postman Collection installed for this lab
 
 ??? gif "View Import Postman Collection"
@@ -727,10 +737,10 @@ This collection has most pieces structured as we'd need it to and will be used t
         ``` { .xml , .no=copy, title="Example XML Structure with Multiline Argument" }
         <Parent>
           <Child>
-            <ChildParameter>Value<ChildParameter>
+            <ChildParameter>Value</ChildParameter>
             <body>[MY_MULTILINE_ARGUMENT]</body>
           </Child>
-        <Parent>
+        </Parent>
         ```
 
     - **xAPI(s):**
@@ -775,12 +785,9 @@ This collection has most pieces structured as we'd need it to and will be used t
           Open **Tools** <i class="fa-solid fa-gear"></i> Page <i class="fa-solid fa-square-up-right"></i>
         </a>
 
-    ??? success "View Successful OSD Output"
+    ??? success "Successful RoomOS User Interface output"
 
-        <figure markdown="span">
-          ![OSD Output](./images/2-3-3_Execute-xCommand-MultiLine-OSD.png){ width="500" }
-          <figcaption>What to expect on your OSD on a successful request</figcaption>
-        </figure>
+        A successful response returns HTTP `200 OK` and adds the `MultiLine Command [Section {{config.cProps.rxp.sectionIds.http}}.3]` panel to the RoomOS device's touch interface.
 
     ??? success "View properly formatted XML and Successful Response"
 
@@ -821,7 +828,7 @@ This collection has most pieces structured as we'd need it to and will be used t
                   </SetMainVideoSource>
                 </Input>
               </Video>
-              <!-- Your UserInterface Extensions Panel Save XML Should Start Here  -->
+              <!-- Your UserInterface Extensions Panel Save XML Should End Here  -->
               <UserInterface>
                 <Extensions>
                   <Panel>
@@ -950,11 +957,11 @@ This collection has most pieces structured as we'd need it to and will be used t
 
     - **Task:** 
         - We'll set the DefaultVolume back to 50, which will be preloaded into the Postman collection
-        - Your task is to structure the XML for {++xConfiguration SystemUnit Name++} and place it as the next xCommand in the XML structure given. Set the Name to `Codec_X` where X is the # of your workstation pod or your name
+        - Your task is to structure the XML for {++xConfiguration SystemUnit Name++} and place it as the next xConfiguration in the XML structure given. Set the name to `Pod_X`, where `X` is your Pod number.
 
     ??? success "View properly formatted XML and Successful Response"
 
-        ![Successful HTTP Response](./images/2-3-4_Set-xConfig_Multi-Success.png){ width="500", align=right }
+        ![Postman 200 OK response with Configuration Success XML](./images/2-3-4_Set-xConfig_Single-Success.png){ width="500", align=right }
 
         === "SystemUnit Name XML"
 
@@ -965,7 +972,7 @@ This collection has most pieces structured as we'd need it to and will be used t
               </SystemUnit>
             </Configuration>
             ```
-        
+
         === "Full XML Body"
 
             ``` { .xml }
@@ -980,6 +987,8 @@ This collection has most pieces structured as we'd need it to and will be used t
               <!-- SystemUnit Name Should End Here -->
             </Configuration>
             ```
+
+        After the `200 OK` response, GET `Configuration/Audio/DefaultVolume` and `Configuration/SystemUnit/Name` to verify the values are `50` and `Pod_X`.
 
     ??? failure "View Failed Response"
 
@@ -997,7 +1006,7 @@ This collection has most pieces structured as we'd need it to and will be used t
 
         Whereas, we're pivoting to a Get rest, the format of the request changes. We no longer need a body, but we need to define the xAPI path as apart of the URL under it's location tag
 
-        Refer to section {{config.cProps.rxp.sectionIds.http}}.2 for a refresher on this syntax
+        Refer to [URL Parameter Format ({{config.cProps.rxp.sectionIds.http}}.1.4)](#http-url-parameter-format) for a refresher on this syntax.
 
     - **xAPI:** xConfiguration Audio DefaultVolume
 
@@ -1009,7 +1018,7 @@ This collection has most pieces structured as we'd need it to and will be used t
 
         === "Audio DefaultVolume URL"
 
-            https://{{device_ipAddress}}/getxml?location\===Configuration/Audio/DefaultVolume==
+            {% raw %}`https://{{device_ipAddress}}/getxml?location=Configuration/Audio/DefaultVolume`{% endraw %}
         
     ??? failure "View Failed Response"
 
@@ -1041,9 +1050,9 @@ This collection has most pieces structured as we'd need it to and will be used t
 
     ??? success "View properly formatted URL and Successful Response"
 
-        === "Audio DefaultVolume URL"
+        === "Audio Configuration URL"
 
-            https://{{device_ipAddress}}/getxml?location\===Configuration/Audio==
+            {% raw %}`https://{{device_ipAddress}}/getxml?location=Configuration/Audio`{% endraw %}
 
         ??? info "View Successful HTTP Response"
 
@@ -1098,9 +1107,9 @@ This collection has most pieces structured as we'd need it to and will be used t
 
         ![Successful HTTP Response](./images/2-3-5_Get-xStatus_Single-Success.png){ width="500", align=right }
 
-        === "Audio DefaultVolume URL"
+        === "Audio Volume Status URL"
 
-            https://{{device_ipAddress}}/getxml?location\===Status/Audio/Volume==
+            {% raw %}`https://{{device_ipAddress}}/getxml?location=Status/Audio/Volume`{% endraw %}
         
     ??? failure "View Failed Response"
 
@@ -1126,9 +1135,9 @@ This collection has most pieces structured as we'd need it to and will be used t
 
     ??? success "View properly formatted URL and Successful Response"
 
-        === "Audio DefaultVolume URL"
+        === "Audio Status URL"
 
-            https://{{device_ipAddress}}/getxml?location\===Status/Audio==
+            {% raw %}`https://{{device_ipAddress}}/getxml?location=Status/Audio`{% endraw %}
 
         ??? info "View Successful HTTP Response"
 
@@ -1148,7 +1157,9 @@ This collection has most pieces structured as we'd need it to and will be used t
                     <ConnectionStatus>NotConnected</ConnectionStatus>
                     <Description></Description>
                     <Manufacturer></Manufacturer>
+                  </HeadsetUSB>
                   <!-- And the List Goes On... -->
+                </Devices>
               </Audio>
             </Status>
             ```
@@ -1277,42 +1288,42 @@ This collection has most pieces structured as we'd need it to and will be used t
           ![Webhook.Site Output Example](./images/2-3-6_WebHookSite_Output.png){ width="600" }
         </figure>
 
-??? lesson "Lesson: Subscribe to the full xConfiguration Branch ~({{config.cProps.rxp.sectionIds.http}}.6.1)~"
+??? lesson "Lesson: Subscribe to an xConfiguration ~({{config.cProps.rxp.sectionIds.http}}.6.1)~"
 
     - **Task:**
         - In your Postman Collection under HTTP > Section: ({{config.cProps.rxp.sectionIds.http}}.6)
-        - Select the ==Subscribe to the full xConfiguration Branch== request
+        - Select the ==Subscribe to Audio DefaultVolume Configuration== request.
         - View how the body is Structured in the XML body
-        - Select Send
+        - Select **Send**. This registration uses feedback slot 1; each following registration replaces the prior slot 1 registration.
         - Press the `Subscription Assistant Button` on your Touch Interface
-            - Under the xConfigurations Page, press any of the buttons on this page
-            - Observe your {++Webhook.Site Terminal++} output, those responses you saw in the previous lesson should have stopped outputting in your {++Webhook.Site Terminal++}
-                - ==Optional==: Press those buttons and switches a few times to see more changes come in
+            - Under the xConfigurations Page, move the **Audio DefaultVolume** slider.
+            - Observe a new `Configuration/Audio/DefaultVolume` callback in the {++Webhook.Site Terminal++}.
+            - Move the slider again to confirm that each change produces another callback.
 
 
-??? lesson "Lesson: Subscribe to the full xStatus Branch ~({{config.cProps.rxp.sectionIds.http}}.6.2)~"
+??? lesson "Lesson: Subscribe to an xStatus ~({{config.cProps.rxp.sectionIds.http}}.6.2)~"
 
     - **Task:**
         - In your Postman Collection under HTTP > Section: {{config.cProps.rxp.sectionIds.http}}.6
-        - Select the ==Subscribe to the full xStatus Branch== request
+        - Select the ==Subscribe to Audio Volume Status== request.
         - View how the body is Structured in the XML body
-        - Then select Send and Monitor the output on the Webhook.Site terminal
-            - Your device will forward an event in the status branch soon
+        - Select **Send** to replace the previous slot 1 registration, then monitor the Webhook.Site terminal.
         - Press the `Subscription Assistant Button` on your Touch Interface
-            - Under the xStatuses Page, press any of the buttons on this page
-            - Observe your {++Webhook.Site Terminal++} output, those responses you saw in the previous lesson should have stopped outputting in your {++Webhook.Site Terminal++}
+            - Under the xStatuses Page, move the **Adjust Volume** slider.
+            - Observe a new `Status/Audio/Volume` callback in the {++Webhook.Site Terminal++}.
+            - Confirm that changing DefaultVolume no longer produces configuration callbacks because the slot was replaced.
 
-??? lesson "Lesson: Subscribe to the full xEvent Branch ~({{config.cProps.rxp.sectionIds.http}}.6.3)~"
+??? lesson "Lesson: Subscribe to an xEvent ~({{config.cProps.rxp.sectionIds.http}}.6.3)~"
 
     - **Task:**
         - In your Postman Collection under HTTP > Section: ({{config.cProps.rxp.sectionIds.http}}.6)
-        - Select the ==Subscribe to the full xEvent Branch== request
+        - Select the ==Subscribe to Prompt Response Event== request.
         - View how the body is Structured in the XML body
-        - Then select Send and Monitor the output on the Webhook.Site terminal
-            - Your device will forward an event in the event branch soon
+        - Select **Send** to replace the previous slot 1 registration, then monitor the Webhook.Site terminal.
         - Press the `Subscription Assistant Button` on your Touch Interface
-            - Under the xEvents Page, press any of the buttons on this page
-            - Observe your {++Webhook.Site Terminal++} output, those responses you saw in the previous lesson should have stopped outputting in your {++Webhook.Site Terminal++}
+            - Under the xEvents Page, display a Prompt and choose one of its options.
+            - Observe a new `Event/UserInterface/Message/Prompt/Response` callback in the {++Webhook.Site Terminal++}.
+            - Confirm that volume changes no longer produce status callbacks because the slot was replaced.
 
 ??? lesson "Lesson: Subscribe to Specific Expressions on any Branch ~({{config.cProps.rxp.sectionIds.http}}.6.4)~"
 
@@ -1324,15 +1335,20 @@ This collection has most pieces structured as we'd need it to and will be used t
             - Rather than subscribing to All States, we instead narrow down what we're interested in
             - For each expression we want to listen too, we will declare a new Expression Parameter
             - We can have up to 15 Expressions defined in a single feedback slot
-        - Then select Send and Monitor the output on the Webhook.Site terminal
-            - You will need to interact with the system Volume and press the MultiLine Command [Section {{config.cProps.rxp.sectionIds.http}}.3] Panel to see events pour into the WebHook.site terminal
+        - Select **Send** to replace the prior slot 1 registration, then monitor the Webhook.Site terminal.
+            - Change the system volume and press the `MultiLine Command [Section {{config.cProps.rxp.sectionIds.http}}.3]` panel to produce callbacks for the two expressions.
         - Press the `Subscription Assistant Button` on your Touch Interface
             - Clicking on the `Subscription Assistant Button` will fire a Panel Event
             - Under the xStatuses, move the ==Adjust Volume== slider to generate events
                 - Other buttons under xStatus won't take any effect
-            - Under the xEvents Page, press any of the buttons on this page
-            - Observe your {++Webhook.Site Terminal++} output, those responses you saw in the previous lesson should have stopped outputting in your {++Webhook.Site Terminal++}
+            - Verify that unrelated xConfiguration and xEvent activity does not produce callbacks.
 
-## **Section {{config.cProps.rxp.sectionIds.http}} Cleanup** ~({{config.cProps.rxp.sectionIds.http}}).7~
+## **Section {{config.cProps.rxp.sectionIds.http}} Cleanup** ~({{config.cProps.rxp.sectionIds.http}}.7)~
+
+Before running the standard Section Cleanup, deregister HTTP feedback slot 1 and verify that another volume or panel interaction produces no new callback in Webhook.site.
+
+```shell title="Type into terminal and press Enter"
+xCommand HttpFeedback Deregister FeedbackSlot: 1
+```
 
 {{config.cProps.rxp.sectionCleanup}}

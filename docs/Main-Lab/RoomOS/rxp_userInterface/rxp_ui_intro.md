@@ -1,52 +1,50 @@
 {{ config.cProps.devNotice }}
 {{ config.cProps.acronyms }}
-# What are RoomOS UserInterfaces
 
-In regards to the RoomOS xAPI, RoomOS UserInterfaces are interfaces you can offer to the user whether they be built in an apart of RoomOS software or custom interfaces you can bubble up using the RoomOS xAPI
+# What Are RoomOS User Interfaces?
 
-In this section, we'll be focusing on 4 of the major branches of the the UserInterface node in the xAPI, and those are
+RoomOS user interfaces include both the controls built into RoomOS and custom controls that you create with the RoomOS xAPI. They give people a visible way to interact with your solution while commands, configurations, statuses, and events provide the underlying behavior.
 
-- - -
+This section introduces four major areas:
 
 ## Features
-<figure markdown="span">
-    ![Device Login](../images/roomNav.png){ width="600" }
-    <figcaption>Room Navigator HomeScreen (RoomOS 11)</figcaption>
-</figure>
-- <pre><code>x[Path] UserInterface Features...</code></pre>
-- The Features path governs mainly the visibility of built-in RoomOS interfaces. Such as the Call button, any of the Platform Buttons, Settings Menu Access and more
 
-- - -
+<figure markdown="span">
+    ![Room Navigator home screen showing built-in RoomOS controls](./images/roomNav.png){ width="600" }
+    <figcaption>Built-in controls on a Room Navigator home screen</figcaption>
+</figure>
+
+<pre><code>x[Path] UserInterface Features...</code></pre>
+
+The `UserInterface Features` configurations control the visibility of many built-in RoomOS controls, including calling, sharing, whiteboarding, and meeting-platform buttons.
 
 ## Extensions
+
 <figure markdown="span">
-    ![Device Login](../images/3-2_UI_Editor.png){ width="800" }
+    ![RoomOS UI Extensions Editor with a custom panel](./images/3-2_UI_Editor.png){ width="800" }
     <figcaption>UI Extensions Editor</figcaption>
 </figure>
-- <pre><code>x[Path] UserInterface Extensions...</code></pre>
-- The Extensions path enables you to create new interfaces, whether they be panels, pages, or widgets, and subscribe to their associated events
-- Extensions are built using XML and can either be assembled using the xAPI or the UI Extensions Editor, located on the WebUI of the Codec
-- These enable you a surface to offer to your users and build our all new solutions
 
-- - -
+<pre><code>x[Path] UserInterface Extensions...</code></pre>
+
+UI Extensions let you add panels, action buttons, widgets, and web-app launchers. You design them in the device's UI Extensions Editor or provision them through the xAPI, then use events and integration logic to make interactive controls do something.
 
 ## Messages
-<figure markdown="span">
-    ![Device Login](../images/3-2_UI_Messages.png){ width="800" }
-    <figcaption>All Message Interfaces and Locations</figcaption>
-</figure>
-- <pre><code>x[Path] UserInterface Messages...</code></pre>
-- The Messages Branch offers OSD and Touch Controller messaging, offering new interfaces that are akin to extensions.
-- They can offer you alerts, text input prompts, ratings interfaces a a few others
 
-- - -
-
-## WebContent
 <figure markdown="span">
-    ![Device Login](../images/3-2_UI_WebContent.png){ width="800" }
-    <figcaption>Various WebContent Examples</figcaption>
+    ![Examples of RoomOS alert, prompt, rating, text-input, and text-line messages](./images/3-2_UI_Messages.png){ width="800" }
+    <figcaption>RoomOS message styles and display surfaces</figcaption>
 </figure>
-- There isn't a "WebContent" branch in our API, but it's still a very important topic to touch upon
-- WebContent exists in many forms in RoomOS such as Web Apps or WebViews and they are all driven by the WebEngine built into RoomOS
-- The Web Engine is built upon the QT WebEngine and it allows you to pull in Web Based content such as a YouTube video or something custom you've built
-- Some of the xAPI is readily available for Booking solutions, though more robust integrations would rely on our NodeJS JSXAPI Module
+
+<pre><code>x[Path] UserInterface Message...</code></pre>
+
+The `UserInterface Message` commands display alerts, prompts, ratings, text-input dialogs, and text lines on supported device and controller surfaces. Interactive messages produce response events that an integration can process.
+
+## Web Content
+
+<figure markdown="span">
+    ![Examples of RoomOS web apps, web views, web widgets, and kiosk experiences](./images/3-2_UI_WebContent.png){ width="800" }
+    <figcaption>Web content experiences powered by the RoomOS WebEngine</figcaption>
+</figure>
+
+There is no single `WebContent` xAPI branch. RoomOS instead exposes several WebEngine-powered experiences: web apps, API-driven web views, web widgets, digital signage, and kiosk mode. Their capabilities and device support differ, so the final lesson describes each one separately.

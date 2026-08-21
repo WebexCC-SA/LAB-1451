@@ -1,57 +1,35 @@
 {{ config.cProps.devNotice }}
 
-!!! important "Before you Start"
+# Solution Exercises: Build Complete RoomOS Customizations
 
-    Solution Exercises may require specific hardware. Each solution will outline any prerequisites needed for Hardware, Cabling and Software loads as needed for the Exercise.
+Integration Method lessons teach how to express RoomOS xAPI requests through SSH, HTTP/Postman, and macros. Solution Exercises combine those fundamentals into complete, learner-facing customizations. You will make design decisions, assemble several xAPI paths, validate the result on a RoomOS device, and leave the device in a known state.
 
-    If following along 
+!!! important "Before you start"
 
-## <u>**Outlining Customizations**</u>
+    Read each exercise's requirements before beginning. Hardware, software, services, and cleanup steps can differ by solution. If you follow an exercise on a shared lab device, use the prescribed identifiers and complete its cleanup.
 
-## <u>**Outlining Customizations**</u>
+## Outline Your Customization
 
-## <u>**Outlining Customizations**</u>
+Before writing code, record the following:
 
-When Jumping into your customization, it's good to understand a few things prior to diving in. 
+1. **User and outcome** — Who will use the customization, and what should become easier or safer?
+2. **RoomOS surfaces** — Will the solution appear on a Room Navigator, an integrated touch screen, the room display, or more than one surface?
+3. **Device capabilities** — Which RoomOS device families, connected peripherals, configurations, and software versions must the solution support?
+4. **xAPI behavior** — Which commands change state, which statuses confirm it, and which events should trigger new work?
+5. **External dependencies** — Which hosted pages, APIs, or network paths must remain available?
+6. **Lifecycle** — How will the solution be configured, deployed, monitored, updated, and removed?
 
-You should should consider the following
+### Design for clarity and scale
 
-### KEEP THINGS SIMPLE :smiley:
+- Keep the first working path small, then add flexibility only where the use case requires it.
+- Discover device state when hardware can vary instead of hard-coding one connector or output.
+- Use solution-specific panel, widget, macro, and feedback identifiers so shared devices do not collide.
+- Validate inputs and external responses before using them.
+- Log enough context to diagnose failures without exposing credentials or other sensitive data.
+- Build cleanup and rollback into the exercise rather than leaving temporary UI, feedback registrations, or changed configurations behind.
 
-- There are some pretty robust solutions out there. It can be easy to over-engineer a solution, especially as your skill set starts to flourish.
-- Wherever possible, keep things simple
-    - But sometimes too simple can be a bottleneck, do what's best to provide a robust solution, while also not getting too far into the weeds.
+### Keep the learner's path visible
 
-### Understanding your Hardware
+Each exercise moves from requirements, to a construction task, to a collapsed comparison answer, and finally to observable verification. Try the scaffold before opening the answer. When your result differs, compare the smallest relevant section instead of replacing your entire solution.
 
-- What are the hardware and software differences between codecs?
-    - Should I hard code Video Output 3 or should I dynamically discover those inputs
-- How many peripherals are connected?
-    - This could change from room to room. Knowing how to adapt this in your solution dynamically will reduce complications when deploying at scale
-- Are there differences in how the xAPI is executed between devices?
-    - There certainly is, but it's not impossible to handle and make you solution robust and rugged
-- What external services are available to me to optimize or enhance this experience?
-    - APIs are wonderful, and everywhere. Explore them and find out what's possible when they start to work together
-
-### Understanding your Stakeholders
-
-- Who will interact with my customization?
-    - IT Folks, C-Suite, Engineers, Admins, Etc
-- Are you working with the person procuring or using the solution?
-    - Procurement and the end use may be one in the same, but at times they are disconnected. If possible, engage with those who ultimately use your customization to get a better understanding of their need.
-- How do these individuals do work?
-    - Is this a seminar space, a conference room, an open collaboration space, a classroom, a lab?
-    - Optimizing your solution to fit those needs are key to success
-- What are their expectations of the solution?
-    - Is the vision of the end user in line with your vision of the solution. Keeping an open dialogue with your customer as to what's possible will help keep your goals in line
-- What can you anticipate that wasn't considered in the original ask?
-    - Some asks are too simple. Putting in the extra 2 cents to really flesh out a professional solution, even for a small ask, can yield a better solution in the end.
-
-### Tackle your solution from outside the box
-
-- Best to design for scale, wherever possible
-    - How can I make my solution on all hardware and software iterations?
-- Make you solution flexible
-    - If your code can solve for multiple room flows, build in tools to let you quickly adapt your code
-- Think of your colleagues and future self
-    - Some day you or a colleague may be called upon to troubleshoot a solution, make sure you leave breadcrumbs or documentation to help yourself years from now.
+Start with **Quick Docs Part 1** to build a complete local UI-and-macro solution. Continue to **Quick Docs Part 2** to generate the UI from configuration data and an optional remote manifest.

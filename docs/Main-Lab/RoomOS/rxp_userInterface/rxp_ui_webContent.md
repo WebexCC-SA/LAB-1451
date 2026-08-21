@@ -3,63 +3,44 @@
 
 # Web Content ~(section\ {{ config.cProps.rxp.sectionIds.ui.webContent }})~
 
-Web Content could be a lab all on it's own. It delves a bit more into Web Development, which is not what we'll cover in this Lab
+RoomOS uses an embedded Chromium-based WebEngine for several distinct experiences. Enable and test only the experience needed by your solution, and validate the hosted content on every intended RoomOS device model.
 
-But, we're not going to leave you without a bit of insight
-
-Web Content is used in several different way in RoomOS and is built on our Web Engine
-
-Learn more of the Web Engine configuration options
+Learn about the available WebEngine settings:
 
 <roomosfind>xConfiguration WebEngine</roomosfind>
 
-## WebApps
+## Web Apps
 
-Web Content in RoomOS got it's start on the Board and Desk series of endpoints. They are to this day the only devices that contain Web Apps as well
+A web app is a launcher on a supported touch interface. Selecting it opens the configured URL as a full-screen web experience. Web apps can be provisioned through Control Hub, through the device web interface, or with `xCommand UserInterface Extensions WebApp Save`. They are intended for touch-capable Board and Desk series devices; a room display without touch does not offer the same home-screen app interaction.
 
-Web Apps are lightweight web based applications you can install through the Settings Menu of the device, the UI Extensions Editor or can be pushed from Control hub
+## API-Driven Web Views
 
-Multiple apps can run as separate content sources on a Board or Desk series endpoint and the session is cached so it's quick to recover
+`xCommand UserInterface WebView Display` opens hosted content programmatically. On supported Room series devices, a web view can appear on the main display even when the display itself is not touch-enabled. A macro or external integration can open and close the view; a paired controller can provide separate controls.
 
-## WebViews
-
-WebViews are a cousin WebApps, they more or less support the same apps but with a few differeces.
-
-1. WebViews can be opened on any current RoomOS device on either the OSD or the Room Navigator touch controller
-    - WebViews on a navigator are growing in popularity with new innovations brought by 3rd party controllers like Crestron, QSYS and so on. 
-    - Controller WebViews can allow you to build nearly any UI far beyond the UI Extensions editor, but not without a deeper understanding of building and hosting applications
-2. Information isn't cached, so when a WebView is closed, the information is purged. Opening the same WebView then requires the device to pull down the site's entire contents
-
-Learn more about WebView APIs
+An API-driven web view remains open until it is closed, but it is not a persistent web app and should not be described as preserving an application session after closure.
 
 <roomosfind>UserInterface WebView</roomosfind>
 
-Check out this advanced WebView solution by the WXSD Sales team, it uses a combination of Macros and dual web sessions socketing together to make OSD WebViews controllable by Controller WebViews
+The WXSD Sales example below demonstrates a macro that controls a WebView from UI Extensions or a second WebView on a Room Navigator.
 
-<a class="md-button md-button--primary" href="https://github.com/wxsd-sales/webview-websocket-control-macrot" target="_blank" >
-    WebView Controls Macro<i class="fa-solid fa-square-up-right"></i>
+<a class="md-button md-button--primary" href="https://github.com/wxsd-sales/webview-websocket-control-macro" target="_blank">
+    WebView Controls Macro <i class="fa-solid fa-square-up-right"></i>
 </a>
 
-## WebWidgets
+## Web Widgets
 
-WebWidgets are widgets, but they rest on the OSD of the endpoint that show in a Modal Window. This information is live and can be animated, but users are unable to interact with this element.
+A web widget is a single noninteractive hosted view on the RoomOS home screen. It is useful for a QR code, announcement, dashboard, or room information. RoomOS supports one web widget at a time; use a web app or web view when the user must interact with the page.
 
-Check out this Analytics Web App built by the WXSD Sales Team
-
-<a class="md-button md-button--primary" href="https://github.com/wxsd-sales/analytics-web-widget" target="_blank" >
-      Analytics Web Widget<i class="fa-solid fa-square-up-right"></i>
+<a class="md-button md-button--primary" href="https://github.com/wxsd-sales/analytics-web-widget" target="_blank">
+    Analytics Web Widget <i class="fa-solid fa-square-up-right"></i>
 </a>
 
 ## Kiosk Mode
 
-Kiosk mode is a special case where on our Desk series endpoints you can permanently set a page as the main OSD.
+Kiosk mode replaces the standard home screen with one hosted web application. Current xAPI support is limited to the Desk series and supported Board Pro models; it is not a general Room series feature. The WebEngine must be enabled, and both `UserInterface Kiosk URL` and `UserInterface Kiosk Mode` must be configured.
 
-Build your user experience from head to toe. 
+Kiosk mode can support calling experiences that the hosted application exposes, but enabling it does not automatically recreate every standard RoomOS home-screen function. Plan the exit, recovery, and administrative-access experience before deployment.
 
-They operate similarly to WebApps but you can only have one loaded and it's locked to that UI, though can still interact with the RoomOS calling interfaces and so on.
-
-Check out this Kiosk Demo by the WXSD Sales Team
-
-<a class="md-button md-button--primary" href="https://github.com/wxsd-sales/kiosk-reception-demo" target="_blank" >
-      Kiosk Reception Demo<i class="fa-solid fa-square-up-right"></i>
+<a class="md-button md-button--primary" href="https://github.com/wxsd-sales/kiosk-reception-demo" target="_blank">
+    Kiosk Reception Demo <i class="fa-solid fa-square-up-right"></i>
 </a>

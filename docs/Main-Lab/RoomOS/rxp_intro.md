@@ -3,13 +3,13 @@
 
 !!! example "Welcome"
 
-    This section of the lab consists 3 main sections. 
+    This part of the Lab Guide consists of three Lab Sections.
 
-    RoomOS xAPI will teach you to interact with the RoomOS xAPI stack from several different integration points, such as SSH, HTTP and Macros. The xAPI are the building blocks to help you bring your solution to life.
+    RoomOS xAPI teaches you to interact with the RoomOS xAPI through several Integration Methods, including SSH, HTTP, and macros. The xAPI branches are the building blocks you use to bring a solution to life.
 
-    RoomOS UserInterfaces will guide you through the customizable interfaces of the device. These pieces help you communicate with your users and build new experiences.
+    RoomOS User Interfaces guides you through the customizable interfaces of a RoomOS device. These surfaces help you communicate with users and build new experiences.
 
-    Solution Exercises discusses best practices for developing any customization with the RoomOS xAPI and contains walkthroughs of real solutions for you to build leveraging what you learned from the RoomOS xAPI and UserInterfaces sections
+    Solution Exercises discusses customization best practices and contains complete solutions that build on the RoomOS xAPI and RoomOS User Interface sections.
 
     !!! important 
 
@@ -18,13 +18,13 @@
         If it's not, follow the instructions below to download and install the Subscription Assistant Macro.
 
         <figure markdown="span">
-            ![Subscription Assistant Icon](../images/SubscriptionAssitantMacro-Icon.png){ width="400" }
+            ![Subscription Assistant button on a RoomOS device](./images/SubscriptionAssitantMacro-Icon.png){ width="400" }
             <figcaption>Subscription Assistant Icon</figcaption>
         </figure>
 
-        This macro was built to assist you for lessons where you'll Subscribe/Register Feedback to various xAPI Paths. Do not modify this macro, but feel free to learn from this macro and how it operates. 
+        This Macro assists with Lessons in which you create Feedback Subscriptions to RoomOS xAPI paths. Do not modify it during the lab, but feel free to review how it operates afterward.
 
-        We won't be reviewing this macro in this lab, so if we'd encourage you take a copy home with you and review outside this course
+        The implementation is not reviewed in the lab, so keep the downloaded copy if you want to study it later.
 
         === "Download and Install"
 
@@ -32,20 +32,20 @@
 
                 <figure markdown="span">
                     [![SubAssist Macro](../GlobalImages/cisco-logo-transparent.png){ width="300" }](https://raw.githubusercontent.com/WebexCC-SA/LAB-1451/main/docs/Main-Lab/DownloadContent/Lab-1451_Subscription-Assistant.zip)
-                    <figcaption>Lab-1451_Subscription-Assistant Macro</figcaption>
+                    <figcaption>Download the Lab-1451 Subscription Assistant archive</figcaption>
                 </figure>
 
             === "Install"
 
                 !!! gif
 
-                    - Locate the `Lab-1451_Subscription-Assistant_Part-2.zip` file you downloaded
-                    - Unzip it's Contents
-                    - Login into the WebUI of your RoomOS Device
+                    - Locate the downloaded `Lab-1451_Subscription-Assistant.zip` archive.
+                    - Extract its contents. The archive contains `Lab-1451_Subscription-Assistant_Part-2.js`.
+                    - Sign in to the web interface of your RoomOS device.
                     <pre><code>https://{{config.cProps.auth.roomosIp}}</code></pre>
-                    - Navigate to Macro Editor
-                    - Drag and Drop the Subscription Assistant Macro into the Macro Editor
-                    - Save the Macro and Activate the Macro
+                    - Navigate to **Macro Editor**.
+                    - Drag `Lab-1451_Subscription-Assistant_Part-2.js` into Macro Editor.
+                    - Save and activate the Macro.
 
                     <figure markdown>
                         ![SubAssist Operation](./images/SubscriptionAssitantMacro-Install.gif){ width="600" }
@@ -57,9 +57,9 @@
 
                 ![SubAssist Home](./images/SubscriptionAssitantMacro-Home.png){ width="600" , align=right }
 
-                After installing and enabling the Subscription Assistant Macro, the macro will generate a UI extension on your Codec's Touch Control Surface
+                After you install and activate the Subscription Assistant Macro, it generates a UI Extension on the RoomOS device's touch interface.
 
-                Clicking on this button, will open various tools for you to use when running through Part 2
+                Select this button to open the tools used throughout the RoomOS xAPI Lessons.
 
                 ??? gif "View UI Operation"
 
@@ -73,7 +73,7 @@
 
                 In the xConfigurations Page, you'll have tools for modifying xConfigurations on your device. 
                 
-                Use these tools when Subscribing/Registering feedback to xConfigurations throughout the various lessons in Part 2
+                Use these tools when creating Feedback Subscriptions to xConfigurations throughout the Integration Method Lessons.
 
             === "xStatuses"
 
@@ -81,7 +81,7 @@
 
                 In the xStatuses Page, you'll have tools that will issue certain xCommands that will cause certain xStatus events to fire on your device. 
                 
-                Use these tools when Subscribing/Registering feedback to xStatus throughout the various lessons in Part 2
+                Use these tools when creating Feedback Subscriptions to xStatuses throughout the Integration Method Lessons.
 
             === "xEvents"
 
@@ -89,15 +89,15 @@
 
                 In the xEvents Page, you'll have tools that will cause certain xEvent events to fire on your device. 
                 
-                Use these tools when Subscribing/Registering feedback to xEvents throughout the various lessons in Part 2
+                Use these tools when creating Feedback Subscriptions to xEvents throughout the Integration Method Lessons.
 
             === "Section Cleanup"
 
                 ![SubAssist Home](./images/SubscriptionAssitantMacro-Cleanup.png){ width="600" , align=right }
 
-                Throughout Part 2, we will Subscribe to the same xAPI paths from each Integration Method. This is to familiarize you more with the Syntax of each integration method and how to structure that xApi Path.
+                Throughout the RoomOS xAPI section, you will subscribe to the same xAPI paths from each Integration Method. This repetition helps you recognize how each method expresses the same RoomOS xAPI path.
 
-                That Said, we need to clean up the Codec at the end of each Section. When prompted to by the Lab Guide, run the Section Cleanup button. This will prepare the device for the next set of lessons in Part 2
+                Run **Section Cleanup** whenever the Lab Guide prompts you. It reverses the current section's changes and prepares the RoomOS device for the next Integration Method.
 
 <!-- !!! important "Abstract"
 

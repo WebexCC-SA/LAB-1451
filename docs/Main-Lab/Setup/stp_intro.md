@@ -1,6 +1,10 @@
 {{ config.cProps.devNotice }}
 {{ config.cProps.acronyms }}
 
+# Lab Setup
+
+## Access your pod information
+
 !!! important "Access your Pod Information"
     - Your Device Pod # is located on the bottom left had corder of the display
     - Download this CSV file, open and locate your Pod Information

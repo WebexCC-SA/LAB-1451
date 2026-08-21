@@ -47,7 +47,7 @@
 
 !!! note inline end
 
-    Replace ``` [USERNAME]``` with your Codec's Username and ``` [IP_ADDRESS]``` with your Codec's IPv4 address that you set in section[X.X.X]
+    Replace `[USERNAME]` and `[IP_ADDRESS]` with the RoomOS device credentials you entered under [Access your Pod Information](../../Setup/stp_intro.md#access-your-pod-information).
 
 !!! blank "Type into terminal and press Enter"
     <pre><code>ssh {{config.cProps.auth.roomosUser}}@{{config.cProps.auth.roomosIp}}</code></pre> 
@@ -128,7 +128,7 @@
 
         We won't cover every shell command above, we'll only focus on <hl_2>xConfigurations</hl_2>, <hl_1>xCommands</hl_1>, <hl_5>xStatuses</hl_5>, <hl_3>xEvents</hl_3> and <hl_4>xFeedback</hl_4> as those contain all the Device xAPI references we need to develop a custom solution. But we'll also take a brief stop at <hl_7>xPreferences</hl_7> as it's important for SSH and Serial based integrations.
 
-        For more information on the rest of those paths, check out the [Offical xAPI Guide](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-1114/api-reference-guide-roomos-1114.pdf).Page 33 defines all nodes
+        For current definitions of the available paths, use the version-independent [RoomOS xAPI reference](https://roomos.cisco.com/xapi/).
 
 
 ??? lesson "Lesson: Lists Terminal Preference Option ~({{config.cProps.rxp.sectionIds.ssh}}.2.2)~"
@@ -488,12 +488,11 @@
         .
         ```
     
-    - Observe the change to your Codec's Display, you should see a new Panel Button labeled `MultiLine Command [Section ({{config.cProps.rxp.sectionIds.ssh}}.3)]` on your Touch Control interface
+    - Observe the RoomOS device's touch interface. You should see a new panel button labeled `MultiLine Command [Section ({{config.cProps.rxp.sectionIds.ssh}}.3)]`.
 
-    ??? success "View Successful OSD output"
-        <figure markdown>
-          ![Official API Doc](./images/2-2-3_UI-Panel-Save.png){ width="600" }
-        </figure>
+    ??? success "Successful RoomOS User Interface output"
+
+        A successful command returns `OK` in the terminal and adds the `MultiLine Command [Section ({{config.cProps.rxp.sectionIds.ssh}}.3)]` button to the touch interface.
     
     <roomosdoc>xCommand UserInterface Extensions Panel Save</roomosdoc>
 
@@ -777,7 +776,7 @@
 
         Today, we have a limit of 50 unique subscriptions (or feedback registrations) that can be enabled on a device at any given time.
 
-        Documented on page 40 of the <a href="https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/roomos-1114/api-reference-guide-roomos-1114.pdf" target="_blank">Official xAPI Guide</a>
+        RoomOS supports a finite number of feedback registrations, so remove subscriptions when they are no longer needed. Use the version-independent [RoomOS xAPI reference](https://roomos.cisco.com/xapi/) when checking current limits and syntax.
 
         So as your solutions grow, managing your subscriptions can become increasingly more important.
 
@@ -915,7 +914,10 @@
 
     ??? info "Click to Compare your Terminal Output"
         ``` {.shell, .no-copy}
-        [PLACEHOLDER - LUIS OUTPUT]
+        *s Audio Input Connectors Connector 1 Connected: True
+        *s Audio Input Connectors Connector 1 ConnectionStatus: Connected
+        *s Audio Input Connectors Connector 1 Type: Microphone
+        ** end
         ```
 
     <roomosfind>xStatus Audio Input</roomosfind>
@@ -941,6 +943,13 @@
             <figure markdown>
               ![xStatus Audio Volume Subscription Output Gif](./images/2-2-4_xStatus-Subscribe-Volume.gif){ width="600" }
             </figure>
+
+            A volume change produces feedback in this form (the value varies):
+
+            ``` {.shell, .no-copy}
+            *s Status Audio Volume: 42
+            ** end
+            ```
       
         ??? gif "View Subscription Assistant Operation"
             
@@ -948,11 +957,11 @@
               ![SubAssist Operation](./images/SubscriptionAssitantMacro-Operation.gif){ width="600" }
             </figure>
 
-    <roomosdoc>xStatus Audio Volume<roomosdoc>
+    <roomosdoc>xStatus Audio Volume</roomosdoc>
 
 ??? lesson "Lesson: Unsubscribing to an xStatus  ~({{config.cProps.rxp.sectionIds.ssh}}.5.4)~"
 
-    - **xAPI**: xStatus Audio Input
+    - **xAPI**: xStatus Audio Volume
 
     - **Task**:
 
@@ -965,6 +974,8 @@
                 - Alternatively, you can adjust the volume with the Codec's native volume control buttons
             - Observe your <hl_6>Terminal Window's</hl_6> output, those responses you saw in the previous lesson should have stopped outputting in your <hl_6>Terminal Window</hl_6>
                 - <hl_3>Optional</hl_3>: Move the slider a few more times to see more changes come in
+
+    <roomosdoc>xStatus Audio Volume</roomosdoc>
 
 ??? lesson "Lesson: Subscribe to Multiple xStatuses under a Common Node ~({{config.cProps.rxp.sectionIds.ssh}}.5.5)~"
 
@@ -1083,12 +1094,12 @@
     - **Task**: 
 
         ```shell title="Type into terminal and press Enter"
-        xFeedback Deregister Event/UserInterface/ScreenShotRequest/RequestId
+        xFeedback Deregister Event/UserInterface/Message/Prompt/Response
         ```
 
         - Press the <hl_5>Subscription Assistant Button</hl_5> on your Touch Interface
-            - Under the xEvents Page, click either the `Prompt`, the `TextInput`, the `Rating` or the `Alert` button in the <hl_0>UserInterface Message</hl_0> row and submit any accompanying actions in that interface
-            - Observe your <hl_6>Terminal Window's</hl_6> output, those responses you saw in the previous lesson should have stopped outputting in your <hl_6>Terminal Window</hl_6>
+            - Under the xEvents Page, click the `Prompt` button in the <hl_0>UserInterface Message</hl_0> row and submit an option.
+            - Verify that no new `Event/UserInterface/Message/Prompt/Response` feedback appears in the terminal after deregistration.
 
     <roomosdoc>xEvent UserInterface Message Prompt Response</roomosdoc>
 

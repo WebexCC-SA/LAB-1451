@@ -67,6 +67,8 @@ function applyCustomHighlights() {
     // Original 'copy' tag logic (keep this as is)
     // This part handles click events for elements with the tag <copy>
     Array.from(document.getElementsByTagName("copy")).forEach(el => {
+        if (el.dataset.copyInitialized === 'true') return;
+        el.dataset.copyInitialized = 'true';
         el.addEventListener("click", function (event) {
             if (event.target.tagName === "COPY") {
                 navigator.clipboard.writeText(event.target.innerText);
@@ -78,6 +80,8 @@ function applyCustomHighlights() {
     });
 
     Array.from(document.getElementsByTagName("roomosdoc")).forEach(el => {
+        if (el.dataset.roomosDocInitialized === 'true') return;
+        el.dataset.roomosDocInitialized = 'true';
         el.addEventListener("click", function (event) {
             let rawPath;
             let path;
@@ -109,6 +113,8 @@ function applyCustomHighlights() {
     });
 
     Array.from(document.getElementsByTagName("roomosfind")).forEach(el => {
+        if (el.dataset.roomosFindInitialized === 'true') return;
+        el.dataset.roomosFindInitialized = 'true';
         //https://roomos.cisco.com/xapi/search?search=Configuration+Audio
         el.addEventListener("click", function (event) {
             let rawPath;
@@ -143,6 +149,13 @@ function applyCustomHighlights() {
 // Ensure the highlighting function runs after the entire HTML document has been loaded and parsed.
 // This is crucial because the script needs to find and manipulate elements that exist on the page.
 document.addEventListener('DOMContentLoaded', applyCustomHighlights);
+
+// MkDocs Material replaces page content without firing DOMContentLoaded during
+// instant navigation. Re-initialize new page content after every activation.
+// Element data attributes above keep repeated activations idempotent.
+if (typeof document$ !== 'undefined') {
+    document$.subscribe(applyCustomHighlights);
+}
 
 // Your existing setValues function (keep this as is)
 function setValues() {
@@ -187,7 +200,10 @@ function setValuesPopUp(message, clientX, clientY, duration = 1800) {
     }, duration);
 }
 
-document.getElementById('setLabValues').addEventListener('click', (event) => {
-    // Pass the mouse coordinates (event.clientX, event.clientY) to the function
-    setValuesPopUp('Lab References Updated!', event.clientX + 20, event.clientY - 20);
-});
+const setLabValuesButton = document.getElementById('setLabValues');
+if (setLabValuesButton) {
+    setLabValuesButton.addEventListener('click', (event) => {
+        // Pass the mouse coordinates (event.clientX, event.clientY) to the function
+        setValuesPopUp('Lab References Updated!', event.clientX + 20, event.clientY - 20);
+    });
+}
