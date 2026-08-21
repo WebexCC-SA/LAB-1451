@@ -25,7 +25,7 @@
 
     The Solution Exercises build on Macro Editor and UI Extension fundamentals to create complete RoomOS xAPI customizations.
 
-    Syntax covered here is not only relevant for the Macro Editor but also the `jsxapi` Node.Js module which is not covered in this Lab
+    Syntax covered here is also relevant to the JSXAPI Node.js SDK, which is covered in JSXAPI ^{{ config.cProps.rxp.sectionIds.jsxapi }}^.
 
 !!! important "Section Requirements"
 
@@ -1751,6 +1751,7 @@
             | HH:MM:SS | [system]                                   | Runtime stopped!                                                                           |
             | HH:MM:SS | [system]                                   | Using XAPI transport: WebSocket                                                             |
             | HH:MM:SS | [system]                                   | Starting macros...                                                                          |
+<<<<<<< HEAD
             | HH:MM:SS | xEvents_Lesson-2_MacroPak_rxp-6-6           | AllExtensions Subscription stopping in [10] seconds                                         |
             | HH:MM:SS | xEvents_Lesson-2_MacroPak_rxp-6-6           | QJS Ready                                                                                   |
             | HH:MM:SS | xEvents_Lesson-2_MacroPak_rxp-6-6           | Panel [wx1_lab_multilineCommand] saved to the codec                                        |
@@ -1821,3 +1822,52 @@ cleanup();
 ```
 
 3. Deactivate or delete the temporary cleanup Macro. Verify that DefaultVolume remains at `50`, AirPlay remains off, and the exercise panel no longer appears.
+=======
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | AllExtensions Subscription stopping in [10] seconds                                         |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | QJS Ready                                                                                   |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | Panel [wx1_lab_multilineCommand] saved to the codec                                        |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"LayoutUpdated":{"id":"1"},"id":"1"},"id":"1"}                                 |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Panel":{"Clicked":{"PanelId":"wx1_lab_multilineCommand","id":"1"},"id":"1"},"id":"1"}  |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | AllExtensions Subscription stopping in [9] seconds                                          |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | AllExtensions Subscription stopping in [8] seconds                                          |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Pressed":{"Signal":"wx1_GroupButton:GroupButton_A","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"pressed","Value":"GroupButton_A","WidgetId":"wx1_GroupButton","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Released":{"Signal":"wx1_GroupButton:GroupButton_A","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"released","Value":"GroupButton_A","WidgetId":"wx1_GroupButton","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | AllExtensions Subscription stopping in [7] seconds                                          |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Pressed":{"Signal":"wx1_IconButton","id":"1"},"id":"1"},"id":"1"}               |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"pressed","Value":"","WidgetId":"wx1_IconButton","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Released":{"Signal":"wx1_IconButton","id":"1"},"id":"1"},"id":"1"}              |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"released","Value":"","WidgetId":"wx1_IconButton","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Clicked":{"Signal":"wx1_IconButton","id":"1"},"id":"1"},"id":"1"}               |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"clicked","Value":"","WidgetId":"wx1_IconButton","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | AllExtensions Subscription stopping in [6] seconds                                          |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Pressed":{"Signal":"wx1_ControlWheel:center","id":"1"},"id":"1"},"id":"1"}     |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"pressed","Value":"center","WidgetId":"wx1_ControlWheel","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Released":{"Signal":"wx1_ControlWheel:center","id":"1"},"id":"1"},"id":"1"}   |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"released","Value":"center","WidgetId":"wx1_ControlWheel","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Clicked":{"Signal":"wx1_ControlWheel:center","id":"1"},"id":"1"},"id":"1"}   |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"clicked","Value":"center","WidgetId":"wx1_ControlWheel","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | AllExtensions Subscription stopping in [5] seconds                                          |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | AllExtensions Subscription stopping in [4] seconds                                          |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Pressed":{"Signal":"wx1_Slider:188","id":"1"},"id":"1"},"id":"1"}            |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"pressed","Value":"188","WidgetId":"wx1_Slider","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Changed":{"Signal":"wx1_Slider:98","id":"1"},"id":"1"},"id":"1"}              |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"changed","Value":"98","WidgetId":"wx1_Slider","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Changed":{"Signal":"wx1_Slider:98","id":"1"},"id":"1"},"id":"1"}              |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"changed","Value":"98","WidgetId":"wx1_Slider","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Released":{"Signal":"wx1_Slider:98","id":"1"},"id":"1"},"id":"1"}            |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"released","Value":"98","WidgetId":"wx1_Slider","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | AllExtensions Subscription stopping in [3] seconds                                          |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Changed":{"Signal":"wx1_Toggle:on","id":"1"},"id":"1"},"id":"1"}             |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"changed","Value":"on","WidgetId":"wx1_Toggle","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | AllExtensions Subscription stopping in [2] seconds                                          |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Pressed":{"Signal":"wx1_SpinnerButton:decrement","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"pressed","Value":"decrement","WidgetId":"wx1_SpinnerButton","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | AllExtensions Subscription stopping in [1] seconds                                          |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Released":{"Signal":"wx1_SpinnerButton:decrement","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"released","Value":"decrement","WidgetId":"wx1_SpinnerButton","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Event":{"Clicked":{"Signal":"wx1_SpinnerButton:decrement","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | {"Widget":{"Action":{"Type":"clicked","Value":"decrement","WidgetId":"wx1_SpinnerButton","id":"1"},"id":"1"},"id":"1"} |
+            | HH:MM:SS | xEvents_Lesson-2_MacroPak_2-6-6           | AllExtensions Subscription stopped!                                                         |
+>>>>>>> 1ac94cbc9db5671a4ce046389a239449001f5c66

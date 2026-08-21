@@ -148,7 +148,11 @@ function applyCustomHighlights() {
 
 // Ensure the highlighting function runs after the entire HTML document has been loaded and parsed.
 // This is crucial because the script needs to find and manipulate elements that exist on the page.
-document.addEventListener('DOMContentLoaded', applyCustomHighlights);
+if (typeof document$ !== 'undefined') {
+    document$.subscribe(applyCustomHighlights);
+} else {
+    document.addEventListener('DOMContentLoaded', applyCustomHighlights);
+}
 
 // MkDocs Material replaces page content without firing DOMContentLoaded during
 // instant navigation. Re-initialize new page content after every activation.
@@ -200,6 +204,7 @@ function setValuesPopUp(message, clientX, clientY, duration = 1800) {
     }, duration);
 }
 
+<<<<<<< HEAD
 const setLabValuesButton = document.getElementById('setLabValues');
 if (setLabValuesButton) {
     setLabValuesButton.addEventListener('click', (event) => {
@@ -207,3 +212,9 @@ if (setLabValuesButton) {
         setValuesPopUp('Lab References Updated!', event.clientX + 20, event.clientY - 20);
     });
 }
+=======
+document.getElementById('setLabValues').addEventListener('click', (event) => {
+    // Pass the mouse coordinates (event.clientX, event.clientY) to the function
+    setValuesPopUp('Lab References Updated!', event.clientX + 20, event.clientY - 20);
+});
+>>>>>>> 1ac94cbc9db5671a4ce046389a239449001f5c66
