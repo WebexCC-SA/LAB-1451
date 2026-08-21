@@ -1,129 +1,251 @@
 {{ config.cProps.devNotice }}
 {{ config.cProps.acronyms }}
 
-??? tool "Code Difference Checker"
-    <p>Use this tool to compare your syntax against the answers to help find stray characters, artifacts or to compare your successful implementation against the lab guides to understand the differences</p>
-    <div>
-        <div style="display: flex; justify-content: space-between;">
-            <textarea id="codeDif-text1" placeholder="Enter first code snippet here..." style="width: 45%; height: 300px; margin: 0 2%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace;"></textarea>
-            <textarea id="codeDif-text2" placeholder="Enter second code snippet here..." style="width: 45%; height: 300px; margin: 0 2%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace;"></textarea>
-        </div>
-        <br><br>
-        <label style="font-family: Arial, sans-serif;">
-            <input type="checkbox" id="codeDif-ignoreWhitespace" checked>
-            Ignore Whitespace
-        </label>
-        <button id="codeDif-checkButton" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; background-color: rgba(192, 192, 192, 0.1); cursor: pointer; margin: 20px 0; font-size: 16px;">Check Differences</button>
-        <h2 style="font-family: Arial, sans-serif;">Differences:</h2>
-        <div style="display: flex; justify-content: space-between;">
-            <div id="codeDif-result1" style="width: 45%; color: #000000; background: #f9f9f9; border: 1px solid #ccc; padding: 10px; font-family: monospace; border-radius: 4px; white-space: pre-wrap;"></div>
-            <div id="codeDif-result2" style="width: 45%; color: #000000; background: #f9f9f9; border: 1px solid #ccc; padding: 10px; font-family: monospace; border-radius: 4px; white-space: pre-wrap;"></div>
-        </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                function escapeHTML(html) {
-                    var text = document.createTextNode(html);
-                    var div = document.createElement('div');
-                    div.appendChild(text);
-                    return div.innerHTML;
-                }
-                function checkDifferences() {
-                    var ignoreWhitespace = document.getElementById('codeDif-ignoreWhitespace').checked;
-                    var code1 = document.getElementById('codeDif-text1').value.split('\n').map(function(line) {
-                        return ignoreWhitespace ? line.trim() : line;
-                    });
-                    var code2 = document.getElementById('codeDif-text2').value.split('\n').map(function(line) {
-                        return ignoreWhitespace ? line.trim() : line;
-                    });
-                    var output1 = '';
-                    var output2 = '';
-                    // Use forEach to iterate over lines
-                    code1.forEach(function(line1, index) {
-                        var line2 = code2[index] || '';
-                        var maxLength = Math.max(line1.length, line2.length);
-                        // Create an array of characters for each line
-                        var chars1 = line1.split('');
-                        var chars2 = line2.split('');
-                        // Use forEach to compare characters
-                        chars1.forEach(function(char1, i) {
-                            var char2 = chars2[i] || '';
-                            if (char1 === char2) {
-                                output1 += escapeHTML(char1);
-                                output2 += escapeHTML(char2);
-                            } else {
-                                if (char1) output1 += '<span style="background-color: #ffcdd2;">' + escapeHTML(char1) + '</span>';
-                                if (char2) output2 += '<span style="background-color: #c8e6c9;">' + escapeHTML(char2) + '</span>';
-                            }
-                        });
-                        output1 += '\n'; // Add a newline after each line
-                        output2 += '\n';
-                    });
-                    document.getElementById('codeDif-result1').innerHTML = output1;
-                    document.getElementById('codeDif-result2').innerHTML = output2;
-                }
-                document.getElementById('codeDif-checkButton').addEventListener('click', checkDifferences);
-            });
-        </script>
-    </div>
+<link rel="stylesheet" href="../assets/tools.css">
 
-??? tool "Base64 Conversion Tool"
-    <p>Convert any string into a base64 encoded string</p>
-    <p>If setting up Basic Auth for an endpoint, be sure to use a colon <strong>:</strong> to separate the Username and Password</p>
-    <p>Example: username:password <p>
-    <div>
-        <input type="text" id="base64TextInput" placeholder="Convert to Base64" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; box-sizing: border-box; width: 100%; margin-right: 5px;">
-        <button id="base64ConvertButton" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; background-color: rgba(192, 192, 192, 0.1); cursor: pointer;">Click to Convert</button>
-        <br><br>
-        Copy your converted Base64 String
-        <div id="base64Output" style="border: 2px solid #C0C0C0; border-radius: 5px; min-height: 45px; padding: 10px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center;">
-            <span id="outputText"></span>
-        </div>
-        <script>
-            document.getElementById('base64ConvertButton').onclick = function() {
-                const inputText = document.getElementById('base64TextInput').value;
-                const base64Text = btoa(inputText);
-                document.getElementById('outputText').textContent = base64Text; // Update only the text span
-            };
-        </script>
-    </div>
+!!! info "Private, local processing"
 
+    These tools process text only in the current browser tab. Nothing is sent to a RoomOS device or another service, stored in browser storage, or logged by the Lab Guide. Use **Clear** when you have finished working with credentials or payload fragments.
 
-??? tool "Flatten Multiline String Tool"
-    <p>Some command fields can't accept a multi-line string. Use this tool to remove line breaks in your string.</p>
-    <div>
-        <textarea id="textInput" placeholder="Enter your text here" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; box-sizing: border-box; width: 100%; height: 100px; margin-right: 5px;"></textarea>
-        <br><br>
-        <button id="flattenButton" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; background-color: rgba(192, 192, 192, 0.1); cursor: pointer;">Flatten Text</button>
-        <br><br>
-        Copy your flattened text
-        <div id="flattenOutputContainer" style="border: 2px solid #C0C0C0; border-radius: 5px; min-height: 45px; padding: 10px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center;">
-            <span id="flattenOutputText"></span>
-        </div>
-        <script>
-            document.getElementById('flattenButton').onclick = function() {
-                const inputText = document.getElementById('textInput').value;
-                const flattenedText = inputText.replace(/\n/g, ' ').trim(); // Replace new lines with spaces and trim
-                document.getElementById('flattenOutputText').textContent = flattenedText; // Update only the text span
-            };
-        </script>
-    </div>
+=== "Code Difference Checker"
 
-??? tool "Stringify XML Body"
-    <p>Use this tool to "Stringify" your XML string. Some data fields may be formatted in XML itself, so if your string is written in XML, then you may confuse that xAPI call if you don't handle the syntax appropriately.</p>
-    <div>
-        <textarea id="xmlInput" placeholder="Enter your XML here" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; box-sizing: border-box; width: 100%; height: 100px; margin-right: 5px;"></textarea>
-        <br><br>
-        <button id="stringifyXmlButton" style="border: 2px solid #C0C0C0; border-radius: 5px; padding: 10px; background-color: rgba(192, 192, 192, 0.1); cursor: pointer;">Stringify XML</button>
-        <br><br>
-        Copy your stringified XML
-        <div id="xmlOutputContainer" style="border: 2px solid #C0C0C0; border-radius: 5px; min-height: 45px; padding: 10px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center;">
-            <span id="xmlOutputText"></span>
+    Compare code by line. The compact side-by-side view pairs old and new lines in changed hunks with nearby context; turn on **Show unchanged lines** to inspect the full file. When **Ignore all whitespace** is enabled, whitespace-only changes do not count as differences.
+
+    <section class="roomos-tool" data-roomos-tool="diff">
+      <div class="roomos-tool__grid roomos-tool__grid--two-up">
+        <div class="roomos-tool__field">
+          <label for="roomos-diff-left">Script Entry 1</label>
+          <textarea id="roomos-diff-left" spellcheck="false" placeholder="Paste your syntax here"></textarea>
         </div>
-        <script>
-            document.getElementById('stringifyXmlButton').onclick = function() {
-                const inputText = document.getElementById('xmlInput').value;
-                const stringifiedXml = inputText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, '&apos;').replace(/"/g, '&quot;').trim();
-                document.getElementById('xmlOutputText').textContent = stringifiedXml; // Update only the text span
-            };
-        </script>
-    </div>
+        <div class="roomos-tool__field">
+          <label for="roomos-diff-right">Script Entry 2</label>
+          <textarea id="roomos-diff-right" spellcheck="false" placeholder="Paste the reference syntax here"></textarea>
+        </div>
+      </div>
+      <label class="roomos-tool__checkbox" for="roomos-diff-ignore-whitespace">
+        <input id="roomos-diff-ignore-whitespace" type="checkbox" checked>
+        Ignore all whitespace
+      </label>
+      <label class="roomos-tool__checkbox" for="roomos-diff-show-unchanged">
+        <input id="roomos-diff-show-unchanged" type="checkbox">
+        Show unchanged lines
+      </label>
+      <div class="roomos-tool__actions">
+        <button class="md-button md-button--primary" type="button" data-action="compare">Compare</button>
+        <button class="md-button" type="button" data-action="clear">Clear</button>
+      </div>
+      <p class="roomos-tool__status" aria-live="polite"></p>
+      <div class="roomos-tool__results roomos-tool__diff-results" hidden>
+        <div class="roomos-tool__diff-heading" aria-hidden="true">
+          <span>Old version</span>
+          <span>New version</span>
+        </div>
+        <div class="roomos-tool__diff-view" aria-label="Code comparison result"></div>
+      </div>
+    </section>
+
+=== "Base64 Conversion Tools"
+
+    Encode and decode UTF-8 text or self-describing image Data URLs. Every operation stays in this browser tab.
+
+    <section class="roomos-tool" data-roomos-tool="base64">
+      <div class="roomos-tool__subtabs" role="tablist" aria-label="Base64 tools">
+        <button type="button" role="tab" aria-selected="true" aria-controls="roomos-base64-encode-text" data-base64-tab="text-encode">Encode Text</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="roomos-base64-decode-text" data-base64-tab="text-decode">Decode Text</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="roomos-base64-encode-image" data-base64-tab="image-encode">Encode Image</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="roomos-base64-decode-image" data-base64-tab="image-decode">Decode Image</button>
+      </div>
+      <div class="roomos-tool__subtool" id="roomos-base64-encode-text" role="tabpanel" data-roomos-subtool="text-encode">
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-encode-input">Text to encode</label>
+              <textarea id="roomos-base64-encode-input" spellcheck="false" placeholder="username:password"></textarea>
+            </div>
+            <div class="roomos-tool__actions">
+              <button class="md-button md-button--primary" type="button" data-action="convert">Encode text</button>
+              <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
+              <button class="md-button" type="button" data-action="clear">Clear</button>
+            </div>
+            <p class="roomos-tool__status" aria-live="polite"></p>
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-encode-output">Base64 output</label>
+              <textarea id="roomos-base64-encode-output" readonly spellcheck="false" placeholder="Encoded output appears here"></textarea>
+            </div>
+      </div>
+      <div class="roomos-tool__subtool" id="roomos-base64-decode-text" role="tabpanel" data-roomos-subtool="text-decode" hidden>
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-decode-input">Base64 text</label>
+              <textarea id="roomos-base64-decode-input" spellcheck="false" placeholder="Paste Base64 text here"></textarea>
+            </div>
+            <div class="roomos-tool__actions">
+              <button class="md-button md-button--primary" type="button" data-action="convert">Decode text</button>
+              <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
+              <button class="md-button" type="button" data-action="clear">Clear</button>
+            </div>
+            <p class="roomos-tool__status" aria-live="polite"></p>
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-decode-output">Decoded text</label>
+              <textarea id="roomos-base64-decode-output" readonly spellcheck="false" placeholder="Decoded text appears here"></textarea>
+            </div>
+      </div>
+      <div class="roomos-tool__subtool" id="roomos-base64-encode-image" role="tabpanel" data-roomos-subtool="image-encode" hidden>
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-image-encode-input">Image file</label>
+              <input class="roomos-tool__file-input" id="roomos-base64-image-encode-input" type="file" accept="image/*">
+            </div>
+            <div class="roomos-tool__image-preview" data-image-preview hidden>
+              <img alt="Selected image preview">
+            </div>
+            <div class="roomos-tool__actions">
+              <button class="md-button md-button--primary" type="button" data-action="encode-image">Encode image</button>
+              <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
+              <button class="md-button" type="button" data-action="clear">Clear</button>
+            </div>
+            <p class="roomos-tool__status" aria-live="polite"></p>
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-image-encode-output">Image Data URL</label>
+              <textarea id="roomos-base64-image-encode-output" readonly spellcheck="false" placeholder="The encoded image Data URL appears here"></textarea>
+            </div>
+      </div>
+      <div class="roomos-tool__subtool" id="roomos-base64-decode-image" role="tabpanel" data-roomos-subtool="image-decode" hidden>
+            <div class="roomos-tool__field">
+              <label for="roomos-base64-image-decode-input">Image Data URL</label>
+              <textarea id="roomos-base64-image-decode-input" spellcheck="false" placeholder="Paste a data:image/...;base64,... value here"></textarea>
+            </div>
+            <div class="roomos-tool__actions">
+              <button class="md-button md-button--primary" type="button" data-action="decode-image">Decode image</button>
+              <button class="md-button" type="button" data-action="clear">Clear</button>
+            </div>
+            <p class="roomos-tool__status" aria-live="polite"></p>
+            <div class="roomos-tool__image-preview" data-image-preview hidden>
+              <img alt="Decoded image preview">
+            </div>
+      </div>
+    </section>
+
+=== "Flatten Multiline Text"
+
+    Replace each line break with one space and trim the result. Existing spaces are preserved; this tool does not normalize or collapse them.
+
+    <section class="roomos-tool" data-roomos-tool="flatten">
+      <div class="roomos-tool__field">
+        <label for="roomos-flatten-input">Multiline text</label>
+        <textarea id="roomos-flatten-input" spellcheck="false" placeholder="Paste multiline text here"></textarea>
+      </div>
+      <div class="roomos-tool__actions">
+        <button class="md-button md-button--primary" type="button" data-action="convert">Flatten</button>
+        <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
+        <button class="md-button" type="button" data-action="clear">Clear</button>
+      </div>
+      <p class="roomos-tool__status" aria-live="polite"></p>
+      <div class="roomos-tool__field" data-roomos-result hidden>
+        <label for="roomos-flatten-output">Flattened text</label>
+        <textarea id="roomos-flatten-output" readonly spellcheck="false" placeholder="Flattened text appears here"></textarea>
+      </div>
+    </section>
+
+=== "Escape XML Body"
+
+    Escape XML so it can be used as text inside another XML element, such as the `body` argument of `xCommand UserInterface Extensions Panel Save`. Use **Unescape XML** to inspect or revise an existing escaped payload.
+
+    <section class="roomos-tool" data-roomos-tool="xml">
+      <div class="roomos-tool__subtabs" role="tablist" aria-label="XML tools">
+        <button type="button" role="tab" aria-selected="true" aria-controls="roomos-xml-escape" data-xml-tab="escape">Escape XML</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="roomos-xml-unescape" data-xml-tab="unescape">Unescape XML</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="roomos-xml-format" data-xml-tab="format">Format &amp; Validate</button>
+      </div>
+      <div class="roomos-tool__subtool" id="roomos-xml-escape" role="tabpanel" data-roomos-subtool="escape">
+        <div class="roomos-tool__field">
+          <label for="roomos-xml-escape-input">XML to escape</label>
+          <textarea id="roomos-xml-escape-input" spellcheck="false" placeholder="Paste XML here"></textarea>
+        </div>
+        <div class="roomos-tool__actions">
+          <button class="md-button md-button--primary" type="button" data-action="convert">Escape XML</button>
+          <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
+          <button class="md-button" type="button" data-action="clear">Clear</button>
+        </div>
+        <p class="roomos-tool__status" aria-live="polite"></p>
+        <div class="roomos-tool__field" data-roomos-result hidden>
+          <label for="roomos-xml-escape-output">Escaped XML</label>
+          <textarea id="roomos-xml-escape-output" readonly spellcheck="false" placeholder="Escaped XML appears here"></textarea>
+        </div>
+      </div>
+      <div class="roomos-tool__subtool" id="roomos-xml-unescape" role="tabpanel" data-roomos-subtool="unescape" hidden>
+        <div class="roomos-tool__field">
+          <label for="roomos-xml-unescape-input">Escaped XML</label>
+          <textarea id="roomos-xml-unescape-input" spellcheck="false" placeholder="Paste escaped XML here"></textarea>
+        </div>
+        <div class="roomos-tool__actions">
+          <button class="md-button md-button--primary" type="button" data-action="convert">Unescape XML</button>
+          <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
+          <button class="md-button" type="button" data-action="clear">Clear</button>
+        </div>
+        <p class="roomos-tool__status" aria-live="polite"></p>
+        <div class="roomos-tool__field" data-roomos-result hidden>
+          <label for="roomos-xml-unescape-output">XML</label>
+          <textarea id="roomos-xml-unescape-output" readonly spellcheck="false" placeholder="Unescaped XML appears here"></textarea>
+        </div>
+      </div>
+      <div class="roomos-tool__subtool" id="roomos-xml-format" role="tabpanel" data-roomos-subtool="format" hidden>
+        <div class="roomos-tool__field">
+          <label for="roomos-xml-format-input">XML to format and validate</label>
+          <textarea id="roomos-xml-format-input" spellcheck="false" placeholder="Paste XML here"></textarea>
+        </div>
+        <div class="roomos-tool__actions">
+          <button class="md-button md-button--primary" type="button" data-action="convert">Format &amp; validate</button>
+          <button class="md-button" type="button" data-action="copy" disabled>Copy</button>
+          <button class="md-button" type="button" data-action="clear">Clear</button>
+        </div>
+        <p class="roomos-tool__status" aria-live="polite"></p>
+        <div class="roomos-tool__field" data-roomos-result hidden>
+          <label for="roomos-xml-format-output">Formatted XML</label>
+          <textarea id="roomos-xml-format-output" readonly spellcheck="false"></textarea>
+        </div>
+      </div>
+    </section>
+
+=== "JSON Formatter & Validator"
+
+    Validate local JSON before using it in Cloud xAPI, WebSocket JSON-RPC, macro parameters, or a site manifest.
+
+    <section class="roomos-tool" data-roomos-tool="json-format">
+      <div class="roomos-tool__field"><label for="roomos-json-format-input">JSON</label><textarea id="roomos-json-format-input" spellcheck="false" placeholder="Paste JSON here"></textarea></div>
+      <div class="roomos-tool__actions"><button class="md-button md-button--primary" type="button" data-action="format">Format &amp; validate</button><button class="md-button" type="button" data-action="minify">Minify</button><button class="md-button" type="button" data-action="copy" disabled>Copy</button><button class="md-button" type="button" data-action="clear">Clear</button></div>
+      <p class="roomos-tool__status" aria-live="polite"></p>
+      <div class="roomos-tool__field" data-roomos-result hidden><label for="roomos-json-format-output">Validated JSON</label><textarea id="roomos-json-format-output" readonly spellcheck="false"></textarea></div>
+    </section>
+
+=== "JSON String Escaper"
+
+    Convert text or XML into one JSON string literal, including its enclosing quotes. This is useful for a JSON request body that needs multiline content.
+
+    <section class="roomos-tool" data-roomos-tool="json-string">
+      <div class="roomos-tool__field"><label for="roomos-json-string-input">Text to escape</label><textarea id="roomos-json-string-input" spellcheck="false" placeholder="Paste text or XML here"></textarea></div>
+      <div class="roomos-tool__actions"><button class="md-button md-button--primary" type="button" data-action="convert">Escape for JSON</button><button class="md-button" type="button" data-action="copy" disabled>Copy</button><button class="md-button" type="button" data-action="clear">Clear</button></div>
+      <p class="roomos-tool__status" aria-live="polite"></p>
+      <div class="roomos-tool__field" data-roomos-result hidden><label for="roomos-json-string-output">JSON string literal</label><textarea id="roomos-json-string-output" readonly spellcheck="false"></textarea></div>
+    </section>
+
+<script>
+  window.RoomosToolsLoader ??= (() => {
+    let ready;
+
+    return () => {
+      if (window.RoomosTools) {
+        window.RoomosTools.init(document);
+        return;
+      }
+
+      ready ??= new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = '../assets/tools.js';
+        script.addEventListener('load', resolve, { once: true });
+        script.addEventListener('error', reject, { once: true });
+        document.head.append(script);
+      });
+      ready.then(() => window.RoomosTools.init(document));
+    };
+  })();
+
+  if (typeof document$ !== 'undefined') document$.subscribe(window.RoomosToolsLoader);
+  else window.RoomosToolsLoader();
+</script>
