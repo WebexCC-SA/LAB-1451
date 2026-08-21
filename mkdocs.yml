@@ -49,10 +49,11 @@ extra_javascript:
 plugins:
   - search
   - macros
-  - with-pdf:
-      cover_title: LABXXX-1234
-      cover_subtitle: My famous WebexOne Lab
-      cover_logo: template_assets/Wx1_25_PDF_image.jpg
+  # - with-pdf:
+  #     cover_title: LABXXX-1234
+  #     cover_subtitle: My famous WebexOne Lab
+  #     cover_logo: template_assets/Wx1_25_PDF_image.jpg
+  - print-site
 
   - glightbox:
       touchNavigation: true
@@ -111,6 +112,7 @@ nav:
       # - WebSockets <sup><sup>{{ config.cProps.rxp.sectionIds.websocket }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_websockets.md
       # - Webex Cloud <sup><sup>{{ config.cProps.rxp.sectionIds.cloud }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_cloud.md
       - Macros <sup><sup>{{ config.cProps.rxp.sectionIds.macro }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_macros.md
+      # - JSXAPI <sup><sup>{{ config.cProps.rxp.sectionIds.jsxapi }}</sup></sup>: Main-Lab/RoomOS/rxp_xapi/rxp_xapi_jsxapi.md
     - RoomOS UserInterfaces: 
       - What are RoomOS UserInterfaces: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_intro.md
       - Features <sup><sup>{{ config.cProps.rxp.sectionIds.ui.features }}</sup></sup>: Main-Lab/RoomOS/rxp_userInterface/rxp_ui_features.md
@@ -219,7 +221,7 @@ cProps:
       websocket: rxp-4
       cloud: rxp-5
       macro: rxp-6
-      sdk: rxp-7
+      jsxapi: rxp-7
       ui:
         features: rxu-1
         extensions: rxu-2

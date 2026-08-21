@@ -337,4 +337,11 @@ Cloud xAPI status requests query the current status data retained by Webex. The 
 
 ## Section {{ config.cProps.rxp.sectionIds.cloud }} Cleanup ~({{ config.cProps.rxp.sectionIds.cloud }}.8)~
 
-{{ config.cProps.rxp.sectionCleanup }}
+        ```shell title="Type into terminal and press Enter"
+        xConfig Audio DefaultVolume: 50
+        xCommand UserInterface Extensions Panel Remove PanelId: wx1_lab_multilineCommand
+        xCommand Video Selfview Set Mode: Off FullscreenMode: Off
+        xCommand Video Input SetMainVideoSource ConnectorId: 1
+        xCommand Audio Volume SetToDefault Device: Internal
+        xCommand HTTPFeedBack Deregister FeedbackSlot: 1 FeedbackSlot: 2 FeedbackSlot: 3 FeedbackSlot: 4
+        ```

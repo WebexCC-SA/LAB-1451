@@ -8,6 +8,52 @@
 
     Here, we'll see the relationships between HTTP and SSH on how to structure an xConfiguration, xCommand, xStatus and xEvents to a Cisco RoomOS device
 
+    !!! curious "Click the Tabs Below to see how HTTP xAPI calls communicate"
+
+        === "Get Requests [xStatuses/xConfigs]"
+
+            ``` mermaid
+            %%{init: {'theme':'dark'}}%%
+            sequenceDiagram
+              participant My Customization
+              participant Target Codec
+              My Customization->>+Target Codec: xStatus/xConfig Get Request
+              Note over My Customization,Target Codec: If Device Online
+              Target Codec->>- My Customization: Responds 200 OK
+            ```
+
+        === "Post Requests [xCommands/xConfigs]"
+
+            ``` mermaid
+            %%{init: {'theme':'dark'}}%%
+            sequenceDiagram
+              participant My Customization
+              participant Target Codec
+              My Customization->>+Target Codec: xCommand/xConfig Post Request
+              Note over My Customization,Target Codec: If Device Online
+              Target Codec->>- My Customization: Responds 200 OK
+            ```
+
+        === "Subscriptions [HTTPFeedback]"
+
+            ``` mermaid
+            %%{init: {'theme':'dark'}}%%
+            sequenceDiagram
+              participant My Customization
+              participant Target Codec
+              activate Target Codec
+              Note over My Customization, Target Codec: WebHook Offered by My Customization<br>Configured in Target Codec
+              Target Codec -->>+ My Customization: Forwards Subscription Traffic
+              Note over My Customization,Target Codec: On Subscription callBack from Target Codec
+              deactivate Target Codec
+              activate My Customization
+              Target Codec->>+ My Customization: Ex. xEvent UserInterface Extension Panel Clicked (QuickDial)
+              activate Target Codec
+              My Customization->>+Target Codec: Responds with xCommand Dial Post Request
+              deactivate My Customization
+              Target Codec->>- My Customization: Responds 200 OK
+            ```
+
 
 ## Section {{config.cProps.rxp.sectionIds.http}} Requirements
 
